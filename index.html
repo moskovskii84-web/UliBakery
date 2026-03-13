@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UliBakery</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:#fff6f8;
+color:#333;
+}
+
+header{
+background:#ff6f91;
+padding:15px;
+color:white;
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+}
+
+nav a{
+color:white;
+margin:10px;
+text-decoration:none;
+font-weight:bold;
+}
+
+.hero{
+text-align:center;
+padding:80px 20px;
+background:#ffe3ec;
+}
+
+.hero h1{
+font-size:40px;
+}
+
+.btn{
+background:#ff3f6c;
+color:white;
+padding:12px 25px;
+border-radius:8px;
+text-decoration:none;
+margin:10px;
+display:inline-block;
+}
+
+.section{
+padding:60px 20px;
+text-align:center;
+}
+
+.grid{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:25px;
+}
+
+.card{
+background:white;
+width:250px;
+padding:20px;
+border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.card img{
+width:100%;
+border-radius:10px;
+}
+
+.gallery img{
+width:250px;
+border-radius:10px;
+margin:10px;
+}
+
+footer{
+background:#ff6f91;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+.lang button{
+margin:5px;
+padding:6px 10px;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+@media(max-width:700px){
+
+.grid{
+flex-direction:column;
+align-items:center;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h2>UliBakery</h2>
+
+<nav>
+<a href="#menu">Menu</a>
+<a href="#gallery">Gallery</a>
+<a href="#order">Order</a>
+<a href="#contact">Contact</a>
+</nav>
+
+<div class="lang">
+<button onclick="setLang('fi')">FI</button>
+<button onclick="setLang('ru')">RU</button>
+<button onclick="setLang('en')">EN</button>
+</div>
+
+</header>
+
+<section class="hero">
+
+<h1 id="title">Home bakery in Vantaa</h1>
+
+<p id="subtitle">Cake slices • Eclairs • Pastries • Custom cakes</p>
+
+<a class="btn" href="https://www.instagram.com/uli_bakery/" target="_blank" id="order1">Order via Instagram</a>
+
+<a class="btn" href="mailto:ulibakery.fi@gmail.com" id="order2">Order by Email</a>
+
+</section>
+
+<section id="menu" class="section">
+
+<h2 id="menuTitle">Our desserts</h2>
+
+<div class="grid">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587">
+<h3 id="cake">Cake slices</h3>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476f">
+<h3 id="eclair">Eclairs</h3>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1559620192-032c4bc4674e">
+<h3 id="pastry">Pastries</h3>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1541782814456-44f7d37c5c6d">
+<h3 id="custom">Custom cakes</h3>
+</div>
+
+</div>
+
+</section>
+
+<section id="gallery" class="section">
+
+<h2 id="galleryTitle">Gallery</h2>
+
+<div class="gallery">
+
+<img src="https://images.unsplash.com/photo-1519864600265-abb23847ef2c">
+<img src="https://images.unsplash.com/photo-1551024601-bec78aea704b">
+<img src="https://images.unsplash.com/photo-1505253213348-cd54c92b37f7">
+
+</div>
+
+</section>
+
+<section id="order" class="section">
+
+<h2 id="orderTitle">Order</h2>
+
+<a class="btn" href="https://www.instagram.com/uli_bakery/" target="_blank">Instagram</a>
+
+<a class="btn" href="mailto:ulibakery.fi@gmail.com">Email</a>
+
+</section>
+
+<section id="contact" class="section">
+
+<h2 id="contactTitle">Location</h2>
+
+<p>Venuksentie 6, Vantaa</p>
+
+<iframe
+src="https://maps.google.com/maps?q=Venuksentie%206%20Vantaa&t=&z=13&ie=UTF8&iwloc=&output=embed"
+width="80%"
+height="300"
+style="border:0;">
+</iframe>
+
+</section>
+
+<footer>
+
+<p>© 2026 UliBakery</p>
+
+</footer>
+
+<script>
+
+const texts = {
+
+ru:{
+title:"Домашняя кондитерская в Vantaa",
+subtitle:"Торты кусочками • Эклеры • Пирожные • Торты на заказ",
+menuTitle:"Наши десерты",
+galleryTitle:"Галерея",
+orderTitle:"Заказать",
+contactTitle:"Адрес",
+cake:"Торты кусочками",
+eclair:"Эклеры",
+pastry:"Пирожные",
+custom:"Торты на заказ"
+},
+
+fi:{
+title:"Kotileipomo Vantaalla",
+subtitle:"Kakkupalat • Eklerit • Leivokset • Tilattavat kakut",
+menuTitle:"Makeiset",
+galleryTitle:"Galleria",
+orderTitle:"Tilaa",
+contactTitle:"Sijainti",
+cake:"Kakkupalat",
+eclair:"Eklerit",
+pastry:"Leivokset",
+custom:"Tilattavat kakut"
+},
+
+en:{
+title:"Home bakery in Vantaa",
+subtitle:"Cake slices • Eclairs • Pastries • Custom cakes",
+menuTitle:"Our desserts",
+galleryTitle:"Gallery",
+orderTitle:"Order",
+contactTitle:"Location",
+cake:"Cake slices",
+eclair:"Eclairs",
+pastry:"Pastries",
+custom:"Custom cakes"
+}
+
+}
+
+function setLang(lang){
+
+document.getElementById("title").innerText=texts[lang].title
+document.getElementById("subtitle").innerText=texts[lang].subtitle
+document.getElementById("menuTitle").innerText=texts[lang].menuTitle
+document.getElementById("galleryTitle").innerText=texts[lang].galleryTitle
+document.getElementById("orderTitle").innerText=texts[lang].orderTitle
+document.getElementById("contactTitle").innerText=texts[lang].contactTitle
+document.getElementById("cake").innerText=texts[lang].cake
+document.getElementById("eclair").innerText=texts[lang].eclair
+document.getElementById("pastry").innerText=texts[lang].pastry
+document.getElementById("custom").innerText=texts[lang].custom
+
+}
+
+</script>
+
+</body>
+</html>
