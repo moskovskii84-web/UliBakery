@@ -1,304 +1,131 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UliBakery</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UliBakery | Vantaa</title>
+    <style>
+        body { margin:0; font-family: Arial, sans-serif; background:#fff6f8; color:#333; }
+        
+        /* ШАПКА */
+        header { background: #fffafa; padding: 40px 0; color: #5d4037; border-bottom: 2px solid #fbc2eb; }
+        .header-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-around; align-items: center; padding: 0 20px; gap: 40px; flex-wrap: wrap; }
+        .header-left img { width: 100%; max-width: 500px; height: 320px; object-fit: cover; border-radius: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+        .header-right { flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .logo-img { width: 220px; height: 220px; object-fit: cover; border-radius: 50%; border: 4px solid #fbc2eb; margin-bottom: 15px; }
+        .header-right h2 { margin: 0; font-family: 'Georgia', serif; font-size: 52px; color: #ff6f91; font-weight: bold; }
 
-<style>
+        /* НАВИГАЦИЯ */
+        nav { width: 100%; text-align: center; margin-top: 40px; border-top: 1px solid #fce4ec; padding-top: 25px; }
+        .nav-container { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-bottom: 25px; }
+        .nav-btn { text-decoration: none; display: flex; flex-direction: column; align-items: center; min-width: 130px; cursor: pointer; }
+        .main-text { color: #5d4037; font-weight: bold; font-size: 20px; text-transform: uppercase; }
+        .sub-text { color: #ff6f91; font-size: 12px; font-weight: normal; margin-top: 2px; }
 
-body{
-margin:0;
-font-family:Arial;
-background:#fff6f8;
-color:#333;
-}
+        /* ВЫПАДАЮЩЕЕ МЕНЮ */
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown-content { display: none; position: absolute; background: white; min-width: 220px; box-shadow: 0 8px 16px rgba(0,0,0,0.1); z-index: 10; border-radius: 10px; margin-top: 5px; text-align: left; overflow: hidden; }
+        .dropdown-content a { color: #5d4037; padding: 12px 16px; text-decoration: none; display: block; border-bottom: 1px solid #fff0f3; font-size: 16px; }
+        .dropdown-content a:hover { background-color: #fff0f3; }
+        .dropdown:hover .dropdown-content { display: block; }
 
-header{
-background:#ff6f91;
-padding:15px;
-color:white;
-display:flex;
-justify-content:space-between;
-align-items:center;
-flex-wrap:wrap;
-}
+        /* КНОПКИ ЯЗЫКОВ */
+        .lang button { background:#fff; border:1px solid #ffb2c1; padding: 10px 18px; border-radius: 10px; cursor:pointer; font-weight:bold; margin: 0 8px; color: #333; }
+        .lang button:hover { background: #fbc2eb; color: white; }
 
-nav a{
-color:white;
-margin:10px;
-text-decoration:none;
-font-weight:bold;
-}
-
-.hero{
-text-align:center;
-padding:80px 20px;
-background:#ffe3ec;
-}
-
-.hero h1{
-font-size:40px;
-}
-
-.btn{
-background:#ff3f6c;
-color:white;
-padding:12px 25px;
-border-radius:8px;
-text-decoration:none;
-margin:10px;
-display:inline-block;
-}
-
-.section{
-padding:60px 20px;
-text-align:center;
-}
-
-.grid{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:25px;
-}
-
-.card{
-background:white;
-width:250px;
-padding:20px;
-border-radius:12px;
-box-shadow:0 5px 15px rgba(0,0,0,0.1);
-transition:0.3s;
-}
-
-.card:hover{
-transform:translateY(-5px);
-}
-
-.card img{
-width:100%;
-border-radius:10px;
-}
-
-.gallery img{
-width:250px;
-border-radius:10px;
-margin:10px;
-}
-
-footer{
-background:#ff6f91;
-color:white;
-text-align:center;
-padding:20px;
-}
-
-.lang button{
-margin:5px;
-padding:6px 10px;
-border:none;
-border-radius:5px;
-cursor:pointer;
-}
-
-@media(max-width:700px){
-
-.grid{
-flex-direction:column;
-align-items:center;
-}
-
-}
-
-</style>
+        .hero { text-align:center; padding:60px 20px; background:#ffe3ec; }
+        .btn { background:#ff3f6c; color:white; padding:12px 25px; border-radius:8px; text-decoration:none; margin:10px; display:inline-block; }
+        footer { background:#fbc2eb; color:#5d4037; text-align:center; padding:20px; margin-top:40px; }
+    </style>
 </head>
-
 <body>
 
-<header style="background: #fffafa; padding: 30px 0; color: #5d4037; border-bottom: 2px solid #fbc2eb;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-around; align-items: center; width: 100%; padding: 0 20px; gap: 40px; flex-wrap: wrap;">
-        
-        <!-- Левая часть: Фото фасада (увеличено) -->
-        <div style="flex: 1; min-width: 350px; text-align: center;">
-            <img src="facade.jpg" alt="UliBakery Facade" style="width: 100%; max-width: 450px; height: 280px; object-fit: cover; border-radius: 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.1);">
+<header>
+    <div class="header-container">
+        <div class="header-left"><img src="facade.jpg" alt="UliBakery"></div>
+        <div class="header-right">
+            <img src="logo.jpg" alt="Logo" class="logo-img">
+            <h2>UliBakery</h2>
         </div>
-
-        <!-- Правая часть: Большой логотип и Название строго под ним -->
-        <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; align-items: center; text-align: center;">
-            <img src="logo.jpg" alt="UliBakery Logo" style="width: 180px; height: 180px; object-fit: cover; border-radius: 50%; border: 4px solid #fbc2eb; margin-bottom: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.08);">
-            <h2 style="margin: 0; font-family: 'Georgia', serif; font-size: 42px; color: #ff6f91; letter-spacing: 2px; font-weight: bold;">UliBakery</h2>
-        </div>
-
     </div>
-
-    <!-- Навигация -->
-    <nav style="width: 100%; text-align: center; margin-top: 35px; border-top: 1px solid #fce4ec; padding-top: 20px;">
-        <div style="margin-bottom: 15px;">
-            <a href="#menu" style="color: #5d4037; margin: 0 20px; font-weight: bold; text-decoration: none; font-size: 20px;">Menu</a>
-            <a href="#gallery" style="color: #5d4037; margin: 0 20px; font-weight: bold; text-decoration: none; font-size: 20px;">Gallery</a>
-            <a href="#order" style="color: #5d4037; margin: 0 20px; font-weight: bold; text-decoration: none; font-size: 20px;">Order</a>
-            <a href="#contact" style="color: #5d4037; margin: 0 20px; font-weight: bold; text-decoration: none; font-size: 20px;">Contact</a>
+    <nav>
+        <div class="nav-container">
+            <div class="dropdown">
+                <div class="nav-btn">
+                    <span id="btn_cakes" class="main-text">ТОРТЫ</span>
+                    <span id="btn_welcome" class="sub-text">добро пожаловать</span>
+                </div>
+                <div class="dropdown-content">
+                    <a href="#party" id="sub_party">Праздничные торты</a>
+                    <a href="#wedding" id="sub_wedding">Свадебные торты</a>
+                    <a href="#weekend" id="sub_weekend">Сладости на выходные</a>
+                </div>
+            </div>
+            <a href="#gallery" class="nav-btn">
+                <span id="btn_gallery" class="main-text">ГАЛЕРЕЯ</span>
+                <span id="sub_gallery" class="sub-text">наши работы</span>
+            </a>
+            <a href="#order" class="nav-btn">
+                <span id="btn_order" class="main-text">ЗАКАЗАТЬ</span>
+                <span id="sub_order" class="sub-text">условия</span>
+            </a>
+            <a href="#contact" class="nav-btn">
+                <span id="btn_contact" class="main-text">КОНТАКТЫ</span>
+                <span id="sub_contact" class="sub-text">где мы</span>
+            </a>
         </div>
-        
         <div class="lang">
-            <button onclick="setLang('fi')" style="background:#fff; border:1px solid #ffb2c1; padding: 8px 15px; border-radius: 6px; cursor:pointer; font-weight:bold; margin: 0 5px;">FI</button>
-            <button onclick="setLang('ru')" style="background:#fff; border:1px solid #ffb2c1; padding: 8px 15px; border-radius: 6px; cursor:pointer; font-weight:bold; margin: 0 5px;">RU</button>
-            <button onclick="setLang('en')" style="background:#fff; border:1px solid #ffb2c1; padding: 8px 15px; border-radius: 6px; cursor:pointer; font-weight:bold; margin: 0 5px;">EN</button>
+            <button onclick="setLang('fi')">FI</button>
+            <button onclick="setLang('ru')">RU</button>
+            <button onclick="setLang('en')">EN</button>
         </div>
     </nav>
 </header>
 
-
-
 <section class="hero">
-
-<h1 id="title">Home bakery in Vantaa</h1>
-
-<p id="subtitle">Cake slices • Eclairs • Pastries • Custom cakes</p>
-
-<a class="btn" href="https://www.instagram.com/uli_bakery/" target="_blank" id="order1">Order via Instagram</a>
-
-<a class="btn" href="mailto:ulibakery.fi@gmail.com" id="order2">Order by Email</a>
-
+    <h1 id="hero_title">Домашняя кондитерская в Vantaa</h1>
+    <p id="hero_subtitle">Вкуснейшие десерты ручной работы</p>
+    <a class="btn" href="https://www.instagram.com/uli_bakery/" target="_blank">Instagram</a>
+    <a class="btn" href="mailto:ulibakery.fi@gmail.com">Email</a>
 </section>
 
-<section id="menu" class="section">
-
-<h2 id="menuTitle">Our desserts</h2>
-
-<div class="grid">
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587">
-<h3 id="cake">Cake slices</h3>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476f">
-<h3 id="eclair">Eclairs</h3>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1559620192-032c4bc4674e">
-<h3 id="pastry">Pastries</h3>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1541782814456-44f7d37c5c6d">
-<h3 id="custom">Custom cakes</h3>
-</div>
-
-</div>
-
-</section>
-
-<section id="gallery" class="section">
-
-<h2 id="galleryTitle">Gallery</h2>
-
-<div class="gallery">
-
-<img src="https://images.unsplash.com/photo-1519864600265-abb23847ef2c">
-<img src="https://images.unsplash.com/photo-1551024601-bec78aea704b">
-<img src="https://images.unsplash.com/photo-1505253213348-cd54c92b37f7">
-
-</div>
-
-</section>
-
-<section id="order" class="section">
-
-<h2 id="orderTitle">Order</h2>
-
-<a class="btn" href="https://www.instagram.com/uli_bakery/" target="_blank">Instagram</a>
-
-<a class="btn" href="mailto:ulibakery.fi@gmail.com">Email</a>
-
-</section>
-
-<section id="contact" class="section">
-
-<h2 id="contactTitle">Location</h2>
-
-<p>Venuksentie 6, Vantaa</p>
-
-<iframe
-src="https://maps.google.com/maps?q=Venuksentie%206%20Vantaa&t=&z=13&ie=UTF8&iwloc=&output=embed"
-width="80%"
-height="300"
-style="border:0;">
-</iframe>
-
-</section>
-
-<footer>
-
-<p>© 2026 UliBakery</p>
-
-</footer>
+<footer><p>© 2026 UliBakery</p></footer>
 
 <script>
-
 const texts = {
+    ru: {
+        btn_cakes: "ТОРТЫ", btn_welcome: "добро пожаловать",
+        btn_gallery: "ГАЛЕРЕЯ", sub_gallery: "наши работы",
+        btn_order: "ЗАКАЗАТЬ", sub_order: "условия",
+        btn_contact: "КОНТАКТЫ", sub_contact: "где мы",
+        sub_party: "Праздничные торты", sub_wedding: "Свадебные торты", sub_weekend: "Сладости на выходные",
+        hero_title: "Домашняя кондитерская в Vantaa", hero_subtitle: "Вкуснейшие десерты ручной работы"
+    },
+    fi: {
+        btn_cakes: "KAKUT", btn_welcome: "tervetuloa",
+        btn_gallery: "GALLERIA", sub_gallery: "työnäytteet",
+        btn_order: "TILAA", sub_order: "tilausohjeet",
+        btn_contact: "YHTEYSTIEDOT", sub_contact: "löydät meidät",
+        sub_party: "Juhlakakut", sub_wedding: "Hääkakut", sub_weekend: "Viikonloppuherkut",
+        hero_title: "Kotileipomo Vantaalla", hero_subtitle: "Herkulliset käsintehdyt leivonnaiset"
+    },
+    en: {
+        btn_cakes: "CAKES", btn_welcome: "welcome",
+        btn_gallery: "GALLERY", sub_gallery: "our works",
+        btn_order: "ORDER", sub_order: "how to order",
+        btn_contact: "CONTACT", sub_contact: "find us",
+        sub_party: "Party Cakes", sub_wedding: "Wedding Cakes", sub_weekend: "Weekend Sweets",
+        hero_title: "Home bakery in Vantaa", hero_subtitle: "Delicious handmade desserts"
+    }
+};
 
-ru:{
-title:"Домашняя кондитерская в Vantaa",
-subtitle:"Торты кусочками • Эклеры • Пирожные • Торты на заказ",
-menuTitle:"Наши десерты",
-galleryTitle:"Галерея",
-orderTitle:"Заказать",
-contactTitle:"Адрес",
-cake:"Торты кусочками",
-eclair:"Эклеры",
-pastry:"Пирожные",
-custom:"Торты на заказ"
-},
-
-fi:{
-title:"Kotileipomo Vantaalla",
-subtitle:"Kakkupalat • Eklerit • Leivokset • Tilattavat kakut",
-menuTitle:"Makeiset",
-galleryTitle:"Galleria",
-orderTitle:"Tilaa",
-contactTitle:"Sijainti",
-cake:"Kakkupalat",
-eclair:"Eklerit",
-pastry:"Leivokset",
-custom:"Tilattavat kakut"
-},
-
-en:{
-title:"Home bakery in Vantaa",
-subtitle:"Cake slices • Eclairs • Pastries • Custom cakes",
-menuTitle:"Our desserts",
-galleryTitle:"Gallery",
-orderTitle:"Order",
-contactTitle:"Location",
-cake:"Cake slices",
-eclair:"Eclairs",
-pastry:"Pastries",
-custom:"Custom cakes"
+function setLang(lang) {
+    Object.keys(texts[lang]).forEach(id => {
+        const element = document.getElementById(id);
+        if (element) element.innerText = texts[lang][id];
+    });
 }
-
-}
-
-function setLang(lang){
-
-document.getElementById("title").innerText=texts[lang].title
-document.getElementById("subtitle").innerText=texts[lang].subtitle
-document.getElementById("menuTitle").innerText=texts[lang].menuTitle
-document.getElementById("galleryTitle").innerText=texts[lang].galleryTitle
-document.getElementById("orderTitle").innerText=texts[lang].orderTitle
-document.getElementById("contactTitle").innerText=texts[lang].contactTitle
-document.getElementById("cake").innerText=texts[lang].cake
-document.getElementById("eclair").innerText=texts[lang].eclair
-document.getElementById("pastry").innerText=texts[lang].pastry
-document.getElementById("custom").innerText=texts[lang].custom
-
-}
-
+setLang('ru');
 </script>
-
 </body>
 </html>
