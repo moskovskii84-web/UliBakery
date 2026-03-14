@@ -116,24 +116,37 @@ align-items:center;
 
 <body>
 
-<header>
+<header style="background: #fffafa; padding: 20px 0; color: #5d4037; border-bottom: 2px solid #fbc2eb;">
+    <div style="max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 0 20px; gap: 20px; flex-wrap: wrap;">
+        
+        <!-- Левая часть: Фото фасада -->
+        <div style="flex: 1; min-width: 300px; text-align: left;">
+            <img src="facade.jpg" alt="UliBakery Facade" style="width: 100%; max-width: 400px; height: 220px; object-fit: cover; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+        </div>
 
-<h2>UliBakery</h2>
+        <!-- Правая часть: Круглый логотип и Название -->
+        <div style="flex: 1; min-width: 250px; text-align: right; display: flex; flex-direction: column; align-items: flex-end;">
+            <img src="logo.jpg" alt="UliBakery Logo" style="width: 130px; height: 130px; object-fit: cover; border-radius: 50%; border: 3px solid #fbc2eb; margin-bottom: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+            <h2 style="margin: 0; font-family: 'Georgia', serif; font-size: 32px; color: #ff6f91; letter-spacing: 1px;">UliBakery</h2>
+        </div>
 
-<nav>
-<a href="#menu">Menu</a>
-<a href="#gallery">Gallery</a>
-<a href="#order">Order</a>
-<a href="#contact">Contact</a>
-</nav>
+    </div>
 
-<div class="lang">
-<button onclick="setLang('fi')">FI</button>
-<button onclick="setLang('ru')">RU</button>
-<button onclick="setLang('en')">EN</button>
-</div>
-
+    <!-- Навигация под фото -->
+    <nav style="width: 100%; text-align: center; margin-top: 25px; border-top: 1px solid #fce4ec; padding-top: 15px;">
+        <a href="#menu" style="color: #5d4037; margin: 0 15px; font-weight: bold; text-decoration: none; font-size: 18px;">Menu</a>
+        <a href="#gallery" style="color: #5d4037; margin: 0 15px; font-weight: bold; text-decoration: none; font-size: 18px;">Gallery</a>
+        <a href="#order" style="color: #5d4037; margin: 0 15px; font-weight: bold; text-decoration: none; font-size: 18px;">Order</a>
+        <a href="#contact" style="color: #5d4037; margin: 0 15px; font-weight: bold; text-decoration: none; font-size: 18px;">Contact</a>
+        
+        <div style="margin-top: 15px;">
+            <button onclick="setLang('fi')" style="background:#fff; border:1px solid #ffb2c1; padding: 6px 12px; border-radius: 5px; cursor:pointer; font-weight:bold;">FI</button>
+            <button onclick="setLang('ru')" style="background:#fff; border:1px solid #ffb2c1; padding: 6px 12px; border-radius: 5px; cursor:pointer; font-weight:bold;">RU</button>
+            <button onclick="setLang('en')" style="background:#fff; border:1px solid #ffb2c1; padding: 6px 12px; border-radius: 5px; cursor:pointer; font-weight:bold;">EN</button>
+        </div>
+    </nav>
 </header>
+
 
 <section class="hero">
 
