@@ -8,17 +8,17 @@
         body { margin:0; font-family: Arial, sans-serif; background:#fff6f8; color:#333; }
         
         /* КОМПАКТНАЯ ШАПКА */
-        header { background: #fffafa; padding: 25px 0; color: #5d4037; border-bottom: 2px solid #fbc2eb; }
+        header { background: #fffafa; padding: 20px 0; color: #5d4037; border-bottom: 2px solid #fbc2eb; }
         .header-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-around; align-items: center; padding: 0 20px; gap: 30px; flex-wrap: wrap; }
-        .header-left img { width: 100%; max-width: 350px; height: 220px; object-fit: cover; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .logo-img { width: 150px; height: 150px; object-fit: cover; border-radius: 50%; border: 3px solid #fbc2eb; margin-bottom: 10px; }
-        .header-right h2 { margin: 0; font-family: 'Georgia', serif; font-size: 38px; color: #ff6f91; font-weight: bold; }
+        .header-left img { width: 100%; max-width: 300px; height: 180px; object-fit: cover; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .logo-img { width: 130px; height: 130px; object-fit: cover; border-radius: 50%; border: 3px solid #fbc2eb; margin-bottom: 5px; }
+        .header-right h2 { margin: 0; font-family: 'Georgia', serif; font-size: 32px; color: #ff6f91; font-weight: bold; }
 
         /* НАВИГАЦИЯ */
-        nav { width: 100%; text-align: center; margin-top: 20px; border-top: 1px solid #fce4ec; padding-top: 15px; }
+        nav { width: 100%; text-align: center; margin-top: 15px; border-top: 1px solid #fce4ec; padding-top: 15px; }
         .nav-container { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 15px; }
-        .nav-btn { text-decoration: none; display: flex; flex-direction: column; align-items: center; min-width: 110px; cursor: pointer; }
-        .main-text { color: #5d4037; font-weight: bold; font-size: 16px; text-transform: uppercase; }
+        .nav-btn { text-decoration: none; display: flex; flex-direction: column; align-items: center; min-width: 100px; cursor: pointer; }
+        .main-text { color: #5d4037; font-weight: bold; font-size: 15px; text-transform: uppercase; }
         .sub-text { color: #ff6f91; font-size: 10px; font-weight: normal; margin-top: 2px; }
 
         .dropdown { position: relative; display: inline-block; }
@@ -27,30 +27,29 @@
         .dropdown-content a:hover { background-color: #fff0f3; }
         .dropdown:hover .dropdown-content { display: block; }
 
-        /* КНОПКИ ЯЗЫКОВ */
-        .lang button { background:#fff; border:1px solid #ffb2c1; padding: 6px 12px; border-radius: 8px; cursor:pointer; font-weight:bold; margin: 0 5px; color: #333; }
+        .lang button { background:#fff; border:1px solid #ffb2c1; padding: 5px 10px; border-radius: 6px; cursor:pointer; font-weight:bold; margin: 0 3px; color: #333; }
 
-        /* УМЕНЬШЕННАЯ СЕТКА ГАЛЕРЕИ */
-        .section { padding:30px 10px; text-align:center; }
+        /* МЕЛКАЯ СЕТКА (в два раза меньше) */
+        .section { padding:20px 10px; text-align:center; }
         .gallery-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); /* Вмещается 5-6 фото в ряд */
-            gap: 15px; 
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Теперь 5-7 фото в ряд */
+            gap: 12px; 
             max-width: 1200px; 
             margin: 0 auto; 
         }
-        .work-card { background: #fff; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid #fce4ec; transition: 0.3s; }
-        .work-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(255,111,145,0.15); }
-        .img-container { width: 100%; height: 220px; overflow: hidden; cursor: zoom-in; }
-        .img-container img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; }
-        .work-info { padding: 10px; text-align: center; }
-        .work-title { margin: 0; color: #ff6f91; font-size: 13px; font-family: 'Georgia', serif; }
+        .work-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 3px 8px rgba(0,0,0,0.05); border: 1px solid #fce4ec; transition: 0.2s; }
+        .work-card:hover { transform: translateY(-3px); }
+        .img-container { width: 100%; height: 180px; overflow: hidden; cursor: zoom-in; }
+        .img-container img { width: 100%; height: 100%; object-fit: cover; }
+        .work-info { padding: 8px; text-align: center; }
+        .work-title { margin: 0; color: #ff6f91; font-size: 12px; font-family: 'Georgia', serif; }
 
-        /* ПРОСМОТР ФОТО */
+        /* МОДАЛЬНОЕ ОКНО */
         #fullView { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 10000; justify-content: center; align-items: center; cursor: pointer; }
         #fullView img { max-width: 95%; max-height: 90%; border-radius: 10px; }
 
-        footer { background:#fbc2eb; color:#5d4037; text-align:center; padding:20px; margin-top:40px; }
+        footer { background:#fbc2eb; color:#5d4037; text-align:center; padding:15px; margin-top:30px; }
     </style>
 </head>
 <body>
@@ -87,15 +86,13 @@
     </nav>
 </header>
 
-<!-- СВАДЕБНЫЕ ТОРТЫ -->
 <section id="wedding" class="section">
-    <h2 id="title_wedding" style="color: #ff6f91; font-family: 'Georgia', serif; font-size: 28px;">СВАДЕБНЫЕ ТОРТЫ</h2>
+    <h2 id="title_wedding" style="color: #ff6f91; font-family: 'Georgia', serif; font-size: 24px;">СВАДЕБНЫЕ ТОРТЫ</h2>
     <div class="gallery-grid" id="weddingGrid"></div>
 </section>
 
-<!-- ДЕТСКИЕ ТОРТЫ -->
 <section id="party" class="section" style="background: #fffafa;">
-    <h2 id="title_party" style="color: #ff6f91; font-family: 'Georgia', serif; font-size: 28px;">ДЕТСКИЕ ТОРТЫ</h2>
+    <h2 id="title_party" style="color: #ff6f91; font-family: 'Georgia', serif; font-size: 24px;">ДЕТСКИЕ ТОРТЫ</h2>
     <div class="gallery-grid" id="kidsGrid"></div>
 </section>
 
@@ -129,7 +126,6 @@ function setLang(lang) {
 
 function openFull(src) { document.getElementById('fullImg').src = src; document.getElementById('fullView').style.display = 'flex'; }
 
-// Запуск (8 свадебных и 45 детских)
 createCards('weddingGrid', 'work', 8, 'Торт');
 createCards('kidsGrid', 'kids', 45, 'Торт');
 setLang('ru');
