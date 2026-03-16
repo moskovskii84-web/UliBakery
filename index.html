@@ -3,132 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UliBakery | Vantaa</title>
+    <title>UliBakery | Главная</title>
     <style>
-        body { margin:0; font-family: Arial, sans-serif; background:#fff6f8; color:#333; }
+        body { margin:0; font-family: Arial, sans-serif; background:#fff6f8; color:#333; text-align: center; }
+        header { background: #fffafa; padding: 30px 0; border-bottom: 2px solid #fbc2eb; }
+        .header-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; padding: 0 20px; }
+        .header-left img { max-width: 400px; border-radius: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+        .logo-img { width: 150px; border-radius: 50%; border: 3px solid #fbc2eb; margin-bottom: 10px; }
+        .header-right h2 { font-family: 'Georgia', serif; font-size: 38px; color: #ff6f91; margin: 0; }
         
-        /* КОМПАКТНАЯ ШАПКА */
-        header { background: #fffafa; padding: 20px 0; color: #5d4037; border-bottom: 2px solid #fbc2eb; }
-        .header-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-around; align-items: center; padding: 0 20px; gap: 30px; flex-wrap: wrap; }
-        .header-left img { width: 100%; max-width: 300px; height: 180px; object-fit: cover; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .logo-img { width: 130px; height: 130px; object-fit: cover; border-radius: 50%; border: 3px solid #fbc2eb; margin-bottom: 5px; }
-        .header-right h2 { margin: 0; font-family: 'Georgia', serif; font-size: 32px; color: #ff6f91; font-weight: bold; }
+        nav { margin-top: 25px; padding-top: 15px; border-top: 1px solid #fce4ec; }
+        nav a { color: #5d4037; margin: 0 15px; text-decoration: none; font-weight: bold; font-size: 16px; text-transform: uppercase; }
+        nav a:hover { color: #ff6f91; }
 
-        /* НАВИГАЦИЯ */
-        nav { width: 100%; text-align: center; margin-top: 15px; border-top: 1px solid #fce4ec; padding-top: 15px; }
-        .nav-container { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 15px; }
-        .nav-btn { text-decoration: none; display: flex; flex-direction: column; align-items: center; min-width: 100px; cursor: pointer; }
-        .main-text { color: #5d4037; font-weight: bold; font-size: 15px; text-transform: uppercase; }
-        .sub-text { color: #ff6f91; font-size: 10px; font-weight: normal; margin-top: 2px; }
+        .welcome-section { padding: 60px 20px; }
+        .welcome-section h1 { font-family: 'Georgia', serif; color: #ff6f91; font-size: 32px; }
+        .welcome-section p { font-size: 18px; color: #5d4037; max-width: 600px; margin: 20px auto; line-height: 1.6; }
+        
+        .cta-btn { background:#ff3f6c; color:white; padding:15px 30px; border-radius:10px; text-decoration:none; display:inline-block; font-weight:bold; margin-top:10px; transition: 0.3s; }
+        .cta-btn:hover { background: #ff1a53; transform: scale(1.05); }
 
-        .dropdown { position: relative; display: inline-block; }
-        .dropdown-content { display: none; position: absolute; background: white; min-width: 180px; box-shadow: 0 8px 16px rgba(0,0,0,0.1); z-index: 10; border-radius: 10px; text-align: left; overflow: hidden; }
-        .dropdown-content a { color: #5d4037; padding: 10px 15px; text-decoration: none; display: block; border-bottom: 1px solid #fff0f3; font-size: 14px; }
-        .dropdown-content a:hover { background-color: #fff0f3; }
-        .dropdown:hover .dropdown-content { display: block; }
-
-        .lang button { background:#fff; border:1px solid #ffb2c1; padding: 5px 10px; border-radius: 6px; cursor:pointer; font-weight:bold; margin: 0 3px; color: #333; }
-
-        /* МЕЛКАЯ СЕТКА (в два раза меньше) */
-        .section { padding:20px 10px; text-align:center; }
-        .gallery-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Теперь 5-7 фото в ряд */
-            gap: 12px; 
-            max-width: 1200px; 
-            margin: 0 auto; 
-        }
-        .work-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 3px 8px rgba(0,0,0,0.05); border: 1px solid #fce4ec; transition: 0.2s; }
-        .work-card:hover { transform: translateY(-3px); }
-        .img-container { width: 100%; height: 180px; overflow: hidden; cursor: zoom-in; }
-        .img-container img { width: 100%; height: 100%; object-fit: cover; }
-        .work-info { padding: 8px; text-align: center; }
-        .work-title { margin: 0; color: #ff6f91; font-size: 12px; font-family: 'Georgia', serif; }
-
-        /* МОДАЛЬНОЕ ОКНО */
-        #fullView { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 10000; justify-content: center; align-items: center; cursor: pointer; }
-        #fullView img { max-width: 95%; max-height: 90%; border-radius: 10px; }
-
-        footer { background:#fbc2eb; color:#5d4037; text-align:center; padding:15px; margin-top:30px; }
+        footer { background:#fbc2eb; color:#5d4037; padding:20px; margin-top:40px; }
     </style>
 </head>
 <body>
 
 <header>
     <div class="header-container">
-        <div class="header-left"><img src="facade.jpg" alt="UliBakery"></div>
+        <div class="header-left"><img src="facade.jpg"></div>
         <div class="header-right">
-            <img src="logo.jpg" alt="Logo" class="logo-img">
-            <h2 id="brandName">UliBakery</h2>
+            <img src="logo.jpg" class="logo-img">
+            <h2>UliBakery</h2>
         </div>
     </div>
     <nav>
-        <div class="nav-container">
-            <div class="dropdown">
-                <div class="nav-btn">
-                    <span id="btn_cakes" class="main-text">ТОРТЫ</span>
-                    <span id="btn_welcome" class="sub-text">добро пожаловать</span>
-                </div>
-                <div class="dropdown-content">
-                    <a href="#party" id="sub_party">Детские торты</a>
-                    <a href="#wedding" id="sub_wedding">Свадебные торты</a>
-                </div>
-            </div>
-            <a href="#wedding" class="nav-btn"><span id="btn_gallery" class="main-text">ГАЛЕРЕЯ</span></a>
-            <a href="#order" class="nav-btn"><span id="btn_order" class="main-text">ЗАКАЗАТЬ</span></a>
-            <a href="#contact" class="nav-btn"><span id="btn_contact" class="main-text">КОНТАКТЫ</span></a>
-        </div>
-        <div class="lang">
-            <button onclick="setLang('fi')">FI</button>
-            <button onclick="setLang('ru')">RU</button>
-            <button onclick="setLang('en')">EN</button>
-        </div>
+        <a href="index.html">Главная</a>
+        <a href="gallery.html">Галерея</a>
+        <a href="#contact">Контакты</a>
     </nav>
 </header>
 
-<section id="wedding" class="section">
-    <h2 id="title_wedding" style="color: #ff6f91; font-family: 'Georgia', serif; font-size: 24px;">СВАДЕБНЫЕ ТОРТЫ</h2>
-    <div class="gallery-grid" id="weddingGrid"></div>
+<section class="welcome-section">
+    <h1>Добро пожаловать в UliBakery!</h1>
+    <p>Домашняя кондитерская в Вантаа. Мы создаем не просто торты, а сладкие воспоминания для ваших праздников.</p>
+    <a href="gallery.html" class="cta-btn">СМОТРЕТЬ ГАЛЕРЕЮ ТОРТОВ</a>
 </section>
 
-<section id="party" class="section" style="background: #fffafa;">
-    <h2 id="title_party" style="color: #ff6f91; font-family: 'Georgia', serif; font-size: 24px;">ДЕТСКИЕ ТОРТЫ</h2>
-    <div class="gallery-grid" id="kidsGrid"></div>
+<section id="contact" style="padding: 40px 20px; background: white;">
+    <h2 style="color: #ff6f91; font-family: 'Georgia', serif;">НАШ АДРЕС</h2>
+    <p style="font-weight: bold;">Venuksentie 6, Vantaa</p>
+    <iframe src="https://maps.google.com" width="90%" height="350" style="border:0; border-radius:20px; max-width: 800px;"></iframe>
 </section>
 
-<div id="fullView" onclick="this.style.display='none'"><img id="fullImg" src=""></div>
+<footer><p>© 2026 UliBakery | Vantaa</p></footer>
 
-<footer><p>© 2026 UliBakery</p></footer>
-
-<script>
-const texts = {
-    ru: { btn_cakes:"ТОРТЫ", btn_welcome:"добро пожаловать", btn_gallery:"ГАЛЕРЕЯ", btn_order:"ЗАКАЗАТЬ", btn_contact:"КОНТАКТЫ", sub_party:"Детские торты", sub_wedding:"Свадебные торты", title_wedding:"СВАДЕБНЫЕ ТОРТЫ", title_party:"ДЕТСКИЕ ТОРТЫ" },
-    fi: { btn_cakes:"KAKUT", btn_welcome:"tervetuloa", btn_gallery:"GALLERIA", btn_order:"TILAA", btn_contact:"YHTEYSTIEDOT", sub_party:"Lasten kakut", sub_wedding:"Hääkakut", title_wedding:"HÄÄKAKUT", title_party:"LASTEN KAKUT" },
-    en: { btn_cakes:"CAKES", btn_welcome:"welcome", btn_gallery:"GALLERY", btn_order:"ORDER", btn_contact:"CONTACT", sub_party:"Kids Cakes", sub_wedding:"Wedding Cakes", title_wedding:"WEDDING CAKES", title_party:"KIDS CAKES" }
-};
-
-function createCards(containerId, prefix, count, titleBase) {
-    const grid = document.getElementById(containerId);
-    for (let i = 1; i <= count; i++) {
-        grid.innerHTML += `
-            <div class="work-card">
-                <div class="img-container">
-                    <img src="${prefix}${i}.jpg" onerror="this.onerror=null; this.src='${prefix}${i}.JPG';" onclick="openFull(this.src)" loading="lazy">
-                </div>
-                <div class="work-info"><h3 class="work-title">${titleBase} №${i}</h3></div>
-            </div>`;
-    }
-}
-
-function setLang(lang) {
-    Object.keys(texts[lang]).forEach(id => { const el = document.getElementById(id); if (el) el.innerText = texts[lang][id]; });
-}
-
-function openFull(src) { document.getElementById('fullImg').src = src; document.getElementById('fullView').style.display = 'flex'; }
-
-createCards('weddingGrid', 'work', 8, 'Торт');
-createCards('kidsGrid', 'kids', 45, 'Торт');
-setLang('ru');
-</script>
 </body>
 </html>
