@@ -8,13 +8,18 @@
         body { margin:0; font-family: Arial, sans-serif; background:#fff6f8; color:#333; text-align: center; }
         header { background: #fffafa; padding: 30px 0; border-bottom: 2px solid #fbc2eb; }
         .header-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; padding: 0 20px; }
-        .header-left img { max-width: 400px; border-radius: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+        .header-left img { max-width: 400px; border-radius: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); width: 100%; }
         .logo-img { width: 150px; border-radius: 50%; border: 3px solid #fbc2eb; margin-bottom: 10px; }
         .header-right h2 { font-family: 'Georgia', serif; font-size: 38px; color: #ff6f91; margin: 0; }
         
         nav { margin-top: 25px; padding-top: 15px; border-top: 1px solid #fce4ec; }
+        .nav-links { margin-bottom: 15px; }
         nav a { color: #5d4037; margin: 0 15px; text-decoration: none; font-weight: bold; font-size: 16px; text-transform: uppercase; }
         nav a:hover { color: #ff6f91; }
+
+        /* Кнопки языков */
+        .lang button { background:#fff; border:1px solid #ffb2c1; padding: 6px 12px; border-radius: 8px; cursor:pointer; font-weight:bold; margin: 0 5px; color: #333; transition: 0.3s; }
+        .lang button:hover { background: #fbc2eb; color: white; }
 
         .welcome-section { padding: 60px 20px; }
         .welcome-section h1 { font-family: 'Georgia', serif; color: #ff6f91; font-size: 32px; }
@@ -30,32 +35,77 @@
 
 <header>
     <div class="header-container">
-        <div class="header-left"><img src="facade.jpg"></div>
+        <div class="header-left"><img src="facade.jpg" alt="UliBakery Facade"></div>
         <div class="header-right">
-            <img src="logo.jpg" class="logo-img">
+            <img src="logo.jpg" class="logo-img" alt="Logo">
             <h2>UliBakery</h2>
         </div>
     </div>
     <nav>
-        <a href="index.html">Главная</a>
-        <a href="gallery.html">Галерея</a>
-        <a href="#contact">Контакты</a>
+        <div class="nav-links">
+            <a href="index.html" id="nav_home">Главная</a>
+            <a href="gallery.html" id="nav_gallery">Галерея</a>
+            <a href="#contact" id="nav_contact">Контакты</a>
+        </div>
+        <div class="lang">
+            <button onclick="setLang('fi')">FI</button>
+            <button onclick="setLang('ru')">RU</button>
+            <button onclick="setLang('en')">EN</button>
+        </div>
     </nav>
 </header>
 
 <section class="welcome-section">
-    <h1>Добро пожаловать в UliBakery!</h1>
-    <p>Домашняя кондитерская в Вантаа. Мы создаем не просто торты, а сладкие воспоминания для ваших праздников.</p>
-    <a href="gallery.html" class="cta-btn">СМОТРЕТЬ ГАЛЕРЕЮ ТОРТОВ</a>
+    <h1 id="welcome_title">Добро пожаловать в UliBakery!</h1>
+    <p id="welcome_text">Домашняя кондитерская в Вантаа. Мы создаем не просто торты, а сладкие воспоминания для ваших праздников.</p>
+    <a href="gallery.html" class="cta-btn" id="cta_btn">СМОТРЕТЬ ГАЛЕРЕЮ ТОРТОВ</a>
 </section>
 
 <section id="contact" style="padding: 40px 20px; background: white;">
-    <h2 style="color: #ff6f91; font-family: 'Georgia', serif;">НАШ АДРЕС</h2>
+    <h2 id="contact_title" style="color: #ff6f91; font-family: 'Georgia', serif;">НАШ АДРЕС</h2>
     <p style="font-weight: bold;">Venuksentie 6, Vantaa</p>
     <iframe src="https://maps.google.com" width="90%" height="350" style="border:0; border-radius:20px; max-width: 800px;"></iframe>
 </section>
 
 <footer><p>© 2026 UliBakery | Vantaa</p></footer>
+
+<script>
+const texts = {
+    ru: {
+        nav_home: "Главная", nav_gallery: "Галерея", nav_contact: "Контакты",
+        welcome_title: "Добро пожаловать в UliBakery!",
+        welcome_text: "Домашняя кондитерская в Вантаа. Мы создаем не просто торты, а сладкие воспоминания для ваших праздников.",
+        cta_btn: "СМОТРЕТЬ ГАЛЕРЕЮ ТОРТОВ",
+        contact_title: "НАШ АДРЕС"
+    },
+    fi: {
+        nav_home: "Etusivu", nav_gallery: "Galleria", nav_contact: "Yhteystiedot",
+        welcome_title: "Tervetuloa UliBakeryyn!",
+        welcome_text: "Kotileipomo Vantaalla. Luomme enemmän kuin vain kakkuja – teemme makeita muistoja juhliisi.",
+        cta_btn: "KATSO GALLERIA",
+        contact_title: "MEIDÄN OSOITE"
+    },
+    en: {
+        nav_home: "Home", nav_gallery: "Gallery", nav_contact: "Contact",
+        welcome_title: "Welcome to UliBakery!",
+        welcome_text: "Home bakery in Vantaa. We create more than just cakes – we make sweet memories for your celebrations.",
+        cta_btn: "VIEW GALLERY",
+        contact_title: "OUR ADDRESS"
+    }
+};
+
+function setLang(lang) {
+    Object.keys(texts[lang]).forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.innerText = texts[lang][id];
+        }
+    });
+}
+
+// По умолчанию русский
+setLang('ru');
+</script>
 
 </body>
 </html>
