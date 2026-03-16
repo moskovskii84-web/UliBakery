@@ -1,1 +1,60 @@
 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Галерея тортов | UliBakery</title>
+    <style>
+        body { margin:0; font-family: Arial, sans-serif; background:#fff6f8; color:#333; text-align: center; }
+        header { background: #fffafa; padding: 20px 0; border-bottom: 2px solid #fbc2eb; }
+        .back-link { display: inline-block; margin-bottom: 10px; color: #ff6f91; text-decoration: none; font-weight: bold; }
+        
+        .section-title { color: #ff6f91; font-family: 'Georgia', serif; font-size: 28px; margin-top: 40px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; max-width: 1200px; margin: 20px auto; padding: 0 10px; }
+        .work-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid #fce4ec; transition: 0.3s; }
+        .work-card:hover { transform: translateY(-5px); }
+        .img-container { width: 100%; height: 200px; overflow: hidden; cursor: zoom-in; }
+        .img-container img { width: 100%; height: 100%; object-fit: cover; }
+        
+        #fullView { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 10000; justify-content: center; align-items: center; cursor: pointer; }
+        #fullImg { max-width: 95%; max-height: 90%; border-radius: 10px; }
+        footer { background:#fbc2eb; padding: 20px; margin-top: 50px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html" class="back-link">← Вернуться на главную</a>
+    <h1 style="color: #5d4037; margin: 0;">НАША КОНДИТЕРСКАЯ ВИТРИНА</h1>
+</header>
+
+<h2 class="section-title">СВАДЕБНЫЕ ТОРТЫ</h2>
+<div class="gallery-grid" id="weddingGrid"></div>
+
+<h2 class="section-title" style="margin-top: 60px;">ДЕТСКИЕ ТОРТЫ</h2>
+<div class="gallery-grid" id="kidsGrid"></div>
+
+<div id="fullView" onclick="this.style.display='none'"><img id="fullImg" src=""></div>
+
+<footer><p>© 2026 UliBakery | Галерея работ</p></footer>
+
+<script>
+    function createCards(containerId, prefix, count) {
+        const grid = document.getElementById(containerId);
+        for (let i = 1; i <= count; i++) {
+            grid.innerHTML += `
+                <div class="work-card">
+                    <div class="img-container">
+                        <img src="${prefix}${i}.jpg" onerror="this.onerror=null; this.src='${prefix}${i}.JPG';" onclick="openFull(this.src)" loading="lazy">
+                    </div>
+                </div>`;
+        }
+    }
+    function openFull(src) { document.getElementById('fullImg').src = src; document.getElementById('fullView').style.display = 'flex'; }
+    
+    createCards('weddingGrid', 'work', 8);
+    createCards('kidsGrid', 'kids', 45);
+</script>
+</body>
+</html>
