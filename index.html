@@ -5,179 +5,120 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UliBakery | Профессиональная кондитерская</title>
     <style>
-        /* ОБЩИЙ ДЕКОР СТРАНИЦЫ */
+        /* ОБЩИЙ ДЕКОР - СДЕЛАНО КОДОМ, НЕ ТОРМОЗИТ */
         body { 
             margin: 0; 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             color: #5d4037; 
-            /* ФОН В РОЗОВЫЙ ГОРОШЕК */
             background-color: #fff6f8;
             background-image: radial-gradient(#fbc2eb 12%, transparent 12%);
             background-size: 35px 35px;
             background-attachment: fixed;
+            overflow-x: hidden;
         }
 
-        /* ЦВЕТЫ ПО БОКАМ (ДЕКОР) */
+        /* ЦВЕТЫ ПО БОКАМ */
         .flower-decor {
             position: fixed;
             top: 0;
-            width: 250px;
+            width: 300px;
             height: 100vh;
             pointer-events: none;
             z-index: 9999;
             opacity: 0.7;
         }
         .flower-left { 
-            left: 0; 
+            left: -30px; 
             background: url('https://img.freepik.com') no-repeat left top;
             background-size: contain;
         }
         .flower-right { 
-            right: 0; 
+            right: -30px; 
             background: url('https://img.freepik.com') no-repeat right top;
             background-size: contain;
-            transform: scaleX(-1); /* Отражаем зеркально */
+            transform: scaleX(-1);
         }
 
-        /* КОНТЕЙНЕР ДЛЯ КОНТЕНТА (Белая подложка) */
+        /* ОСНОВНОЙ БЛОК */
         .content-wrapper {
-            max-width: 1050px;
+            max-width: 1000px;
             margin: 0 auto;
             background: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 0 40px rgba(251, 194, 235, 0.4);
+            box-shadow: 0 0 50px rgba(251, 194, 235, 0.3);
             min-height: 100vh;
             position: relative;
             z-index: 10;
         }
 
-        /* ВЕРХНЯЯ ПАНЕЛЬ С ЯЗЫКАМИ */
-        .top-bar { 
-            background: #fffafa; 
-            padding: 12px 25px; 
-            text-align: right; 
-            border-bottom: 1px solid #fce4ec; 
-        }
+        /* ВЕРХНЯЯ ПАНЕЛЬ */
+        .top-bar { background: #fffafa; padding: 12px 25px; text-align: right; border-bottom: 1px solid #fce4ec; }
         .lang button { 
-            background:#fff; 
-            border:1px solid #ffb2c1; 
-            padding: 5px 12px; 
-            border-radius: 8px; 
-            cursor:pointer; 
-            font-weight:bold; 
-            margin-left: 8px; 
-            color: #333; 
-            font-size: 14px;
-            transition: 0.3s;
+            background:#fff; border:1px solid #ffb2c1; padding: 6px 12px; border-radius: 8px; 
+            cursor:pointer; font-weight:bold; margin-left: 8px; color: #333; transition: 0.3s;
         }
         .lang button:hover { background: #fbc2eb; color: white; }
 
-        /* ШАПКА: ФОТО СЛЕВА (ПОДНЯТО), ЛОГО СПРАВА */
+        /* ШАПКА */
         header { 
-            background: #fffafa; 
-            border-bottom: 2px solid #fbc2eb; 
-            display: flex; 
-            flex-wrap: wrap; 
-            align-items: center; 
-            min-height: 260px;
+            background: #fffafa; border-bottom: 2px solid #fbc2eb; 
+            display: flex; flex-wrap: wrap; align-items: center; min-height: 280px;
         }
-        .header-left { 
-            flex: 1.3; 
-            min-width: 320px; 
-            height: 260px; 
-            overflow: hidden; 
-        }
+        .header-left { flex: 1.4; min-width: 320px; height: 280px; overflow: hidden; }
         .header-left img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            /* ПОДНИМАЕМ ФОТО К ВЕРХУ, ЧТОБЫ ВИДЕТЬ ДВЕРЬ И ВЫВЕСКУ */
-            object-position: center 5%; 
+            width: 100%; height: 100%; object-fit: cover; 
+            /* СДВИГАЕМ ФОТО: 25% влево и 15% вниз, чтобы увидеть дверь и порог */
+            object-position: 25% 15%; 
         }
         .header-right { 
-            flex: 0.7; 
-            min-width: 300px; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            padding: 20px;
-            text-align: center;
+            flex: 0.6; min-width: 280px; display: flex; flex-direction: column; 
+            align-items: center; justify-content: center; padding: 20px; text-align: center;
         }
+        
+        /* АНИМАЦИЯ ЛОГОТИПА - ЛЕГКАЯ И ПЛАВНАЯ */
         .logo-img { 
-            width: 190px; 
-            height: 190px; 
-            border-radius: 50%; 
-            border: 4px solid #fbc2eb; 
-            margin-bottom: 10px;
-            object-fit: cover;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            width: 190px; height: 190px; border-radius: 50%; border: 4px solid #fbc2eb; 
+            margin-bottom: 10px; object-fit: cover; box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            animation: breathe 5s ease-in-out infinite;
         }
-        .brand-name { 
-            font-family: 'Georgia', serif; 
-            font-size: 34px; 
-            color: #ff6f91; 
-            margin: 0; 
-            font-weight: bold;
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
         }
 
-        /* ТЕКСТОВАЯ СЕКЦИЯ */
-        .welcome-section { 
-            padding: 60px 40px; 
-            text-align: center;
-        }
+        .brand-name { font-family: 'Georgia', serif; font-size: 36px; color: #ff6f91; font-weight: bold; }
+
+        /* ТЕКСТОВАЯ ЧАСТЬ */
+        .welcome-section { padding: 60px 40px; text-align: center; }
         h1 { font-family: 'Georgia', serif; color: #ff6f91; font-size: 34px; margin-bottom: 30px; }
         .selling-text { 
-            font-size: 19px; 
-            line-height: 1.9; 
-            text-align: left; 
-            background: #fffafa; 
-            padding: 35px; 
-            border-radius: 25px; 
-            box-shadow: inset 0 0 15px rgba(251, 194, 235, 0.2);
-            border: 1px solid #fce4ec;
+            font-size: 19px; line-height: 1.9; text-align: left; background: #fffafa; 
+            padding: 40px; border-radius: 30px; border: 1px solid #fce4ec;
+            box-shadow: inset 0 0 20px rgba(251, 194, 235, 0.15);
         }
         .selling-text b { color: #ff6f91; }
 
-        /* КНОПКИ-ПЛИТКИ */
+        /* КНОПКИ С ЭФФЕКТОМ ЗЕФИРКИ */
         .main-menu-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
-            gap: 20px; 
-            margin: 50px auto 30px; 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 20px; margin: 50px auto 30px; 
         }
         .menu-card { 
-            background: white; 
-            padding: 25px; 
-            border-radius: 18px; 
-            text-decoration: none; 
-            color: #5d4037; 
-            font-weight: bold; 
-            font-size: 19px; 
-            border: 2px solid #fce4ec;
-            transition: 0.4s;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.04);
+            background: white; padding: 25px; border-radius: 20px; text-decoration: none; 
+            color: #5d4037; font-weight: bold; font-size: 19px; border: 2px solid #fce4ec;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.04);
         }
         .menu-card:hover { 
-            transform: translateY(-5px); 
-            background: #ff6f91; 
-            color: white; 
-            border-color: #ff6f91;
-            box-shadow: 0 10px 25px rgba(255, 111, 145, 0.3);
+            transform: translateY(-8px); 
+            background: #ff6f91; color: white; border-color: #ff6f91;
+            box-shadow: 0 12px 25px rgba(255, 111, 145, 0.3);
         }
 
-        footer { background:#fbc2eb; padding:35px; text-align: center; font-weight: bold; font-size: 16px; }
-        
-        /* Мобильная адаптация декора */
-        @media (max-width: 1200px) {
-            .flower-decor { display: none; }
-            .content-wrapper { margin: 0 10px; }
-        }
+        footer { background:#fbc2eb; padding:40px; text-align: center; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <!-- ДЕКОР ПО БОКАМ (ЦВЕТЫ) -->
     <div class="flower-decor flower-left"></div>
     <div class="flower-decor flower-right"></div>
 
@@ -192,7 +133,6 @@
 
         <header>
             <div class="header-left">
-                <!-- ФОТО ПОДНЯТО К ВЕРХУ (object-position: 5%) -->
                 <img src="facade.jpg" alt="UliBakery Facade">
             </div>
             <div class="header-right">
@@ -210,7 +150,6 @@
                 <p id="p4">Спасибо, что доверяете важные события профессионалам UliBakery!</p>
             </div>
 
-            <!-- ПЛИТКА ИЗ КНОПОК -->
             <div class="main-menu-grid">
                 <a href="gallery.html" class="menu-card" id="m_gallery">ГАЛЕРЕЯ</a>
                 <a href="order.html" class="menu-card" id="m_order">ЗАКАЗАТЬ</a>
