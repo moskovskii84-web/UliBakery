@@ -5,48 +5,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UliBakery | Профессиональная кондитерская</title>
     <style>
-        body { margin:0; font-family: 'Segoe UI', sans-serif; background:#fff6f8; color:#5d4037; text-align: center; }
+        body { margin:0; font-family: 'Segoe UI', sans-serif; background:#fff6f8; color:#5d4037; }
         
         /* ВЕРХНЯЯ ПАНЕЛЬ */
         .top-bar { background: #fffafa; padding: 10px 20px; text-align: right; border-bottom: 1px solid #fce4ec; }
         .lang button { background:#fff; border:1px solid #ffb2c1; padding: 4px 10px; border-radius: 6px; cursor:pointer; font-weight:bold; margin-left: 5px; }
 
-        /* ШАПКА */
-        header { background: #fffafa; padding: 20px 0; border-bottom: 2px solid #fbc2eb; }
-        .facade-container { width: 100%; max-width: 900px; margin: 0 auto 20px; overflow: hidden; border-radius: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
-        .facade-container img { width: 100%; height: 300px; object-fit: cover; object-position: center 20%; display: block; }
-        .logo-section { display: flex; align-items: center; justify-content: center; gap: 20px; }
-        .logo-img { width: 100px; height: 100px; border-radius: 50%; border: 3px solid #fbc2eb; }
-        
-        /* ПРИВЕТСТВИЕ */
-        .welcome-section { padding: 60px 20px; max-width: 800px; margin: 0 auto; }
-        h1 { font-family: 'Georgia', serif; color: #ff6f91; font-size: 32px; }
-        .welcome-text { font-size: 18px; line-height: 1.6; margin-bottom: 40px; }
+        /* НОВАЯ ШАПКА: ФОТО СЛЕВА, ЛОГО СПРАВА */
+        header { 
+            background: #fffafa; 
+            border-bottom: 2px solid #fbc2eb; 
+            display: flex; 
+            flex-wrap: wrap; 
+            align-items: center; 
+            min-height: 220px;
+        }
+        .header-left { 
+            flex: 1; 
+            min-width: 320px; 
+            height: 220px; 
+            overflow: hidden; 
+        }
+        .header-left img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            object-position: center 25%; /* подрезаем тротуар */
+        }
+        .header-right { 
+            flex: 1; 
+            min-width: 320px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 20px;
+            text-align: center;
+        }
+        .logo-img { 
+            width: 180px; 
+            height: 180px; 
+            border-radius: 50%; 
+            border: 4px solid #fbc2eb; 
+            margin-bottom: 10px;
+            object-fit: cover;
+        }
+        .brand-name { 
+            font-family: 'Georgia', serif; 
+            font-size: 32px; 
+            color: #ff6f91; 
+            margin: 0; 
+            font-weight: bold;
+        }
 
-        /* ГЛАВНОЕ МЕНЮ (ПЛИТКА) */
+        /* ПРОДАЮЩИЙ ТЕКСТ */
+        .welcome-section { 
+            padding: 50px 20px; 
+            max-width: 900px; 
+            margin: 0 auto; 
+            text-align: center;
+        }
+        h1 { font-family: 'Georgia', serif; color: #ff6f91; font-size: 32px; margin-bottom: 25px; }
+        .selling-text { 
+            font-size: 18px; 
+            line-height: 1.8; 
+            text-align: left; 
+            background: white; 
+            padding: 30px; 
+            border-radius: 20px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            border: 1px solid #fce4ec;
+        }
+        .selling-text b { color: #ff6f91; }
+
+        /* КНОПКИ (ПЛИТКА) */
         .main-menu-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
-            gap: 20px; 
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
+            gap: 15px; 
             max-width: 900px; 
-            margin: 0 auto 60px; 
+            margin: 40px auto 60px; 
             padding: 0 20px;
         }
         .menu-card { 
             background: white; 
-            padding: 30px; 
-            border-radius: 20px; 
+            padding: 20px; 
+            border-radius: 15px; 
             text-decoration: none; 
             color: #5d4037; 
             font-weight: bold; 
-            font-size: 20px; 
+            font-size: 18px; 
             border: 2px solid #fce4ec;
             transition: 0.3s;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
         }
-        .menu-card:hover { transform: translateY(-5px); background: #ff6f91; color: white; border-color: #ff6f91; }
+        .menu-card:hover { transform: translateY(-3px); background: #ff6f91; color: white; border-color: #ff6f91; }
 
-        footer { background:#fbc2eb; padding:30px; margin-top:60px; }
+        footer { background:#fbc2eb; padding:30px; text-align: center; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -60,18 +116,30 @@
 </div>
 
 <header>
-    <div class="facade-container"><img src="facade.jpg"></div>
-    <div class="logo-section">
-        <img src="logo.jpg" class="logo-img">
-        <h2 style="font-family: 'Georgia', serif; font-size: 36px; color: #ff6f91; margin: 0;">UliBakery</h2>
+    <div class="header-left">
+        <img src="facade.jpg" alt="UliBakery">
+    </div>
+    <div class="header-right">
+        <img src="logo.jpg" class="logo-img" alt="Logo">
+        <div class="brand-name">UliBakery</div>
     </div>
 </header>
 
 <section class="welcome-section">
     <h1 id="w_title">Добро пожаловать в кондитерскую-студию UliBakery!</h1>
-    <p class="welcome-text" id="w_text">Мы создаем десерты профессионального уровня, которые станут главным украшением вашего торжества или изысканным дополнением к семейным выходным. В UliBakery качество ингредиентов и безупречный декор стоят на первом месте.</p>
-    
-    <!-- ТЕ САМЫЕ КНОПКИ-СТРАНИЦЫ -->
+    <div class="selling-text">
+        <p id="p1">Мы создаем десерты <b>профессионального уровня</b>, которые станут сердцем вашего праздника или изысканным дополнением к семейным выходным. В UliBakery качество ингредиентов и безупречный декор стоят на первом месте.</p>
+        
+        <p id="p2">Чтобы ваш выбор был легким и приятным, мы подготовили разделы:</p>
+        <ul style="list-style: none; padding: 0;" id="p3">
+            <li>✨ <b>Вдохновитесь в [Галерее]</b>: здесь представлены наши реализованные проекты.</li>
+            <li>👨‍🍳 <b>Воплотите идею в [Заказать]</b>: мы работаем с индивидуальными эскизами любой сложности.</li>
+        </ul>
+        
+        <p id="p4">Мы берем на себя все заботы о сладкой части вашего торжества. <br><b>Спасибо, что доверяете важные события профессионалам UliBakery!</b></p>
+    </div>
+
+    <!-- КНОПКИ ДЕЙСТВИЯ -->
     <div class="main-menu-grid">
         <a href="gallery.html" class="menu-card" id="m_gallery">ГАЛЕРЕЯ</a>
         <a href="order.html" class="menu-card" id="m_order">ЗАКАЗАТЬ</a>
@@ -86,12 +154,18 @@
 const texts = {
     ru: {
         w_title: "Добро пожаловать в кондитерскую-студию UliBakery!",
-        w_text: "Мы создаем десерты профессионального уровня. В UliBakery качество ингредиентов и безупречный декор стоят на первом месте.",
+        p1: "Мы создаем десерты профессионального уровня, которые станут сердцем вашего праздника. В UliBakery качество ингредиентов и безупречный декор стоят на первом месте.",
+        p2: "Чтобы ваш выбор был легким и приятным, мы подготовили разделы:",
+        p3: "✨ Вдохновитесь в [Галерее] • 👨‍🍳 Воплотите идею в [Заказать]",
+        p4: "Спасибо, что доверяете важные события профессионалам UliBakery!",
         m_gallery: "ГАЛЕРЕЯ", m_order: "ЗАКАЗАТЬ", m_about: "О НАС", m_contact: "КОНТАКТЫ"
     },
     fi: {
         w_title: "Tervetuloa UliBakery-studiolle!",
-        w_text: "Luomme ammattitason leivonnaisia. UliBakeryssa raaka-aineiden laatu ja täydellinen koristelu ovat etusijalla.",
+        p1: "Luomme ammattitason leivonnaisia, jotka ovat juhlanne sydän. UliBakeryssa laatu ja täydellinen koristelu ovat ensisijaisia.",
+        p2: "Teimme tilaamisesta helppoa, tutustu osioihin:",
+        p3: "✨ Inspiroidu [Galleriassa] • 👨‍🍳 Toteuta idea [Tilaa]-osiossa",
+        p4: "Kiitos, että luotat tärkeät hetkesi UliBakeryn ammattilaisille!",
         m_gallery: "GALLERIA", m_order: "TILAA", m_about: "MEISTÄ", m_contact: "YHTEYSTIEDOT"
     }
 };
