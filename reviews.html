@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Отзывы | UliBakery</title>
+    <title>Reviews | UliBakery</title>
     <style>
         body { margin: 0; font-family: 'Segoe UI', sans-serif; background-color: #fff6f8; color: #5d4037; line-height: 1.6; }
         .container { max-width: 1000px; margin: 40px auto; padding: 20px; text-align: center; }
@@ -46,22 +46,22 @@
         <div class="lang-switch">
             <button onclick="changeLang('fi')">FI</button>
             <button onclick="changeLang('ru')">RU</button>
+            <button onclick="changeLang('en')">EN</button>
         </div>
 
-        <a href="index.html" class="back-btn" id="btn_back">← НА ГЛАВНУЮ</a>
+        <a href="index.html" class="back-btn" id="btn_back">← BACK TO HOME</a>
         
-        <h1 id="rev_title">Отзывы наших клиентов</h1>
+        <h1 id="rev_title">Customer Reviews</h1>
         
         <div class="reviews-grid" id="reviews_container">
             <!-- Отзывы вставляются через JavaScript -->
         </div>
 
-        <!-- Ссылка на Google Отзывы -->
         <a href="https://www.google.com" 
            target="_blank" 
            class="google-btn" 
            id="btn_google">
-            ЧИТАТЬ ВСЕ ОТЗЫВЫ В GOOGLE
+            READ ALL REVIEWS ON GOOGLE
         </a>
     </div>
 
@@ -73,8 +73,7 @@ const translations = {
         google: "ЧИТАТЬ ВСЕ ОТЗЫВЫ В GOOGLE",
         items: [
             { text: "Самые вкусные торты! Заказывали на день рождения, все гости были в восторге.", author: "Анна С." },
-            { text: "Очень нежные десерты и прекрасное оформление. Рекомендую!", author: "Дмитрий" },
-            { text: "Лучшая кондитерская! Качество ингредиентов на высоте.", author: "Елена" }
+            { text: "Очень нежные десерты и прекрасное оформление. Рекомендую!", author: "Дмитрий" }
         ]
     },
     fi: {
@@ -83,8 +82,16 @@ const translations = {
         google: "LUE KAIKKI ARVOSTELUT GOOGLESTA",
         items: [
             { text: "Parhaat kakut ikinä! Tilasimme syntymäpäiville, kaikki vieraat rakastivat niitä.", author: "Anna S." },
-            { text: "Erittäin herkullisia jälkiruokia ja kaunis viimeistely. Suosittelen!", author: "Dmitri" },
-            { text: "Paras leipomo! Ainesosien laatu on huippuluokkaa.", author: "Elena" }
+            { text: "Erittäin herkullisia jälkiruokia ja kaunis viimeistely. Suosittelen!", author: "Dmitri" }
+        ]
+    },
+    en: {
+        back: "← BACK TO HOME",
+        title: "Customer Reviews",
+        google: "READ ALL REVIEWS ON GOOGLE",
+        items: [
+            { text: "The most delicious cakes ever! We ordered for a birthday and all guests loved them.", author: "Anna S." },
+            { text: "Very delicate desserts and beautiful presentation. Highly recommend!", author: "Dmitri" }
         ]
     }
 };
@@ -104,9 +111,8 @@ function renderReviews(lang) {
 }
 
 function changeLang(lang) {
-    localStorage.setItem('uliLang', lang); // Сохраняем язык
+    localStorage.setItem('uliLang', lang);
     
-    // Обновляем тексты на странице
     document.getElementById('btn_back').innerText = translations[lang].back;
     document.getElementById('rev_title').innerText = translations[lang].title;
     document.getElementById('btn_google').innerText = translations[lang].google;
@@ -114,9 +120,9 @@ function changeLang(lang) {
     renderReviews(lang);
 }
 
-// Инициализация при загрузке
 document.addEventListener('DOMContentLoaded', () => {
-    const savedLang = localStorage.getItem('uliLang') || 'ru';
+    // По умолчанию ставим финский или сохраненный
+    const savedLang = localStorage.getItem('uliLang') || 'fi';
     changeLang(savedLang);
 });
 </script>
