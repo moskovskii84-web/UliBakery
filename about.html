@@ -1,1 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О нас | UliBakery</title>
+    <style>
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background-color: #fff6f8; color: #5d4037; text-align: center; }
+        .container { max-width: 850px; margin: 40px auto; background: white; padding: 40px; border-radius: 30px; box-shadow: 0 10px 30px rgba(251, 194, 235, 0.3); border: 1px solid #fce4ec; }
+        .back-btn { display: inline-block; background: #5d4037; color: white; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; margin-bottom: 30px; transition: 0.3s; }
+        .back-btn:hover { background: #ff6f91; transform: scale(1.05); }
+        .logo-about { width: 180px; height: 180px; border-radius: 50%; border: 4px solid #fbc2eb; object-fit: cover; margin-bottom: 20px; }
+        h1 { font-family: 'Georgia', serif; color: #ff6f91; font-size: 32px; }
+        p { font-size: 18px; line-height: 1.8; text-align: left; color: #6d4c41; margin-top: 20px; }
+        .lang-btns { margin-bottom: 20px; }
+        .lang-btns button { background: none; border: 1px solid #ffb2c1; border-radius: 5px; cursor: pointer; padding: 5px 10px; margin: 0 5px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="lang-btns">
+            <button onclick="setLang('fi')">FI</button>
+            <button onclick="setLang('ru')">RU</button>
+        </div>
+        <a href="index.html" class="back-btn" id="btn_back">← НА ГЛАВНУЮ</a>
+        <br>
+        <img src="logo.jpg" class="logo-about" alt="UliBakery">
+        <h1 id="title_about">О нашей студии</h1>
+        <p id="text_about">
+            UliBakery — это профессиональная кондитерская студия в Вантаа. Мы создаем эксклюзивные торты, капкейки и десерты из натуральных ингредиентов. Наша философия — это сочетание безупречного вкуса и авторского декора для ваших самых важных моментов.
+        </p>
+    </div>
+
+    <script>
+        const texts = {
+            ru: {
+                back: "← НА ГЛАВНУЮ", title: "О нашей студии",
+                text: "UliBakery — это профессиональная кондитерская студия в Вантаа. Мы верим, что торт — это сердце праздника. Используем только натуральные сливки, бельгийский шоколад и свежие ягоды."
+            },
+            fi: {
+                back: "← ETUSIVULLE", title: "Meidän studiosta",
+                text: "UliBakery on ammattimainen konditoria Vantaalla. Uskomme, että kakku on juhlan sydän. Käytämme vain aitoa kermaa, belgialaista suklaata ja tuoreita marjoja."
+            }
+        };
+        function setLang(l) {
+            document.getElementById('btn_back').innerText = texts[l].back;
+            document.getElementById('title_about').innerText = texts[l].title;
+            document.getElementById('text_about').innerText = texts[l].text;
+        }
+    </script>
+</body>
+</html>
 
