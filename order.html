@@ -61,7 +61,7 @@
         <input type="date" id="date">
     </div>
 
-    <div class="form-group">
+    <div class="form-group)
         <label id="lbl_details">Пожелания (начинка, декор)</label>
         <textarea id="details" rows="4" placeholder="..."></textarea>
     </div>
@@ -84,7 +84,8 @@ const translations = {
         details_ph: "Например: Шоколадный с вишней, надпись 'С днем рождения'",
         btn_send: "ОТПРАВИТЬ В WHATSAPP",
         btn_back: "← Вернуться назад",
-        alert: "Пожалуйста, укажите имя и дату!"
+        alert: "Пожалуйста, укажите имя и дату!",
+        wa_greet: "Здравствуйте! Я хочу сделать заказ в UliBakery."
     },
     fi: {
         order_title: "Tee tilaus",
@@ -97,7 +98,8 @@ const translations = {
         details_ph: "Esimerkiksi: Suklaa kirsikalla, teksti 'Hyvää syntymäpäivää'",
         btn_send: "LÄHETÄ WHATSAPPISSA",
         btn_back: "← Takaisin",
-        alert: "Ole hyvä ja anna nimi ja päivämäärä!"
+        alert: "Ole hyvä ja anna nimi ja päivämäärä!",
+        wa_greet: "Hei! Haluan tehdä tilauksen UliBakeryssa."
     },
     en: {
         order_title: "Place an Order",
@@ -110,7 +112,8 @@ const translations = {
         details_ph: "For example: Chocolate with cherry, 'Happy Birthday' inscription",
         btn_send: "SEND TO WHATSAPP",
         btn_back: "← Back",
-        alert: "Please provide a name and date!"
+        alert: "Please provide a name and date!",
+        wa_greet: "Hello! I would like to place an order at UliBakery."
     }
 };
 
@@ -130,7 +133,6 @@ function setLang(lang) {
     document.getElementById('btn_send').innerText = t.btn_send;
     document.getElementById('btn_back').innerText = t.btn_back;
 
-    // Обновляем список в выпадающем меню
     const typeSelect = document.getElementById('type');
     typeSelect.innerHTML = '';
     t.types.forEach(val => {
@@ -153,17 +155,18 @@ function sendToWhatsApp() {
         return;
     }
 
-    const message = `Здравствуйте! Я хочу сделать заказ в UliBakery.%0A%0A` +
-                    `*Имя:* ${encodeURIComponent(name)}%0A` +
-                    `*Что заказываю:* ${encodeURIComponent(type)}%0A` +
-                    `*Дата:* ${encodeURIComponent(date)}%0A` +
-                    `*Пожелания:* ${encodeURIComponent(details)}`;
+    // Собираем текст сообщения с учетом выбранного языка
+    const greeting = encodeURIComponent(translations[currentLang].wa_greet);
+    const message = greeting + "%0A%0A" +
+                    "*Имя:* " + encodeURIComponent(name) + "%0A" +
+                    "*Тип:* " + encodeURIComponent(type) + "%0A" +
+                    "*Дата:* " + encodeURIComponent(date) + "%0A" +
+                    "*Пожелания:* " + encodeURIComponent(details);
 
-  window.open("https://wa.me" + phone + "?text=" + message, "_blank");
-
+    // ВАЖНО: добавлен слэш после wa.me/
+    window.open("https://wa.me" + phone + "?text=" + message, "_blank");
 }
 
-// Инициализация при загрузке
 setLang('ru');
 </script>
 
