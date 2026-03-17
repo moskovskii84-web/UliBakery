@@ -7,58 +7,99 @@
     <style>
         body { margin: 0; font-family: 'Segoe UI', sans-serif; background-color: #fff6f8; color: #5d4037; line-height: 1.6; }
         .container { max-width: 950px; margin: 40px auto; background: white; padding: 40px 20px; border-radius: 30px; box-shadow: 0 10px 40px rgba(251, 194, 235, 0.2); text-align: center; }
-        .back-btn { display: inline-block; background: #ff6f91; color: white; padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; margin-bottom: 30px; transition: 0.3s; box-shadow: 0 4px 15px rgba(255, 111, 145, 0.2); }
-        .back-btn:hover { background: #fbc2eb; transform: translateY(-2px); }
+        
+        .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-btn { background: #ff6f91; color: white; padding: 10px 20px; border-radius: 50px; text-decoration: none; font-weight: bold; transition: 0.3s; }
+        .back-btn:hover { background: #fbc2eb; }
+        
+        .lang-btns button { background: #fff; border: 1px solid #ffb2c1; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-weight: bold; margin-left: 5px; }
+        .lang-btns button:hover { background: #fbc2eb; color: white; }
+
         h1 { font-family: 'Georgia', serif; color: #ff6f91; font-size: 32px; margin-bottom: 30px; }
-        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin: 40px 0; }
-        .info-item { padding: 25px; border-radius: 20px; background: #fffafa; border: 1px solid #fce4ec; transition: 0.3s; }
-        .info-item:hover { border-color: #ff6f91; }
-        .info-item h3 { color: #ff6f91; margin-top: 0; font-size: 20px; }
-        .info-item p { margin: 5px 0; }
-        .map-container { width: 100%; height: 500px; border-radius: 25px; border: 3px solid #fce4ec; overflow: hidden; margin-top: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .info-item { padding: 20px; border-radius: 20px; background: #fffafa; border: 1px solid #fce4ec; }
+        .info-item h3 { color: #ff6f91; margin-top: 0; }
+
+        /* Контейнер для карты */
+        .map-container { width: 100%; height: 450px; border-radius: 25px; border: 3px solid #fce4ec; overflow: hidden; position: relative; background: #eee; }
+        iframe { width: 100%; height: 100%; border: 0; }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <a href="index.html" class="back-btn">← НА ГЛАВНУЮ</a>
+        <div class="top-nav">
+            <a href="index.html" class="back-btn" id="btn_back">← НА ГЛАВНУЮ</a>
+            <div class="lang-btns">
+                <button onclick="setLang('fi')">FI</button>
+                <button onclick="setLang('ru')">RU</button>
+                <button onclick="setLang('en')">EN</button>
+            </div>
+        </div>
         
-        <h1>Где рождаются десерты</h1>
+        <h1 id="c_title">Где рождаются десерты</h1>
         
         <div class="info-grid">
             <div class="info-item">
-                <h3>📍 Наш адрес</h3>
+                <h3 id="c_addr_h">📍 Наш адрес</h3>
                 <p><strong>UliBakery</strong></p>
                 <p>Venuksentie 4, 01480 Vantaa</p>
-                <p>Mikkola (Ostari / Торговый центр)</p>
+                <p id="c_mikkola">Mikkola (Ostari / Торговый центр)</p>
             </div>
             <div class="info-item">
-                <h3>🚚 Доставка</h3>
-                <p>Вантаа, Хельсинки, Эспоо</p>
-                <p>Самовывоз: по договоренности</p>
+                <h3 id="c_deliv_h">🚚 Доставка</h3>
+                <p id="c_cities">Вантаа, Хельсинки, Эспоо</p>
+                <p id="c_pickup">Самовывоз: по договоренности</p>
             </div>
             <div class="info-item">
-                <h3>⏰ Часы работы</h3>
-                <p>По предварительному заказу</p>
-                <p>Пишите нам в соцсети!</p>
+                <h3 id="c_hours_h">⏰ Часы работы</h3>
+                <p id="c_preorder">По предварительному заказу</p>
+                <p id="c_social">Пишите нам в соцсети!</p>
             </div>
         </div>
 
         <div class="map-container">
-            <!-- Встроена твоя официальная точка UliBakery -->
-            <iframe 
-                src="https://www.google.com" 
-                width="100%" 
-                height="100%" 
-                style="border:0;" 
-                allowfullscreen="" 
-                loading="lazy" 
-                referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
+            <!-- Прямая ссылка на твою точку UliBakery -->
+            <iframe src="https://www.google.com" allowfullscreen="" loading="lazy"></iframe>
         </div>
-
-        <p style="margin-top: 30px; opacity: 0.7;">© 2026 UliBakery — Сладкие моменты в Миккола</p>
     </div>
 
+    <script>
+        const translations = {
+            ru: {
+                back: "← НА ГЛАВНУЮ", title: "Где рождаются десерты",
+                addr_h: "📍 Наш адрес", mikkola: "Mikkola (Торговый центр)",
+                deliv_h: "🚚 Доставка", cities: "Вантаа, Хельсинки, Эспоо", pickup: "Самовывоз: по договоренности",
+                hours_h: "⏰ Часы работы", preorder: "По предварительному заказу", social: "Пишите нам в соцсети!"
+            },
+            fi: {
+                back: "← ETUSIVULLE", title: "Missä herkut syntyvät",
+                addr_h: "📍 Osoite", mikkola: "Mikkola (Ostari / Kauppakeskus)",
+                deliv_h: "🚚 Toimitus", cities: "Vantaa, Helsinki, Espoo", pickup: "Nouto: sopimuksen mukaan",
+                hours_h: "⏰ Aukioloajat", preorder: "Ennakkotilauksesta", social: "Ota yhteyttä somessa!"
+            },
+            en: {
+                back: "← BACK TO HOME", title: "Where the Sweets are Made",
+                addr_h: "📍 Address", mikkola: "Mikkola (Shopping Center)",
+                deliv_h: "🚚 Delivery", cities: "Vantaa, Helsinki, Espoo", pickup: "Pickup: by agreement",
+                hours_h: "⏰ Opening Hours", preorder: "By pre-order only", social: "Message us in social media!"
+            }
+        };
+
+        function setLang(lang) {
+            const t = translations[lang];
+            document.getElementById('btn_back').innerText = t.back;
+            document.getElementById('c_title').innerText = t.title;
+            document.getElementById('c_addr_h').innerText = t.addr_h;
+            document.getElementById('c_mikkola').innerText = t.mikkola;
+            document.getElementById('c_deliv_h').innerText = t.deliv_h;
+            document.getElementById('c_cities').innerText = t.cities;
+            document.getElementById('c_pickup').innerText = t.pickup;
+            document.getElementById('c_hours_h').innerText = t.hours_h;
+            document.getElementById('c_preorder').innerText = t.preorder;
+            document.getElementById('c_social').innerText = t.social;
+            document.documentElement.lang = lang;
+        }
+    </script>
 </body>
 </html>
