@@ -159,7 +159,8 @@ function sendToWhatsApp() {
                     `*Дата:* ${encodeURIComponent(date)}%0A` +
                     `*Пожелания:* ${encodeURIComponent(details)}`;
 
-    window.open(`https://wa.me{phone}?text=${message}`, '_blank');
+  window.open("https://wa.me" + phone + "?text=" + message, "_blank");
+
 }
 
 // Инициализация при загрузке
