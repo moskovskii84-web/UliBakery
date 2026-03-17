@@ -7,30 +7,18 @@
     <style>
         body { margin: 0; font-family: 'Segoe UI', sans-serif; background-color: #fff6f8; color: #5d4037; }
         .container { max-width: 600px; margin: 40px auto; background: white; padding: 30px; border-radius: 25px; box-shadow: 0 10px 30px rgba(251, 194, 235, 0.4); border: 1px solid #fce4ec; position: relative; }
-        
-        /* Кнопки языков */
         .lang-switch { text-align: right; margin-bottom: 20px; }
-        .lang-switch button { background:#fff; border:1px solid #ffb2c1; padding: 5px 10px; border-radius: 8px; cursor:pointer; font-weight:bold; margin-left: 5px; color: #333; transition: 0.3s; }
-        .lang-switch button:hover { background: #fbc2eb; color: white; }
-
-        h1 { color: #ff6f91; font-family: 'Georgia', serif; text-align: center; font-size: 28px; }
-        
+        .lang-switch button { background:#fff; border:1px solid #ffb2c1; padding: 5px 10px; border-radius: 8px; cursor:pointer; font-weight:bold; margin-left: 5px; color: #333; }
+        h1 { color: #ff6f91; font-family: 'Georgia', serif; text-align: center; }
         .form-group { margin-bottom: 20px; text-align: left; }
         label { display: block; margin-bottom: 8px; font-weight: bold; color: #ff6f91; }
-        
-        input, select, textarea { 
-            width: 100%; padding: 12px; border: 2px solid #fce4ec; border-radius: 12px; 
-            box-sizing: border-box; font-size: 16px; outline: none; transition: 0.3s;
-        }
-        input:focus, select:focus { border-color: #ff6f91; }
-
-        .order-btn { 
-            width: 100%; background: #25D366; color: white; border: none; padding: 15px; 
-            border-radius: 12px; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.3s; margin-top: 10px;
-        }
-        .order-btn:hover { background: #128C7E; transform: translateY(-2px); }
-
+        input, select, textarea { width: 100%; padding: 12px; border: 2px solid #fce4ec; border-radius: 12px; box-sizing: border-box; font-size: 16px; outline: none; }
+        input:focus { border-color: #ff6f91; }
+        .order-btn { width: 100%; background: #ff6f91; color: white; border: none; padding: 15px; border-radius: 12px; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .order-btn:hover { background: #e55a7d; transform: translateY(-2px); }
+        .order-btn:disabled { background: #ccc; cursor: not-allowed; }
         .back-link { display: block; text-align: center; margin-top: 20px; text-decoration: none; color: #ff6f91; font-weight: bold; }
+        .error-msg { color: #d32f2f; font-size: 14px; display: none; margin-top: 8px; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -44,140 +32,129 @@
 
     <h1 id="order_title">Оформить заказ</h1>
     
-    <div class="form-group">
-        <label id="lbl_name">Ваше имя</label>
-        <input type="text" id="name" placeholder="...">
-    </div>
+    <!-- Твоя ссылка Formspree вставлена сюда -->
+    <form action="https://formspree.io/f/mjgapyny" method="POST" id="orderForm">
+        
+        <div class="form-group">
+            <label id="lbl_name">Ваше имя</label>
+            <input type="text" name="Имя клиента" id="name" required>
+        </div>
 
-    <!-- НОВОЕ ПОЛЕ: Электронная почта -->
-    <div class="form-group">
-        <label id="lbl_email">Электронная почта</label>
-        <input type="email" id="email" placeholder="example@mail.com">
-    </div>
+        <div class="form-group">
+            <label id="lbl_email">Ваша почта (для подтверждения)</label>
+            <input type="email" name="Email" id="email" required>
+        </div>
 
-    <div class="form-group">
-        <label id="lbl_type">Тип десерта</label>
-        <select id="type"></select>
-    </div>
+        <div class="form-group">
+            <label id="lbl_type">Тип десерта</label>
+            <select name="Тип десерта" id="type"></select>
+        </div>
 
-    <div class="form-group">
-        <label id="lbl_date">Дата события</label>
-        <input type="date" id="date">
-    </div>
+        <div class="form-group">
+            <label id="lbl_date">Дата события</label>
+            <input type="date" name="Дата заказа" id="date" required onchange="checkDate(this)">
+            <div id="date_error" class="error-msg">Извините, эта дата уже занята!</div>
+        </div>
 
-    <div class="form-group">
-        <label id="lbl_details">Пожелания (начинка, декор)</label>
-        <textarea id="details" rows="4" placeholder="..."></textarea>
-    </div>
+        <div class="form-group">
+            <label id="lbl_details">Пожелания (начинка, декор)</label>
+            <textarea name="Детали заказа" id="details" rows="4"></textarea>
+        </div>
 
-    <button class="order-btn" id="btn_send" onclick="sendToWhatsApp()">ОТПРАВИТЬ В WHATSAPP</button>
+        <button type="submit" class="order-btn" id="btn_send">ОТПРАВИТЬ ЗАКАЗ</button>
+    </form>
     
-    <a href="index.html" class="back-link" id="btn_back">← Вернуться назад</a>
+    <a href="index.html" class="back-link" id="btn_back">← На главную</a>
 </div>
 
 <script>
+// --- СПИСОК ЗАНЯТЫХ ДАТ ---
+// Просто добавляй даты сюда через запятую в кавычках (ГГГГ-ММ-ДД)
+const occupiedDates = [
+    '2026-03-20', 
+    '2026-03-25'
+];
+
 const translations = {
     ru: {
         order_title: "Оформить заказ",
         lbl_name: "Ваше имя",
-        name_ph: "Как к вам обращаться?",
-        lbl_email: "Электронная почта",
-        lbl_type: "Тип десерта",
+        lbl_email: "Почта для связи",
+        lbl_type: "Что заказываем?",
         types: ["Свадебный торт", "Детский торт", "Капкейки", "Другое"],
         lbl_date: "Дата события",
         lbl_details: "Пожелания (начинка, декор)",
-        details_ph: "Например: Шоколадный с вишней, надпись 'С днем рождения'",
-        btn_send: "ОТПРАВИТЬ В WHATSAPP",
-        btn_back: "← Вернуться назад",
-        alert: "Пожалуйста, укажите имя, почту и дату!",
-        wa_greet: "Здравствуйте! Я хочу сделать заказ в UliBakery."
+        btn_send: "ОТПРАВИТЬ ЗАКАЗ",
+        btn_back: "← На главную",
+        date_error: "Извините, эта дата уже занята!"
     },
     fi: {
         order_title: "Tee tilaus",
         lbl_name: "Nimesi",
-        name_ph: "Miten voimme puhutella sinua?",
-        lbl_email: "Sähköpostiosoite",
+        lbl_email: "Sähköposti",
         lbl_type: "Jälkiruoan tyyppi",
         types: ["Hääkakku", "Lasten kakku", "Cupcakes", "Muu"],
         lbl_date: "Tapahtuman päivämäärä",
         lbl_details: "Toiveet (täyte, koristelu)",
-        details_ph: "Esimerkiksi: Suklaa kirsikalla, teksti 'Hyvää syntymäpäivää'",
-        btn_send: "LÄHETÄ WHATSAPPISSA",
+        btn_send: "LÄHETÄ TILAUS",
         btn_back: "← Takaisin",
-        alert: "Ole hyvä ja anna nimi, sähköposti ja päivämäärä!",
-        wa_greet: "Hei! Haluan tehdä tilauksen UliBakeryssa."
+        date_error: "Valitettavasti tämä päivä on jo varattu!"
     },
     en: {
-        order_title: "Place an Order",
+        order_title: "Place Order",
         lbl_name: "Your Name",
-        name_ph: "How should we call you?",
         lbl_email: "Email Address",
         lbl_type: "Dessert Type",
         types: ["Wedding Cake", "Kids Cake", "Cupcakes", "Other"],
         lbl_date: "Event Date",
         lbl_details: "Wishes (filling, decor)",
-        details_ph: "For example: Chocolate with cherry, 'Happy Birthday' inscription",
-        btn_send: "SEND TO WHATSAPP",
-        btn_back: "← Back",
-        alert: "Please provide a name, email, and date!",
-        wa_greet: "Hello! I would like to place an order at UliBakery."
+        btn_send: "SEND ORDER",
+        btn_back: "← Back Home",
+        date_error: "Sorry, this date is already booked!"
     }
 };
 
-let currentLang = 'ru';
+function checkDate(input) {
+    const errorDiv = document.getElementById('date_error');
+    const submitBtn = document.getElementById('btn_send');
+    
+    if (occupiedDates.includes(input.value)) {
+        errorDiv.style.display = 'block';
+        submitBtn.disabled = true;
+    } else {
+        errorDiv.style.display = 'none';
+        submitBtn.disabled = false;
+    }
+}
 
 function setLang(lang) {
-    currentLang = lang;
     const t = translations[lang];
-    
     document.getElementById('order_title').innerText = t.order_title;
     document.getElementById('lbl_name').innerText = t.lbl_name;
-    document.getElementById('name').placeholder = t.name_ph;
     document.getElementById('lbl_email').innerText = t.lbl_email;
     document.getElementById('lbl_type').innerText = t.lbl_type;
     document.getElementById('lbl_date').innerText = t.lbl_date;
     document.getElementById('lbl_details').innerText = t.lbl_details;
-    document.getElementById('details').placeholder = t.details_ph;
     document.getElementById('btn_send').innerText = t.btn_send;
     document.getElementById('btn_back').innerText = t.btn_back;
+    document.getElementById('date_error').innerText = t.date_error;
 
     const typeSelect = document.getElementById('type');
     typeSelect.innerHTML = '';
     t.types.forEach(val => {
         let opt = document.createElement('option');
         opt.value = val;
-        opt.innerHTML = val;
+        opt.innerText = val;
         typeSelect.appendChild(opt);
     });
 }
 
-function sendToWhatsApp() {
-    const phone = "358413147931"; 
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const type = document.getElementById('type').value;
-    const date = document.getElementById('date').value;
-    const details = document.getElementById('details').value;
-
-    // Проверка обязательных полей (имя, почта, дата)
-    if (!name || !email || !date) {
-        alert(translations[currentLang].alert);
-        return;
-    }
-
-    const greeting = encodeURIComponent(translations[currentLang].wa_greet);
-    const message = greeting + "%0A%0A" +
-                    "*Имя:* " + encodeURIComponent(name) + "%0A" +
-                    "*Email:* " + encodeURIComponent(email) + "%0A" + // Добавлено в сообщение
-                    "*Тип:* " + encodeURIComponent(type) + "%0A" +
-                    "*Дата:* " + encodeURIComponent(date) + "%0A" +
-                    "*Пожелания:* " + encodeURIComponent(details);
-
-    // Ссылка со слэшем
-    window.open("https://wa.me/" + phone + "?text=" + message, "_blank");
-}
-
+// Запуск по умолчанию
 setLang('ru');
+
+// Ограничение: нельзя выбрать дату в прошлом
+const today = new Date().toISOString().split('T')[0];
+document.getElementById('date').setAttribute('min', today);
 </script>
 
 </body>
