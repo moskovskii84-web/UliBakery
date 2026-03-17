@@ -132,13 +132,15 @@ function createCards(containerId, prefix, count) {
     const grid = document.getElementById(containerId);
     let html = '';
     for (let i = 1; i <= count; i++) {
-        // Устанавливаем небольшую задержку появления для эффекта каскада
         const delay = (i % 10) * 0.1; 
         html += `
             <div class="work-card" style="animation-delay: ${delay}s">
                 <div class="img-container">
                     <img src="${prefix}${i}.jpg" 
-                         onerror="this.onerror=null; this.src='${prefix}${i}.JPG'; this.setAttribute('onerror', 'this.src=\'logo.jpg\'');" 
+                         onerror="this.onerror=null; 
+                                  if(this.src.includes('.jpg')) this.src='${prefix}${i}.JPG'; 
+                                  else if(this.src.includes('.JPG')) this.src='${prefix}${i}.jpeg'; 
+                                  else this.src='logo.jpg';" 
                          onclick="openFull(this.src)" 
                          loading="lazy"
                          alt="Cake">
@@ -154,11 +156,8 @@ function openFull(src) {
     document.getElementById('fullView').style.display = 'flex'; 
 }
 
-// Запуск
-createCards('weddingGrid', 'work', 8);
+// Запуск: теперь свадебных тортов (work) 12 штук
+createCards('weddingGrid', 'work', 12); 
 createCards('kidsGrid', 'kids', 45);
 setLang('ru');
 </script>
-
-</body>
-</html>
