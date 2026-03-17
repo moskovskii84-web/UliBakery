@@ -9,32 +9,34 @@
         
         /* ВЕРХНЯЯ ПАНЕЛЬ */
         .top-bar { background: #fffafa; padding: 10px 20px; text-align: right; border-bottom: 1px solid #fce4ec; }
-        .lang button { background:#fff; border:1px solid #ffb2c1; padding: 4px 10px; border-radius: 6px; cursor:pointer; font-weight:bold; margin-left: 5px; }
+        .lang button { background:#fff; border:1px solid #ffb2c1; padding: 4px 10px; border-radius: 6px; cursor:pointer; font-weight:bold; margin-left: 5px; color: #333; }
+        .lang button:hover { background: #fbc2eb; color: white; }
 
-        /* НОВАЯ ШАПКА: ФОТО СЛЕВА, ЛОГО СПРАВА */
+        /* ШАПКА */
         header { 
             background: #fffafa; 
             border-bottom: 2px solid #fbc2eb; 
             display: flex; 
             flex-wrap: wrap; 
             align-items: center; 
-            min-height: 220px;
+            min-height: 250px;
         }
         .header-left { 
-            flex: 1; 
+            flex: 1.2; 
             min-width: 320px; 
-            height: 220px; 
+            height: 250px; 
             overflow: hidden; 
         }
         .header-left img { 
             width: 100%; 
             height: 100%; 
             object-fit: cover; 
-            object-position: center 25%; /* подрезаем тротуар */
+            /* ПОДНИМАЕМ ФОТО ВЫШЕ: 0% означает самый верх фото */
+            object-position: center 0%; 
         }
         .header-right { 
-            flex: 1; 
-            min-width: 320px; 
+            flex: 0.8; 
+            min-width: 300px; 
             display: flex; 
             flex-direction: column; 
             align-items: center; 
@@ -58,7 +60,7 @@
             font-weight: bold;
         }
 
-        /* ПРОДАЮЩИЙ ТЕКСТ */
+        /* ТЕКСТОВАЯ СЕКЦИЯ */
         .welcome-section { 
             padding: 50px 20px; 
             max-width: 900px; 
@@ -78,7 +80,7 @@
         }
         .selling-text b { color: #ff6f91; }
 
-        /* КНОПКИ (ПЛИТКА) */
+        /* КНОПКИ */
         .main-menu-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
@@ -98,7 +100,6 @@
             border: 2px solid #fce4ec;
             transition: 0.3s;
             text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
         }
         .menu-card:hover { transform: translateY(-3px); background: #ff6f91; color: white; border-color: #ff6f91; }
 
@@ -117,7 +118,7 @@
 
 <header>
     <div class="header-left">
-        <img src="facade.jpg" alt="UliBakery">
+        <img src="facade.jpg" alt="UliBakery Facade">
     </div>
     <div class="header-right">
         <img src="logo.jpg" class="logo-img" alt="Logo">
@@ -128,18 +129,12 @@
 <section class="welcome-section">
     <h1 id="w_title">Добро пожаловать в кондитерскую-студию UliBakery!</h1>
     <div class="selling-text">
-        <p id="p1">Мы создаем десерты <b>профессионального уровня</b>, которые станут сердцем вашего праздника или изысканным дополнением к семейным выходным. В UliBakery качество ингредиентов и безупречный декор стоят на первом месте.</p>
-        
+        <p id="p1">Мы создаем десерты <b>профессионального уровня</b>, которые станут сердцем вашего праздника или изысканным дополнением к семейным выходным.</p>
         <p id="p2">Чтобы ваш выбор был легким и приятным, мы подготовили разделы:</p>
-        <ul style="list-style: none; padding: 0;" id="p3">
-            <li>✨ <b>Вдохновитесь в [Галерее]</b>: здесь представлены наши реализованные проекты.</li>
-            <li>👨‍🍳 <b>Воплотите идею в [Заказать]</b>: мы работаем с индивидуальными эскизами любой сложности.</li>
-        </ul>
-        
-        <p id="p4">Мы берем на себя все заботы о сладкой части вашего торжества. <br><b>Спасибо, что доверяете важные события профессионалам UliBakery!</b></p>
+        <p id="p3">✨ <b>Вдохновитесь в [Галерее]</b> • 👨‍🍳 <b>Воплотите идею в [Заказать]</b></p>
+        <p id="p4">Спасибо, что доверяете важные события профессионалам UliBakery!</p>
     </div>
 
-    <!-- КНОПКИ ДЕЙСТВИЯ -->
     <div class="main-menu-grid">
         <a href="gallery.html" class="menu-card" id="m_gallery">ГАЛЕРЕЯ</a>
         <a href="order.html" class="menu-card" id="m_order">ЗАКАЗАТЬ</a>
@@ -167,8 +162,17 @@ const texts = {
         p3: "✨ Inspiroidu [Galleriassa] • 👨‍🍳 Toteuta idea [Tilaa]-osiossa",
         p4: "Kiitos, että luotat tärkeät hetkesi UliBakeryn ammattilaisille!",
         m_gallery: "GALLERIA", m_order: "TILAA", m_about: "MEISTÄ", m_contact: "YHTEYSTIEDOT"
+    },
+    en: {
+        w_title: "Welcome to UliBakery Studio!",
+        p1: "We create professional-level desserts that will become the heart of your celebration. Quality and perfect decoration are our priorities.",
+        p2: "To make your choice easy, check out our sections:",
+        p3: "✨ Get inspired in [Gallery] • 👨‍🍳 Bring your idea to life in [Order]",
+        p4: "Thank you for trusting your special moments to UliBakery professionals!",
+        m_gallery: "GALLERY", m_order: "ORDER", m_about: "ABOUT US", m_contact: "CONTACT"
     }
 };
+
 function setLang(lang) {
     Object.keys(texts[lang]).forEach(id => {
         const el = document.getElementById(id);
