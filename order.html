@@ -49,11 +49,15 @@
         <input type="text" id="name" placeholder="...">
     </div>
 
+    <!-- НОВОЕ ПОЛЕ: Электронная почта -->
+    <div class="form-group">
+        <label id="lbl_email">Электронная почта</label>
+        <input type="email" id="email" placeholder="example@mail.com">
+    </div>
+
     <div class="form-group">
         <label id="lbl_type">Тип десерта</label>
-        <select id="type">
-            <!-- Опции обновляются через JS -->
-        </select>
+        <select id="type"></select>
     </div>
 
     <div class="form-group">
@@ -61,7 +65,7 @@
         <input type="date" id="date">
     </div>
 
-    <div class="form-group)
+    <div class="form-group">
         <label id="lbl_details">Пожелания (начинка, декор)</label>
         <textarea id="details" rows="4" placeholder="..."></textarea>
     </div>
@@ -77,6 +81,7 @@ const translations = {
         order_title: "Оформить заказ",
         lbl_name: "Ваше имя",
         name_ph: "Как к вам обращаться?",
+        lbl_email: "Электронная почта",
         lbl_type: "Тип десерта",
         types: ["Свадебный торт", "Детский торт", "Капкейки", "Другое"],
         lbl_date: "Дата события",
@@ -84,13 +89,14 @@ const translations = {
         details_ph: "Например: Шоколадный с вишней, надпись 'С днем рождения'",
         btn_send: "ОТПРАВИТЬ В WHATSAPP",
         btn_back: "← Вернуться назад",
-        alert: "Пожалуйста, укажите имя и дату!",
+        alert: "Пожалуйста, укажите имя, почту и дату!",
         wa_greet: "Здравствуйте! Я хочу сделать заказ в UliBakery."
     },
     fi: {
         order_title: "Tee tilaus",
         lbl_name: "Nimesi",
         name_ph: "Miten voimme puhutella sinua?",
+        lbl_email: "Sähköpostiosoite",
         lbl_type: "Jälkiruoan tyyppi",
         types: ["Hääkakku", "Lasten kakku", "Cupcakes", "Muu"],
         lbl_date: "Tapahtuman päivämäärä",
@@ -98,13 +104,14 @@ const translations = {
         details_ph: "Esimerkiksi: Suklaa kirsikalla, teksti 'Hyvää syntymäpäivää'",
         btn_send: "LÄHETÄ WHATSAPPISSA",
         btn_back: "← Takaisin",
-        alert: "Ole hyvä ja anna nimi ja päivämäärä!",
+        alert: "Ole hyvä ja anna nimi, sähköposti ja päivämäärä!",
         wa_greet: "Hei! Haluan tehdä tilauksen UliBakeryssa."
     },
     en: {
         order_title: "Place an Order",
         lbl_name: "Your Name",
         name_ph: "How should we call you?",
+        lbl_email: "Email Address",
         lbl_type: "Dessert Type",
         types: ["Wedding Cake", "Kids Cake", "Cupcakes", "Other"],
         lbl_date: "Event Date",
@@ -112,7 +119,7 @@ const translations = {
         details_ph: "For example: Chocolate with cherry, 'Happy Birthday' inscription",
         btn_send: "SEND TO WHATSAPP",
         btn_back: "← Back",
-        alert: "Please provide a name and date!",
+        alert: "Please provide a name, email, and date!",
         wa_greet: "Hello! I would like to place an order at UliBakery."
     }
 };
@@ -126,6 +133,7 @@ function setLang(lang) {
     document.getElementById('order_title').innerText = t.order_title;
     document.getElementById('lbl_name').innerText = t.lbl_name;
     document.getElementById('name').placeholder = t.name_ph;
+    document.getElementById('lbl_email').innerText = t.lbl_email;
     document.getElementById('lbl_type').innerText = t.lbl_type;
     document.getElementById('lbl_date').innerText = t.lbl_date;
     document.getElementById('lbl_details').innerText = t.lbl_details;
@@ -146,24 +154,26 @@ function setLang(lang) {
 function sendToWhatsApp() {
     const phone = "358413147931"; 
     const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
     const type = document.getElementById('type').value;
     const date = document.getElementById('date').value;
     const details = document.getElementById('details').value;
 
-    if (!name || !date) {
+    // Проверка обязательных полей (имя, почта, дата)
+    if (!name || !email || !date) {
         alert(translations[currentLang].alert);
         return;
     }
 
-    // Собираем текст сообщения с учетом выбранного языка
     const greeting = encodeURIComponent(translations[currentLang].wa_greet);
     const message = greeting + "%0A%0A" +
                     "*Имя:* " + encodeURIComponent(name) + "%0A" +
+                    "*Email:* " + encodeURIComponent(email) + "%0A" + // Добавлено в сообщение
                     "*Тип:* " + encodeURIComponent(type) + "%0A" +
                     "*Дата:* " + encodeURIComponent(date) + "%0A" +
                     "*Пожелания:* " + encodeURIComponent(details);
 
-    // ВАЖНО: добавлен слэш после wa.me/
+    // Ссылка со слэшем
     window.open("https://wa.me" + phone + "?text=" + message, "_blank");
 }
 
