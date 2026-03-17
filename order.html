@@ -6,9 +6,14 @@
     <title>Заказать торт | UliBakery</title>
     <style>
         body { margin: 0; font-family: 'Segoe UI', sans-serif; background-color: #fff6f8; color: #5d4037; }
-        .container { max-width: 600px; margin: 40px auto; background: white; padding: 30px; border-radius: 25px; box-shadow: 0 10px 30px rgba(251, 194, 235, 0.4); border: 1px solid #fce4ec; }
+        .container { max-width: 600px; margin: 40px auto; background: white; padding: 30px; border-radius: 25px; box-shadow: 0 10px 30px rgba(251, 194, 235, 0.4); border: 1px solid #fce4ec; position: relative; }
         
-        h1 { color: #ff6f91; font-family: 'Georgia', serif; text-align: center; }
+        /* Кнопки языков */
+        .lang-switch { text-align: right; margin-bottom: 20px; }
+        .lang-switch button { background:#fff; border:1px solid #ffb2c1; padding: 5px 10px; border-radius: 8px; cursor:pointer; font-weight:bold; margin-left: 5px; color: #333; transition: 0.3s; }
+        .lang-switch button:hover { background: #fbc2eb; color: white; }
+
+        h1 { color: #ff6f91; font-family: 'Georgia', serif; text-align: center; font-size: 28px; }
         
         .form-group { margin-bottom: 20px; text-align: left; }
         label { display: block; margin-bottom: 8px; font-weight: bold; color: #ff6f91; }
@@ -31,63 +36,135 @@
 <body>
 
 <div class="container">
+    <div class="lang-switch">
+        <button onclick="setLang('fi')">FI</button>
+        <button onclick="setLang('ru')">RU</button>
+        <button onclick="setLang('en')">EN</button>
+    </div>
+
     <h1 id="order_title">Оформить заказ</h1>
     
     <div class="form-group">
-        <label>Ваше имя</label>
-        <input type="text" id="name" placeholder="Как к вам обращаться?">
+        <label id="lbl_name">Ваше имя</label>
+        <input type="text" id="name" placeholder="...">
     </div>
 
     <div class="form-group">
-        <label>Тип десерта</label>
+        <label id="lbl_type">Тип десерта</label>
         <select id="type">
-            <option value="Свадебный торт">Свадебный торт</option>
-            <option value="Детский торт">Детский торт</option>
-            <option value="Капкейки">Капкейки</option>
-            <option value="Другое">Другое</option>
+            <!-- Опции обновляются через JS -->
         </select>
     </div>
 
     <div class="form-group">
-        <label>Дата события</label>
+        <label id="lbl_date">Дата события</label>
         <input type="date" id="date">
     </div>
 
     <div class="form-group">
-        <label>Пожелания (начинка, декор)</label>
-        <textarea id="details" rows="4" placeholder="Например: Шоколадный с вишней, надпись 'С днем рождения'"></textarea>
+        <label id="lbl_details">Пожелания (начинка, декор)</label>
+        <textarea id="details" rows="4" placeholder="..."></textarea>
     </div>
 
-    <button class="order-btn" onclick="sendToWhatsApp()">ОТПРАВИТЬ В WHATSAPP</button>
+    <button class="order-btn" id="btn_send" onclick="sendToWhatsApp()">ОТПРАВИТЬ В WHATSAPP</button>
     
-    <a href="index.html" class="back-link">← Вернуться назад</a>
+    <a href="index.html" class="back-link" id="btn_back">← Вернуться назад</a>
 </div>
 
 <script>
-function sendToWhatsApp() {
-    // ВСТАВЬТЕ СВОЙ НОМЕР ТЕЛЕФОНА (без +)
-    const phone = "358413147931"; 
+const translations = {
+    ru: {
+        order_title: "Оформить заказ",
+        lbl_name: "Ваше имя",
+        name_ph: "Как к вам обращаться?",
+        lbl_type: "Тип десерта",
+        types: ["Свадебный торт", "Детский торт", "Капкейки", "Другое"],
+        lbl_date: "Дата события",
+        lbl_details: "Пожелания (начинка, декор)",
+        details_ph: "Например: Шоколадный с вишней, надпись 'С днем рождения'",
+        btn_send: "ОТПРАВИТЬ В WHATSAPP",
+        btn_back: "← Вернуться назад",
+        alert: "Пожалуйста, укажите имя и дату!"
+    },
+    fi: {
+        order_title: "Tee tilaus",
+        lbl_name: "Nimesi",
+        name_ph: "Miten voimme puhutella sinua?",
+        lbl_type: "Jälkiruoan tyyppi",
+        types: ["Hääkakku", "Lasten kakku", "Cupcakes", "Muu"],
+        lbl_date: "Tapahtuman päivämäärä",
+        lbl_details: "Toiveet (täyte, koristelu)",
+        details_ph: "Esimerkiksi: Suklaa kirsikalla, teksti 'Hyvää syntymäpäivää'",
+        btn_send: "LÄHETÄ WHATSAPPISSA",
+        btn_back: "← Takaisin",
+        alert: "Ole hyvä ja anna nimi ja päivämäärä!"
+    },
+    en: {
+        order_title: "Place an Order",
+        lbl_name: "Your Name",
+        name_ph: "How should we call you?",
+        lbl_type: "Dessert Type",
+        types: ["Wedding Cake", "Kids Cake", "Cupcakes", "Other"],
+        lbl_date: "Event Date",
+        lbl_details: "Wishes (filling, decor)",
+        details_ph: "For example: Chocolate with cherry, 'Happy Birthday' inscription",
+        btn_send: "SEND TO WHATSAPP",
+        btn_back: "← Back",
+        alert: "Please provide a name and date!"
+    }
+};
+
+let currentLang = 'ru';
+
+function setLang(lang) {
+    currentLang = lang;
+    const t = translations[lang];
     
+    document.getElementById('order_title').innerText = t.order_title;
+    document.getElementById('lbl_name').innerText = t.lbl_name;
+    document.getElementById('name').placeholder = t.name_ph;
+    document.getElementById('lbl_type').innerText = t.lbl_type;
+    document.getElementById('lbl_date').innerText = t.lbl_date;
+    document.getElementById('lbl_details').innerText = t.lbl_details;
+    document.getElementById('details').placeholder = t.details_ph;
+    document.getElementById('btn_send').innerText = t.btn_send;
+    document.getElementById('btn_back').innerText = t.btn_back;
+
+    // Обновляем список в выпадающем меню
+    const typeSelect = document.getElementById('type');
+    typeSelect.innerHTML = '';
+    t.types.forEach(val => {
+        let opt = document.createElement('option');
+        opt.value = val;
+        opt.innerHTML = val;
+        typeSelect.appendChild(opt);
+    });
+}
+
+function sendToWhatsApp() {
+    const phone = "358413147931"; 
     const name = document.getElementById('name').value;
     const type = document.getElementById('type').value;
     const date = document.getElementById('date').value;
     const details = document.getElementById('details').value;
 
     if (!name || !date) {
-        alert("Пожалуйста, укажите имя и дату!");
+        alert(translations[currentLang].alert);
         return;
     }
 
     const message = `Здравствуйте! Я хочу сделать заказ в UliBakery.%0A%0A` +
-                    `*Имя:* ${name}%0A` +
-                    `*Что заказываю:* ${type}%0A` +
-                    `*Дата:* ${date}%0A` +
-                    `*Пожелания:* ${details}`;
+                    `*Имя:* ${encodeURIComponent(name)}%0A` +
+                    `*Что заказываю:* ${encodeURIComponent(type)}%0A` +
+                    `*Дата:* ${encodeURIComponent(date)}%0A` +
+                    `*Пожелания:* ${encodeURIComponent(details)}`;
 
     window.open(`https://wa.me{phone}?text=${message}`, '_blank');
 }
+
+// Инициализация при загрузке
+setLang('ru');
 </script>
 
 </body>
 </html>
-
