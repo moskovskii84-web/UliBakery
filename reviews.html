@@ -18,83 +18,88 @@
         h1 { font-family: 'Georgia', serif; color: #ff6f91; font-size: 32px; margin-bottom: 40px; }
 
         .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-bottom: 50px; }
-        .review-card { background: white; padding: 30px; border-radius: 25px; border: 1px solid #fce4ec; text-align: left; box-shadow: 0 8px 20px rgba(251, 194, 235, 0.2); transition: 0.3s; }
-        .review-card:hover { transform: translateY(-5px); }
+        .review-card { background: white; padding: 30px; border-radius: 25px; border: 1px solid #fce4ec; text-align: left; box-shadow: 0 8px 20px rgba(251, 194, 235, 0.2); }
 
         .stars { color: #ffb400; font-size: 22px; margin-bottom: 15px; }
         .author { font-weight: bold; color: #ff6f91; margin-top: 15px; display: block; font-size: 14px; }
         
         .google-btn { display: inline-block; background: #4285F4; color: white; padding: 18px 40px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 18px; box-shadow: 0 4px 15px rgba(66, 133, 244, 0.4); }
         .google-btn:hover { background: #357ae8; transform: scale(1.05); }
+        
+        /* Скрываем другие языки по умолчанию */
+        .lang-content { display: none; }
+        .active-lang { display: grid; }
     </style>
 </head>
 <body>
 
     <div class="container">
         <div class="lang-switch">
-            <button onclick="changeLang('fi')">FI</button>
-            <button onclick="changeLang('ru')">RU</button>
-            <button onclick="changeLang('en')">EN</button>
+            <button onclick="setLang('fi')">FI</button>
+            <button onclick="setLang('ru')">RU</button>
+            <button onclick="setLang('en')">EN</button>
         </div>
 
         <a href="index.html" class="back-btn" id="btn_back">← НА ГЛАВНУЮ</a>
-        
         <h1 id="rev_title">Отзывы наших клиентов</h1>
         
-        <div class="reviews-grid" id="reviews_container"></div>
+        <!-- СЕТКА ОТЗЫВОВ (РУССКИЙ) -->
+        <div id="grid_ru" class="reviews-grid lang-content active-lang">
+            <div class="review-card"><div class="stars">★★★★★</div><p>"Торт был невероятный! Очень нежный вкус и потрясающий декор."</p><span class="author">— Светлана М.</span></div>
+            <div class="review-card"><div class="stars">★★★★★</div><p>"Заказывали на свадьбу. Все гости в восторге от качества!"</p><span class="author">— Анна С.</span></div>
+            <div class="review-card"><div class="stars">★★★★★</div><p>"Очень вкусные капкейки. Рекомендую всем!"</p><span class="author">— Иван Г.</span></div>
+            <div class="review-card"><div class="stars">★★★★★</div><p>"Uli on taitava leipuri! Kakku oli kaunis и todella herkullinen."</p><span class="author">— Sari T.</span></div>
+            <div class="review-card"><div class="stars">★★★★★</div><p>"Профессиональный подход и очень вежливое общение. Спасибо!"</p><span class="author">— Ольга В.</span></div>
+            <div class="review-card"><div class="stars">★★★★★</div><p>"Лучшая кондитерская в Вантаа! Качество на высоте."</p><span class="author">— Дмитрий</span></div>
+        </div>
 
-        <a href="https://www.google.com" target="_blank" class="google-btn" id="btn_google">
-            ЧИТАТЬ ВСЕ ОТЗЫВЫ В GOOGLE
-        </a>
+        <!-- СЕТКА ОТЗЫВОВ (ФИНСКИЙ) -->
+        <div id="grid_fi" class="reviews-grid lang-content">
+            <div class="review-card"><div class="stars">★★★★★</div><p>"Uli on taitava leipuri! Kakku oli kaunis ja todella herkullinen."</p><span class="author">— Hanna K.</span></div>
+            <div class="review-card"><div class="stars">★★★★★</div><p>"Upea palvelu ja laatu. Tilasimme syntymäpäiväkakun ja se ylitti kaikki odotukset."</p><span class="author">— Mikael L.</span></div>
+            <div class="review-card"><div class="stars">★★★★★</div><p>"Paras kakku mitä olen ikinä syönyt! Erittäin ammattitaitoista työtä."</p><span class="author">— Elena P.</span></div>
+            <div class="review-card"><div class="stars">★★★★★</div><p>"Todella kauniita ja maukkaita leivonnaisia. Yhteistyö sujui loistavasti."</p><span class="author">— Sari T.</span></div>
+            <div class="review-card"><div class="stars">★★★★★</div><p>"Parhaat kakut ikinä! Tilasimme syntymäpäiville, kaikki vieraat rakastivat niitä."</p><span class="author">— Anna S.</span></div>
+            <div class="review-card"><div class="stars">★★★★★</div><p>"Erittäin herkullisia jälkiruokia ja kaunis viimeistely. Suosittelen!"</p><span class="author">— Dmitri</span></div>
+        </div>
+
+        <!-- СЕТКА ОТЗЫВОВ (АНГЛИЙСКИЙ) -->
+        <div id="grid_en" class="reviews-grid lang-content">
+            <div class="review-card"><div class="stars">★★★★★</div><p>"The cake was incredible! Very delicate taste and stunning decoration."</p><span class="author">— Sarah W.</span></div>
+            <div class="review-card"><div class="stars">★★★★★</div><p>"Best cupcakes in Vantaa! Highly professional service."</p><span class="author">— John D.</span></div>
+            <div class="review-card"><div class="stars">★★★★★</div><p>"Beautiful work and amazing taste. Everything was perfect."</p><span class="author">— Linda K.</span></div>
+            <div class="review-card"><div class="stars">★★★★★</div><p>"Uli is a talented baker! The cake was incredibly delicious."</p><span class="author">— Hanna K.</span></div>
+            <div class="review-card"><div class="stars">★★★★★</div><p>"Great service and quality. The birthday cake exceeded all expectations."</p><span class="author">— Michael L.</span></div>
+            <div class="review-card"><div class="stars">★★★★★</div><p>"Best cake I've ever had! Stunning decoration."</p><span class="author">— Elena P.</span></div>
+        </div>
+
+        <a href="https://www.google.com" target="_blank" class="google-btn" id="btn_google">ЧИТАТЬ ВСЕ ОТЗЫВЫ В GOOGLE</a>
     </div>
 
 <script>
-const translations = {
-    ru: {
-        back: "← НА ГЛАВНУЮ",
-        title: "Отзывы наших клиентов",
-        google: "ЧИТАТЬ ВСЕ ОТЗЫВЫ В GOOGLE",
-        items:
-    },
-    fi: {
-        back: "← ETUSIVULLE",
-        title: "Asiakkaidemme arvostelut",
-        google: "LUE KAIKKI ARVOSTELUT GOOGLESTA",
-        items:
-    },
-    en: {
-        back: "← BACK HOME",
-        title: "Customer Reviews",
-        google: "READ ALL REVIEWS ON GOOGLE",
-        items:
-    }
+const trans = {
+    ru: { back: "← НА ГЛАВНУЮ", title: "Отзывы наших клиентов", google: "ЧИТАТЬ ВСЕ ОТЗЫВЫ В GOOGLE" },
+    fi: { back: "← ETUSIVULLE", title: "Asiakkaidemme arvostelut", google: "LUE KAIKKI ARVOSTELUT GOOGLESTA" },
+    en: { back: "← BACK HOME", title: "Customer Reviews", google: "READ ALL REVIEWS ON GOOGLE" }
 };
 
-function renderReviews(lang) {
-    const container = document.getElementById('reviews_container');
-    container.innerHTML = '';
-    translations[lang].items.forEach(item => {
-        container.innerHTML += `
-            <div class="review-card">
-                <div class="stars">★★★★★</div>
-                <p>"${item.text}"</p>
-                <span class="author">— ${item.author}</span>
-            </div>`;
-    });
+function setLang(lang) {
+    localStorage.setItem('uliLang', lang);
+    
+    // Обновляем тексты
+    document.getElementById('btn_back').innerText = trans[lang].back;
+    document.getElementById('rev_title').innerText = trans[lang].title;
+    document.getElementById('btn_google').innerText = trans[lang].google;
+
+    // Переключаем видимость сеток
+    document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active-lang'));
+    document.getElementById('grid_' + lang).classList.add('active-lang');
 }
 
-function changeLang(lang) {
-    localStorage.setItem('uliLang', lang); 
-    const t = translations[lang];
-    document.getElementById('btn_back').innerText = t.back;
-    document.getElementById('rev_title').innerText = t.title;
-    document.getElementById('btn_google').innerText = t.google;
-    renderReviews(lang);
-}
-
+// Запуск
 document.addEventListener('DOMContentLoaded', () => {
-    const savedLang = localStorage.getItem('uliLang') || 'ru';
-    changeLang(savedLang);
+    const saved = localStorage.getItem('uliLang') || 'ru';
+    setLang(saved);
 });
 </script>
 </body>
