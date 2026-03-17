@@ -13,7 +13,6 @@
 
         h1 { font-family: 'Georgia', serif; color: #ff6f91; font-size: 36px; margin-bottom: 40px; }
 
-        /* Сетка отзывов */
         .reviews-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
@@ -35,10 +34,10 @@
         .stars { color: #ffb400; font-size: 22px; margin-bottom: 15px; }
         .author { font-weight: bold; color: #ff6f91; margin-top: 15px; display: block; font-size: 14px; }
         
-        /* Прямая кнопка в Google */
+        /* КНОПКА С ТВОЕЙ ПРЯМОЙ ССЫЛКОЙ */
         .google-btn { 
             display: inline-block; 
-            background: #4285F4; /* Цвет Google */
+            background: #4285F4; 
             color: white; 
             padding: 18px 40px; 
             border-radius: 50px; 
@@ -59,49 +58,50 @@
         <h1>Отзывы наших клиентов</h1>
         
         <div class="reviews-grid">
-            <!-- Отзыв 1 -->
             <div class="review-card">
                 <div class="stars">★★★★★</div>
                 <p>"Uli on taitava leipuri! Kakku oli paitsi kaunis, myös todella herkullinen. Suosittelen lämpimästi kaikille!"</p>
                 <span class="author">— Hanna K.</span>
             </div>
 
-            <!-- Отзыв 2 -->
             <div class="review-card">
                 <div class="stars">★★★★★</div>
                 <p>"Заказывали торт на свадьбу. Все гости были в восторге от декора и вкуса. Начинка просто тает во рту!"</p>
                 <span class="author">— Светлана М.</span>
             </div>
 
-            <!-- Отзыв 3 -->
             <div class="review-card">
                 <div class="stars">★★★★★</div>
                 <p>"Upea palvelu ja laatu. Tilasimme syntymäpäiväkakun ja se ylitti kaikki odotukset. Kiitos paljon!"</p>
                 <span class="author">— Mikael L.</span>
             </div>
 
-            <!-- Отзыв 4 -->
             <div class="review-card">
                 <div class="stars">★★★★★</div>
-                <p>"Paras kakku mitä olen ikinä syönyt! Erittäin ammattitaitoista työtä ja upea viimeistely."</p>
+                <p>"Paras kakku mitä olen ikinä syönyt! Erittäin ammattitaitoista työtä и upea viimeistely."</p>
                 <span class="author">— Elena P.</span>
             </div>
 
-            <!-- Отзыв 5 -->
             <div class="review-card">
                 <div class="stars">★★★★★</div>
-                <p>"Делали заказ на детский праздник. Торт был не только красивым, но и очень легким, не приторным. Дети съели всё!"</p>
+                <p>"Делали заказ на детский праздник. Торт был не только красивым, но и очень легким. Дети съели всё!"</p>
                 <span class="author">— Иван Г.</span>
             </div>
 
-            <!-- Отзыв 6 -->
             <div class="review-card">
                 <div class="stars">★★★★★</div>
-                <p>"Todella kauniita ja maukkaita leivonnaisia. Yhteistyö sujui loistavasti ja toimitus oli ajallaan."</p>
+                <p>"Todella kauniita ja maukkaita leivonnaisia. Yhteistyö sujui loistavasti и toimitus oli ajallaan."</p>
                 <span class="author">— Sari T.</span>
             </div>
         </div>
-<!-- ПРЯМАЯ ССЫЛКА НА ОКНО ОТЗЫВОВ -->
-<a href="https://search.google.com" target="_blank" class="google-btn">ОСТАВИТЬ ОТЗЫВ В GOOGLE</a>
 
-       
+        <!-- ИСПРАВЛЕННАЯ КНОПКА -->
+        <a href="https://maps.app.goo.gl" target="_blank" class="google-btn">
+            ЧИТАТЬ ВСЕ ОТЗЫВЫ В GOOGLE
+        </a>
+        
+        <p style="margin-top: 30px; color: #999; font-size: 14px;">Более 50+ положительных оценок в Google Картах</p>
+    </div>
+
+</body>
+</html>
