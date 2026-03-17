@@ -1,1 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заказать торт | UliBakery</title>
+    <style>
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background-color: #fff6f8; color: #5d4037; }
+        .container { max-width: 600px; margin: 40px auto; background: white; padding: 30px; border-radius: 25px; box-shadow: 0 10px 30px rgba(251, 194, 235, 0.4); border: 1px solid #fce4ec; }
+        
+        h1 { color: #ff6f91; font-family: 'Georgia', serif; text-align: center; }
+        
+        .form-group { margin-bottom: 20px; text-align: left; }
+        label { display: block; margin-bottom: 8px; font-weight: bold; color: #ff6f91; }
+        
+        input, select, textarea { 
+            width: 100%; padding: 12px; border: 2px solid #fce4ec; border-radius: 12px; 
+            box-sizing: border-box; font-size: 16px; outline: none; transition: 0.3s;
+        }
+        input:focus, select:focus { border-color: #ff6f91; }
+
+        .order-btn { 
+            width: 100%; background: #25D366; color: white; border: none; padding: 15px; 
+            border-radius: 12px; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.3s; margin-top: 10px;
+        }
+        .order-btn:hover { background: #128C7E; transform: translateY(-2px); }
+
+        .back-link { display: block; text-align: center; margin-top: 20px; text-decoration: none; color: #ff6f91; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 id="order_title">Оформить заказ</h1>
+    
+    <div class="form-group">
+        <label>Ваше имя</label>
+        <input type="text" id="name" placeholder="Как к вам обращаться?">
+    </div>
+
+    <div class="form-group">
+        <label>Тип десерта</label>
+        <select id="type">
+            <option value="Свадебный торт">Свадебный торт</option>
+            <option value="Детский торт">Детский торт</option>
+            <option value="Капкейки">Капкейки</option>
+            <option value="Другое">Другое</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Дата события</label>
+        <input type="date" id="date">
+    </div>
+
+    <div class="form-group">
+        <label>Пожелания (начинка, декор)</label>
+        <textarea id="details" rows="4" placeholder="Например: Шоколадный с вишней, надпись 'С днем рождения'"></textarea>
+    </div>
+
+    <button class="order-btn" onclick="sendToWhatsApp()">ОТПРАВИТЬ В WHATSAPP</button>
+    
+    <a href="index.html" class="back-link">← Вернуться назад</a>
+</div>
+
+<script>
+function sendToWhatsApp() {
+    // ВСТАВЬТЕ СВОЙ НОМЕР ТЕЛЕФОНА (без +)
+    const phone = "7XXXXXXXXXX"; 
+    
+    const name = document.getElementById('name').value;
+    const type = document.getElementById('type').value;
+    const date = document.getElementById('date').value;
+    const details = document.getElementById('details').value;
+
+    if (!name || !date) {
+        alert("Пожалуйста, укажите имя и дату!");
+        return;
+    }
+
+    const message = `Здравствуйте! Я хочу сделать заказ в UliBakery.%0A%0A` +
+                    `*Имя:* ${name}%0A` +
+                    `*Что заказываю:* ${type}%0A` +
+                    `*Дата:* ${date}%0A` +
+                    `*Пожелания:* ${details}`;
+
+    window.open(`https://wa.me{phone}?text=${message}`, '_blank');
+}
+</script>
+
+</body>
+</html>
 
