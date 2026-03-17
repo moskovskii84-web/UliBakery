@@ -8,111 +8,87 @@
         body { margin: 0; font-family: 'Segoe UI', sans-serif; background-color: #fff6f8; color: #5d4037; line-height: 1.6; }
         .container { max-width: 1000px; margin: 40px auto; padding: 20px; text-align: center; }
         
-        /* КНОПКА НАЗАД */
-        .back-btn { display: inline-block; background: #5d4037; color: white; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; margin-bottom: 40px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        /* КНОПКИ ЯЗЫКОВ */
+        .lang-switch { text-align: right; margin-bottom: 20px; }
+        .lang-switch button { background:#fff; border:1px solid #ffb2c1; padding: 5px 10px; border-radius: 8px; cursor:pointer; font-weight:bold; margin-left: 5px; color: #333; }
+        .lang-switch button:hover { background: #fbc2eb; color: white; }
+
+        .back-btn { display: inline-block; background: #5d4037; color: white; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; margin-bottom: 40px; transition: 0.3s; }
         .back-btn:hover { background: #ff6f91; transform: scale(1.05); }
 
         h1 { font-family: 'Georgia', serif; color: #ff6f91; font-size: 36px; margin-bottom: 40px; }
 
-        /* СЕТКА ОТЗЫВОВ */
-        .reviews-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 25px; 
-            margin-bottom: 50px;
-        }
-
-        .review-card { 
-            background: white; 
-            padding: 30px; 
-            border-radius: 25px; 
-            border: 1px solid #fce4ec; 
-            text-align: left; 
-            box-shadow: 0 8px 20px rgba(251, 194, 235, 0.2); 
-            transition: 0.3s;
-        }
-        .review-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(251, 194, 235, 0.4); }
+        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-bottom: 50px; }
+        .review-card { background: white; padding: 30px; border-radius: 25px; border: 1px solid #fce4ec; text-align: left; box-shadow: 0 8px 20px rgba(251, 194, 235, 0.2); }
 
         .stars { color: #ffb400; font-size: 22px; margin-bottom: 15px; }
         .author { font-weight: bold; color: #ff6f91; margin-top: 15px; display: block; font-size: 14px; }
         
-        /* ГЛАВНАЯ КНОПКА GOOGLE */
-        .google-btn { 
-            display: inline-block; 
-            background: #4285F4; 
-            color: white; 
-            padding: 20px 45px; 
-            border-radius: 50px; 
-            text-decoration: none; 
-            font-weight: bold; 
-            font-size: 18px;
-            box-shadow: 0 4px 15px rgba(66, 133, 244, 0.4);
-            transition: 0.3s;
-        }
-        .google-btn:hover { background: #3367D6; transform: scale(1.05); box-shadow: 0 6px 20px rgba(66, 133, 244, 0.5); }
+        .google-btn { display: inline-block; background: #4285F4; color: white; padding: 18px 40px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 18px; box-shadow: 0 4px 15px rgba(66, 133, 244, 0.4); }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- КНОПКА ВЕРНУТЬСЯ -->
-        <a href="index.html" class="back-btn">← НА ГЛАВНУЮ</a>
-        
-        <h1>Отзывы наших клиентов</h1>
-        
-        <div class="reviews-grid">
-            <!-- Отзыв 1 -->
-            <div class="review-card">
-                <div class="stars">★★★★★</div>
-                <p>"Uli on taitava leipuri! Kakku oli paitsi kaunis, myös todella herkullinen. Suosittelen lämpimästi kaikille!"</p>
-                <span class="author">— Hanna K.</span>
-            </div>
-
-            <!-- Отзыв 2 -->
-            <div class="review-card">
-                <div class="stars">★★★★★</div>
-                <p>"Заказывали торт на свадьбу. Все гости были в восторге от декора и вкуса. Начинка просто тает во рту!"</p>
-                <span class="author">— Светлана М.</span>
-            </div>
-
-            <!-- Отзыв 3 -->
-            <div class="review-card">
-                <div class="stars">★★★★★</div>
-                <p>"Upea palvelu ja laatu. Tilasimme syntymäpäiväkakun ja se ylitti kaikki odotukset. Kiitos paljon!"</p>
-                <span class="author">— Mikael L.</span>
-            </div>
-
-            <!-- Отзыв 4 -->
-            <div class="review-card">
-                <div class="stars">★★★★★</div>
-                <p>"Paras kakku mitä olen ikinä syönyt! Erittäin ammattitaitoista työtä и upea viimeistely."</p>
-                <span class="author">— Elena P.</span>
-            </div>
-
-            <!-- Отзыв 5 -->
-            <div class="review-card">
-                <div class="stars">★★★★★</div>
-                <p>"Делали заказ на детский праздник. Торт был не только красивым, но и очень легким. Дети съели всё!"</p>
-                <span class="author">— Иван Г.</span>
-            </div>
-
-            <!-- Отзыв 6 -->
-            <div class="review-card">
-                <div class="stars">★★★★★</div>
-                <p>"Todella kauniita ja maukkaita leivonnaisia. Yhteistyö sujui loistavasti и точное соблюдение сроков."</p>
-                <span class="author">— Sari T.</span>
-            </div>
+        <div class="lang-switch">
+            <button onclick="changeLang('fi')">FI</button>
+            <button onclick="changeLang('ru')">RU</button>
         </div>
 
-        <!-- НАДЕЖНАЯ ПРЯМАЯ ССЫЛКА НА GOOGLE MAPS -->
-        <a href="https://www.google.com" 
-           target="_blank" 
-           class="google-btn">
-           ЧИТАТЬ ВСЕ ОТЗЫВЫ В GOOGLE
-        </a>
+        <a href="index.html" class="back-btn" id="btn_back">← НА ГЛАВНУЮ</a>
         
-        <p style="margin-top: 30px; color: #999; font-size: 14px;">Более 50+ положительных оценок в Google Картах</p>
+        <h1 id="rev_title">Отзывы наших клиентов</h1>
+        
+        <div class="reviews-grid" id="reviews_container">
+            <!-- Отзывы вставляются через JavaScript -->
+        </div>
+
+        <a href="https://www.google.com" target="_blank" class="google-btn" id="btn_google">
+            ЧИТАТЬ ВСЕ ОТЗЫВЫ В GOOGLE
+        </a>
     </div>
+
+<script>
+const translations = {
+    ru: {
+        back: "← НА ГЛАВНУЮ",
+        title: "Отзывы наших клиентов",
+        google: "ЧИТАТЬ ВСЕ ОТЗЫВЫ В GOOGLE",
+        items:
+    },
+    fi: {
+        back: "← ETUSIVULLE",
+        title: "Asiakkaidemme arvostelut",
+        google: "LUE KAIKKI ARVOSTELUT GOOGLESTA",
+        items:
+    }
+};
+
+function renderReviews(lang) {
+    const container = document.getElementById('reviews_container');
+    container.innerHTML = '';
+    translations[lang].items.forEach(item => {
+        container.innerHTML += `
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>"${item.text}"</p>
+                <span class="author">— ${item.author}</span>
+            </div>`;
+    });
+}
+
+function changeLang(lang) {
+    localStorage.setItem('uliLang', lang); // Запоминаем выбор
+    document.getElementById('btn_back').innerText = translations[lang].back;
+    document.getElementById('rev_title').innerText = translations[lang].title;
+    document.getElementById('btn_google').innerText = translations[lang].google;
+    renderReviews(lang);
+}
+
+// При загрузке проверяем, какой язык был выбран раньше (на главной или тут)
+const savedLang = localStorage.getItem('uliLang') || 'ru';
+changeLang(savedLang);
+</script>
 
 </body>
 </html>
