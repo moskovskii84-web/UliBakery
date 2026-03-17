@@ -26,16 +26,16 @@
             will-change: transform;
         }
 
-        /* Настраиваем разные траектории для каждого элемента */
-        .sweet-1 { animation: bounceX1 12s linear infinite alternate, bounceY1 7s linear infinite alternate; }
-        .sweet-2 { animation: bounceX2 15s linear infinite alternate, bounceY2 9s linear infinite alternate; }
-        .sweet-3 { animation: bounceX1 18s linear infinite alternate, bounceY2 11s linear infinite alternate; }
-        .sweet-4 { animation: bounceX2 10s linear infinite alternate, bounceY1 13s linear infinite alternate; }
+        /* Разные траектории и скорость для эффекта хаоса */
+        .sweet-1 { animation: bounceX1 13s linear infinite alternate, bounceY1 8s linear infinite alternate; }
+        .sweet-2 { animation: bounceX2 17s linear infinite alternate, bounceY2 10s linear infinite alternate; }
+        .sweet-3 { animation: bounceX1 20s linear infinite alternate, bounceY2 12s linear infinite alternate; }
+        .sweet-4 { animation: bounceX2 11s linear infinite alternate, bounceY1 14s linear infinite alternate; }
 
-        @keyframes bounceX1 { from { left: 0; } to { left: calc(100vw - 40px); } }
-        @keyframes bounceX2 { from { left: calc(100vw - 40px); } to { left: 0; } }
-        @keyframes bounceY1 { from { top: 0; } to { top: calc(100vh - 40px); } }
-        @keyframes bounceY2 { from { top: calc(100vh - 40px); } to { top: 0; } }
+        @keyframes bounceX1 { from { left: 0; } to { left: calc(100vw - 50px); } }
+        @keyframes bounceX2 { from { left: calc(100vw - 50px); } to { left: 0; } }
+        @keyframes bounceY1 { from { top: 0; } to { top: calc(100vh - 50px); } }
+        @keyframes bounceY2 { from { top: calc(100vh - 50px); } to { top: 0; } }
 
         /* ЦВЕТЫ ПО БОКАМ */
         .flower-decor {
@@ -68,8 +68,8 @@
         .header-left { flex: 1.4; min-width: 320px; height: 280px; overflow: hidden; }
         .header-left img { 
             width: 100%; height: 100%; object-fit: cover; 
-            /* СМЕЩАЕМ ВНИЗ (100%), ЧТОБЫ УВИДЕТЬ ПОРОГ И ВХОД */
-            object-position: center 100%; 
+            /* ВОЗВРАЩАЕМСЯ К ВЕРХУ ФОТО (10%), чтобы видеть дверь, а не только плитку */
+            object-position: 20% 10%; 
         }
         .header-right { flex: 0.6; min-width: 280px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; }
         
@@ -96,7 +96,7 @@
 </head>
 <body>
 
-    <!-- ПАРЯЩИЕ СЛАДОСТИ (Хаотичное движение) -->
+    <!-- ПАРЯЩИЕ СЛАДОСТИ (Эффект рикошета) -->
     <div class="floating-sweet sweet-1">🧁</div>
     <div class="floating-sweet sweet-2">🍰</div>
     <div class="floating-sweet sweet-3">🍩</div>
@@ -116,6 +116,7 @@
 
         <header>
             <div class="header-left">
+                <!-- ФОТО ТЕПЕРЬ ПОКАЗЫВАЕТ ДВЕРЬ -->
                 <img src="facade.jpg" alt="UliBakery Facade">
             </div>
             <div class="header-right">
