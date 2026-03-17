@@ -15,10 +15,11 @@
         .back-btn { display: inline-block; background: #5d4037; color: white; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; margin-bottom: 40px; transition: 0.3s; }
         .back-btn:hover { background: #ff6f91; transform: scale(1.05); }
 
-        h1 { font-family: 'Georgia', serif; color: #ff6f91; font-size: 36px; margin-bottom: 40px; }
+        h1 { font-family: 'Georgia', serif; color: #ff6f91; font-size: 32px; margin-bottom: 40px; }
 
         .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-bottom: 50px; }
-        .review-card { background: white; padding: 30px; border-radius: 25px; border: 1px solid #fce4ec; text-align: left; box-shadow: 0 8px 20px rgba(251, 194, 235, 0.2); }
+        .review-card { background: white; padding: 30px; border-radius: 25px; border: 1px solid #fce4ec; text-align: left; box-shadow: 0 8px 20px rgba(251, 194, 235, 0.2); transition: 0.3s; }
+        .review-card:hover { transform: translateY(-5px); }
 
         .stars { color: #ffb400; font-size: 22px; margin-bottom: 15px; }
         .author { font-weight: bold; color: #ff6f91; margin-top: 15px; display: block; font-size: 14px; }
@@ -40,9 +41,7 @@
         
         <h1 id="rev_title">Отзывы наших клиентов</h1>
         
-        <div class="reviews-grid" id="reviews_container">
-            <!-- Отзывы вставляются через JavaScript -->
-        </div>
+        <div class="reviews-grid" id="reviews_container"></div>
 
         <a href="https://www.google.com" target="_blank" class="google-btn" id="btn_google">
             ЧИТАТЬ ВСЕ ОТЗЫВЫ В GOOGLE
@@ -93,12 +92,10 @@ function changeLang(lang) {
     renderReviews(lang);
 }
 
-// Запуск сразу после загрузки
 document.addEventListener('DOMContentLoaded', () => {
     const savedLang = localStorage.getItem('uliLang') || 'ru';
     changeLang(savedLang);
 });
 </script>
-
 </body>
 </html>
