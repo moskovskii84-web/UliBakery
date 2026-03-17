@@ -5,50 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Галерея тортов | UliBakery</title>
     <style>
-        body { margin:0; font-family: Arial, sans-serif; background:#fff6f8; color:#333; text-align: center; }
+        body { margin:0; font-family: 'Segoe UI', Arial, sans-serif; background:#fff6f8; color:#333; text-align: center; scroll-behavior: smooth; }
         
-        /* Навигация в галерее */
-        header { background: #fffafa; padding: 25px 0; border-bottom: 2px solid #fbc2eb; position: sticky; top: 0; z-index: 1000; }
+        /* Навигация */
+        header { background: rgba(255, 250, 250, 0.95); padding: 20px 0; border-bottom: 2px solid #fbc2eb; position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(5px); }
         
-        /* Крупная кнопка Назад */
+        /* Кнопка Назад */
         .back-btn { 
             display: inline-block; 
             background: #5d4037; 
             color: white; 
-            padding: 15px 30px; 
-            border-radius: 12px; 
+            padding: 12px 25px; 
+            border-radius: 50px; 
             text-decoration: none; 
             font-weight: bold; 
-            font-size: 18px; 
+            font-size: 16px; 
             margin-bottom: 15px; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(93, 64, 55, 0.2);
         }
-        .back-btn:hover { background: #ff6f91; transform: scale(1.05); }
+        .back-btn:hover { background: #ff6f91; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(255, 111, 145, 0.3); }
 
-        /* Кнопки языков как на главной */
-        .lang button { background:#fff; border:1px solid #ffb2c1; padding: 8px 15px; border-radius: 8px; cursor:pointer; font-weight:bold; margin: 0 5px; color: #333; font-size: 16px; }
+        /* Языки */
+        .lang button { background:#fff; border:1px solid #ffb2c1; padding: 6px 12px; border-radius: 8px; cursor:pointer; font-weight:bold; margin: 0 3px; color: #333; transition: 0.2s; }
         .lang button:hover { background: #fbc2eb; color: white; }
 
-        .section-title { color: #ff6f91; font-family: 'Georgia', serif; font-size: 32px; margin-top: 40px; text-transform: uppercase; }
+        .section-title { color: #ff6f91; font-family: 'Georgia', serif; font-size: 28px; margin-top: 50px; letter-spacing: 1px; }
         
-        /* Компактная сетка */
+        /* Сетка */
         .gallery-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); 
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); 
             gap: 15px; 
             max-width: 1200px; 
             margin: 20px auto; 
-            padding: 0 15px; 
+            padding: 0 20px; 
         }
-        .work-card { background: #fff; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border: 1px solid #fce4ec; transition: 0.3s; }
-        .img-container { width: 100%; height: 220px; overflow: hidden; cursor: zoom-in; background: #fff0f3; }
-        .img-container img { width: 100%; height: 100%; object-fit: cover; }
+        .work-card { 
+            background: #fff; 
+            border-radius: 15px; 
+            overflow: hidden; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
+            border: 1px solid #fce4ec; 
+            transition: 0.3s;
+            animation: fadeIn 0.8s ease forwards;
+            opacity: 0;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .work-card:hover { transform: scale(1.03); box-shadow: 0 10px 20px rgba(251, 194, 235, 0.4); }
+        
+        .img-container { width: 100%; height: 240px; overflow: hidden; cursor: zoom-in; background: #fff0f3; }
+        .img-container img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
         
         /* Просмотр фото */
-        #fullView { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 10000; justify-content: center; align-items: center; cursor: pointer; }
-        #fullImg { max-width: 95%; max-height: 90%; border-radius: 10px; }
+        #fullView { 
+            display: none; 
+            position: fixed; 
+            top: 0; left: 0; 
+            width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.9); 
+            z-index: 10000; 
+            justify-content: center; 
+            align-items: center; 
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            animation: zoomIn 0.3s ease;
+        }
+        @keyframes zoomIn { from { opacity: 0; } to { opacity: 1; } }
+        #fullImg { max-width: 90%; max-height: 85%; border-radius: 8px; border: 3px solid white; }
         
-        footer { background:#fbc2eb; padding: 25px; margin-top: 60px; color: #5d4037; font-weight: bold; }
+        footer { background:#fbc2eb; padding: 40px; margin-top: 80px; color: #5d4037; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -103,21 +130,27 @@ function setLang(lang) {
 
 function createCards(containerId, prefix, count) {
     const grid = document.getElementById(containerId);
+    let html = '';
     for (let i = 1; i <= count; i++) {
-        grid.innerHTML += `
-            <div class="work-card">
+        // Устанавливаем небольшую задержку появления для эффекта каскада
+        const delay = (i % 10) * 0.1; 
+        html += `
+            <div class="work-card" style="animation-delay: ${delay}s">
                 <div class="img-container">
                     <img src="${prefix}${i}.jpg" 
-                         onerror="this.onerror=null; this.src='${prefix}${i}.JPG';" 
+                         onerror="this.onerror=null; this.src='${prefix}${i}.JPG'; this.setAttribute('onerror', 'this.src=\'logo.jpg\'');" 
                          onclick="openFull(this.src)" 
-                         loading="lazy">
+                         loading="lazy"
+                         alt="Cake">
                 </div>
             </div>`;
     }
+    grid.innerHTML = html;
 }
 
 function openFull(src) { 
-    document.getElementById('fullImg').src = src; 
+    const fullImg = document.getElementById('fullImg');
+    fullImg.src = src; 
     document.getElementById('fullView').style.display = 'flex'; 
 }
 
