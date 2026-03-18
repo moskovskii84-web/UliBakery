@@ -92,14 +92,21 @@
         <b id="c_total" style="font-size: 20px;">Итого: 0.00 €</b>
     </div>
 
-    <!-- ФОРМА ОТПРАВКИ -->
-    <form action="https://formspree.io/f/mjgapyny" method="POST" id="orderForm">
-        <input type="email" name="Email_клиента" class="input-field" placeholder="Ваш Email для связи" required>
-        <!-- Скрытые поля, куда запишется заказ -->
-        <input type="hidden" name="Детали_заказа" id="hiddenOrder">
-        <input type="hidden" name="Сумма_к_оплате" id="hiddenTotal">
-        <button type="submit" class="btn-send" id="btn_send">ОТПРАВИТЬ ЗАКАЗ</button>
-    </form>
+   <!-- ФОРМА ОТПРАВКИ -->
+<form action="https://formspree.io/f/mjgapyny" method="POST" id="orderForm">
+
+    <!-- 🔥 ВОТ ЭТА СТРОКА РЕШАЕТ ПРОБЛЕМУ -->
+    <input type="hidden" name="_redirect" value="https://ulibakery.fi/thankyou.html">
+
+    <input type="email" name="Email_клиента" class="input-field" placeholder="Ваш Email для связи" required>
+
+    <!-- Скрытые поля -->
+    <input type="hidden" name="Детали_заказа" id="hiddenOrder">
+    <input type="hidden" name="Сумма_к_оплате" id="hiddenTotal">
+
+    <button type="submit" class="btn-send" id="btn_send">ОТПРАВИТЬ ЗАКАЗ</button>
+
+</form>
 </div>
 
 <!-- Модалка выбора количества -->
