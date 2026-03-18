@@ -33,7 +33,7 @@
         .lang button.active { background: #ff6f91; color: white; }
 
         .vitrina-container {
-            max-width: 1280px;
+            max-width: 1300px;
             margin: 30px auto;
             padding: 20px;
             background: white;
@@ -52,46 +52,53 @@
         .vitrina-header h1 { margin: 0; font-size: 39px; }
         .vitrina-header p { margin: 10px 0 0; font-size: 19px; }
 
+        /* Ещё больше витрина + лучшее позиционирование */
         .shelf {
             position: relative;
-            height: 860px;
+            height: 920px;                    /* Сделали выше */
             background: url('https://raw.githubusercontent.com/moskovskii84-web/UliBakery/main/%D0%B2%D0%B8%D1%82%D1%80%D0%B8%D0%BD%D0%B0.png') center/cover no-repeat;
-            border: 18px solid #fff;
-            border-radius: 30px;
-            box-shadow: inset 0 0 100px rgba(0,0,0,0.35);
+            border: 20px solid #fff;
+            border-radius: 32px;
+            box-shadow: inset 0 0 110px rgba(0,0,0,0.4);
             overflow: hidden;
         }
 
         .item {
             position: absolute;
-            width: 195px;
+            width: 200px;
             text-align: center;
             cursor: pointer;
-            transition: all 0.45s ease;
+            transition: all 0.4s ease;
         }
-        .item:hover { transform: scale(1.28) rotate(7deg); z-index: 30; }
+        .item:hover { transform: scale(1.22) rotate(5deg); z-index: 30; }
 
         .item img {
             width: 100%;
-            height: 195px;
+            height: 200px;
             object-fit: contain;
-            border-radius: 10px;
+            border-radius: 12px;
         }
         .item p {
-            margin: 12px 0 0;
+            margin: 10px 0 0;
             font-weight: bold;
-            font-size: 16.5px;
-            line-height: 1.35;
+            font-size: 16.8px;
+            line-height: 1.3;
+        }
+        .item .price {
+            color: #ff6f91;
+            font-size: 18px;
+            font-weight: bold;
         }
 
-        /* Позиции товаров */
-        #item1 { top: 88px; left: 6%; }    /* Budapest */
-        #item2 { top: 155px; left: 24%; }  /* Mohito-lime */
-        #item3 { top: 72px; left: 44%; }   /* Napoleon */
-        #item4 { top: 182px; left: 63%; }  /* Red Velvet */
-        #item5 { top: 98px; left: 79%; }   /* Suklaakakku */
-        #item6 { top: 225px; left: 9%; }   /* Vohveli */
-        #item7 { top: 195px; left: 31%; }  /* Vanilja (если есть) */
+        /* Более аккуратная и сгруппированная расстановка */
+        #item1 { top: 85px; left: 5%; }     /* Budapest / Pavlova */
+        #item2 { top: 92px; left: 26%; }    /* Vanilja */
+        #item3 { top: 165px; left: 8%; }    /* Mansikkakakku */
+        #item4 { top: 78px; left: 48%; }    /* Mohito-lime */
+        #item5 { top: 185px; left: 45%; }   /* Vohveli */
+        #item6 { top: 85px; left: 70%; }    /* Napoleon */
+        #item7 { top: 175px; left: 68%; }   /* Red Velvet */
+        #item8 { top: 95px; left: 87%; }    /* Suklaakakku */
 
         .modal {
             display: none;
@@ -154,7 +161,7 @@
             <span class="close" onclick="closeModal()">×</span>
             <img id="modal-img" style="width:100%; max-height:350px; object-fit:contain; border-radius:15px;">
             <h2 id="modal-name"></h2>
-            <p id="modal-price" style="font-size:22px; color:#ff6f91;"></p>
+            <p id="modal-price" style="font-size:22px; color:#ff6f91; margin:10px 0;"></p>
             <div class="qty">
                 <button onclick="changeQty(-1)">−</button>
                 <span id="modal-qty">1</span>
@@ -167,13 +174,13 @@
     <script>
         const products = [
             { id: "budapest", name: {ru:"Budapest / Pavlova", fi:"Budapest", en:"Budapest"}, price: 4.50, img: "budapest.jpg" },
+            { id: "vanilja",  name: {ru:"Vanilja", fi:"Vanilja", en:"Vanilla"}, price: 4.50, img: "vanilja.jpg" },
+            { id: "mansikka", name: {ru:"Mansikkakakku", fi:"Mansikkakermakakku", en:"Strawberry Cake"}, price: 3.80, img: "mansikkakakermakakku.jpg" },
             { id: "mohito",   name: {ru:"Mohito-lime", fi:"Mohito-lime", en:"Mohito-lime"}, price: 6.30, img: "mohitolime.jpg" },
+            { id: "vohveli",  name: {ru:"Vohveli", fi:"Vohveli", en:"Waffle"}, price: 3.50, img: "vohveli.jpg" },
             { id: "napoleon", name: {ru:"Napoleon", fi:"Napoleon", en:"Napoleon"}, price: 4.50, img: "napoleon.jpg" },
             { id: "redvelvet",name: {ru:"Red Velvet", fi:"Red Velvet", en:"Red Velvet"}, price: 6.30, img: "red-velvet.jpg" },
-            { id: "suklaa",   name: {ru:"Suklaakakku", fi:"Suklaakakku", en:"Suklaakakku"}, price: 6.50, img: "sukla.jpg" },
-            { id: "mansikka", name: {ru:"Mansikkakakku", fi:"Mansikkakermakakku", en:"Mansikkakakku"}, price: 3.80, img: "mansikkakakermakakku.jpg" },
-            { id: "vohveli",  name: {ru:"Vohveli", fi:"Vohveli", en:"Vohveli"}, price: 3.50, img: "vohveli.jpg" },
-            { id: "vanilja",  name: {ru:"Vanilja", fi:"Vanilja", en:"Vanilla"}, price: 4.50, img: "vanilja.jpg" }
+            { id: "suklaa",   name: {ru:"Suklaakakku", fi:"Suklaakakku", en:"Chocolate Cake"}, price: 6.50, img: "sukla.jpg" }
         ];
 
         let currentLang = 'ru';
@@ -196,8 +203,8 @@
                 div.id = `item${i+1}`;
                 div.innerHTML = `
                     <img src="${p.img}" alt="${p.name.ru}" 
-                         onerror="this.src='https://via.placeholder.com/195x195/ffe4f0/5d4037?text=Фото+не+найдено'">
-                    <p>${p.name.ru}<br><span style="color:#ff6f91;">${p.price.toFixed(2)} €</span></p>
+                         onerror="this.src='https://via.placeholder.com/200x200/ffe4f0/5d4037?text=Нет+фото'">
+                    <p>${p.name.ru}<br><span class="price">${p.price.toFixed(2)} €</span></p>
                 `;
                 div.onclick = () => openModal(p);
                 shelf.appendChild(div);
@@ -239,18 +246,15 @@
 
         function sendToWhatsApp() {
             let msg = "Привет! Заказ с витрины UliBakery:\n\n";
-            for (let key in cart) {
-                msg += `${cart[key].name.ru} — ${cart[key].qty} шт\n`;
-            }
+            for (let key in cart) msg += `${cart[key].name.ru} — ${cart[key].qty} шт\n`;
             let comm = document.getElementById('comment').value.trim();
             if (comm) msg += `\nПожелания: ${comm}\n`;
             msg += "\nСпасибо ❤️";
 
-            const phone = "358XXXXXXXXX"; // ← ОБЯЗАТЕЛЬНО замени на свой номер WhatsApp
+            const phone = "358XXXXXXXXX"; // ← Замени на свой номер
             window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
         }
 
-        // Запуск
         window.onload = () => setLang('ru');
     </script>
 </body>
