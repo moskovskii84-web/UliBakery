@@ -1,241 +1,185 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Витрина на выходные | UliBakery</title>
-    <style>
-        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #fff6f8; color: #5d4037; }
-        
-        /* Верхняя панель */
-        .top-bar { 
-            background: #fff; padding: 10px 25px; display: flex; 
-            justify-content: space-between; align-items: center; 
-            border-bottom: 1px solid #fce4ec; position: sticky; top: 0; z-index: 100;
-        }
-        .back-link { text-decoration: none; font-weight: bold; color: #ff6f91; transition: 0.3s; }
-        .back-link:hover { opacity: 0.7; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Витрина | UliBakery</title>
 
-        .lang button { 
-            background: #fff; border: 1px solid #ffb2c1; padding: 5px 12px; 
-            border-radius: 6px; cursor: pointer; font-weight: bold; margin-left: 5px; 
-        }
-        .lang button.active { background: #ff6f91; color: white; border-color: #ff6f91; }
-        
-        .vitrina-container { max-width: 1100px; margin: 20px auto; padding: 20px; background: white; border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-        
-        /* Блок витрины с фоном */
-        .shelf { 
-            position: relative; 
-            width: 100%; 
-            height: 950px; /* Высота подстроена под пропорции картинки */
-            background: url('https://raw.githubusercontent.com') no-repeat center;
-            background-size: 100% 100%; /* Растягиваем картинку на весь блок */
-            margin-bottom: 30px;
-            border-radius: 20px;
-            box-shadow: inset 0 0 50px rgba(0,0,0,0.1);
-        }
+<style>
+body { margin:0; font-family:'Segoe UI'; background:#fff6f8; }
 
-        /* Товары на полках */
-        .item { position: absolute; width: 150px; text-align: center; cursor: pointer; transition: 0.3s; }
-        .item:hover { transform: scale(1.1) rotate(2deg); z-index: 10; }
-        .item img { width: 100%; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); background: white; }
-        .price-tag { background: #ff6f91; color: white; padding: 2px 10px; border-radius: 12px; font-size: 15px; font-weight: bold; display: inline-block; margin-top: 6px; }
+.shelf {
+    width:100%;
+    height:600px;
+    background:#eee;
+    position:relative;
+    border-radius:20px;
+}
 
-        /* Координаты товаров (настроены под полки) */
-        #item1 { top: 17%; left: 8%; }  #item2 { top: 17%; left: 32%; }
-        #item3 { top: 17%; left: 56%; }  #item4 { top: 17%; left: 78%; }
-        #item5 { top: 51%; left: 10%; }  #item6 { top: 51%; left: 34%; }
-        #item7 { top: 51%; left: 58%; }  #item8 { top: 51%; left: 80%; }
+.item {
+    position:absolute;
+    width:140px;
+    cursor:pointer;
+    transition:.3s;
+}
+.item:hover { transform:scale(1.1); }
 
-        /* Корзина */
-        #cart { padding: 25px; border: 2px solid #fce4ec; border-radius: 20px; background: #fffafa; margin-top: 30px; }
-        .cart-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px dashed #fce4ec; }
-        .remove-btn { 
-            background: #ff6f91; color: white; border: none; width: 28px; height: 28px; 
-            border-radius: 50%; cursor: pointer; font-weight: bold; font-size: 18px; 
-            display: flex; align-items: center; justify-content: center; 
-        }
-        .remove-btn:hover { background: #e55a7d; }
-        
-        .input-field { width: 100%; padding: 14px; margin-top: 15px; border: 2px solid #fce4ec; border-radius: 12px; box-sizing: border-box; font-size: 16px; }
-        .btn-send { width: 100%; padding: 18px; background: #25D366; color: white; border: none; border-radius: 15px; font-size: 20px; cursor: pointer; font-weight: bold; margin-top: 15px; transition: 0.3s; }
-        .btn-send:hover { background: #1ebe57; transform: translateY(-2px); }
+.price-tag {
+    background:#ff6f91;
+    color:white;
+    padding:4px 10px;
+    border-radius:10px;
+}
 
-        /* Модальное окно */
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); justify-content: center; align-items: center; }
-        .modal-content { background: white; padding: 30px; border-radius: 25px; width: 320px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
-    </style>
+#item1{top:15%;left:10%;}
+#item2{top:15%;left:35%;}
+#item3{top:15%;left:60%;}
+#item4{top:15%;left:80%;}
+#item5{top:55%;left:10%;}
+#item6{top:55%;left:35%;}
+#item7{top:55%;left:60%;}
+#item8{top:55%;left:80%;}
+
+#cart {
+    margin-top:30px;
+    padding:20px;
+    background:white;
+    border-radius:20px;
+}
+
+.btn-send {
+    width:100%;
+    padding:16px;
+    background:#25D366;
+    color:white;
+    border:none;
+    border-radius:12px;
+    font-size:18px;
+    cursor:pointer;
+}
+
+.input-field {
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+}
+</style>
 </head>
+
 <body>
 
-<div class="top-bar">
-    <a href="index.html" class="back-link" id="back_btn">← На главную</a>
-    <div class="lang">
-        <button onclick="setLang('fi')" id="btn-fi">FI</button>
-        <button onclick="setLang('ru')" id="btn-ru">RU</button>
-        <button onclick="setLang('en')" id="btn-en">EN</button>
-    </div>
-</div>
+<h1 style="text-align:center;color:#ff6f91;">Витрина</h1>
 
-<div class="vitrina-container">
-    <h1 id="v_title" style="text-align: center; color: #ff6f91; font-family: Georgia, serif;">Витрина на выходные</h1>
-    
-    <div class="shelf" id="shelf">
-        <!-- Кексы появятся тут автоматически -->
-    </div>
+<div class="shelf" id="shelf"></div>
 
-    <div id="cart">
-        <h3 id="c_title">Ваша корзина</h3>
-        <div id="cart-items"></div>
-        <hr style="border: 1px solid #fce4ec;">
-        <b id="c_total" style="font-size: 20px;">Итого: 0.00 €</b>
-    </div>
+<div id="cart">
+<h3>Корзина</h3>
+<div id="cart-items"></div>
+<b id="total">Итого: 0 €</b>
 
-   <!-- ФОРМА ОТПРАВКИ -->
-<form action="https://formspree.io/f/mjgapyny" method="POST" id="orderForm">
+<form id="orderForm" action="https://formspree.io/f/mjgapyny" method="POST">
+<input type="email" name="email" placeholder="Email" class="input-field" required>
 
-    <!-- 🔥 ВОТ ЭТА СТРОКА РЕШАЕТ ПРОБЛЕМУ -->
-    <input type="hidden" name="_redirect" value="https://ulibakery.fi/thankyou.html">
+<input type="hidden" name="order" id="hiddenOrder">
+<input type="hidden" name="total" id="hiddenTotal">
 
-    <input type="email" name="Email_клиента" class="input-field" placeholder="Ваш Email для связи" required>
-
-    <!-- Скрытые поля -->
-    <input type="hidden" name="Детали_заказа" id="hiddenOrder">
-    <input type="hidden" name="Сумма_к_оплате" id="hiddenTotal">
-
-    <button type="submit" class="btn-send" id="btn_send">ОТПРАВИТЬ ЗАКАЗ</button>
-
+<button class="btn-send">Отправить заказ</button>
 </form>
 </div>
 
-<!-- Модалка выбора количества -->
-<div id="modal" class="modal">
-    <div class="modal-content">
-        <h3 id="m_name" style="color: #ff6f91;"></h3>
-        <div style="margin: 25px 0; display: flex; justify-content: center; align-items: center; gap: 20px;">
-            <button onclick="changeQty(-1)" style="width:45px; height:45px; border-radius:50%; border:1px solid #ccc; cursor:pointer;">-</button>
-            <span id="m_qty" style="font-size: 24px; font-weight: bold;">1</span>
-            <button onclick="changeQty(1)" style="width:45px; height:45px; border-radius:50%; border:1px solid #ccc; cursor:pointer;">+</button>
-        </div>
-        <button onclick="addToCart()" style="background: #ff6f91; color: white; border: none; padding: 12px 30px; border-radius: 20px; cursor: pointer; font-weight: bold; width: 100%;">Добавить в корзину</button>
-        <p onclick="closeModal()" style="color: #999; cursor: pointer; margin-top: 15px; font-size: 14px;">Отмена</p>
-    </div>
-</div>
-
 <script>
-    const products = [
-        { id: "p1", name: {ru:"Будапешт", fi:"Budapest", en:"Budapest"}, price: 4.50, img: "budapest.jpg" },
-        { id: "p2", name: {ru:"Ваниль", fi:"Vanilja", en:"Vanilla"}, price: 4.50, img: "vanilja.jpg" },
-        { id: "p3", name: {ru:"Клубничный торт", fi:"Mansikkakakku", en:"Strawberry"}, price: 3.80, img: "mansikkakermakakku.jpg" },
-        { id: "p4", name: {ru:"Мохито-лайм", fi:"Mohito-lime", en:"Mohito-lime"}, price: 6.30, img: "mohitolime.jpg" },
-        { id: "p5", name: {ru:"Вафля", fi:"Vohveli", en:"Waffle"}, price: 3.50, img: "vohveli.jpg" },
-        { id: "p6", name: {ru:"Наполеон", fi:"Napoleon", en:"Napoleon"}, price: 4.50, img: "napoleon.jpg" },
-        { id: "p7", name: {ru:"Красный бархат", fi:"Red Velvet", en:"Red Velvet"}, price: 6.30, img: "red-velvet.jpg" },
-        { id: "p8", name: {ru:"Шоколадный торт", fi:"Suklaakakku", en:"Chocolate"}, price: 6.50, img: "sukla.jpg" }
-    ];
+const products = [
+{id:"p1",name:"Будапешт",price:4.5,img:"budapest.jpg"},
+{id:"p2",name:"Ваниль",price:4.5,img:"vanilja.jpg"},
+{id:"p3",name:"Клубника",price:3.8,img:"mansikkakermakakku.jpg"},
+{id:"p4",name:"Мохито",price:6.3,img:"mohitolime.jpg"},
+{id:"p5",name:"Вафля",price:3.5,img:"vohveli.jpg"},
+{id:"p6",name:"Наполеон",price:4.5,img:"napoleon.jpg"},
+{id:"p7",name:"Red Velvet",price:6.3,img:"red-velvet.jpg"},
+{id:"p8",name:"Шоколад",price:6.5,img:"sukla.jpg"}
+];
 
-    let currentLang = localStorage.getItem('uliLang') || 'ru';
-    let cart = {};
-    let tempItem = null;
+let cart = {};
 
-    const ui = {
-        ru: { title: "Витрина на выходные", cart: "Ваша корзина", total: "Итого", send: "ОТПРАВИТЬ ЗАКАЗ", back: "← На главную" },
-        fi: { title: "Viikonlopun vitriini", cart: "Ostoskori", total: "Yhteensä", send: "LÄHETÄ TILAUS", back: "← Etusivulle" },
-        en: { title: "Weekend Showcase", cart: "Your Cart", total: "Total", send: "SEND ORDER", back: "← Back Home" }
-    };
+function render() {
+const shelf = document.getElementById('shelf');
+shelf.innerHTML = '';
 
-    function setLang(lang) {
-        currentLang = lang;
-        localStorage.setItem('uliLang', lang);
-        document.getElementById('v_title').innerText = ui[lang].title;
-        document.getElementById('c_title').innerText = ui[lang].cart;
-        document.getElementById('btn_send').innerText = ui[lang].send;
-        document.getElementById('back_btn').innerText = ui[lang].back;
-        
-        document.querySelectorAll('.lang button').forEach(b => b.classList.toggle('active', b.id === 'btn-'+lang));
-        renderProducts();
-        updateCartUI();
-    }
+products.forEach((p,i)=>{
+const el = document.createElement('div');
+el.className='item';
+el.id='item'+(i+1);
 
-    function renderProducts() {
-        const shelf = document.getElementById('shelf');
-        shelf.innerHTML = '';
-        products.forEach((p, i) => {
-            const div = document.createElement('div');
-            div.className = 'item'; div.id = `item${i+1}`;
-            div.onclick = () => openModal(p);
-            div.innerHTML = `
-                <img src="${p.img}" onerror="this.src='https://via.placeholder.com'">
-                <br><span class="price-tag">${p.price.toFixed(2)}€</span>
-            `;
-            shelf.appendChild(div);
-        });
-    }
+el.innerHTML = `
+<img src="${p.img}" width="100%">
+<div class="price-tag">${p.price}€</div>
+`;
 
-    function openModal(p) {
-        tempItem = {...p, qty: 1};
-        document.getElementById('m_name').innerText = p.name[currentLang];
-        document.getElementById('m_qty').innerText = 1;
-        document.getElementById('modal').style.display = 'flex';
-    }
-    function closeModal() { document.getElementById('modal').style.display = 'none'; }
-    function changeQty(d) { tempItem.qty = Math.max(1, tempItem.qty + d); document.getElementById('m_qty').innerText = tempItem.qty; }
+el.onclick = ()=>add(p);
+shelf.appendChild(el);
+});
+}
 
-    function addToCart() {
-        if(cart[tempItem.id]) cart[tempItem.id].qty += tempItem.qty;
-        else cart[tempItem.id] = {...tempItem};
-        closeModal();
-        updateCartUI();
-    }
+function add(p){
+if(!cart[p.id]) cart[p.id]={...p,qty:0};
+cart[p.id].qty++;
+update();
+}
 
-    // ФУНКЦИЯ КОРРЕКЦИИ: Удаляет 1 шт или весь товар
-    function removeFromCart(id) {
-        if (cart[id].qty > 1) {
-            cart[id].qty -= 1;
-        } else {
-            delete cart[id];
-        }
-        updateCartUI();
-    }
+function remove(id){
+cart[id].qty--;
+if(cart[id].qty<=0) delete cart[id];
+update();
+}
 
-    function updateCartUI() {
-        const container = document.getElementById('cart-items');
-        container.innerHTML = '';
-        let total = 0;
-        let summaryText = "";
+function update(){
+const box = document.getElementById('cart-items');
+box.innerHTML='';
 
-        for(let id in cart) {
-            const item = cart[id];
-            let sum = item.price * item.qty;
-            total += sum;
-            summaryText += `${item.name[currentLang]} x${item.qty} (${sum.toFixed(2)}€); `;
+let total=0;
+let text='';
 
-            container.innerHTML += `
-                <div class="cart-row">
-                    <span><b>${item.name[currentLang]}</b> x${item.qty} = ${sum.toFixed(2)}€</span>
-                    <button class="remove-btn" onclick="removeFromCart('${id}')">—</button>
-                </div>`;
-        }
+for(let id in cart){
+let item=cart[id];
+let sum=item.qty*item.price;
+total+=sum;
 
-        const totalValue = total.toFixed(2) + " €";
-        document.getElementById('c_total').innerText = `${ui[currentLang].total}: ${totalValue}`;
-        
-        // Передаем данные в скрытые поля формы для Formspree
-        document.getElementById('hiddenOrder').value = summaryText || "Пусто";
-        document.getElementById('hiddenTotal').value = totalValue;
-    }
+text+=`${item.name} x${item.qty} (${sum}€); `;
 
-    // Проверка перед отправкой
-    document.getElementById('orderForm').onsubmit = function() {
-        if (Object.keys(cart).length === 0) {
-            alert(currentLang === 'ru' ? "Сначала добавьте десерты в корзину!" : "Lisää ensin tuotteita ostoskoriin!");
-            return false;
-        }
-        return true;
-    };
+box.innerHTML+=`
+<div>
+${item.name} x${item.qty}
+<button onclick="remove('${id}')">-</button>
+</div>`;
+}
 
-    window.onload = () => setLang(currentLang);
+document.getElementById('total').innerText="Итого: "+total+"€";
+document.getElementById('hiddenOrder').value=text;
+document.getElementById('hiddenTotal').value=total+"€";
+}
+
+document.getElementById('orderForm').addEventListener('submit', async function(e){
+e.preventDefault();
+
+if(Object.keys(cart).length===0){
+alert("Добавьте товар");
+return;
+}
+
+const form = e.target;
+const data = new FormData(form);
+
+await fetch(form.action,{
+method:"POST",
+body:data,
+headers:{'Accept':'application/json'}
+});
+
+// редирект
+window.location.href="thankyou.html";
+});
+
+render();
 </script>
 
 </body>
