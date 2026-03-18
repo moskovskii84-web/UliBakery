@@ -6,47 +6,65 @@
     <title>Витрина на выходные | UliBakery</title>
     <style>
         body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #fff6f8; color: #5d4037; }
-        .top-bar { background: #fff; padding: 10px 25px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #fce4ec; position: sticky; top: 0; z-index: 100; }
-        .back-link { text-decoration: none; font-weight: bold; color: #ff6f91; }
-        .lang button { background: #fff; border: 1px solid #ffb2c1; padding: 5px 12px; border-radius: 6px; cursor: pointer; font-weight: bold; margin-left: 5px; }
-        .lang button.active { background: #ff6f91; color: white; }
+        
+        /* Верхняя панель */
+        .top-bar { 
+            background: #fff; padding: 10px 25px; display: flex; 
+            justify-content: space-between; align-items: center; 
+            border-bottom: 1px solid #fce4ec; position: sticky; top: 0; z-index: 100;
+        }
+        .back-link { text-decoration: none; font-weight: bold; color: #ff6f91; transition: 0.3s; }
+        .back-link:hover { opacity: 0.7; }
+
+        .lang button { 
+            background: #fff; border: 1px solid #ffb2c1; padding: 5px 12px; 
+            border-radius: 6px; cursor: pointer; font-weight: bold; margin-left: 5px; 
+        }
+        .lang button.active { background: #ff6f91; color: white; border-color: #ff6f91; }
         
         .vitrina-container { max-width: 1100px; margin: 20px auto; padding: 20px; background: white; border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
         
-        /* Исправленная витрина */
+        /* Блок витрины с фоном */
         .shelf { 
             position: relative; 
             width: 100%; 
-            height: 850px; 
-            background: url('https://raw.githubusercontent.com');
-            background-size: 100% 100%; /* Картинка растянется ровно по блоку */
-            background-position: center;
-            background-repeat: no-repeat;
+            height: 950px; /* Высота подстроена под пропорции картинки */
+            background: url('https://raw.githubusercontent.com') no-repeat center;
+            background-size: 100% 100%; /* Растягиваем картинку на весь блок */
             margin-bottom: 30px;
             border-radius: 20px;
+            box-shadow: inset 0 0 50px rgba(0,0,0,0.1);
         }
 
-        .item { position: absolute; width: 140px; text-align: center; cursor: pointer; transition: 0.3s; }
-        .item:hover { transform: scale(1.1); }
-        .item img { width: 100%; border-radius: 10px; }
-        .price-tag { background: #ff6f91; color: white; padding: 2px 8px; border-radius: 10px; font-size: 14px; font-weight: bold; display: inline-block; margin-top: 5px; }
+        /* Товары на полках */
+        .item { position: absolute; width: 150px; text-align: center; cursor: pointer; transition: 0.3s; }
+        .item:hover { transform: scale(1.1) rotate(2deg); z-index: 10; }
+        .item img { width: 100%; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); background: white; }
+        .price-tag { background: #ff6f91; color: white; padding: 2px 10px; border-radius: 12px; font-size: 15px; font-weight: bold; display: inline-block; margin-top: 6px; }
 
-        /* Позиции (настрой под свою картинку) */
-        #item1 { top: 16%; left: 8%; } #item2 { top: 16%; left: 32%; }
-        #item3 { top: 16%; left: 56%; } #item4 { top: 16%; left: 78%; }
-        #item5 { top: 50%; left: 10%; } #item6 { top: 50%; left: 34%; }
-        #item7 { top: 50%; left: 58%; } #item8 { top: 50%; left: 80%; }
+        /* Координаты товаров (настроены под полки) */
+        #item1 { top: 17%; left: 8%; }  #item2 { top: 17%; left: 32%; }
+        #item3 { top: 17%; left: 56%; }  #item4 { top: 17%; left: 78%; }
+        #item5 { top: 51%; left: 10%; }  #item6 { top: 51%; left: 34%; }
+        #item7 { top: 51%; left: 58%; }  #item8 { top: 51%; left: 80%; }
 
-        /* Стили корзины с кнопками удаления */
-        #cart { padding: 20px; border: 2px solid #fce4ec; border-radius: 20px; background: #fffafa; margin-top: 20px; }
-        .cart-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; padding-bottom: 5px; border-bottom: 1px dashed #fce4ec; }
-        .remove-btn { background: #ff6f91; color: white; border: none; width: 25px; height: 25px; border-radius: 50%; cursor: pointer; font-weight: bold; margin-left: 10px; }
+        /* Корзина */
+        #cart { padding: 25px; border: 2px solid #fce4ec; border-radius: 20px; background: #fffafa; margin-top: 30px; }
+        .cart-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px dashed #fce4ec; }
+        .remove-btn { 
+            background: #ff6f91; color: white; border: none; width: 28px; height: 28px; 
+            border-radius: 50%; cursor: pointer; font-weight: bold; font-size: 18px; 
+            display: flex; align-items: center; justify-content: center; 
+        }
+        .remove-btn:hover { background: #e55a7d; }
         
-        .input-field { width:100%; padding:12px; margin-top:15px; border:1px solid #ffb2c1; border-radius:10px; box-sizing: border-box; }
-        .btn-send { width: 100%; padding: 15px; background: #25D366; color: white; border: none; border-radius: 12px; font-size: 18px; cursor: pointer; font-weight: bold; margin-top: 10px; }
+        .input-field { width: 100%; padding: 14px; margin-top: 15px; border: 2px solid #fce4ec; border-radius: 12px; box-sizing: border-box; font-size: 16px; }
+        .btn-send { width: 100%; padding: 18px; background: #25D366; color: white; border: none; border-radius: 15px; font-size: 20px; cursor: pointer; font-weight: bold; margin-top: 15px; transition: 0.3s; }
+        .btn-send:hover { background: #1ebe57; transform: translateY(-2px); }
 
+        /* Модальное окно */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); justify-content: center; align-items: center; }
-        .modal-content { background: white; padding: 25px; border-radius: 20px; width: 300px; text-align: center; }
+        .modal-content { background: white; padding: 30px; border-radius: 25px; width: 320px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
     </style>
 </head>
 <body>
@@ -61,31 +79,40 @@
 </div>
 
 <div class="vitrina-container">
-    <h1 id="v_title" style="text-align: center; color: #ff6f91;">Витрина на выходные</h1>
+    <h1 id="v_title" style="text-align: center; color: #ff6f91; font-family: Georgia, serif;">Витрина на выходные</h1>
     
-    <div class="shelf" id="shelf"></div>
+    <div class="shelf" id="shelf">
+        <!-- Кексы появятся тут автоматически -->
+    </div>
 
     <div id="cart">
         <h3 id="c_title">Ваша корзина</h3>
         <div id="cart-items"></div>
-        <hr>
-        <b id="c_total">Итого: 0.00 €</b>
+        <hr style="border: 1px solid #fce4ec;">
+        <b id="c_total" style="font-size: 20px;">Итого: 0.00 €</b>
     </div>
 
-    <input type="email" id="c_email" class="input-field" placeholder="Ваш Email" required>
-    <button class="btn-send" onclick="sendOrder()" id="btn_send">ОТПРАВИТЬ ЗАКАЗ</button>
+    <!-- ФОРМА ОТПРАВКИ -->
+    <form action="https://formspree.io/f/mjgapyny" method="POST" id="orderForm">
+        <input type="email" name="Email_клиента" class="input-field" placeholder="Ваш Email для связи" required>
+        <!-- Скрытые поля, куда запишется заказ -->
+        <input type="hidden" name="Детали_заказа" id="hiddenOrder">
+        <input type="hidden" name="Сумма_к_оплате" id="hiddenTotal">
+        <button type="submit" class="btn-send" id="btn_send">ОТПРАВИТЬ ЗАКАЗ</button>
+    </form>
 </div>
 
+<!-- Модалка выбора количества -->
 <div id="modal" class="modal">
     <div class="modal-content">
-        <h3 id="m_name"></h3>
-        <div style="margin: 20px 0;">
-            <button onclick="changeQty(-1)" style="width:40px;">-</button>
-            <span id="m_qty" style="margin: 0 15px; font-weight: bold;">1</span>
-            <button onclick="changeQty(1)" style="width:40px;">+</button>
+        <h3 id="m_name" style="color: #ff6f91;"></h3>
+        <div style="margin: 25px 0; display: flex; justify-content: center; align-items: center; gap: 20px;">
+            <button onclick="changeQty(-1)" style="width:45px; height:45px; border-radius:50%; border:1px solid #ccc; cursor:pointer;">-</button>
+            <span id="m_qty" style="font-size: 24px; font-weight: bold;">1</span>
+            <button onclick="changeQty(1)" style="width:45px; height:45px; border-radius:50%; border:1px solid #ccc; cursor:pointer;">+</button>
         </div>
-        <button onclick="addToCart()" style="background: #ff6f91; color: white; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer;">Добавить</button>
-        <p onclick="closeModal()" style="color: gray; cursor: pointer; margin-top: 15px;">Отмена</p>
+        <button onclick="addToCart()" style="background: #ff6f91; color: white; border: none; padding: 12px 30px; border-radius: 20px; cursor: pointer; font-weight: bold; width: 100%;">Добавить в корзину</button>
+        <p onclick="closeModal()" style="color: #999; cursor: pointer; margin-top: 15px; font-size: 14px;">Отмена</p>
     </div>
 </div>
 
@@ -94,7 +121,7 @@
         { id: "p1", name: {ru:"Будапешт", fi:"Budapest", en:"Budapest"}, price: 4.50, img: "budapest.jpg" },
         { id: "p2", name: {ru:"Ваниль", fi:"Vanilja", en:"Vanilla"}, price: 4.50, img: "vanilja.jpg" },
         { id: "p3", name: {ru:"Клубничный торт", fi:"Mansikkakakku", en:"Strawberry"}, price: 3.80, img: "mansikkakermakakku.jpg" },
-        { id: "p4", name: {ru:"Мохито", fi:"Mohito", en:"Mohito"}, price: 6.30, img: "mohitolime.jpg" },
+        { id: "p4", name: {ru:"Мохито-лайм", fi:"Mohito-lime", en:"Mohito-lime"}, price: 6.30, img: "mohitolime.jpg" },
         { id: "p5", name: {ru:"Вафля", fi:"Vohveli", en:"Waffle"}, price: 3.50, img: "vohveli.jpg" },
         { id: "p6", name: {ru:"Наполеон", fi:"Napoleon", en:"Napoleon"}, price: 4.50, img: "napoleon.jpg" },
         { id: "p7", name: {ru:"Красный бархат", fi:"Red Velvet", en:"Red Velvet"}, price: 6.30, img: "red-velvet.jpg" },
@@ -118,6 +145,7 @@
         document.getElementById('c_title').innerText = ui[lang].cart;
         document.getElementById('btn_send').innerText = ui[lang].send;
         document.getElementById('back_btn').innerText = ui[lang].back;
+        
         document.querySelectorAll('.lang button').forEach(b => b.classList.toggle('active', b.id === 'btn-'+lang));
         renderProducts();
         updateCartUI();
@@ -130,7 +158,10 @@
             const div = document.createElement('div');
             div.className = 'item'; div.id = `item${i+1}`;
             div.onclick = () => openModal(p);
-            div.innerHTML = `<img src="${p.img}" onerror="this.src='https://via.placeholder.com'"><br><span class="price-tag">${p.price.toFixed(2)}€</span>`;
+            div.innerHTML = `
+                <img src="${p.img}" onerror="this.src='https://via.placeholder.com'">
+                <br><span class="price-tag">${p.price.toFixed(2)}€</span>
+            `;
             shelf.appendChild(div);
         });
     }
@@ -151,7 +182,7 @@
         updateCartUI();
     }
 
-    // Удаление одного товара (уменьшение количества или полное удаление)
+    // ФУНКЦИЯ КОРРЕКЦИИ: Удаляет 1 шт или весь товар
     function removeFromCart(id) {
         if (cart[id].qty > 1) {
             cart[id].qty -= 1;
@@ -165,32 +196,40 @@
         const container = document.getElementById('cart-items');
         container.innerHTML = '';
         let total = 0;
+        let summaryText = "";
+
         for(let id in cart) {
             const item = cart[id];
             let sum = item.price * item.qty;
             total += sum;
+            summaryText += `${item.name[currentLang]} x${item.qty} (${sum.toFixed(2)}€); `;
+
             container.innerHTML += `
                 <div class="cart-row">
                     <span><b>${item.name[currentLang]}</b> x${item.qty} = ${sum.toFixed(2)}€</span>
                     <button class="remove-btn" onclick="removeFromCart('${id}')">—</button>
                 </div>`;
         }
-        document.getElementById('c_total').innerText = `${ui[currentLang].total}: ${total.toFixed(2)} €`;
+
+        const totalValue = total.toFixed(2) + " €";
+        document.getElementById('c_total').innerText = `${ui[currentLang].total}: ${totalValue}`;
+        
+        // Передаем данные в скрытые поля формы для Formspree
+        document.getElementById('hiddenOrder').value = summaryText || "Пусто";
+        document.getElementById('hiddenTotal').value = totalValue;
     }
 
-    async function sendOrder() {
-        const email = document.getElementById('c_email').value;
-        if(!email || Object.keys(cart).length === 0) return alert("Заполните корзину и Email!");
-        const orderText = Object.values(cart).map(i => `${i.name[currentLang]} x${i.qty}`).join(', ');
-        const fd = new FormData();
-        fd.append("Email", email); fd.append("Заказ", orderText); fd.append("Сумма", document.getElementById('c_total').innerText);
-        try {
-            const resp = await fetch("https://formspree.io", { method: "POST", body: fd, headers: {'Accept': 'application/json'} });
-            if(resp.ok) { alert("Успешно!"); cart = {}; updateCartUI(); }
-        } catch(e) { alert("Ошибка!"); }
-    }
+    // Проверка перед отправкой
+    document.getElementById('orderForm').onsubmit = function() {
+        if (Object.keys(cart).length === 0) {
+            alert(currentLang === 'ru' ? "Сначала добавьте десерты в корзину!" : "Lisää ensin tuotteita ostoskoriin!");
+            return false;
+        }
+        return true;
+    };
 
     window.onload = () => setLang(currentLang);
 </script>
+
 </body>
 </html>
