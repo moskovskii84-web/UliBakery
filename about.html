@@ -3,51 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>О нас | UliBakery</title>
+    <title id="page_title">О нас | UliBakery</title>
     <style>
-        body { margin: 0; font-family: 'Segoe UI', sans-serif; background-color: #fff6f8; color: #5d4037; text-align: center; }
-        .container { max-width: 850px; margin: 40px auto; background: white; padding: 40px; border-radius: 30px; box-shadow: 0 10px 30px rgba(251, 194, 235, 0.3); border: 1px solid #fce4ec; }
-        .back-btn { display: inline-block; background: #5d4037; color: white; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; margin-bottom: 30px; transition: 0.3s; }
-        .back-btn:hover { background: #ff6f91; transform: scale(1.05); }
-        .logo-about { width: 180px; height: 180px; border-radius: 50%; border: 4px solid #fbc2eb; object-fit: cover; margin-bottom: 20px; }
-        h1 { font-family: 'Georgia', serif; color: #ff6f91; font-size: 32px; }
-        p { font-size: 18px; line-height: 1.8; text-align: left; color: #6d4c41; margin-top: 20px; }
-        .lang-btns { margin-bottom: 20px; }
-        .lang-btns button { background: none; border: 1px solid #ffb2c1; border-radius: 5px; cursor: pointer; padding: 5px 10px; margin: 0 5px; font-weight: bold; }
+        body { 
+            margin: 0; 
+            font-family: 'Segoe UI', sans-serif; 
+            background-color: #fff6f8; 
+            color: #5d4037; 
+            text-align: center; 
+        }
+        .top-bar {
+            background: #fffafa;
+            padding: 10px 25px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            border-bottom: 1px solid #fce4ec;
+            position: relative;
+            z-index: 100;
+        }
+        .lang button {
+            background: #fff;
+            border: 1px solid #ffb2c1;
+            padding: 5px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-left: 5px;
+            color: #333;
+        }
+        .lang button:hover {
+            background: #fbc2eb;
+            color: white;
+        }
+        .container { 
+            max-width: 850px; 
+            margin: 40px auto; 
+            background: white; 
+            padding: 40px; 
+            border-radius: 30px; 
+            box-shadow: 0 10px 30px rgba(251, 194, 235, 0.3); 
+            border: 1px solid #fce4ec; 
+        }
+        .back-btn { 
+            display: inline-block; 
+            background: #5d4037; 
+            color: white; 
+            padding: 12px 25px; 
+            border-radius: 50px; 
+            text-decoration: none; 
+            font-weight: bold; 
+            margin-bottom: 30px; 
+            transition: 0.3s; 
+        }
+        .back-btn:hover { 
+            background: #ff6f91; 
+            transform: scale(1.05); 
+        }
+        .logo-about { 
+            width: 180px; 
+            height: 180px; 
+            border-radius: 50%; 
+            border: 4px solid #fbc2eb; 
+            object-fit: cover; 
+            margin-bottom: 20px; 
+        }
+        h1 { 
+            font-family: 'Georgia', serif; 
+            color: #ff6f91; 
+            font-size: 32px; 
+        }
+        p { 
+            font-size: 18px; 
+            line-height: 1.8; 
+            text-align: left; 
+            color: #6d4c41; 
+            margin-top: 20px; 
+        }
+        @media (max-width: 600px) {
+            .container { padding: 25px 15px; margin: 20px; }
+            h1 { font-size: 28px; }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="lang-btns">
+
+    <div class="top-bar">
+        <div class="lang">
             <button onclick="setLang('fi')">FI</button>
             <button onclick="setLang('ru')">RU</button>
+            <button onclick="setLang('en')">EN</button>
         </div>
+    </div>
+
+    <div class="container">
         <a href="index.html" class="back-btn" id="btn_back">← НА ГЛАВНУЮ</a>
         <br>
         <img src="logo.jpg" class="logo-about" alt="UliBakery">
         <h1 id="title_about">О нашей студии</h1>
         <p id="text_about">
-            UliBakery — это профессиональная кондитерская студия в Вантаа. Мы создаем эксклюзивные торты, капкейки и десерты из натуральных ингредиентов. Наша философия — это сочетание безупречного вкуса и авторского декора для ваших самых важных моментов.
+            Привет! Меня зовут Ули ❤️<br><br>
+            UliBakery — это моя маленькая кондитерская в Mikkola (Вантаа).  
+            Я пеку торты и десерты на заказ с большой любовью и вниманием к каждой детали.<br><br>
+            Здесь рождаются эксклюзивные торты: свадебные, детские с любимыми героями (Lilo & Stitch, Roblox, черепашки, джунгли и любые другие мечты вашего ребёнка), бенто-кексы и праздничные десерты.  
+            Всё украшение полностью съедобное и делается строго по вашим пожеланиям.<br><br>
+            Использую только натуральные ингредиенты: свежие сливки, бельгийский шоколад, сезонные ягоды и настоящее масло.  
+            Каждый торт — это не просто сладость, а настоящее сердце вашего праздника.<br><br>
+            Добро пожаловать в UliBakery — место, где десерты готовятся с душой и улыбкой!
         </p>
     </div>
 
     <script>
-        const texts = {
+        const translations = {
             ru: {
-                back: "← НА ГЛАВНУЮ", title: "О нашей студии",
-                text: "UliBakery — это профессиональная кондитерская студия в Вантаа. Мы верим, что торт — это сердце праздника. Используем только натуральные сливки, бельгийский шоколад и свежие ягоды."
+                page_title: "О нас | UliBakery",
+                back: "← НА ГЛАВНУЮ",
+                title: "О нашей студии",
+                text: "Привет! Меня зовут Ули ❤️\n\nUliBakery — это моя маленькая кондитерская в Mikkola (Вантаа).  \nЯ пеку торты и десерты на заказ с большой любовью и вниманием к каждой детали.\n\nЗдесь рождаются эксклюзивные торты: свадебные, детские с любимыми героями (Lilo & Stitch, Roblox, черепашки, джунгли и любые другие мечты вашего ребёнка), бенто-кексы и праздничные десерты.  \nВсё украшение полностью съедобное и делается строго по вашим пожеланиям.\n\nИспользую только натуральные ингредиенты: свежие сливки, бельгийский шоколад, сезонные ягоды и настоящее масло.  \nКаждый торт — это не просто сладость, а настоящее сердце вашего праздника.\n\nДобро пожаловать в UliBakery — место, где десерты готовятся с душой и улыбкой!"
             },
             fi: {
-                back: "← ETUSIVULLE", title: "Meidän studiosta",
-                text: "UliBakery on ammattimainen konditoria Vantaalla. Uskomme, että kakku on juhlan sydän. Käytämme vain aitoa kermaa, belgialaista suklaata ja tuoreita marjoja."
+                page_title: "Meistä | UliBakery",
+                back: "← ETUSIVULLE",
+                title: "Meidän studiostamme",
+                text: "Hei! Minun nimeni on Uli ❤️\n\nUliBakery on pieni konditoriani Mikkolassa (Vantaa).  \nLeivon kakkuja ja jälkiruokia tilauksesta suurella rakkaudella ja huolella jokaista yksityiskohtaa kohtaan.\n\nTäällä syntyvät yksilölliset kakut: häät, lasten teemakakut (Lilo & Stitch, Roblox, kilpikonnat, viidakko ja kaikki muut lapsesi unelmat), bentokakut ja juhlatortut.  \nKaikki koristeet ovat täysin syötäviä ja tehdään tarkasti toiveidesi mukaan.\n\nKäytän vain luonnollisia raaka-aineita: tuoretta kermaa, belgialaista suklaata, sesongin marjoja ja aitoa voita.  \nJokainen kakku ei ole vain makeaa, vaan juhlan todellinen sydän.\n\nTervetuloa UliBakeryyn – paikkaan, jossa jälkiruoat valmistetaan sydämellä ja hymyllä!"
+            },
+            en: {
+                page_title: "About Us | UliBakery",
+                back: "← Back to Home",
+                title: "About Our Studio",
+                text: "Hi! My name is Uli ❤️\n\nUliBakery is my small pastry studio in Mikkola (Vantaa).  \nI bake custom cakes and desserts with great love and attention to every detail.\n\nHere are born exclusive cakes: wedding, children's themed (Lilo & Stitch, Roblox, turtles, jungle and any other dreams of your child), bento cakes and celebration desserts.  \nAll decorations are completely edible and made strictly according to your wishes.\n\nI use only natural ingredients: fresh cream, Belgian chocolate, seasonal berries and real butter.  \nEvery cake is not just a sweet treat, but the true heart of your celebration.\n\nWelcome to UliBakery – a place where desserts are made with soul and a smile!"
             }
         };
-        function setLang(l) {
-            document.getElementById('btn_back').innerText = texts[l].back;
-            document.getElementById('title_about').innerText = texts[l].title;
-            document.getElementById('text_about').innerText = texts[l].text;
+
+        function setLang(lang) {
+            localStorage.setItem('uliLang', lang);
+            const t = translations[lang];
+
+            document.getElementById('page_title').innerText = t.page_title;
+            document.getElementById('btn_back').innerText = t.back;
+            document.getElementById('title_about').innerText = t.title;
+            document.getElementById('text_about').innerText = t.text;
+
+            document.documentElement.lang = lang;
         }
+
+        window.onload = function() {
+            const savedLang = localStorage.getItem('uliLang') || 'ru';
+            setLang(savedLang);
+        };
     </script>
 </body>
 </html>
-
