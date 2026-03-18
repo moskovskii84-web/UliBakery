@@ -1,1 +1,376 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page_title">Витрина на выходные | UliBakery</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(#fff0f5, #ffe4f0);
+            color: #5d4037;
+            overflow-x: hidden;
+        }
+        .top-bar {
+            background: rgba(255,255,255,0.95);
+            padding: 12px 25px;
+            display: flex;
+            justify-content: flex-end;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #fce4ec;
+        }
+        .lang button {
+            background: #fff;
+            border: 2px solid #ff6f91;
+            padding: 8px 14px;
+            margin-left: 8px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .lang button.active {
+            background: #ff6f91;
+            color: white;
+        }
 
+        .vitrina-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 15px 40px rgba(255, 111, 145, 0.25);
+            overflow: hidden;
+        }
+
+        .vitrina-header {
+            text-align: center;
+            padding: 25px 0 15px;
+            background: linear-gradient(to right, #ff6f91, #ffb2c1);
+            color: white;
+            margin: -20px -20px 30px;
+            border-radius: 30px 30px 0 0;
+        }
+        .vitrina-header h1 {
+            margin: 0;
+            font-size: 36px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        .vitrina-header p {
+            margin: 8px 0 0;
+            font-size: 18px;
+            opacity: 0.95;
+        }
+
+        .shelf {
+            position: relative;
+            height: 620px;
+            background: url('https://i.imgur.com/5vK8f8Z.jpg') center/cover;
+            border: 12px solid #fff;
+            border-radius: 20px;
+            box-shadow: inset 0 0 60px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+
+        .item {
+            position: absolute;
+            width: 180px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .item:hover {
+            transform: scale(1.18) rotate(4deg);
+            z-index: 10;
+        }
+        .item img {
+            width: 100%;
+            height: 180px;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+        }
+        .item p {
+            margin: 10px 0 0;
+            font-weight: bold;
+            font-size: 15.5px;
+            color: #5d4037;
+        }
+
+        /* Позиции тортиков */
+        #item1 { top: 70px; left: 8%; }
+        #item2 { top: 125px; left: 27%; }
+        #item3 { top: 55px; left: 48%; }
+        #item4 { top: 155px; left: 67%; }
+        #item5 { top: 85px; left: 82%; }
+        #item6 { top: 190px; left: 12%; }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.75);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 25px;
+            max-width: 420px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(255,111,145,0.4);
+        }
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 36px;
+            color: #ff6f91;
+            cursor: pointer;
+        }
+
+        .qty {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin: 25px 0;
+            font-size: 28px;
+        }
+        .qty button {
+            width: 50px;
+            height: 50px;
+            background: #ff6f91;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        #cart {
+            margin: 40px 20px 20px;
+            padding: 25px;
+            background: #fffafa;
+            border-radius: 20px;
+            border: 3px solid #fbc2eb;
+        }
+        .whatsapp-btn {
+            padding: 16px 60px;
+            font-size: 21px;
+            background: #25D366;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(37,211,102,0.35);
+            margin-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .item { width: 145px; }
+            .item img { height: 145px; }
+            .shelf { height: 520px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="lang">
+            <button onclick="setLang('ru')" id="btn-ru" class="active">RU</button>
+            <button onclick="setLang('en')" id="btn-en">EN</button>
+            <button onclick="setLang('fi')" id="btn-fi">FI</button>
+        </div>
+    </div>
+
+    <div class="vitrina-container">
+        <div class="vitrina-header">
+            <h1 id="title">Витрина на выходные</h1>
+            <p id="subtitle">Свежие тортики и пирожные • Выдача в пятницу и субботу</p>
+        </div>
+
+        <div class="shelf" id="shelf">
+            <!-- Товары добавляются через JavaScript -->
+        </div>
+
+        <div id="cart">
+            <h3 id="cart_title">Ваша корзина</h3>
+            <div id="cart-items"></div>
+            <p id="total">Итого: 0 €</p>
+        </div>
+
+        <textarea id="comment" placeholder="Ваши пожелания (без орехов, с надписью и т.д.)" style="width:100%; height:80px; padding:12px; border:2px solid #fbc2eb; border-radius:12px; font-size:16px;"></textarea>
+        
+        <button class="whatsapp-btn" onclick="sendToWhatsApp()" id="send_btn">📲 Отправить заказ в WhatsApp</button>
+    </div>
+
+    <!-- Модальное окно -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">×</span>
+            <img id="modal-img" style="width:100%; max-height:320px; object-fit:contain; border-radius:15px;">
+            <h2 id="modal-name"></h2>
+            <p id="modal-price" style="font-size:20px; color:#ff6f91; margin:10px 0;"></p>
+            
+            <div class="qty">
+                <button onclick="changeQty(-1)">−</button>
+                <span id="modal-qty">1</span>
+                <button onclick="changeQty(1)">+</button>
+            </div>
+            
+            <button onclick="addToCart()" id="add_btn" style="padding:14px 40px; font-size:18px; background:#ff6f91; color:white; border:none; border-radius:30px; cursor:pointer;">Добавить в корзину</button>
+        </div>
+    </div>
+
+    <script>
+        const translations = {
+            ru: {
+                title: "Витрина на выходные",
+                subtitle: "Свежие тортики и пирожные • Выдача в пятницу и субботу",
+                cart_title: "Ваша корзина",
+                total: "Итого: ",
+                add: "Добавить в корзину",
+                send: "📲 Отправить заказ в WhatsApp",
+                empty: "Корзина пуста",
+                placeholder: "Ваши пожелания (без орехов, с надписью и т.д.)"
+            },
+            en: {
+                title: "Weekend Showcase",
+                subtitle: "Fresh cakes and pastries • Pickup Friday & Saturday",
+                cart_title: "Your cart",
+                total: "Total: ",
+                add: "Add to cart",
+                send: "📲 Send order to WhatsApp",
+                empty: "Cart is empty",
+                placeholder: "Your wishes (no nuts, with text, etc.)"
+            },
+            fi: {
+                title: "Viikonloppu Vitriini",
+                subtitle: "Tuoreet kakut ja leivonnaiset • Nouto pe ja la",
+                cart_title: "Ostoskori",
+                total: "Yhteensä: ",
+                add: "Lisää koriin",
+                send: "📲 Lähetä tilaus WhatsAppiin",
+                empty: "Kori on tyhjä",
+                placeholder: "Toiveesi (ei pähkinöitä, teksti jne.)"
+            }
+        };
+
+        const products = [
+            { id: "choco",    name: {ru:"Шоколадный торт", en:"Chocolate Cake", fi:"Suklaakakku"},     price: 5, img: "https://i.pinimg.com/736x/21/1e/d8/211ed885e8bc6393c0ef8fa12c8c76e2.jpg" },
+            { id: "mohito",   name: {ru:"Мохито-лайм",     en:"Mojito-Lime",    fi:"Mojito-Lime"},      price: 5, img: "https://i.pinimg.com/736x/d0/39/dc/d039dc29e54308d0571fa059f4aa454c.jpg" },
+            { id: "straw",    name: {ru:"Клубничный",      en:"Strawberry",      fi:"Mansikkakakku"},    price: 5, img: "https://picsum.photos/id/201/600/500" },
+            { id: "lemon",    name: {ru:"Лимонный",        en:"Lemon Cake",      fi:"Sitruunakakku"},    price: 5, img: "https://picsum.photos/id/292/600/500" },
+            { id: "rasp",     name: {ru:"Малиновый",       en:"Raspberry",       fi:"Vadelmakakku"},     price: 5, img: "https://picsum.photos/id/431/600/500" },
+            { id: "oreo",     name: {ru:"Oreo",            en:"Oreo Cake",       fi:"Oreo-kakku"},       price: 5, img: "https://picsum.photos/id/870/600/500" }
+        ];
+
+        let currentLang = 'ru';
+        let currentItem = {};
+        let cart = {};
+
+        function setLang(lang) {
+            currentLang = lang;
+            document.querySelectorAll('.lang button').forEach(btn => {
+                btn.classList.toggle('active', btn.id === `btn-${lang}`);
+            });
+
+            document.getElementById('title').innerText = translations[lang].title;
+            document.getElementById('subtitle').innerText = translations[lang].subtitle;
+            document.getElementById('cart_title').innerText = translations[lang].cart_title;
+            document.getElementById('add_btn').innerText = translations[lang].add;
+            document.getElementById('send_btn').innerText = translations[lang].send;
+            document.getElementById('comment').placeholder = translations[lang].placeholder;
+
+            renderVitrina();
+            updateCart();
+        }
+
+        function renderVitrina() {
+            const shelf = document.getElementById('shelf');
+            shelf.innerHTML = '';
+
+            products.forEach((product, index) => {
+                const div = document.createElement('div');
+                div.className = 'item';
+                div.id = `item${index+1}`;
+                div.innerHTML = `
+                    <img src="${product.img}" alt="${product.name[currentLang]}">
+                    <p>${product.name[currentLang]} — ${product.price} €</p>
+                `;
+                div.onclick = () => openModal(product);
+                shelf.appendChild(div);
+            });
+        }
+
+        function openModal(product) {
+            currentItem = { ...product, qty: 1 };
+            document.getElementById('modal-img').src = product.img;
+            document.getElementById('modal-name').innerText = product.name[currentLang];
+            document.getElementById('modal-price').innerText = `${product.price} € / шт`;
+            document.getElementById('modal-qty').innerText = 1;
+            document.getElementById('modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        function changeQty(delta) {
+            currentItem.qty = Math.max(1, currentItem.qty + delta);
+            document.getElementById('modal-qty').innerText = currentItem.qty;
+        }
+
+        function addToCart() {
+            cart[currentItem.id] = { ...currentItem };
+            updateCart();
+            closeModal();
+        }
+
+        function updateCart() {
+            let html = '';
+            let total = 0;
+
+            for (let key in cart) {
+                const item = cart[key];
+                const sum = item.qty * item.price;
+                total += sum;
+                html += `<p>${item.name[currentLang]} × ${item.qty} = ${sum} €</p>`;
+            }
+
+            document.getElementById('cart-items').innerHTML = html || `<p>${translations[currentLang].empty}</p>`;
+            document.getElementById('total').innerText = `${translations[currentLang].total}${total} €`;
+        }
+
+        function sendToWhatsApp() {
+            let message = currentLang === 'ru' ? "Привет! Заказ с витрины UliBakery:\n\n" :
+                          currentLang === 'en' ? "Hi! Order from UliBakery weekend showcase:\n\n" :
+                          "Hei! Tilaus UliBakery vitriinistä:\n\n";
+
+            for (let key in cart) {
+                const item = cart[key];
+                message += `${item.name[currentLang]} — ${item.qty} шт\n`;
+            }
+
+            const comment = document.getElementById('comment').value.trim();
+            if (comment) message += `\nПожелания: ${comment}\n`;
+
+            message += currentLang === 'ru' ? "\nСпасибо! ❤️" : currentLang === 'en' ? "\nThank you! ❤️" : "\nKiitos! ❤️";
+
+            const phone = "358XXXXXXXXX";   // ←←← ОБЯЗАТЕЛЬНО ЗАМЕНИ НА СВОЙ НОМЕР WhatsApp
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        // Запуск страницы
+        window.onload = () => {
+            setLang('ru');
+        };
+    </script>
+</body>
+</html>
