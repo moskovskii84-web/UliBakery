@@ -3,301 +3,368 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="page_title">Витрина на выходные | UliBakery</title>
+    <title id="v_title">Витрина на выходные | UliBakery</title>
     <style>
         body { 
             margin: 0; 
             font-family: 'Segoe UI', sans-serif; 
-            background: #fff6f8;
-            background-image: radial-gradient(#fbc2eb 12%, transparent 12%);
-            background-size: 35px 35px;
-            background-attachment: fixed;
-            color: #5d4037;
+            color: #5d4037; 
+            background-color: #fff6f8; 
+            background-image: radial-gradient(#fbc2eb 15%, transparent 15%); 
+            background-size: 35px 35px; 
+            background-attachment: fixed; 
         }
         .top-bar { 
-            background: #fffafa; 
-            padding: 10px 25px; 
+            background: rgba(255, 255, 255, 0.98); 
+            padding: 12px 20px; 
             display: flex; 
-            justify-content: flex-end; 
+            justify-content: space-between; 
             align-items: center; 
             border-bottom: 1px solid #fce4ec; 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+        }
+        .back-link { 
+            text-decoration: none; 
+            font-weight: bold; 
+            color: #ff6f91; 
+            font-size: 15px; 
         }
         .lang button { 
-            background:#fff; 
-            border:1px solid #ffb2c1; 
-            padding: 5px 10px; 
-            border-radius: 6px; 
-            cursor:pointer; 
-            font-weight:bold; 
+            background: #fff; 
+            border: 1px solid #ffb2c1; 
+            padding: 6px 11px; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            font-weight: bold; 
+            font-size: 13px; 
             margin-left: 5px; 
-            color: #333; 
         }
-        .lang button:hover { background: #fbc2eb; color: white; }
-
-        .container { 
-            max-width: 1050px; 
-            margin: 40px auto; 
-            padding: 35px 25px; 
-            background: rgba(255,255,255,0.97); 
-            border-radius: 30px; 
-            box-shadow: 0 10px 40px rgba(251,194,235,0.3); 
-        }
-        .back-btn { 
-            display: inline-block; 
-            margin-bottom: 30px; 
-            padding: 10px 25px; 
+        .lang button.active { 
             background: #ff6f91; 
             color: white; 
-            text-decoration: none; 
-            border-radius: 40px; 
-            font-weight: bold; 
+            border-color: #ff6f91; 
+        }
+        .container { 
+            max-width: 1200px; 
+            margin: 25px auto; 
+            padding: 0 15px; 
+        }
+        h1 { 
+            text-align: center; 
+            color: #ff6f91; 
+            font-family: 'Georgia', serif; 
+            font-size: 28px; 
+            margin-bottom: 30px; 
+        }
+        .products-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(165px, 1fr)); 
+            gap: 18px; 
+        }
+        .product-card { 
+            background: white; 
+            border-radius: 20px; 
+            padding: 12px; 
+            text-align: center; 
+            box-shadow: 0 8px 15px rgba(251, 194, 235, 0.3); 
+            border: 1px solid #fce4ec; 
+            cursor: pointer; 
             transition: 0.3s; 
         }
-        .back-btn:hover { background: #ff8fab; }
-
-        h1 { color: #ff6f91; font-size: 32px; margin-bottom: 10px; }
-        .info { font-size: 17px; line-height: 1.6; margin-bottom: 35px; }
-
-        .showcase { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
-            gap: 25px; 
-            margin: 30px 0; 
-        }
-        .item { 
-            background: white; 
-            border: 3px solid #fbc2eb; 
-            border-radius: 22px; 
-            padding: 15px; 
-            text-align: center; 
-            box-shadow: 0 5px 20px rgba(251,194,235,0.15); 
-        }
-        .item img { 
+        .product-card:hover { transform: translateY(-5px); }
+        .product-card img { 
             width: 100%; 
-            height: 210px; 
+            height: 145px; 
             object-fit: cover; 
             border-radius: 15px; 
         }
-        .item p { 
-            margin: 12px 0 8px; 
+        .price { 
+            color: #ff6f91; 
             font-weight: bold; 
-            font-size: 17px; 
+            font-size: 16.5px; 
+            margin-top: 8px; 
+        }
+        .cart-section { 
+            margin-top: 45px; 
+            background: white; 
+            padding: 25px; 
+            border-radius: 25px; 
+            border: 2px solid #fbc2eb; 
+        }
+        .cart-item { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 12px 0; 
+            border-bottom: 1px dashed #fce4ec; 
         }
         .qty-controls { 
             display: flex; 
-            justify-content: center; 
             align-items: center; 
-            gap: 15px; 
-            margin: 10px 0; 
+            gap: 10px; 
         }
-        .qty-controls button { 
-            width: 38px; height: 38px; 
+        .qty-btn { 
             background: #ff6f91; 
             color: white; 
             border: none; 
+            width: 32px; 
+            height: 32px; 
             border-radius: 50%; 
-            font-size: 22px; 
             cursor: pointer; 
+            font-size: 18px; 
         }
-        #total { 
-            font-size: 26px; 
-            font-weight: bold; 
-            color: #ff6f91; 
-            margin: 35px 0 20px; 
-        }
-        textarea { 
+        .input-field { 
             width: 100%; 
-            max-width: 700px; 
-            height: 100px; 
-            padding: 12px; 
-            border: 2px solid #fbc2eb; 
-            border-radius: 15px; 
+            padding: 14px; 
+            margin: 15px 0; 
+            border: 2px solid #fce4ec; 
+            border-radius: 12px; 
             font-size: 16px; 
-            margin: 0 auto 25px; 
-            display: block; 
         }
         .submit-btn { 
-            padding: 16px 45px; 
-            font-size: 20px; 
+            width: 100%; 
+            padding: 16px; 
             background: #25D366; 
             color: white; 
             border: none; 
-            border-radius: 50px; 
+            border-radius: 15px; 
+            font-size: 18px; 
+            font-weight: bold; 
             cursor: pointer; 
+            margin-top: 10px; 
         }
-        @media (max-width: 600px) {
-            .container { margin: 20px; padding: 25px 15px; }
-            .showcase { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+        .modal { 
+            display: none; 
+            position: fixed; 
+            z-index: 2000; 
+            left: 0; top: 0; 
+            width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.6); 
+            justify-content: center; 
+            align-items: center; 
+        }
+        .modal-content { 
+            background: white; 
+            padding: 30px; 
+            border-radius: 25px; 
+            width: 100%; 
+            max-width: 340px; 
+            text-align: center; 
         }
     </style>
 </head>
 <body>
 
-    <div class="top-bar">
-        <div class="lang">
-            <button onclick="setLang('fi')">FI</button>
-            <button onclick="setLang('ru')">RU</button>
-            <button onclick="setLang('en')">EN</button>
-        </div>
+<div class="top-bar">
+    <a href="index.html" class="back-link" id="back_btn">← На главную</a>
+    <div class="lang">
+        <button onclick="setLang('fi')" id="btn-fi">FI</button>
+        <button onclick="setLang('ru')" id="btn-ru">RU</button>
+        <button onclick="setLang('en')" id="btn-en">EN</button>
     </div>
+</div>
 
-    <div class="container">
-        <a href="index.html" class="back-btn" id="back_btn">← На главную</a>
+<div class="container">
+    <h1 id="v_title">Витрина на выходные</h1>
+    
+    <div class="products-grid" id="products_grid"></div>
 
-        <h1 id="title">Витрина на выходные</h1>
-        <div class="info" id="info_text">
-            Заказы принимаем Пн–Чт до 20:00<br>
-            Выдача: Пт 15:00–18:00 и Сб 10:00–14:00<br>
-            Адрес: Venuksentie 4, 01480 Vantaa (Mikkola)
+    <div class="cart-section">
+        <h2 id="c_title">Ваша корзина</h2>
+        <div id="cart_items"></div>
+        
+        <div style="margin-top: 25px; font-size: 21px; font-weight: bold; text-align: right;">
+            <span id="c_total_label">Итого</span>: <span id="total_price">0.00</span> €
         </div>
 
-        <div class="showcase">
-            <div class="item">
-                <img src="choco.jpg" alt="Шоколадный торт">
-                <p>🍫 Шоколадный торт — 5 €</p>
-                <div class="qty-controls">
-                    <button onclick="changeQty('choco', -1)">−</button>
-                    <span id="qty-choco">0</span>
-                    <button onclick="changeQty('choco', 1)">+</button>
-                </div>
-            </div>
-
-            <div class="item">
-                <img src="mohito.jpg" alt="Мохито-лайм">
-                <p>🍋 Мохито-лайм — 5 €</p>
-                <div class="qty-controls">
-                    <button onclick="changeQty('mohito', -1)">−</button>
-                    <span id="qty-mohito">0</span>
-                    <button onclick="changeQty('mohito', 1)">+</button>
-                </div>
-            </div>
-
-            <div class="item">
-                <img src="kartoshka.jpg" alt="Пирожное Картошка">
-                <p>🥔 Пирожное «Картошка» — 5 €</p>
-                <div class="qty-controls">
-                    <button onclick="changeQty('kartoshka', -1)">−</button>
-                    <span id="qty-kartoshka">0</span>
-                    <button onclick="changeQty('kartoshka', 1)">+</button>
-                </div>
-            </div>
-
-            <div class="item">
-                <img src="vanilla.jpg" alt="Ваниль-клубника">
-                <p>🍓 Ваниль-клубника — 5 €</p>
-                <div class="qty-controls">
-                    <button onclick="changeQty('vanilla', -1)">−</button>
-                    <span id="qty-vanilla">0</span>
-                    <button onclick="changeQty('vanilla', 1)">+</button>
-                </div>
-            </div>
-
-            <div class="item">
-                <img src="malina.jpg" alt="Малина-кинуски">
-                <p>🫐 Малина-кинуски — 5 €</p>
-                <div class="qty-controls">
-                    <button onclick="changeQty('malina', -1)">−</button>
-                    <span id="qty-malina">0</span>
-                    <button onclick="changeQty('malina', 1)">+</button>
-                </div>
-            </div>
-
-            <div class="item">
-                <img src="bento.jpg" alt="Бенто-мини">
-                <p>🌈 Бенто-мини (10 см) — 12 €</p>
-                <div class="qty-controls">
-                    <button onclick="changeQty('bento', -1)">−</button>
-                    <span id="qty-bento">0</span>
-                    <button onclick="changeQty('bento', 1)">+</button>
-                </div>
-            </div>
-        </div>
-
-        <div id="total">Итого: 0 €</div>
-
-        <!-- Форма отправки на почту через Formspree -->
-        <form id="orderForm" action="https://formspree.io/f/mjgapyny" method="POST">
-            <input type="hidden" name="Заказ" id="hidden_order">
+        <form action="https://formspree.io/f/mjgapyny" method="POST" id="orderForm">
+            <input type="hidden" name="_next" value="thankyou.html">
             <input type="hidden" name="_subject" value="Новый заказ с витрины на выходные!">
-            <input type="hidden" name="_next" value="thanks.html">
-            <input type="hidden" name="_language" value="ru">
+            
+            <input type="email" name="Email_клиента" class="input-field" placeholder="Ваш Email" required id="f_email">
+            <input type="hidden" name="Детали_заказа" id="hiddenOrder">
+            <input type="hidden" name="Сумма_заказа" id="hiddenTotal">
 
-            <textarea name="Комментарий" id="comment" placeholder="Дополнительные пожелания (без орехов, с надписью, особая упаковка и т.д.)"></textarea>
-
-            <button type="submit" class="submit-btn">Отправить заказ</button>
+            <button type="submit" class="submit-btn" id="btn_send">ОТПРАВИТЬ ЗАКАЗ</button>
         </form>
     </div>
+</div>
 
-    <script>
-        let cart = {};
+<!-- Модальное окно -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <h3 id="m_name" style="color:#ff6f91; margin-bottom:20px;"></h3>
+        <div style="margin: 25px 0; display: flex; justify-content: center; align-items: center; gap: 25px; font-size: 24px;">
+            <button type="button" onclick="changeQty(-1)" class="qty-btn">-</button>
+            <b id="m_qty">1</b>
+            <button type="button" onclick="changeQty(1)" class="qty-btn">+</button>
+        </div>
+        <button type="button" onclick="addToCart()" class="submit-btn" style="background:#ff6f91;">Добавить в корзину</button>
+        <p onclick="closeModal()" style="cursor:pointer; color:gray; margin-top:20px;">Отмена</p>
+    </div>
+</div>
 
-        function changeQty(id, delta) {
-            if (!cart[id]) cart[id] = { qty: 0, price: id === 'bento' ? 12 : 5 };
-            cart[id].qty = Math.max(0, (cart[id].qty || 0) + delta);
-            document.getElementById(`qty-${id}`).innerText = cart[id].qty;
-            updateTotal();
+<script>
+    const products = [
+        { id: "p1", name: {ru:"Будапешт", fi:"Budapest", en:"Budapest"}, price: 4.50, img: "budapest.jpg" },
+        { id: "p2", name: {ru:"Ваниль", fi:"Vanilja", en:"Vanilla"}, price: 4.50, img: "vanilja.jpg" },
+        { id: "p3", name: {ru:"Клубничный торт", fi:"Mansikkakakku", en:"Strawberry"}, price: 3.80, img: "mansikkakermakakku.jpg" },
+        { id: "p4", name: {ru:"Мохито-лайм", fi:"Mohito-lime", en:"Mohito-lime"}, price: 6.30, img: "mohitolime.jpg" },
+        { id: "p5", name: {ru:"Вафля", fi:"Vohveli", en:"Waffle"}, price: 3.50, img: "vohveli.jpg" },
+        { id: "p6", name: {ru:"Наполеон", fi:"Napoleon", en:"Napoleon"}, price: 4.50, img: "napoleon.jpg" },
+        { id: "p7", name: {ru:"Красный бархат", fi:"Red Velvet", en:"Red Velvet"}, price: 6.30, img: "red-velvet.jpg" },
+        { id: "p8", name: {ru:"Шоколадный торт", fi:"Suklaakakku", en:"Chocolate"}, price: 6.50, img: "sukla.jpg" },
+        { id: "p9", name: {ru:"Орешки со сгущенкой", fi:"Pähkinät kinuskilla", en:"Nuts with milk"}, price: 1.50, img: "keksi.jpg" },
+        { id: "p10", name: {ru:"Кейк-попс", fi:"Kakkutikkari", en:"Cake Pop"}, price: 2.50, img: "cake-pops.jpg" }
+    ];
+
+    let cart = {};
+    let tempItem = null;
+    let currentLang = localStorage.getItem('uliLang') || 'ru';
+
+    const ui = {
+        ru: { 
+            title: "Витрина на выходные", 
+            cart: "Ваша корзина", 
+            total: "Итого", 
+            send: "ОТПРАВИТЬ ЗАКАЗ", 
+            back: "← На главную", 
+            email: "Ваш Email" 
+        },
+        fi: { 
+            title: "Viikonlopun vitriini", 
+            cart: "Ostoskori", 
+            total: "Yhteensä", 
+            send: "LÄHETÄ TILAUS", 
+            back: "← Etusivulle", 
+            email: "Sähköpostisi" 
+        },
+        en: { 
+            title: "Weekend Showcase", 
+            cart: "Your Cart", 
+            total: "Total", 
+            send: "SEND ORDER", 
+            back: "← Back Home", 
+            email: "Your Email" 
         }
+    };
 
-        function updateTotal() {
-            let total = 0;
-            Object.keys(cart).forEach(id => {
-                total += (cart[id].qty || 0) * cart[id].price;
-            });
-            document.getElementById('total').innerText = `Итого: ${total} €`;
-        }
+    function setLang(lang) {
+        currentLang = lang;
+        localStorage.setItem('uliLang', lang);
 
-        // Собираем заказ перед отправкой
-        document.getElementById('orderForm').addEventListener('submit', function() {
-            let orderText = "Заказ с витрины:\n\n";
-            Object.keys(cart).forEach(id => {
-                if (cart[id].qty > 0) {
-                    const name = id === 'choco' ? 'Шоколадный торт' :
-                                 id === 'mohito' ? 'Мохито-лайм' :
-                                 id === 'kartoshka' ? 'Пирожное Картошка' :
-                                 id === 'vanilla' ? 'Ваниль-клубника' :
-                                 id === 'malina' ? 'Малина-кинуски' : 'Бенто-мини';
-                    orderText += `${name} — ${cart[id].qty} шт\n`;
-                }
-            });
-            document.getElementById('hidden_order').value = orderText;
+        document.getElementById('v_title').innerText = ui[lang].title;
+        document.getElementById('c_title').innerText = ui[lang].cart;
+        document.getElementById('c_total_label').innerText = ui[lang].total;
+        document.getElementById('btn_send').innerText = ui[lang].send;
+        document.getElementById('back_btn').innerText = ui[lang].back;
+        document.getElementById('f_email').placeholder = ui[lang].email;
+
+        document.querySelectorAll('.lang button').forEach(btn => {
+            btn.classList.toggle('active', btn.id === `btn-${lang}`);
         });
 
-        // Мультиязычность
-        const translations = {
-            ru: {
-                page_title: "Витрина на выходные | UliBakery",
-                back_btn: "← На главную",
-                title: "Витрина на выходные",
-                info: "Заказы принимаем с понедельника по четверг до 20:00\nВыдача: пятница 15:00–18:00 и суббота 10:00–14:00\nАдрес: Venuksentie 4, 01480 Vantaa (Mikkola)"
-            },
-            fi: {
-                page_title: "Viikonloppunäyttely | UliBakery",
-                back_btn: "← Takaisin etusivulle",
-                title: "Viikonloppunäyttely",
-                info: "Tilaukset maanantaista torstaihin klo 20.00 mennessä\nNouto: perjantai 15:00–18:00 ja lauantai 10:00–14:00\nOsoite: Venuksentie 4, 01480 Vantaa (Mikkola)"
-            },
-            en: {
-                page_title: "Weekend Showcase | UliBakery",
-                back_btn: "← Back to Home",
-                title: "Weekend Showcase",
-                info: "Orders accepted Monday to Thursday until 20:00\nPickup: Friday 15:00–18:00 and Saturday 10:00–14:00\nAddress: Venuksentie 4, 01480 Vantaa (Mikkola)"
-            }
-        };
+        renderProducts();
+        updateCartUI();
+    }
 
-        function setLang(lang) {
-            localStorage.setItem('uliLang', lang);
-            const t = translations[lang];
-            document.getElementById('page_title').innerText = t.page_title;
-            document.getElementById('back_btn').innerText = t.back_btn;
-            document.getElementById('title').innerText = t.title;
-            document.getElementById('info_text').innerText = t.info;
-            document.documentElement.lang = lang;
+    function renderProducts() {
+        const grid = document.getElementById('products_grid');
+        grid.innerHTML = '';
+        products.forEach(p => {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.onclick = () => openModal(p);
+            card.innerHTML = `
+                <img src="${p.img}" onerror="this.src='https://via.placeholder.com/300x200?text=${p.name.ru}'">
+                <h3>${p.name[currentLang]}</h3>
+                <span class="price">${p.price.toFixed(2)} €</span>
+            `;
+            grid.appendChild(card);
+        });
+    }
+
+    function openModal(p) {
+        tempItem = { ...p, qty: 1 };
+        document.getElementById('m_name').innerText = p.name[currentLang];
+        document.getElementById('m_qty').innerText = 1;
+        document.getElementById('modal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('modal').style.display = 'none';
+    }
+
+    function changeQty(d) {
+        tempItem.qty = Math.max(1, tempItem.qty + d);
+        document.getElementById('m_qty').innerText = tempItem.qty;
+    }
+
+    function addToCart() {
+        if (cart[tempItem.id]) {
+            cart[tempItem.id].qty += tempItem.qty;
+        } else {
+            cart[tempItem.id] = { ...tempItem };
+        }
+        closeModal();
+        updateCartUI();
+    }
+
+    function updateQtyInCart(id, d) {
+        if (cart[id]) {
+            cart[id].qty += d;
+            if (cart[id].qty <= 0) delete cart[id];
+            updateCartUI();
+        }
+    }
+
+    function updateCartUI() {
+        const container = document.getElementById('cart_items');
+        container.innerHTML = '';
+        let total = 0;
+        let summary = "";
+
+        for (let id in cart) {
+            const item = cart[id];
+            const sum = item.price * item.qty;
+            total += sum;
+            summary += `${item.name[currentLang]} × ${item.qty} шт (${sum.toFixed(2)} €)\n`;
+
+            container.innerHTML += `
+                <div class="cart-item">
+                    <span><b>${item.name[currentLang]}</b></span>
+                    <div class="qty-controls">
+                        <button type="button" class="qty-btn" onclick="updateQtyInCart('${id}', -1)">−</button>
+                        <b>${item.qty}</b>
+                        <button type="button" class="qty-btn" onclick="updateQtyInCart('${id}', 1)">+</button>
+                    </div>
+                    <span>${sum.toFixed(2)} €</span>
+                </div>`;
         }
 
-        window.onload = function() {
-            const savedLang = localStorage.getItem('uliLang') || 'ru';
-            setLang(savedLang);
-        };
-    </script>
+        document.getElementById('total_price').innerText = total.toFixed(2);
+
+        // Заполняем скрытые поля для Formspree
+        document.getElementById('hiddenOrder').value = summary || "Корзина пуста";
+        document.getElementById('hiddenTotal').value = total.toFixed(2) + " €";
+    }
+
+    // Проверка перед отправкой
+    document.getElementById('orderForm').onsubmit = function() {
+        if (Object.keys(cart).length === 0) {
+            alert(currentLang === 'ru' ? "Корзина пуста! Добавьте товары." : 
+                  currentLang === 'fi' ? "Ostoskori on tyhjä!" : "Cart is empty!");
+            return false;
+        }
+        return true;
+    };
+
+    // Инициализация
+    window.onload = () => {
+        setLang(currentLang);
+    };
+</script>
 </body>
 </html>
