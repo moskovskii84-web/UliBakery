@@ -301,6 +301,26 @@
     }
 
     function submitOrder() {
+        const emailField = document.getElementById('f_email');
+        const email = emailField.value.trim();
+
+        if (!email) {
+            alert(currentLang === 'ru' ? "Пожалуйста, введите ваш Email!" : 
+                  currentLang === 'fi' ? "Ole hyvä ja syötä sähköpostiosoitteesi!" : 
+                  "Please enter your Email!");
+            emailField.focus();
+            return;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert(currentLang === 'ru' ? "Пожалуйста, введите корректный Email!" : 
+                  currentLang === 'fi' ? "Syötä validi sähköpostiosoite!" : 
+                  "Please enter a valid Email!");
+            emailField.focus();
+            return;
+        }
+
         if (Object.keys(cart).length === 0) {
             alert(currentLang === 'ru' ? "Корзина пуста!" : currentLang === 'fi' ? "Ostoskori on tyhjä!" : "Cart is empty!");
             return;
