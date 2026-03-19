@@ -1,25 +1,90 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<title>Спасибо</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page_title">Спасибо за заказ | UliBakery</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            text-align: center;
+            padding: 60px 20px;
+            background: #fff6f8;
+            color: #5d4037;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(251, 194, 235, 0.4);
+        }
+        h1 { color: #ff6f91; font-size: 32px; margin-bottom: 10px; }
+        p { font-size: 18px; line-height: 1.6; }
+        .back-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 35px;
+            background: #ff6f91;
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: #e55a7d;
+            transform: translateY(-3px);
+        }
+        .heart { color: #ff6f91; font-size: 40px; display: block; margin-bottom: 20px; }
+    </style>
 </head>
-<body style="font-family:Segoe UI; text-align:center; padding:60px; background:#fff6f8;">
+<body>
 
-<h1 style="color:#ff6f91;">Спасибо за заказ 💖</h1>
-<p>Мы скоро с вами свяжемся</p>
+    <div class="container">
+        <span class="heart">💖</span>
+        <h1 id="t_thanks">Спасибо за заказ!</h1>
+        <p id="t_message">Мы скоро с вами свяжемся для подтверждения деталей.</p>
+        
+        <a href="index.html" class="back-btn" id="t_btn">Вернуться на главную</a>
+    </div>
 
-<a href="index.html" style="
-display:inline-block;
-margin-top:20px;
-padding:12px 25px;
-background:#ff6f91;
-color:white;
-border-radius:30px;
-text-decoration:none;
-font-weight:bold;">
-Вернуться на главную
-</a>
+    <script>
+        const translations = {
+            ru: {
+                page_title: "Спасибо за заказ | UliBakery",
+                thanks: "Спасибо за заказ! 💖",
+                message: "Мы скоро с вами свяжемся для подтверждения деталей.",
+                btn: "Вернуться на главную"
+            },
+            fi: {
+                page_title: "Kiitos tilauksesta | UliBakery",
+                thanks: "Kiitos tilauksesta! 💖",
+                message: "Otamme sinuun pian yhteyttä tilausvahvistusta varten.",
+                btn: "Takaisin etusivulle"
+            },
+            en: {
+                page_title: "Thank You | UliBakery",
+                thanks: "Thank you for your order! 💖",
+                message: "We will contact you soon to confirm the details.",
+                btn: "Back Home"
+            }
+        };
 
+        function setLang() {
+            // Берем язык, который пользователь выбрал на витрине или главной
+            const lang = localStorage.getItem('uliLang') || 'ru';
+            const t = translations[lang];
+
+            document.title = t.page_title;
+            document.getElementById('t_thanks').innerText = t.thanks;
+            document.getElementById('t_message').innerText = t.message;
+            document.getElementById('t_btn').innerText = t.btn;
+        }
+
+        // Запускаем перевод сразу при открытии страницы
+        window.onload = setLang;
+    </script>
 </body>
 </html>
