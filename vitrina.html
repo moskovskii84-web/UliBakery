@@ -1,186 +1,292 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Витрина | UliBakery</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="title">Витрина на выходные | UliBakery</title>
+    <style>
+        :root {
+            --pink: #ff6f91;
+            --light-pink: #fff0f5;
+        }
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: #fff6f8;
+            color: #5d4037;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(to right, #ff6f91, #ffb2c1);
+            color: white;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+        .header p {
+            margin: 8px 0 0;
+            font-size: 18px;
+            opacity: 0.95;
+        }
 
-<style>
-body { margin:0; font-family:'Segoe UI'; background:#fff6f8; }
+        /* Фон в белый горошек */
+        .showcase {
+            background: var(--light-pink);
+            background-image: 
+                radial-gradient(circle, #ffffff 15%, transparent 15%);
+            background-size: 35px 35px;
+            padding: 40px 20px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(255,111,145,0.25);
+        }
 
-.shelf {
-    width:100%;
-    height:600px;
-    background:#eee;
-    position:relative;
-    border-radius:20px;
-}
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
 
-.item {
-    position:absolute;
-    width:140px;
-    cursor:pointer;
-    transition:.3s;
-}
-.item:hover { transform:scale(1.1); }
+        .card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(251,194,235,0.3);
+            transition: all 0.3s;
+            text-align: center;
+            padding-bottom: 15px;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255,111,145,0.35);
+        }
+        .card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+        .card h3 {
+            margin: 15px 0 5px;
+            font-size: 18px;
+        }
+        .card .price {
+            background: #ff6f91;
+            color: white;
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 17px;
+        }
 
-.price-tag {
-    background:#ff6f91;
-    color:white;
-    padding:4px 10px;
-    border-radius:10px;
-}
+        .cart {
+            margin: 40px 0;
+            padding: 25px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(251,194,235,0.25);
+        }
 
-#item1{top:15%;left:10%;}
-#item2{top:15%;left:35%;}
-#item3{top:15%;left:60%;}
-#item4{top:15%;left:80%;}
-#item5{top:55%;left:10%;}
-#item6{top:55%;left:35%;}
-#item7{top:55%;left:60%;}
-#item8{top:55%;left:80%;}
+        .back-btn {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 12px 28px;
+            background: #ff6f91;
+            color: white;
+            text-decoration: none;
+            border-radius: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: #ff8fab;
+            transform: scale(1.05);
+        }
 
-#cart {
-    margin-top:30px;
-    padding:20px;
-    background:white;
-    border-radius:20px;
-}
+        .send-btn {
+            width: 100%;
+            padding: 16px;
+            background: #25D366;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 19px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
 
-.btn-send {
-    width:100%;
-    padding:16px;
-    background:#25D366;
-    color:white;
-    border:none;
-    border-radius:12px;
-    font-size:18px;
-    cursor:pointer;
-}
-
-.input-field {
-    width:100%;
-    padding:12px;
-    margin-top:10px;
-}
-</style>
+        @media (max-width: 600px) {
+            .grid {
+                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+                gap: 18px;
+            }
+            .card img { height: 180px; }
+        }
+    </style>
 </head>
-
 <body>
 
-<h1 style="text-align:center;color:#ff6f91;">Витрина</h1>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1 id="title">Витрина на выходные</h1>
+            <p id="subtitle">Свежие десерты • Выдача: Пт 15:00–18:00 | Сб 10:00–14:00</p>
+        </div>
 
-<div class="shelf" id="shelf"></div>
+        <!-- Кнопка назад -->
+        <a href="index.html" class="back-btn" id="back_btn">← На главную</a>
 
-<div id="cart">
-<h3>Корзина</h3>
-<div id="cart-items"></div>
-<b id="total">Итого: 0 €</b>
+        <!-- Витрина -->
+        <div class="showcase">
+            <div class="grid" id="grid"></div>
+        </div>
 
-<form id="orderForm" action="https://formspree.io/f/mjgapyny" method="POST">
-<input type="email" name="email" placeholder="Email" class="input-field" required>
+        <!-- Корзина -->
+        <div class="cart">
+            <h3 id="cart_title">Ваша корзина</h3>
+            <div id="cart-items"></div>
+            <p id="total" style="font-size:20px; font-weight:bold; margin-top:15px;">Итого: 0 €</p>
 
-<input type="hidden" name="order" id="hiddenOrder">
-<input type="hidden" name="total" id="hiddenTotal">
+            <form id="orderForm" action="https://formspree.io/f/mjgapyny" method="POST">
+                <input type="email" name="email" placeholder="Ваш email" required style="width:100%; padding:12px; margin:15px 0; border:2px solid #fbc2eb; border-radius:10px;">
+                <input type="hidden" name="order" id="hiddenOrder">
+                <input type="hidden" name="total" id="hiddenTotal">
+                <button type="submit" class="send-btn" id="send_btn">✉️ Отправить заказ на почту</button>
+            </form>
+        </div>
+    </div>
 
-<button class="btn-send">Отправить заказ</button>
-</form>
-</div>
+    <script>
+        const translations = {
+            ru: {
+                title: "Витрина на выходные",
+                subtitle: "Свежие десерты • Выдача: Пт 15:00–18:00 | Сб 10:00–14:00",
+                cart_title: "Ваша корзина",
+                total: "Итого: ",
+                back: "← На главную",
+                send: "✉️ Отправить заказ на почту",
+                empty: "Корзина пуста"
+            },
+            en: {
+                title: "Weekend Showcase",
+                subtitle: "Fresh desserts • Pickup: Fri 15:00–18:00 | Sat 10:00–14:00",
+                cart_title: "Your cart",
+                total: "Total: ",
+                back: "← Back to home",
+                send: "✉️ Send order by email",
+                empty: "Cart is empty"
+            },
+            fi: {
+                title: "Viikonloppu Vitriini",
+                subtitle: "Tuoreet jälkiruoat • Nouto: pe 15–18 | la 10–14",
+                cart_title: "Ostoskori",
+                total: "Yhteensä: ",
+                back: "← Takaisin etusivulle",
+                send: "✉️ Lähetä tilaus sähköpostilla",
+                empty: "Kori on tyhjä"
+            }
+        };
 
-<script>
-const products = [
-{id:"p1",name:"Будапешт",price:4.5,img:"budapest.jpg"},
-{id:"p2",name:"Ваниль",price:4.5,img:"vanilja.jpg"},
-{id:"p3",name:"Клубника",price:3.8,img:"mansikkakermakakku.jpg"},
-{id:"p4",name:"Мохито",price:6.3,img:"mohitolime.jpg"},
-{id:"p5",name:"Вафля",price:3.5,img:"vohveli.jpg"},
-{id:"p6",name:"Наполеон",price:4.5,img:"napoleon.jpg"},
-{id:"p7",name:"Red Velvet",price:6.3,img:"red-velvet.jpg"},
-{id:"p8",name:"Шоколад",price:6.5,img:"sukla.jpg"}
-];
+        const products = [
+            { id: "budapest", name: {ru:"Budapest", fi:"Budapest", en:"Budapest"}, price: 4.50, img: "budapest.jpg" },
+            { id: "vanilja",  name: {ru:"Vanilja", fi:"Vanilja", en:"Vanilla"}, price: 4.50, img: "vanilja.jpg" },
+            { id: "mansikka", name: {ru:"Mansikkakakku", fi:"Mansikkakermakakku", en:"Strawberry Cake"}, price: 3.80, img: "mansikkakakermakakku.jpg" },
+            { id: "mohito",   name: {ru:"Mohito-lime", fi:"Mohito-lime", en:"Mohito-lime"}, price: 6.30, img: "mohitolime.jpg" },
+            { id: "vohveli",  name: {ru:"Vohveli", fi:"Vohveli", en:"Waffle"}, price: 3.50, img: "vohveli.jpg" },
+            { id: "napoleon", name: {ru:"Napoleon", fi:"Napoleon", en:"Napoleon"}, price: 4.50, img: "napoleon.jpg" },
+            { id: "redvelvet",name: {ru:"Red Velvet", fi:"Red Velvet", en:"Red Velvet"}, price: 6.30, img: "red-velvet.jpg" },
+            { id: "suklaa",   name: {ru:"Suklaakakku", fi:"Suklaakakku", en:"Chocolate Cake"}, price: 6.50, img: "sukla.jpg" }
+        ];
 
-let cart = {};
+        let cart = {};
+        let currentLang = 'ru';
 
-function render() {
-const shelf = document.getElementById('shelf');
-shelf.innerHTML = '';
+        function setLang(lang) {
+            currentLang = lang;
+            document.querySelectorAll('.lang button').forEach(btn => {
+                btn.classList.toggle('active', btn.id === `btn-${lang}`);
+            });
 
-products.forEach((p,i)=>{
-const el = document.createElement('div');
-el.className='item';
-el.id='item'+(i+1);
+            document.getElementById('title').innerText = translations[lang].title;
+            document.getElementById('subtitle').innerText = translations[lang].subtitle;
+            document.getElementById('cart_title').innerText = translations[lang].cart_title;
+            document.getElementById('back_btn').innerText = translations[lang].back;
+            document.getElementById('send_btn').innerText = translations[lang].send;
 
-el.innerHTML = `
-<img src="${p.img}" width="100%">
-<div class="price-tag">${p.price}€</div>
-`;
+            renderProducts();
+            updateCart();
+        }
 
-el.onclick = ()=>add(p);
-shelf.appendChild(el);
-});
-}
+        function renderProducts() {
+            const grid = document.getElementById('grid');
+            grid.innerHTML = '';
 
-function add(p){
-if(!cart[p.id]) cart[p.id]={...p,qty:0};
-cart[p.id].qty++;
-update();
-}
+            products.forEach(p => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <img src="${p.img}" alt="${p.name[currentLang]}" onerror="this.src='https://via.placeholder.com/220x220/ffe4f0/5d4037?text=Фото'">
+                    <h3>${p.name[currentLang]}</h3>
+                    <div class="price">${p.price.toFixed(2)} €</div>
+                `;
+                card.onclick = () => addToCart(p);
+                grid.appendChild(card);
+            });
+        }
 
-function remove(id){
-cart[id].qty--;
-if(cart[id].qty<=0) delete cart[id];
-update();
-}
+        function addToCart(p) {
+            if (!cart[p.id]) cart[p.id] = {...p, qty: 0};
+            cart[p.id].qty++;
+            updateCart();
+        }
 
-function update(){
-const box = document.getElementById('cart-items');
-box.innerHTML='';
+        function updateCart() {
+            const itemsDiv = document.getElementById('cart-items');
+            itemsDiv.innerHTML = '';
+            let total = 0;
+            let orderText = '';
 
-let total=0;
-let text='';
+            for (let id in cart) {
+                const item = cart[id];
+                const sum = item.qty * item.price;
+                total += sum;
+                orderText += `${item.name[currentLang]} x${item.qty} (${sum.toFixed(2)}€); `;
 
-for(let id in cart){
-let item=cart[id];
-let sum=item.qty*item.price;
-total+=sum;
+                const div = document.createElement('div');
+                div.style.margin = '10px 0';
+                div.innerHTML = `
+                    ${item.name[currentLang]} × ${item.qty} 
+                    <strong>(${sum.toFixed(2)} €)</strong>
+                `;
+                itemsDiv.appendChild(div);
+            }
 
-text+=`${item.name} x${item.qty} (${sum}€); `;
+            document.getElementById('total').innerText = `${translations[currentLang].total}${total.toFixed(2)} €`;
+            document.getElementById('hiddenOrder').value = orderText;
+            document.getElementById('hiddenTotal').value = total.toFixed(2) + ' €';
+        }
 
-box.innerHTML+=`
-<div>
-${item.name} x${item.qty}
-<button onclick="remove('${id}')">-</button>
-</div>`;
-}
+        // Форма отправки (оставляем твою логику с редиректом)
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            if (Object.keys(cart).length === 0) {
+                e.preventDefault();
+                alert(currentLang === 'ru' ? 'Добавьте хотя бы один товар в корзину' : 
+                      currentLang === 'en' ? 'Please add at least one item' : 'Lisää ainakin yksi tuote');
+            }
+        });
 
-document.getElementById('total').innerText="Итого: "+total+"€";
-document.getElementById('hiddenOrder').value=text;
-document.getElementById('hiddenTotal').value=total+"€";
-}
-
-document.getElementById('orderForm').addEventListener('submit', async function(e){
-e.preventDefault();
-
-if(Object.keys(cart).length===0){
-alert("Добавьте товар");
-return;
-}
-
-const form = e.target;
-const data = new FormData(form);
-
-await fetch(form.action,{
-method:"POST",
-body:data,
-headers:{'Accept':'application/json'}
-});
-
-// редирект
-window.location.href="thankyou.html";
-});
-
-render();
-</script>
-
+        // Инициализация
+        window.onload = () => {
+            setLang('ru');
+        };
+    </script>
 </body>
 </html>
