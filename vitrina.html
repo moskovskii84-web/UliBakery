@@ -25,7 +25,7 @@
             top: 0; 
             z-index: 1000; 
         }
-        .back-link { text-decoration: none; font-weight: bold; color: #ff6f91; }
+        .back-link { text-decoration: none; font-weight: bold; color: #ff6f91; font-size: 15px; }
         .lang button { 
             background: #fff; 
             border: 1px solid #ffb2c1; 
@@ -35,7 +35,7 @@
             font-weight: bold; 
             margin-left: 5px; 
         }
-        .lang button.active { background: #ff6f91; color: white; }
+        .lang button.active { background: #ff6f91; color: white; border-color: #ff6f91; }
 
         .container { max-width: 1200px; margin: 30px auto; padding: 0 15px; }
         h1 { 
@@ -58,9 +58,9 @@
             box-shadow: 0 8px 18px rgba(251,194,235,0.25); 
             border: 1px solid #fce4ec; 
             cursor: pointer; 
-            transition: transform 0.3s; 
+            transition: 0.3s; 
         }
-        .product-card:hover { transform: translateY(-5px); }
+        .product-card:hover { transform: translateY(-6px); }
         .product-card img { width: 100%; height: 150px; object-fit: cover; border-radius: 15px; }
         .price { color: #ff6f91; font-weight: bold; margin-top: 8px; }
 
@@ -70,6 +70,37 @@
             padding: 25px; 
             border-radius: 25px; 
             border: 2px solid #fbc2eb; 
+        }
+        .cart-item { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 12px 0; 
+            border-bottom: 1px dashed #fce4ec; 
+        }
+        .qty-controls { display: flex; align-items: center; gap: 10px; }
+        .qty-btn { 
+            background: #ff6f91; color: white; border: none; 
+            width: 32px; height: 32px; border-radius: 50%; 
+            cursor: pointer; font-size: 18px; 
+        }
+        .input-field { 
+            width: 100%; padding: 14px; margin: 15px 0; 
+            border: 2px solid #fce4ec; border-radius: 12px; font-size: 16px; 
+        }
+        .submit-btn { 
+            width: 100%; padding: 16px; background: #25D366; color: white; 
+            border: none; border-radius: 15px; font-size: 18px; font-weight: bold; 
+            cursor: pointer; margin-top: 15px; 
+        }
+        .modal { 
+            display: none; position: fixed; z-index: 2000; left: 0; top: 0; 
+            width: 100%; height: 100%; background: rgba(0,0,0,0.65); 
+            justify-content: center; align-items: center; 
+        }
+        .modal-content { 
+            background: white; padding: 30px 25px; border-radius: 25px; 
+            width: 100%; max-width: 340px; text-align: center; 
         }
     </style>
 </head>
@@ -86,10 +117,39 @@
 
 <div class="container">
     <h1 id="v_title">Витрина на выходные</h1>
+    
     <div class="products-grid" id="products_grid"></div>
 
-    <!-- Корзина и форма остаются как были, но можно добавить позже -->
+    <div class="cart-section">
+        <h2 id="c_title">Ваша корзина</h2>
+        <div id="cart_items"></div>
+        
+        <div style="margin-top: 25px; font-size: 21px; font-weight: bold; text-align: right;">
+            <span id="c_total_label">Итого</span>: <span id="total_price">0.00</span> €
+        </div>
 
+        <form id="orderForm">
+            <input type="email" name="Email_клиента" class="input-field" placeholder="Ваш Email" required id="f_email">
+            <input type="hidden" name="Детали_заказа" id="hiddenOrder">
+            <input type="hidden" name="Сумма_заказа" id="hiddenTotal">
+
+            <button type="button" onclick="submitOrder()" class="submit-btn" id="btn_send">ОТПРАВИТЬ ЗАКАЗ</button>
+        </form>
+    </div>
+</div>
+
+<!-- Модальное окно -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <h3 id="m_name" style="color:#ff6f91; margin-bottom:20px;"></h3>
+        <div style="margin:25px 0; display:flex; justify-content:center; align-items:center; gap:25px; font-size:24px;">
+            <button type="button" onclick="changeQty(-1)" class="qty-btn">-</button>
+            <b id="m_qty">1</b>
+            <button type="button" onclick="changeQty(1)" class="qty-btn">+</button>
+        </div>
+        <button type="button" onclick="addToCart()" class="submit-btn" style="background:#ff6f91;">Добавить в корзину</button>
+        <p onclick="closeModal()" style="cursor:pointer; color:gray; margin-top:20px;">Отмена</p>
+    </div>
 </div>
 
 <script>
@@ -106,42 +166,59 @@
         { id: "p10", name: {ru:"Кейк-попс", fi:"Kakkutikkari", en:"Cake Pop"}, price: 2.50, img: "cake-pops.jpg" }
     ];
 
+    let cart = {};
+    let tempItem = null;
     let currentLang = localStorage.getItem('uliLang') || 'ru';
 
     const translations = {
         ru: {
             page_title: "Витрина на выходные | UliBakery",
             v_title: "Витрина на выходные",
-            back_btn: "← На главную"
+            c_title: "Ваша корзина",
+            total: "Итого",
+            send: "ОТПРАВИТЬ ЗАКАЗ",
+            back: "← На главную",
+            email: "Ваш Email"
         },
         fi: {
             page_title: "Viikonlopun vitriini | UliBakery",
             v_title: "Viikonlopun vitriini",
-            back_btn: "← Etusivulle"
+            c_title: "Ostoskori",
+            total: "Yhteensä",
+            send: "LÄHETÄ TILAUS",
+            back: "← Etusivulle",
+            email: "Sähköpostisi"
         },
         en: {
             page_title: "Weekend Showcase | UliBakery",
             v_title: "Weekend Showcase",
-            back_btn: "← Back Home"
+            c_title: "Your Cart",
+            total: "Total",
+            send: "SEND ORDER",
+            back: "← Back Home",
+            email: "Your Email"
         }
     };
 
     function setLang(lang) {
         currentLang = lang;
         localStorage.setItem('uliLang', lang);
-
         const t = translations[lang];
 
         document.title = t.page_title;
         document.getElementById('v_title').innerText = t.v_title;
-        document.getElementById('back_btn').innerText = t.back_btn;
+        document.getElementById('c_title').innerText = t.c_title;
+        document.getElementById('c_total_label').innerText = t.total;
+        document.getElementById('btn_send').innerText = t.send;
+        document.getElementById('back_btn').innerText = t.back;
+        document.getElementById('f_email').placeholder = t.email;
 
-        // Подсвечиваем активную кнопку
         document.querySelectorAll('.lang button').forEach(btn => {
             btn.classList.toggle('active', btn.id === `btn-${lang}`);
         });
 
         renderProducts();
+        updateCartUI();
     }
 
     function renderProducts() {
@@ -150,6 +227,7 @@
         products.forEach(p => {
             const card = document.createElement('div');
             card.className = 'product-card';
+            card.onclick = () => openModal(p);
             card.innerHTML = `
                 <img src="${p.img}" onerror="this.src='https://via.placeholder.com/300x200?text=${p.name.ru}'">
                 <h3>${p.name[currentLang]}</h3>
@@ -159,7 +237,91 @@
         });
     }
 
-    // Запуск при загрузке
+    function openModal(p) {
+        tempItem = { ...p, qty: 1 };
+        document.getElementById('m_name').innerText = p.name[currentLang];
+        document.getElementById('m_qty').innerText = 1;
+        document.getElementById('modal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('modal').style.display = 'none';
+    }
+
+    function changeQty(d) {
+        tempItem.qty = Math.max(1, tempItem.qty + d);
+        document.getElementById('m_qty').innerText = tempItem.qty;
+    }
+
+    function addToCart() {
+        if (cart[tempItem.id]) {
+            cart[tempItem.id].qty += tempItem.qty;
+        } else {
+            cart[tempItem.id] = { ...tempItem };
+        }
+        closeModal();
+        updateCartUI();
+    }
+
+    function updateQtyInCart(id, d) {
+        if (cart[id]) {
+            cart[id].qty += d;
+            if (cart[id].qty <= 0) delete cart[id];
+            updateCartUI();
+        }
+    }
+
+    function updateCartUI() {
+        const container = document.getElementById('cart_items');
+        container.innerHTML = '';
+        let total = 0;
+        let summary = "";
+
+        for (let id in cart) {
+            const item = cart[id];
+            const sum = item.price * item.qty;
+            total += sum;
+            summary += `${item.name[currentLang]} × ${item.qty} шт (${sum.toFixed(2)} €)\n`;
+
+            container.innerHTML += `
+                <div class="cart-item">
+                    <span><b>${item.name[currentLang]}</b></span>
+                    <div class="qty-controls">
+                        <button type="button" class="qty-btn" onclick="updateQtyInCart('${id}', -1)">−</button>
+                        <b>${item.qty}</b>
+                        <button type="button" class="qty-btn" onclick="updateQtyInCart('${id}', 1)">+</button>
+                    </div>
+                    <span>${sum.toFixed(2)} €</span>
+                </div>`;
+        }
+
+        document.getElementById('total_price').innerText = total.toFixed(2);
+        document.getElementById('hiddenOrder').value = summary || "Корзина пуста";
+        document.getElementById('hiddenTotal').value = total.toFixed(2) + " €";
+    }
+
+    function submitOrder() {
+        if (Object.keys(cart).length === 0) {
+            alert(currentLang === 'ru' ? "Корзина пуста!" : currentLang === 'fi' ? "Ostoskori on tyhjä!" : "Cart is empty!");
+            return;
+        }
+
+        const formData = new FormData(document.getElementById('orderForm'));
+        formData.append("_subject", "Новый заказ с витрины на выходные!");
+
+        fetch("https://formspree.io/f/mjgapyny", {
+            method: "POST",
+            body: formData,
+            headers: { "Accept": "application/json" }
+        })
+        .then(() => {
+            window.location.href = "thankyou.html";
+        })
+        .catch(() => {
+            alert("Ошибка отправки. Попробуйте ещё раз.");
+        });
+    }
+
     window.onload = () => {
         setLang(currentLang);
     };
