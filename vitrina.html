@@ -3,290 +3,225 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="title">Витрина на выходные | UliBakery</title>
+    <title>Витрина | UliBakery</title>
     <style>
-        :root {
-            --pink: #ff6f91;
-            --light-pink: #fff0f5;
-        }
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background: #fff6f8;
-            color: #5d4037;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .header {
-            text-align: center;
-            padding: 30px 0;
-            background: linear-gradient(to right, #ff6f91, #ffb2c1);
-            color: white;
-            border-radius: 0 0 30px 30px;
-            margin-bottom: 30px;
-        }
-        .header h1 {
-            margin: 0;
-            font-size: 36px;
-        }
-        .header p {
-            margin: 8px 0 0;
-            font-size: 18px;
-            opacity: 0.95;
+        /* Розовый фон в горошек */
+        body { 
+            margin: 0; font-family: 'Segoe UI', sans-serif; color: #5d4037; 
+            background-color: #fff6f8;
+            background-image: radial-gradient(#fbc2eb 15%, transparent 15%);
+            background-size: 25px 25px;
+            background-attachment: fixed;
         }
 
-        /* Фон в белый горошек */
-        .showcase {
-            background: var(--light-pink);
-            background-image: 
-                radial-gradient(circle, #ffffff 15%, transparent 15%);
-            background-size: 35px 35px;
-            padding: 40px 20px;
-            border-radius: 25px;
-            box-shadow: 0 10px 30px rgba(255,111,145,0.25);
+        /* Шапка: адаптивная под телефон */
+        .top-bar { 
+            background: rgba(255, 255, 255, 0.98); 
+            padding: 10px 15px; 
+            display: flex; justify-content: space-between; align-items: center; 
+            border-bottom: 1px solid #fce4ec; position: sticky; top: 0; z-index: 1000; 
+        }
+        .back-link { text-decoration: none; font-weight: bold; color: #ff6f91; font-size: 14px; }
+
+        .lang { display: flex; gap: 4px; }
+        .lang button { 
+            background: #fff; border: 1px solid #ffb2c1; padding: 6px 8px; 
+            border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;
+        }
+        .lang button.active { background: #ff6f91; color: white; border-color: #ff6f91; }
+
+        .container { max-width: 1200px; margin: 20px auto; padding: 0 15px; box-sizing: border-box; }
+        
+        h1 { text-align: center; color: #ff6f91; font-family: 'Georgia', serif; font-size: 26px; margin-bottom: 30px; }
+
+        /* Сетка товаров: на мобильных 1-2 колонки, на ПК - много */
+        .products-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); 
+            gap: 15px; 
         }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 25px;
+        /* Карточка товара */
+        .product-card { 
+            background: white; border-radius: 20px; padding: 12px; text-align: center; 
+            box-shadow: 0 8px 15px rgba(251, 194, 235, 0.3); border: 1px solid #fce4ec;
+        }
+        .product-card img { width: 100%; height: 140px; object-fit: cover; border-radius: 15px; }
+        .product-card h3 { margin: 8px 0; font-size: 15px; height: 36px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .price { color: #ff6f91; font-weight: bold; font-size: 17px; margin-bottom: 10px; display: block; }
+        .add-btn { background: #ff6f91; color: white; border: none; padding: 10px; border-radius: 12px; cursor: pointer; font-weight: bold; width: 100%; font-size: 14px; }
+
+        /* Корзина */
+        .cart-section { 
+            margin-top: 40px; background: white; padding: 20px; 
+            border-radius: 25px; border: 2px solid #fbc2eb; 
+        }
+        .cart-item { 
+            display: flex; flex-direction: column; gap: 8px; padding: 12px 0; border-bottom: 1px dashed #fce4ec; 
+        }
+        /* В корзине на мобиле: название сверху, управление снизу */
+        .cart-row-bottom { display: flex; justify-content: space-between; align-items: center; }
+        
+        .qty-controls { display: flex; align-items: center; gap: 12px; }
+        .qty-btn { 
+            background: #ff6f91; color: white; border: none; 
+            width: 34px; height: 34px; border-radius: 50%; cursor: pointer; font-weight: bold; font-size: 18px;
         }
 
-        .card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(251,194,235,0.3);
-            transition: all 0.3s;
-            text-align: center;
-            padding-bottom: 15px;
-        }
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(255,111,145,0.35);
-        }
-        .card img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-        }
-        .card h3 {
-            margin: 15px 0 5px;
-            font-size: 18px;
-        }
-        .card .price {
-            background: #ff6f91;
-            color: white;
-            display: inline-block;
-            padding: 6px 18px;
-            border-radius: 30px;
-            font-weight: bold;
-            font-size: 17px;
-        }
+        .input-field { width: 100%; padding: 14px; margin: 15px 0; border: 2px solid #fce4ec; border-radius: 12px; font-size: 16px; box-sizing: border-box; }
+        .submit-btn { width: 100%; padding: 16px; background: #25D366; color: white; border: none; border-radius: 15px; font-size: 18px; font-weight: bold; cursor: pointer; }
 
-        .cart {
-            margin: 40px 0;
-            padding: 25px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 8px 25px rgba(251,194,235,0.25);
-        }
-
-        .back-btn {
-            display: inline-block;
-            margin: 20px 0;
-            padding: 12px 28px;
-            background: #ff6f91;
-            color: white;
-            text-decoration: none;
-            border-radius: 40px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-        .back-btn:hover {
-            background: #ff8fab;
-            transform: scale(1.05);
-        }
-
-        .send-btn {
-            width: 100%;
-            padding: 16px;
-            background: #25D366;
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 19px;
-            cursor: pointer;
-            margin-top: 15px;
-        }
-
-        @media (max-width: 600px) {
-            .grid {
-                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-                gap: 18px;
-            }
-            .card img { height: 180px; }
-        }
+        /* Модальное окно */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; }
+        .modal-content { background: white; padding: 25px; border-radius: 25px; width: 100%; max-width: 320px; text-align: center; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- Header -->
-        <div class="header">
-            <h1 id="title">Витрина на выходные</h1>
-            <p id="subtitle">Свежие десерты • Выдача: Пт 15:00–18:00 | Сб 10:00–14:00</p>
-        </div>
-
-        <!-- Кнопка назад -->
-        <a href="index.html" class="back-btn" id="back_btn">← На главную</a>
-
-        <!-- Витрина -->
-        <div class="showcase">
-            <div class="grid" id="grid"></div>
-        </div>
-
-        <!-- Корзина -->
-        <div class="cart">
-            <h3 id="cart_title">Ваша корзина</h3>
-            <div id="cart-items"></div>
-            <p id="total" style="font-size:20px; font-weight:bold; margin-top:15px;">Итого: 0 €</p>
-
-            <form id="orderForm" action="https://formspree.io/f/mjgapyny" method="POST">
-                <input type="email" name="email" placeholder="Ваш email" required style="width:100%; padding:12px; margin:15px 0; border:2px solid #fbc2eb; border-radius:10px;">
-                <input type="hidden" name="order" id="hiddenOrder">
-                <input type="hidden" name="total" id="hiddenTotal">
-                <button type="submit" class="send-btn" id="send_btn">✉️ Отправить заказ на почту</button>
-            </form>
-        </div>
+<div class="top-bar">
+    <a href="index.html" class="back-link" id="back_btn">← Главная</a>
+    <div class="lang">
+        <button onclick="setLang('fi')" id="btn-fi">FI</button>
+        <button onclick="setLang('ru')" id="btn-ru">RU</button>
+        <button onclick="setLang('en')" id="btn-en">EN</button>
     </div>
+</div>
 
-    <script>
-        const translations = {
-            ru: {
-                title: "Витрина на выходные",
-                subtitle: "Свежие десерты • Выдача: Пт 15:00–18:00 | Сб 10:00–14:00",
-                cart_title: "Ваша корзина",
-                total: "Итого: ",
-                back: "← На главную",
-                send: "✉️ Отправить заказ на почту",
-                empty: "Корзина пуста"
-            },
-            en: {
-                title: "Weekend Showcase",
-                subtitle: "Fresh desserts • Pickup: Fri 15:00–18:00 | Sat 10:00–14:00",
-                cart_title: "Your cart",
-                total: "Total: ",
-                back: "← Back to home",
-                send: "✉️ Send order by email",
-                empty: "Cart is empty"
-            },
-            fi: {
-                title: "Viikonloppu Vitriini",
-                subtitle: "Tuoreet jälkiruoat • Nouto: pe 15–18 | la 10–14",
-                cart_title: "Ostoskori",
-                total: "Yhteensä: ",
-                back: "← Takaisin etusivulle",
-                send: "✉️ Lähetä tilaus sähköpostilla",
-                empty: "Kori on tyhjä"
-            }
-        };
+<div class="container">
+    <h1 id="v_title">Витрина на выходные</h1>
+    <div class="products-grid" id="products_grid"></div>
 
-        const products = [
-            { id: "budapest", name: {ru:"Budapest", fi:"Budapest", en:"Budapest"}, price: 4.50, img: "budapest.jpg" },
-            { id: "vanilja",  name: {ru:"Vanilja", fi:"Vanilja", en:"Vanilla"}, price: 4.50, img: "vanilja.jpg" },
-            { id: "mansikka", name: {ru:"Mansikkakakku", fi:"Mansikkakermakakku", en:"Strawberry Cake"}, price: 3.80, img: "mansikkakakermakakku.jpg" },
-            { id: "mohito",   name: {ru:"Mohito-lime", fi:"Mohito-lime", en:"Mohito-lime"}, price: 6.30, img: "mohitolime.jpg" },
-            { id: "vohveli",  name: {ru:"Vohveli", fi:"Vohveli", en:"Waffle"}, price: 3.50, img: "vohveli.jpg" },
-            { id: "napoleon", name: {ru:"Napoleon", fi:"Napoleon", en:"Napoleon"}, price: 4.50, img: "napoleon.jpg" },
-            { id: "redvelvet",name: {ru:"Red Velvet", fi:"Red Velvet", en:"Red Velvet"}, price: 6.30, img: "red-velvet.jpg" },
-            { id: "suklaa",   name: {ru:"Suklaakakku", fi:"Suklaakakku", en:"Chocolate Cake"}, price: 6.50, img: "sukla.jpg" }
-        ];
+    <div class="cart-section">
+        <h2 id="c_title" style="margin-top:0;">Ваша корзина</h2>
+        <div id="cart_items"></div>
+        <div style="margin-top: 20px; font-size: 20px; font-weight: bold; text-align: right;">
+            <span id="c_total_label">Итого</span>: <span id="total_price">0.00</span> €
+        </div>
 
-        let cart = {};
-        let currentLang = 'ru';
+        <form id="orderForm" action="https://formspree.io" method="POST">
+            <input type="email" name="Email" class="input-field" placeholder="Ваш Email" required id="f_email">
+            <input type="hidden" name="Заказ" id="hiddenOrder">
+            <input type="hidden" name="Итого" id="hiddenTotal">
+            <button type="submit" class="submit-btn" id="btn_send">ОТПРАВИТЬ ЗАКАЗ</button>
+        </form>
+    </div>
+</div>
 
-        function setLang(lang) {
-            currentLang = lang;
-            document.querySelectorAll('.lang button').forEach(btn => {
-                btn.classList.toggle('active', btn.id === `btn-${lang}`);
-            });
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <h3 id="m_name" style="color:#ff6f91; margin-top:0;"></h3>
+        <div style="margin: 25px 0; display: flex; justify-content: center; align-items: center; gap: 20px;">
+            <button onclick="changeQty(-1)" class="qty-btn">-</button>
+            <b id="m_qty" style="font-size: 22px;">1</b>
+            <button onclick="changeQty(1)" class="qty-btn">+</button>
+        </div>
+        <button onclick="addToCart()" class="submit-btn" style="background:#ff6f91; font-size:16px;">Добавить</button>
+        <p onclick="closeModal()" style="cursor:pointer; color:gray; margin-top:15px; font-size:14px;">Отмена</p>
+    </div>
+</div>
 
-            document.getElementById('title').innerText = translations[lang].title;
-            document.getElementById('subtitle').innerText = translations[lang].subtitle;
-            document.getElementById('cart_title').innerText = translations[lang].cart_title;
-            document.getElementById('back_btn').innerText = translations[lang].back;
-            document.getElementById('send_btn').innerText = translations[lang].send;
+<script>
+    const products = [
+        { id: "p1", name: {ru:"Будапешт", fi:"Budapest", en:"Budapest"}, price: 4.50, img: "budapest.jpg" },
+        { id: "p2", name: {ru:"Ваниль", fi:"Vanilja", en:"Vanilla"}, price: 4.50, img: "vanilja.jpg" },
+        { id: "p3", name: {ru:"Клубничный торт", fi:"Mansikkakakku", en:"Strawberry"}, price: 3.80, img: "mansikkakermakakku.jpg" },
+        { id: "p4", name: {ru:"Мохито-лайм", fi:"Mohito-lime", en:"Mohito-lime"}, price: 6.30, img: "mohitolime.jpg" },
+        { id: "p5", name: {ru:"Вафля", fi:"Vohveli", en:"Waffle"}, price: 3.50, img: "vohveli.jpg" },
+        { id: "p6", name: {ru:"Наполеон", fi:"Napoleon", en:"Napoleon"}, price: 4.50, img: "napoleon.jpg" },
+        { id: "p7", name: {ru:"Красный бархат", fi:"Red Velvet", en:"Red Velvet"}, price: 6.30, img: "red-velvet.jpg" },
+        { id: "p8", name: {ru:"Шоколадный торт", fi:"Suklaakakku", en:"Chocolate"}, price: 6.50, img: "sukla.jpg" },
+        { id: "p9", name: {ru:"Орешки со сгущенкой", fi:"Pähkinät kinuskilla", en:"Nuts with milk"}, price: 1.50, img: "keksi.jpg" },
+        { id: "p10", name: {ru:"Кейк-попс", fi:"Kakkutikkari", en:"Cake Pop"}, price: 2.50, img: "cake-pops.jpg" }
+    ];
 
-            renderProducts();
-            updateCart();
-        }
+    let currentLang = localStorage.getItem('uliLang') || 'ru';
+    let cart = {};
+    let tempItem = null;
 
-        function renderProducts() {
-            const grid = document.getElementById('grid');
-            grid.innerHTML = '';
+    const ui = {
+        ru: { title: "Витрина на выходные", cart: "Ваша корзина", total: "Итого", send: "ОТПРАВИТЬ ЗАКАЗ", back: "← Главная", add: "В корзину", success: "Заказ отправлен!", email: "Ваш Email" },
+        fi: { title: "Viikonlopun vitriini", cart: "Ostoskori", total: "Yhteensä", send: "LÄHETÄ TILAUS", back: "← Etusivulle", add: "Ostoskoriin", success: "Tilaus lähetetty!", email: "Sähköpostisi" },
+        en: { title: "Weekend Showcase", cart: "Your Cart", total: "Total", send: "SEND ORDER", back: "← Back Home", add: "To Cart", success: "Order sent!", email: "Your Email" }
+    };
 
-            products.forEach(p => {
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.innerHTML = `
-                    <img src="${p.img}" alt="${p.name[currentLang]}" onerror="this.src='https://via.placeholder.com/220x220/ffe4f0/5d4037?text=Фото'">
-                    <h3>${p.name[currentLang]}</h3>
-                    <div class="price">${p.price.toFixed(2)} €</div>
-                `;
-                card.onclick = () => addToCart(p);
-                grid.appendChild(card);
-            });
-        }
+    function setLang(lang) {
+        currentLang = lang;
+        localStorage.setItem('uliLang', lang);
+        document.getElementById('v_title').innerText = ui[lang].title;
+        document.getElementById('c_title').innerText = ui[lang].cart;
+        document.getElementById('c_total_label').innerText = ui[lang].total;
+        document.getElementById('btn_send').innerText = ui[lang].send;
+        document.getElementById('back_btn').innerText = ui[lang].back;
+        document.getElementById('f_email').placeholder = ui[lang].email;
+        document.querySelectorAll('.lang button').forEach(b => b.classList.toggle('active', b.id === 'btn-'+lang));
+        renderProducts();
+        updateCartUI();
+    }
 
-        function addToCart(p) {
-            if (!cart[p.id]) cart[p.id] = {...p, qty: 0};
-            cart[p.id].qty++;
-            updateCart();
-        }
-
-        function updateCart() {
-            const itemsDiv = document.getElementById('cart-items');
-            itemsDiv.innerHTML = '';
-            let total = 0;
-            let orderText = '';
-
-            for (let id in cart) {
-                const item = cart[id];
-                const sum = item.qty * item.price;
-                total += sum;
-                orderText += `${item.name[currentLang]} x${item.qty} (${sum.toFixed(2)}€); `;
-
-                const div = document.createElement('div');
-                div.style.margin = '10px 0';
-                div.innerHTML = `
-                    ${item.name[currentLang]} × ${item.qty} 
-                    <strong>(${sum.toFixed(2)} €)</strong>
-                `;
-                itemsDiv.appendChild(div);
-            }
-
-            document.getElementById('total').innerText = `${translations[currentLang].total}${total.toFixed(2)} €`;
-            document.getElementById('hiddenOrder').value = orderText;
-            document.getElementById('hiddenTotal').value = total.toFixed(2) + ' €';
-        }
-
-        // Форма отправки (оставляем твою логику с редиректом)
-        document.getElementById('orderForm').addEventListener('submit', function(e) {
-            if (Object.keys(cart).length === 0) {
-                e.preventDefault();
-                alert(currentLang === 'ru' ? 'Добавьте хотя бы один товар в корзину' : 
-                      currentLang === 'en' ? 'Please add at least one item' : 'Lisää ainakin yksi tuote');
-            }
+    function renderProducts() {
+        const grid = document.getElementById('products_grid');
+        grid.innerHTML = '';
+        products.forEach(p => {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.onclick = () => openModal(p);
+            card.innerHTML = `<img src="${p.img}" onerror="this.src='https://via.placeholder.com'"><h3>${p.name[currentLang]}</h3><span class="price">${p.price.toFixed(2)} €</span><button class="add-btn">${ui[currentLang].add}</button>`;
+            grid.appendChild(card);
         });
+    }
 
-        // Инициализация
-        window.onload = () => {
-            setLang('ru');
-        };
-    </script>
+    function openModal(p) {
+        tempItem = {...p, qty: 1};
+        document.getElementById('m_name').innerText = p.name[currentLang];
+        document.getElementById('m_qty').innerText = 1;
+        document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() { document.getElementById('modal').style.display = 'none'; }
+    function changeQty(d) { tempItem.qty = Math.max(1, tempItem.qty + d); document.getElementById('m_qty').innerText = tempItem.qty; }
+
+    function addToCart() {
+        if(cart[tempItem.id]) cart[tempItem.id].qty += tempItem.qty;
+        else cart[tempItem.id] = {...tempItem};
+        closeModal();
+        updateCartUI();
+    }
+
+    function updateQtyInCart(id, d) {
+        cart[id].qty += d;
+        if(cart[id].qty <= 0) delete cart[id];
+        updateCartUI();
+    }
+
+    function updateCartUI() {
+        const container = document.getElementById('cart_items');
+        container.innerHTML = '';
+        let total = 0;
+        let summary = "";
+        for(let id in cart) {
+            const item = cart[id];
+            let sum = item.price * item.qty;
+            total += sum;
+            summary += `${item.name[currentLang]} x${item.qty}; `;
+            container.innerHTML += `<div class="cart-item"><span><b>${item.name[currentLang]}</b></span><div class="cart-row-bottom"><span>${sum.toFixed(2)}€</span><div class="qty-controls"><button class="qty-btn" onclick="updateQtyInCart('${id}', -1)">-</button><b>${item.qty}</b><button class="qty-btn" onclick="updateQtyInCart('${id}', 1)">+</button></div></div></div>`;
+        }
+        document.getElementById('total_price').innerText = total.toFixed(2);
+        document.getElementById('hiddenOrder').value = summary;
+        document.getElementById('hiddenTotal').value = total.toFixed(2) + " €";
+    }
+
+    document.getElementById('orderForm').onsubmit = async function(e) {
+        e.preventDefault();
+        if (Object.keys(cart).length === 0) return alert("Корзина пуста!");
+        const btn = document.getElementById('btn_send');
+        btn.disabled = true; btn.innerText = "...";
+        try {
+            const response = await fetch(this.action, { method: "POST", body: new FormData(this), headers: { 'Accept': 'application/json' } });
+            if (response.ok) { alert(ui[currentLang].success); cart = {}; updateCartUI(); this.reset(); }
+        } catch (e) { alert("Error!"); }
+        finally { btn.disabled = false; setLang(currentLang); }
+    };
+
+    window.onload = () => setLang(currentLang);
+</script>
 </body>
 </html>
