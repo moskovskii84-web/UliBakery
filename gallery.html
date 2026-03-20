@@ -3,78 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Галерея тортов | UliBakery</title>
+    <title id="page_title">Галерея тортов | UliBakery</title>
     <style>
         body { margin:0; font-family: 'Segoe UI', Arial, sans-serif; background:#fff6f8; color:#333; text-align: center; scroll-behavior: smooth; }
-        
+       
         /* Навигация */
-        header { background: rgba(255, 250, 250, 0.95); padding: 20px 0; border-bottom: 2px solid #fbc2eb; position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(5px); }
-        
+        header { 
+            background: rgba(255, 250, 250, 0.95); 
+            padding: 20px 0; 
+            border-bottom: 2px solid #fbc2eb; 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            backdrop-filter: blur(5px); 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 15px 30px; 
+        }
+       
         /* Кнопка Назад */
-        .back-btn { 
-            display: inline-block; 
-            background: #5d4037; 
-            color: white; 
-            padding: 12px 25px; 
-            border-radius: 50px; 
-            text-decoration: none; 
-            font-weight: bold; 
-            font-size: 16px; 
-            margin-bottom: 15px; 
+        .back-btn {
+            display: inline-block;
+            background: #5d4037;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
             transition: 0.3s;
             box-shadow: 0 4px 10px rgba(93, 64, 55, 0.2);
         }
         .back-btn:hover { background: #ff6f91; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(255, 111, 145, 0.3); }
 
         /* Языки */
-        .lang button { background:#fff; border:1px solid #ffb2c1; padding: 6px 12px; border-radius: 8px; cursor:pointer; font-weight:bold; margin: 0 3px; color: #333; transition: 0.2s; }
+        .lang button { 
+            background:#fff; 
+            border:1px solid #ffb2c1; 
+            padding: 6px 12px; 
+            border-radius: 8px; 
+            cursor:pointer; 
+            font-weight:bold; 
+            margin: 0 3px; 
+            color: #333; 
+            transition: 0.2s; 
+        }
         .lang button:hover { background: #fbc2eb; color: white; }
 
-        .section-title { color: #ff6f91; font-family: 'Georgia', serif; font-size: 28px; margin-top: 50px; letter-spacing: 1px; }
-        
-        /* Сетка */
-        .gallery-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); 
-            gap: 15px; 
-            max-width: 1200px; 
-            margin: 20px auto; 
-            padding: 0 20px; 
+        .section-title { 
+            color: #ff6f91; 
+            font-family: 'Georgia', serif; 
+            font-size: 28px; 
+            margin-top: 50px; 
+            letter-spacing: 1px; 
         }
-        .work-card { 
-            background: #fff; 
-            border-radius: 15px; 
-            overflow: hidden; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
-            border: 1px solid #fce4ec; 
+       
+        /* Сетка */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        .work-card {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border: 1px solid #fce4ec;
             transition: 0.3s;
             animation: fadeIn 0.8s ease forwards;
             opacity: 0;
         }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
         .work-card:hover { transform: scale(1.03); box-shadow: 0 10px 20px rgba(251, 194, 235, 0.4); }
-        
+       
         .img-container { width: 100%; height: 240px; overflow: hidden; cursor: zoom-in; background: #fff0f3; }
         .img-container img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        
+       
         /* Просмотр фото */
-        #fullView { 
-            display: none; 
-            position: fixed; 
-            top: 0; left: 0; 
-            width: 100%; height: 100%; 
-            background: rgba(0,0,0,0.9); 
-            z-index: 10000; 
-            justify-content: center; 
-            align-items: center; 
+        #fullView {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
             cursor: pointer;
             backdrop-filter: blur(10px);
             animation: zoomIn 0.3s ease;
         }
         @keyframes zoomIn { from { opacity: 0; } to { opacity: 1; } }
         #fullImg { max-width: 90%; max-height: 85%; border-radius: 8px; border: 3px solid white; }
-        
+       
         footer { background:#fbc2eb; padding: 40px; margin-top: 80px; color: #5d4037; font-weight: bold; }
     </style>
 </head>
@@ -100,20 +126,24 @@
 <footer><p id="footer_text">© 2026 UliBakery | Галерея работ</p></footer>
 
 <script>
-const texts = {
+// Массив переводов для этой страницы
+const translations = {
     ru: {
+        page_title: "Галерея тортов | UliBakery",
         btn_back: "← ВЕРНУТЬСЯ НА ГЛАВНУЮ",
         title_wedding: "СВАДЕБНЫЕ ТОРТЫ",
         title_kids: "ДЕТСКИЕ ТОРТЫ",
         footer_text: "© 2026 UliBakery | Галерея работ"
     },
     fi: {
+        page_title: "Kakkugalleria | UliBakery",
         btn_back: "← PALAA ETUSIVULLE",
         title_wedding: "HÄÄKAKUT",
         title_kids: "LASTEN KAKUT",
         footer_text: "© 2026 UliBakery | Galleria"
     },
     en: {
+        page_title: "Cake Gallery | UliBakery",
         btn_back: "← BACK TO HOME",
         title_wedding: "WEDDING CAKES",
         title_kids: "KIDS CAKES",
@@ -122,26 +152,35 @@ const texts = {
 };
 
 function setLang(lang) {
-    Object.keys(texts[lang]).forEach(id => {
-        const element = document.getElementById(id);
-        if (element) element.innerText = texts[lang][id];
-    });
+    localStorage.setItem('uliLang', lang);
+    const t = translations[lang];
+
+    // Меняем все элементы
+    document.getElementById('page_title').innerText = t.page_title;
+    document.getElementById('btn_back').innerText = t.btn_back;
+    document.getElementById('title_wedding').innerText = t.title_wedding;
+    document.getElementById('title_kids').innerText = t.title_kids;
+    document.getElementById('footer_text').innerText = t.footer_text;
+
+    // Меняем lang атрибут html
+    document.documentElement.lang = lang;
 }
 
+// Создание карточек (остаётся без изменений)
 function createCards(containerId, prefix, count) {
     const grid = document.getElementById(containerId);
     let html = '';
     for (let i = 1; i <= count; i++) {
-        const delay = (i % 10) * 0.1; 
+        const delay = (i % 10) * 0.1;
         html += `
             <div class="work-card" style="animation-delay: ${delay}s">
                 <div class="img-container">
-                    <img src="${prefix}${i}.jpg" 
-                         onerror="this.onerror=null; 
-                                  if(this.src.includes('.jpg')) this.src='${prefix}${i}.JPG'; 
-                                  else if(this.src.includes('.JPG')) this.src='${prefix}${i}.jpeg'; 
-                                  else this.src='logo.jpg';" 
-                         onclick="openFull(this.src)" 
+                    <img src="${prefix}${i}.jpg"
+                         onerror="this.onerror=null;
+                                  if(this.src.includes('.jpg')) this.src='${prefix}${i}.JPG';
+                                  else if(this.src.includes('.JPG')) this.src='${prefix}${i}.jpeg';
+                                  else this.src='logo.jpg';"
+                         onclick="openFull(this.src)"
                          loading="lazy"
                          alt="Cake">
                 </div>
@@ -150,14 +189,22 @@ function createCards(containerId, prefix, count) {
     grid.innerHTML = html;
 }
 
-function openFull(src) { 
+function openFull(src) {
     const fullImg = document.getElementById('fullImg');
-    fullImg.src = src; 
-    document.getElementById('fullView').style.display = 'flex'; 
+    fullImg.src = src;
+    document.getElementById('fullView').style.display = 'flex';
 }
 
-// Запуск: теперь свадебных тортов (work) 12 штук
-createCards('weddingGrid', 'work', 12); 
-createCards('kidsGrid', 'kids', 45);
-setLang('ru');
+// При загрузке страницы
+window.onload = function() {
+    const savedLang = localStorage.getItem('uliLang') || 'ru';
+    setLang(savedLang);
+
+    // Генерируем карточки после загрузки языка (не зависит от языка)
+    createCards('weddingGrid', 'work', 12);
+    createCards('kidsGrid', 'kids', 45);
+};
 </script>
+
+</body>
+</html>
