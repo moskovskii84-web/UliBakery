@@ -6,247 +6,62 @@
     <title>UliBakery | Профессиональная кондитерская студия</title>
     <meta name="description" content="Эксклюзивные торты на заказ в Вантаа и Хельсинки. Свадебные, детские и праздничные десерты в UliBakery.">
     <style>
-        body { 
-            margin: 0; 
-            font-family: 'Segoe UI', sans-serif; 
-            color: #5d4037; 
-            background-color: #fff6f8; 
-            background-image: radial-gradient(#fbc2eb 12%, transparent 12%); 
-            background-size: 35px 35px; 
-            background-attachment: fixed; 
-            overflow-x: hidden; 
+        /* весь твой старый CSS остаётся без изменений */
+        /* ... копируй отсюда свой старый <style> ... */
+        
+        /* добавь это в конец <style>, чтобы описание выглядело красиво */
+        .welcome-text {
+            font-size: 20px;
+            margin: 15px 0 40px;
+            color: #6d4c41;
+            line-height: 1.5;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
-        .floating-sweet { 
-            position: fixed; 
-            font-size: 35px; 
-            opacity: 0.25; 
-            z-index: 1; 
-            pointer-events: none; 
-            will-change: transform; 
-        }
-        .sweet-1 { 
-            animation: bounceX1 13s linear infinite alternate, bounceY1 8s linear infinite alternate; 
-        }
-        .sweet-2 { 
-            animation: bounceX2 17s linear infinite alternate, bounceY2 10s linear infinite alternate; 
-        }
-        @keyframes bounceX1 { from { left: 0; } to { left: calc(100vw - 50px); } }
-        @keyframes bounceX2 { from { left: calc(100vw - 50px); } to { left: 0; } }
-        @keyframes bounceY1 { from { top: 0; } to { top: calc(100vh - 50px); } }
-        @keyframes bounceY2 { from { top: calc(100vh - 50px); } to { top: 0; } }
-        .top-bar { 
-            background: #fffafa; 
-            padding: 10px 25px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            border-bottom: 1px solid #fce4ec; 
-            position: relative; 
-            z-index: 10001; 
-        }
-        .social-links { 
-            display: flex; 
-            align-items: center; 
-            gap: 15px; 
-        }
-        .social-links a svg { 
-            width: 26px; 
-            height: 26px; 
-            fill: #ff6f91; 
-            transition: 0.3s; 
-        }
-        .social-links a:hover svg { 
-            transform: scale(1.2); 
-        }
-        .lang button { 
-            background:#fff; 
-            border:1px solid #ffb2c1; 
-            padding: 5px 10px; 
-            border-radius: 6px; 
-            cursor:pointer; 
-            font-weight:bold; 
-            margin-left: 5px; 
-            color: #333; 
-        }
-        .lang button:hover { 
-            background: #fbc2eb; 
-            color: white; 
-        }
-        .content-wrapper { 
-            max-width: 1050px; 
-            margin: 0 auto; 
-            background: rgba(255, 255, 255, 0.98); 
-            box-shadow: 0 0 50px rgba(251, 194, 235, 0.3); 
-            min-height: 100vh; 
-            position: relative; 
-            z-index: 10; 
-            display: flex; 
-            flex-direction: column; 
-        }
-        header { 
-            background: #fffafa; 
-            border-bottom: 2px solid #fbc2eb; 
-            display: flex; 
-            flex-wrap: wrap; 
-            align-items: center; 
-            min-height: 280px; 
-        }
-        .header-left { 
-            flex: 1.4; 
-            min-width: 320px; 
-            height: 280px; 
-            overflow: hidden; 
-        }
-        .header-left img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-        }
-        .header-right { 
-            flex: 0.6; 
-            min-width: 280px; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            padding: 20px; 
-            text-align: center; 
-        }
-        .logo-img { 
-            width: 180px; 
-            height: 180px; 
-            border-radius: 50%; 
-            border: 4px solid #fbc2eb; 
-            margin-bottom: 10px; 
-            object-fit: cover; 
-            animation: breathe 5s ease-in-out infinite; 
-        }
-        @keyframes breathe { 
-            0%, 100% { transform: scale(1); } 
-            50% { transform: scale(1.04); } 
-        }
-        .brand-name { 
-            font-family: 'Georgia', serif; 
-            font-size: 34px; 
-            color: #ff6f91; 
-            font-weight: bold; 
-        }
-        .welcome-section { 
-            padding: 60px 40px; 
-            text-align: center; 
-            flex-grow: 1; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-        }
-        .main-menu-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
-            gap: 20px; 
-            margin: 40px 0; 
-        }
-        .menu-card {
-            background: white;
-            padding: 35px 20px;
-            border-radius: 25px;
-            text-decoration: none;
-            color: #5d4037;
+        .welcome-text a {
+            color: #ff6f91;
+            text-decoration: underline;
             font-weight: bold;
-            font-size: 18px;
-            border: 2px solid #fce4ec;
-            transition: 0.4s;
-            box-shadow: 0 5px 15px rgba(251, 194, 235, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
         }
-        .menu-card:hover { 
-            transform: translateY(-8px); 
-            background: #ff6f91; 
-            color: white; 
-            border-color: #ff6f91; 
-            box-shadow: 0 10px 25px rgba(255, 111, 145, 0.3); 
-        }
-        /* Подсветка для ГАЛЕРЕЯ и ЗАКАЗАТЬ */
-        .menu-card.highlight {
-            background: linear-gradient(135deg, #ff6f91, #ff8fab);
-            color: white;
-            border: 2px solid #ff6f91;
-            box-shadow: 0 10px 25px rgba(255, 111, 145, 0.4);
-            transform: translateY(-5px);
-        }
-        .menu-card.highlight:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 15px 35px rgba(255, 111, 145, 0.5);
-        }
-        footer { 
-            background:#fbc2eb; 
-            padding:30px; 
-            text-align: center; 
-            font-weight: bold; 
-            color: #5d4037; 
+        .welcome-text a:hover {
+            color: #ff1493;
         }
     </style>
 </head>
 <body>
-    <div class="floating-sweet sweet-1">🧁</div>
-    <div class="floating-sweet sweet-2">🍰</div>
+    <!-- плавающие эмодзи, top-bar, header — всё как было -->
 
-    <div class="content-wrapper">
-        <div class="top-bar">
-            <div class="social-links">
-                <a href="https://www.instagram.com/uli_bakery" target="_blank" rel="noopener noreferrer">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                    </svg>
-                </a>
-                <a href="https://www.facebook.com/profile.php?id=61555581029318" target="_blank" rel="noopener noreferrer">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-8.74h-2.94v-3.403h2.94v-2.511c0-2.91 1.777-4.494 4.376-4.494 1.246 0 2.316.092 2.628.134v3.048l-1.805.001c-1.412 0-1.685.671-1.685 1.656v2.167h3.376l-.44 3.403h-2.936v8.741h6.101c.731 0 1.325-.593 1.325-1.324v-21.351c0-.732-.594-1.325-1.325-1.325z"/>
-                    </svg>
-                </a>
-            </div>
-            <div class="lang">
-                <button onclick="setLang('fi')">FI</button>
-                <button onclick="setLang('ru')">RU</button>
-                <button onclick="setLang('en')">EN</button>
-            </div>
+    <section class="welcome-section">
+        <h1 id="w_title">UliBakery — торты, бенто, капкейки и сладости на заказ</h1>
+        
+        <div class="welcome-text" id="welcome_desc">
+            Готовим по собственным рецептам из натуральных ингредиентов.<br>
+            Придумаем дизайн сами или воплотим вашу идею.<br>
+            Вдохновляйтесь в <a href="gallery.html">галерее</a> или закажите вкусные кусочки на выходные в <a href="vitrina.html">витрине</a>!
         </div>
 
-        <header>
-            <div class="header-left"><img src="facade.jpg" alt="UliBakery Exterior"></div>
-            <div class="header-right">
-                <img src="logo.jpg" class="logo-img" alt="UliBakery Logo">
-                <div class="brand-name">UliBakery</div>
-            </div>
-        </header>
+        <div class="main-menu-grid">
+            <a href="gallery.html" class="menu-card highlight" id="m_gallery">
+                <span style="font-size:24px;">📸</span> ГАЛЕРЕЯ
+            </a>
+            <a href="order.html" class="menu-card highlight" id="m_order">
+                <span style="font-size:24px;">🛒</span> ЗАКАЗАТЬ
+            </a>
+            <a href="about.html" class="menu-card" id="m_about">О НАС</a>
+            <a href="reviews.html" class="menu-card" id="m_reviews">ОТЗЫВЫ</a>
+            <a href="contacts.html" class="menu-card" id="m_contacts">КОНТАКТЫ</a>
+            <a href="vitrina.html" class="menu-card" id="m_vitrina">ВИТРИНА НА ВЫХОДНЫЕ</a>
+        </div>
+    </section>
 
-        <section class="welcome-section">
-            <h1 id="w_title">Профессиональная кондитерская</h1>
-            <div class="main-menu-grid">
-                <a href="gallery.html" class="menu-card highlight" id="m_gallery">
-                    <span style="font-size:24px;">📸</span> ГАЛЕРЕЯ
-                </a>
-                <a href="order.html" class="menu-card highlight" id="m_order">
-                    <span style="font-size:24px;">🛒</span> ЗАКАЗАТЬ
-                </a>
-                <a href="about.html" class="menu-card" id="m_about">О НАС</a>
-                <a href="reviews.html" class="menu-card" id="m_reviews">ОТЗЫВЫ</a>
-                <a href="contacts.html" class="menu-card" id="m_contacts">КОНТАКТЫ</a>
-                <a href="vitrina.html" class="menu-card" id="m_vitrina">ВИТРИНА НА ВЫХОДНЫЕ</a>
-            </div>
-        </section>
-
-        <footer id="footer_text">
-            © 2026 UliBakery — С любовью к каждому десерту
-        </footer>
-    </div>
+    <!-- футер -->
 
     <script>
         const translations = {
             ru: {
-                title: "Профессиональная кондитерская",
+                title: "UliBakery — торты, бенто, капкейки и сладости на заказ",
+                welcome_desc: "Готовим по собственным рецептам из натуральных ингредиентов.\nПридумаем дизайн сами или воплотим вашу идею.\nВдохновляйтесь в галерее или закажите вкусные кусочки на выходные в витрине!",
                 m_gallery: "ГАЛЕРЕЯ",
                 m_order: "ЗАКАЗАТЬ",
                 m_about: "О НАС",
@@ -256,7 +71,8 @@
                 footer: "© 2026 UliBakery — С любовью к каждому десерту"
             },
             fi: {
-                title: "Ammattimainen konditoria",
+                title: "UliBakery – tilauskakut, bentot, kuppikakut ja makeiset",
+                welcome_desc: "Valmistamme omilla resepteillä luonnollisista raaka-aineista.\nSuunnittelemme koristeet itse tai toteutamme sinun ideasi.\nInspiraatiota saat galleriasta tai tilaa herkullisia paloja viikonlopuksi näytteille!",
                 m_gallery: "GALLERIA",
                 m_order: "TILAA",
                 m_about: "MEISTÄ",
@@ -266,7 +82,8 @@
                 footer: "© 2026 UliBakery — Rakkaudella jokaiseen leivonnaiseen"
             },
             en: {
-                title: "Professional Pastry Studio",
+                title: "UliBakery – custom cakes, bentos, cupcakes & sweets",
+                welcome_desc: "We bake using our own recipes with natural ingredients.\nWe create designs ourselves or bring your ideas to life.\nGet inspired in the gallery or order tasty pieces for the weekend from the showcase!",
                 m_gallery: "GALLERY",
                 m_order: "ORDER NOW",
                 m_about: "ABOUT US",
@@ -280,7 +97,18 @@
         function setLang(lang) {
             localStorage.setItem('uliLang', lang);
             const t = translations[lang];
+
             document.getElementById('w_title').innerText = t.title;
+            
+            // Меняем описание (с переносами строк)
+            const descEl = document.getElementById('welcome_desc');
+            descEl.innerHTML = t.welcome_desc
+                .replace(/\n/g, '<br>')          // переносы строк → <br>
+                .replace(/галерее/g, '<a href="gallery.html">галерее</a>')
+                .replace(/витрине/g, '<a href="vitrina.html">витрине</a>')
+                .replace(/gallery/g, '<a href="gallery.html">gallery</a>')
+                .replace(/showcase/g, '<a href="vitrina.html">showcase</a>');
+
             document.getElementById('m_gallery').innerText = t.m_gallery;
             document.getElementById('m_order').innerText = t.m_order;
             document.getElementById('m_about').innerText = t.m_about;
