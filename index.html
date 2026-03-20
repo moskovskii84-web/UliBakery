@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UliBakery | Торты на заказ в Vantaa & Helsinki</title>
-    <meta name="description" content="Эксклюзивные торты ручной работы на заказ в Вантаа и Хельсинки. Свадебные, детские, бенто и авторские десерты с душой.">
+    <meta name="description" content="Эксклюзивные торты ручной работы на заказ в Вантаа и Хельсинки. Свадебные, детские и праздничные десерты с душой.">
     <style>
         body {
             margin: 0;
@@ -16,21 +16,19 @@
             background-attachment: fixed;
             overflow-x: hidden;
         }
-
-        /* Плавающие сладости */
         .floating-sweet {
             position: fixed;
-            font-size: 38px;
-            opacity: 0.22;
+            font-size: 35px;
+            opacity: 0.25;
             z-index: 1;
             pointer-events: none;
         }
-        .sweet-1 { animation: bounceX1 14s linear infinite alternate, bounceY1 9s linear infinite alternate; }
-        .sweet-2 { animation: bounceX2 18s linear infinite alternate, bounceY2 11s linear infinite alternate; }
-        @keyframes bounceX1 { from { left: 0; } to { left: calc(100vw - 60px); } }
-        @keyframes bounceX2 { from { left: calc(100vw - 60px); } to { left: 0; } }
-        @keyframes bounceY1 { from { top: 0; } to { top: calc(100vh - 60px); } }
-        @keyframes bounceY2 { from { top: calc(100vh - 60px); } to { top: 0; } }
+        .sweet-1 { animation: bounceX1 13s linear infinite alternate, bounceY1 8s linear infinite alternate; }
+        .sweet-2 { animation: bounceX2 17s linear infinite alternate, bounceY2 10s linear infinite alternate; }
+        @keyframes bounceX1 { from { left: 0; } to { left: calc(100vw - 50px); } }
+        @keyframes bounceX2 { from { left: calc(100vw - 50px); } to { left: 0; } }
+        @keyframes bounceY1 { from { top: 0; } to { top: calc(100vh - 50px); } }
+        @keyframes bounceY2 { from { top: calc(100vh - 50px); } to { top: 0; } }
 
         .top-bar {
             background: #fffafa;
@@ -44,12 +42,12 @@
         }
         .social-links { display: flex; align-items: center; gap: 15px; }
         .social-links a svg { width: 26px; height: 26px; fill: #ff6f91; transition: 0.3s; }
-        .social-links a:hover svg { transform: scale(1.25); }
+        .social-links a:hover svg { transform: scale(1.2); }
         .lang button {
             background:#fff;
             border:1px solid #ffb2c1;
-            padding: 6px 11px;
-            border-radius: 7px;
+            padding: 5px 10px;
+            border-radius: 6px;
             cursor:pointer;
             font-weight:bold;
             margin-left: 5px;
@@ -108,17 +106,17 @@
         .hero {
             padding: 80px 40px 60px;
             text-align: center;
-            background: linear-gradient(135deg, #fff0f8, #f8f4ff);
+            background: linear-gradient(135deg, #fff0f8, #f8f0ff);
         }
         .hero h1 {
             font-family: 'Georgia', serif;
-            font-size: 42px;
+            font-size: 41px;
             color: #ff6f91;
             line-height: 1.15;
-            margin-bottom: 18px;
+            margin-bottom: 16px;
         }
         .hero p {
-            font-size: 20px;
+            font-size: 19.5px;
             max-width: 720px;
             margin: 0 auto 35px;
             color: #5d4037;
@@ -127,8 +125,8 @@
             display: inline-block;
             background: #ff6f91;
             color: white;
-            padding: 18px 48px;
-            font-size: 21px;
+            padding: 17px 48px;
+            font-size: 20px;
             font-weight: bold;
             border-radius: 50px;
             text-decoration: none;
@@ -140,7 +138,7 @@
             box-shadow: 0 15px 35px rgba(255,111,145,0.45);
         }
 
-        /* Витрина на выходные */
+        /* Блок Витрины */
         .vitrina-teaser {
             padding: 55px 40px;
             text-align: center;
@@ -149,24 +147,24 @@
         }
         .vitrina-teaser h2 {
             color: #ff6f91;
-            font-size: 27px;
+            font-size: 26px;
             margin-bottom: 12px;
         }
         .vitrina-teaser p {
             font-size: 17.5px;
-            max-width: 660px;
+            max-width: 680px;
             margin: 0 auto 25px;
         }
 
         .main-menu-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 18px;
             margin: 40px 40px;
         }
         .menu-card {
             background: white;
-            padding: 35px 20px;
+            padding: 32px 20px;
             border-radius: 25px;
             text-decoration: none;
             color: #5d4037;
@@ -225,31 +223,24 @@
 
         <!-- Главный продающий блок -->
         <section class="hero">
-            <h1>Торты, которые хочется съесть глазами</h1>
+            <h1 id="hero_title">Торты по уникальному, собственно разработанному рецепту</h1>
             <p>Эксклюзивные торты ручной работы на любой праздник.<br>
                Свадебные, детские, бенто и особенные десерты с душой и вкусом.</p>
-            <a href="order.html" class="hero-btn">Заказать торт</a>
+            
+            <div style="margin: 35px 0; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <a href="order.html" class="hero-btn">Заказать торт</a>
+                <a href="gallery.html" class="hero-btn" style="background: white; color: #ff6f91; border: 2px solid #ff6f91;">Смотреть галерею</a>
+            </div>
         </section>
 
         <!-- Витрина на выходные -->
         <section class="vitrina-teaser">
             <h2>🍰 Витрина на выходные</h2>
-            <p>Хотите вкусного домой без большого торта?<br>
+            <p>Хотите что-то вкусное домой без большого торта?<br>
                <strong>Заказ с воскресенья по среду — выдача в пятницу и субботу</strong></p>
             <a href="vitrina.html" style="display:inline-block; background:#ff9eb8; color:white; padding:14px 38px; border-radius:50px; font-size:18px; font-weight:bold; text-decoration:none;">
                 Посмотреть витрину →
             </a>
-        </section>
-
-        <!-- Основное меню -->
-        <section class="welcome-section">
-            <div class="main-menu-grid">
-                <a href="gallery.html" class="menu-card" id="m_gallery">ГАЛЕРЕЯ</a>
-                <a href="order.html" class="menu-card" id="m_order">ЗАКАЗАТЬ ТОРТ</a>
-                <a href="about.html" class="menu-card" id="m_about">О НАС</a>
-                <a href="reviews.html" class="menu-card" id="m_reviews">ОТЗЫВЫ</a>
-                <a href="contacts.html" class="menu-card" id="m_contacts">КОНТАКТЫ</a>
-            </div>
         </section>
 
         <footer id="footer_text">
@@ -260,30 +251,15 @@
     <script>
         const translations = {
             ru: {
-                title: "Профессиональная кондитерская",
-                m_gallery: "ГАЛЕРЕЯ",
-                m_order: "ЗАКАЗАТЬ ТОРТ",
-                m_about: "О НАС",
-                m_reviews: "ОТЗЫВЫ",
-                m_contacts: "КОНТАКТЫ",
+                hero_title: "Торты по уникальному, собственно разработанному рецепту",
                 footer: "© 2026 UliBakery — С любовью к каждому десерту"
             },
             fi: {
-                title: "Ammattimainen konditoria",
-                m_gallery: "GALLERIA",
-                m_order: "TILAA KAKKU",
-                m_about: "MEISTÄ",
-                m_reviews: "ARVOSTELUT",
-                m_contacts: "YHTEYSTIEDOT",
+                hero_title: "Kakut omalla uniikilla reseptillä",
                 footer: "© 2026 UliBakery — Rakkaudella jokaiseen leivonnaiseen"
             },
             en: {
-                title: "Professional Pastry Studio",
-                m_gallery: "GALLERY",
-                m_order: "ORDER CAKE",
-                m_about: "ABOUT US",
-                m_reviews: "REVIEWS",
-                m_contacts: "CONTACTS",
+                hero_title: "Cakes by our unique, self-developed recipe",
                 footer: "© 2026 UliBakery — Made with love"
             }
         };
@@ -291,12 +267,7 @@
         function setLang(lang) {
             localStorage.setItem('uliLang', lang);
             const t = translations[lang];
-            document.getElementById('w_title').innerText = t.title;   // если добавишь id="w_title" в hero h1
-            document.getElementById('m_gallery').innerText = t.m_gallery;
-            document.getElementById('m_order').innerText = t.m_order;
-            document.getElementById('m_about').innerText = t.m_about;
-            document.getElementById('m_reviews').innerText = t.m_reviews;
-            document.getElementById('m_contacts').innerText = t.m_contacts;
+            document.getElementById('hero_title').innerText = t.hero_title;
             document.getElementById('footer_text').innerText = t.footer;
         }
 
