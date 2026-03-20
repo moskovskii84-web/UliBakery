@@ -156,6 +156,10 @@
             border: 2px solid #fce4ec;
             transition: 0.4s;
             box-shadow: 0 5px 15px rgba(251, 194, 235, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
         }
         .menu-card:hover { 
             transform: translateY(-8px); 
@@ -163,6 +167,18 @@
             color: white; 
             border-color: #ff6f91; 
             box-shadow: 0 10px 25px rgba(255, 111, 145, 0.3); 
+        }
+        /* Подсветка для ГАЛЕРЕЯ и ЗАКАЗАТЬ */
+        .menu-card.highlight {
+            background: linear-gradient(135deg, #ff6f91, #ff8fab);
+            color: white;
+            border: 2px solid #ff6f91;
+            box-shadow: 0 10px 25px rgba(255, 111, 145, 0.4);
+            transform: translateY(-5px);
+        }
+        .menu-card.highlight:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 15px 35px rgba(255, 111, 145, 0.5);
         }
         footer { 
             background:#fbc2eb; 
@@ -209,8 +225,12 @@
         <section class="welcome-section">
             <h1 id="w_title">Профессиональная кондитерская</h1>
             <div class="main-menu-grid">
-                <a href="gallery.html" class="menu-card" id="m_gallery">ГАЛЕРЕЯ</a>
-                <a href="order.html" class="menu-card" id="m_order">ЗАКАЗАТЬ</a>
+                <a href="gallery.html" class="menu-card highlight" id="m_gallery">
+                    <span style="font-size:24px;">📸</span> ГАЛЕРЕЯ
+                </a>
+                <a href="order.html" class="menu-card highlight" id="m_order">
+                    <span style="font-size:24px;">🛒</span> ЗАКАЗАТЬ
+                </a>
                 <a href="about.html" class="menu-card" id="m_about">О НАС</a>
                 <a href="reviews.html" class="menu-card" id="m_reviews">ОТЗЫВЫ</a>
                 <a href="contacts.html" class="menu-card" id="m_contacts">КОНТАКТЫ</a>
