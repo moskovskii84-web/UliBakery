@@ -11,8 +11,10 @@
             font-family: 'Segoe UI', sans-serif;
             color: #5d4037;
             background-color: #fff6f8;
-            background-image: radial-gradient(#fbc2eb 12%, transparent 12%);
-            background-size: 35px 35px;
+            background-image: 
+                radial-gradient(#fbc2eb 12%, transparent 12%),
+                linear-gradient(135deg, #f8e1eb 0%, #e8f5e9 100%);
+            background-size: 35px 35px, 100% 100%;
             background-attachment: fixed;
             overflow-x: hidden;
         }
@@ -24,16 +26,27 @@
             pointer-events: none;
             will-change: transform;
         }
-        .sweet-1 {
-            animation: bounceX1 13s linear infinite alternate, bounceY1 8s linear infinite alternate;
-        }
-        .sweet-2 {
-            animation: bounceX2 17s linear infinite alternate, bounceY2 10s linear infinite alternate;
-        }
+        .sweet-1 { animation: bounceX1 13s linear infinite alternate, bounceY1 8s linear infinite alternate; }
+        .sweet-2 { animation: bounceX2 17s linear infinite alternate, bounceY2 10s linear infinite alternate; }
         @keyframes bounceX1 { from { left: 0; } to { left: calc(100vw - 50px); } }
         @keyframes bounceX2 { from { left: calc(100vw - 50px); } to { left: 0; } }
         @keyframes bounceY1 { from { top: 0; } to { top: calc(100vh - 50px); } }
         @keyframes bounceY2 { from { top: calc(100vh - 50px); } to { top: 0; } }
+
+        /* Новый весенне-пасхальный декор */
+        .spring-deco {
+            position: fixed;
+            font-size: 28px;
+            opacity: 0.18;
+            z-index: 2;
+            pointer-events: none;
+            animation: floatSpring 18s linear infinite;
+        }
+        @keyframes floatSpring {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-40px) rotate(10deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
 
         .top-bar {
             background: #fffafa;
@@ -45,20 +58,9 @@
             position: relative;
             z-index: 10001;
         }
-        .social-links {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .social-links a svg {
-            width: 26px;
-            height: 26px;
-            fill: #ff6f91;
-            transition: 0.3s;
-        }
-        .social-links a:hover svg {
-            transform: scale(1.2);
-        }
+        .social-links { display: flex; align-items: center; gap: 15px; }
+        .social-links a svg { width: 26px; height: 26px; fill: #ff6f91; transition: 0.3s; }
+        .social-links a:hover svg { transform: scale(1.2); }
         .lang button {
             background:#fff;
             border:1px solid #ffb2c1;
@@ -69,11 +71,7 @@
             margin-left: 5px;
             color: #333;
         }
-        .lang button:hover {
-            background: #fbc2eb;
-            color: white;
-        }
-
+        .lang button:hover { background: #fbc2eb; color: white; }
         .content-wrapper {
             max-width: 1050px;
             margin: 0 auto;
@@ -93,17 +91,8 @@
             align-items: center;
             min-height: 280px;
         }
-        .header-left {
-            flex: 1.4;
-            min-width: 320px;
-            height: 280px;
-            overflow: hidden;
-        }
-        .header-left img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .header-left { flex: 1.4; min-width: 320px; height: 280px; overflow: hidden; }
+        .header-left img { width: 100%; height: 100%; object-fit: cover; }
         .header-right {
             flex: 0.6;
             min-width: 280px;
@@ -123,17 +112,13 @@
             object-fit: cover;
             animation: breathe 5s ease-in-out infinite;
         }
-        @keyframes breathe {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.04); }
-        }
+        @keyframes breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.04); } }
         .brand-name {
             font-family: 'Georgia', serif;
             font-size: 34px;
             color: #ff6f91;
             font-weight: bold;
         }
-
         .welcome-section {
             padding: 60px 40px;
             text-align: center;
@@ -167,8 +152,6 @@
             border-color: #ff6f91;
             box-shadow: 0 10px 25px rgba(255, 111, 145, 0.3);
         }
-
-        /* Специальная карточка Витрины */
         .menu-card.special {
             background: linear-gradient(135deg, #ff6f91, #ff9eb8);
             color: white;
@@ -189,7 +172,6 @@
             transform: translateY(-12px) scale(1.04);
             box-shadow: 0 20px 35px rgba(255, 111, 145, 0.45);
         }
-
         footer {
             background:#fbc2eb;
             padding:30px;
@@ -200,8 +182,18 @@
     </style>
 </head>
 <body>
+
+    <!-- Плавающие сладости -->
     <div class="floating-sweet sweet-1">🧁</div>
     <div class="floating-sweet sweet-2">🍰</div>
+
+    <!-- Новый весенне-пасхальный декор -->
+    <div class="spring-deco" style="top: 15%; left: 8%; animation-delay: 0s;">🌸</div>
+    <div class="spring-deco" style="top: 25%; right: 12%; animation-delay: 3s; font-size: 32px;">🥚</div>
+    <div class="spring-deco" style="top: 45%; left: 18%; animation-delay: 7s;">🌷</div>
+    <div class="spring-deco" style="top: 60%; right: 15%; animation-delay: 2s; font-size: 38px;">🐰</div>
+    <div class="spring-deco" style="bottom: 25%; left: 10%; animation-delay: 5s;">🌿</div>
+    <div class="spring-deco" style="bottom: 35%; right: 8%; animation-delay: 9s; font-size: 28px;">🌼</div>
 
     <div class="content-wrapper">
         <div class="top-bar">
@@ -234,13 +226,11 @@
 
         <section class="welcome-section">
             <h1 id="w_title">Профессиональная кондитерская</h1>
-            
+           
             <div class="main-menu-grid">
-                <a href="vitrina.html" class="menu-card special" id="m_vitrina">
-                    ВИТРИНА НА ВЫХОДНЫЕ
-                </a>
+                <a href="vitrina.html" class="menu-card special" id="m_vitrina">ВИТРИНА НА ВЫХОДНЫЕ</a>
                 <a href="gallery.html" class="menu-card" id="m_gallery">ГАЛЕРЕЯ</a>
-                <a href="order.html" class="menu-card" id="m_order">ЗАКАЗАТЬ</a>
+                <a href="order.html" class="menu-card" id="m_order">ЗАКАЗАТЬ ТОРТ</a>
                 <a href="about.html" class="menu-card" id="m_about">О НАС</a>
                 <a href="reviews.html" class="menu-card" id="m_reviews">ОТЗЫВЫ</a>
                 <a href="contacts.html" class="menu-card" id="m_contacts">КОНТАКТЫ</a>
@@ -258,7 +248,7 @@
                 title: "Профессиональная кондитерская",
                 m_vitrina: "ВИТРИНА НА ВЫХОДНЫЕ",
                 m_gallery: "ГАЛЕРЕЯ",
-                m_order: "ЗАКАЗАТЬ",
+                m_order: "ЗАКАЗАТЬ ТОРТ",
                 m_about: "О НАС",
                 m_reviews: "ОТЗЫВЫ",
                 m_contacts: "КОНТАКТЫ",
@@ -268,7 +258,7 @@
                 title: "Ammattimainen konditoria",
                 m_vitrina: "VIIKONLOPPU VITRIINI",
                 m_gallery: "GALLERIA",
-                m_order: "TILAA",
+                m_order: "TILAA KAKKU",
                 m_about: "MEISTÄ",
                 m_reviews: "ARVOSTELUT",
                 m_contacts: "YHTEYSTIEDOT",
@@ -278,7 +268,7 @@
                 title: "Professional Pastry Studio",
                 m_vitrina: "WEEKEND SHOWCASE",
                 m_gallery: "GALLERY",
-                m_order: "ORDER NOW",
+                m_order: "ORDER CAKE",
                 m_about: "ABOUT US",
                 m_reviews: "REVIEWS",
                 m_contacts: "CONTACTS",
