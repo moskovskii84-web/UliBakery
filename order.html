@@ -3,38 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Заказать торт | UliBakery</title>
+    <title id="page_title">Заказать торт | UliBakery</title>
     <style>
-        body { margin: 0; font-family: 'Segoe UI', sans-serif; background-color: #fff6f8; color: #5d4037; }
-        .container { max-width: 600px; margin: 40px auto; background: white; padding: 30px; border-radius: 25px; box-shadow: 0 10px 30px rgba(251, 194, 235, 0.4); border: 1px solid #fce4ec; position: relative; }
-        .lang-switch { text-align: right; margin-bottom: 20px; }
-        .lang-switch button { background:#fff; border:1px solid #ffb2c1; padding: 5px 10px; border-radius: 8px; cursor:pointer; font-weight:bold; margin-left: 5px; color: #333; }
-        h1 { color: #ff6f91; font-family: 'Georgia', serif; text-align: center; }
-        .form-group { margin-bottom: 20px; text-align: left; }
-        label { display: block; margin-bottom: 8px; font-weight: bold; color: #ff6f91; }
-        input, select, textarea { width: 100%; padding: 12px; border: 2px solid #fce4ec; border-radius: 12px; box-sizing: border-box; font-size: 16px; outline: none; }
-        input:focus { border-color: #ff6f91; }
-        .order-btn { width: 100%; background: #ff6f91; color: white; border: none; padding: 15px; border-radius: 12px; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        .order-btn:hover { background: #e55a7d; transform: translateY(-2px); }
+        body { 
+            margin: 0; 
+            font-family: 'Segoe UI', sans-serif; 
+            background-color: #fff6f8; 
+            color: #5d4037; 
+        }
+        .container { 
+            max-width: 600px; 
+            margin: 40px auto; 
+            background: white; 
+            padding: 40px 30px; 
+            border-radius: 30px; 
+            box-shadow: 0 10px 40px rgba(251, 194, 235, 0.4); 
+            border: 1px solid #fce4ec; 
+        }
+        .lang-switch { 
+            text-align: right; 
+            margin-bottom: 25px; 
+        }
+        .lang-switch button { 
+            background:#fff; 
+            border:1px solid #ffb2c1; 
+            padding: 6px 12px; 
+            border-radius: 8px; 
+            cursor:pointer; 
+            font-weight:bold; 
+            margin-left: 5px; 
+        }
+        .lang-switch button.active { 
+            background: #ff6f91; 
+            color: white; 
+        }
+        h1 { 
+            color: #ff6f91; 
+            font-family: 'Georgia', serif; 
+            text-align: center; 
+            margin-bottom: 30px; 
+        }
+        .form-group { 
+            margin-bottom: 22px; 
+            text-align: left; 
+        }
+        label { 
+            display: block; 
+            margin-bottom: 8px; 
+            font-weight: bold; 
+            color: #ff6f91; 
+        }
+        input, select, textarea { 
+            width: 100%; 
+            padding: 14px; 
+            border: 2px solid #fce4ec; 
+            border-radius: 12px; 
+            box-sizing: border-box; 
+            font-size: 16px; 
+        }
+        input:focus, select:focus, textarea:focus { 
+            border-color: #ff6f91; 
+            outline: none; 
+        }
+        .order-btn { 
+            width: 100%; 
+            background: #ff6f91; 
+            color: white; 
+            border: none; 
+            padding: 16px; 
+            border-radius: 15px; 
+            font-size: 18px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            margin-top: 10px; 
+        }
+        .order-btn:hover { background: #e55a7d; }
         .order-btn:disabled { background: #ccc; cursor: not-allowed; }
-        .back-link { display: block; text-align: center; margin-top: 20px; text-decoration: none; color: #ff6f91; font-weight: bold; }
-        .error-msg { color: #d32f2f; font-size: 14px; display: none; margin-top: 8px; font-weight: bold; }
+        .back-link { 
+            display: block; 
+            text-align: center; 
+            margin-top: 25px; 
+            text-decoration: none; 
+            color: #ff6f91; 
+            font-weight: bold; 
+        }
+        .error-msg { 
+            color: #d32f2f; 
+            font-size: 14px; 
+            margin-top: 6px; 
+            display: none; 
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
     <div class="lang-switch">
-        <button onclick="setLang('fi')">FI</button>
-        <button onclick="setLang('ru')">RU</button>
-        <button onclick="setLang('en')">EN</button>
+        <button onclick="setLang('fi')" id="btn-fi">FI</button>
+        <button onclick="setLang('ru')" id="btn-ru">RU</button>
+        <button onclick="setLang('en')" id="btn-en">EN</button>
     </div>
 
     <h1 id="order_title">Оформить заказ</h1>
-    
-    <!-- Твоя ссылка Formspree вставлена сюда -->
-    <form action="https://formspree.io/f/mjgapyny" method="POST" id="orderForm">
-        
+
+    <form id="orderForm">
         <div class="form-group">
             <label id="lbl_name">Ваше имя</label>
             <input type="text" name="Имя клиента" id="name" required>
@@ -52,83 +124,78 @@
 
         <div class="form-group">
             <label id="lbl_date">Дата события</label>
-            <input type="date" name="Дата заказа" id="date" required onchange="checkDate(this)">
-            <div id="date_error" class="error-msg">Извините, эта дата уже занята!</div>
+            <input type="date" name="Дата события" id="date" required>
+            <div id="date_error" class="error-msg">Эта дата уже занята!</div>
         </div>
 
         <div class="form-group">
-            <label id="lbl_details">Пожелания (начинка, декор)</label>
-            <textarea name="Детали заказа" id="details" rows="4"></textarea>
+            <label id="lbl_details">Пожелания (начинка, вес, декор)</label>
+            <textarea name="Пожелания" id="details" rows="4"></textarea>
         </div>
 
-        <button type="submit" class="order-btn" id="btn_send">ОТПРАВИТЬ ЗАКАЗ</button>
+        <button type="button" onclick="submitOrder()" class="order-btn" id="btn_send">ОТПРАВИТЬ ЗАКАЗ</button>
     </form>
-    
+
     <a href="index.html" class="back-link" id="btn_back">← На главную</a>
 </div>
 
 <script>
-// --- СПИСОК ЗАНЯТЫХ ДАТ ---
-// Просто добавляй даты сюда через запятую в кавычках (ГГГГ-ММ-ДД)
+// === ЗАНЯТЫЕ ДАТЫ (добавляй сюда новые даты) ===
 const occupiedDates = [
-    '2026-03-20', 
-    '2026-03-25'
+    "2026-03-20",
+    "2026-03-25",
+    "2026-04-05",
+    "2026-04-12"
+    // Добавляй сюда новые занятые даты в формате ГГГГ-ММ-ДД
 ];
 
 const translations = {
     ru: {
+        page_title: "Заказать торт | UliBakery",
         order_title: "Оформить заказ",
         lbl_name: "Ваше имя",
-        lbl_email: "Почта для связи",
-        lbl_type: "Что заказываем?",
-        types: ["Свадебный торт", "Детский торт", "Капкейки", "Другое"],
+        lbl_email: "Ваша почта (для подтверждения)",
+        lbl_type: "Тип десерта",
         lbl_date: "Дата события",
-        lbl_details: "Пожелания (начинка, декор)",
+        lbl_details: "Пожелания (начинка, вес, декор)",
         btn_send: "ОТПРАВИТЬ ЗАКАЗ",
         btn_back: "← На главную",
-        date_error: "Извините, эта дата уже занята!"
+        date_error: "Эта дата уже занята!"
     },
     fi: {
+        page_title: "Tilaa kakku | UliBakery",
         order_title: "Tee tilaus",
         lbl_name: "Nimesi",
-        lbl_email: "Sähköposti",
+        lbl_email: "Sähköpostisi (vahvistukseen)",
         lbl_type: "Jälkiruoan tyyppi",
-        types: ["Hääkakku", "Lasten kakku", "Cupcakes", "Muu"],
         lbl_date: "Tapahtuman päivämäärä",
-        lbl_details: "Toiveet (täyte, koristelu)",
+        lbl_details: "Toiveet (täyte, paino, koristelu)",
         btn_send: "LÄHETÄ TILAUS",
-        btn_back: "← Takaisin",
-        date_error: "Valitettavasti tämä päivä on jo varattu!"
+        btn_back: "← Takaisin etusivulle",
+        date_error: "Tämä päivä on jo varattu!"
     },
     en: {
-        order_title: "Place Order",
+        page_title: "Order Cake | UliBakery",
+        order_title: "Place Your Order",
         lbl_name: "Your Name",
-        lbl_email: "Email Address",
+        lbl_email: "Your Email (for confirmation)",
         lbl_type: "Dessert Type",
-        types: ["Wedding Cake", "Kids Cake", "Cupcakes", "Other"],
         lbl_date: "Event Date",
-        lbl_details: "Wishes (filling, decor)",
+        lbl_details: "Wishes (filling, weight, decor)",
         btn_send: "SEND ORDER",
-        btn_back: "← Back Home",
-        date_error: "Sorry, this date is already booked!"
+        btn_back: "← Back to Home",
+        date_error: "This date is already booked!"
     }
 };
 
-function checkDate(input) {
-    const errorDiv = document.getElementById('date_error');
-    const submitBtn = document.getElementById('btn_send');
-    
-    if (occupiedDates.includes(input.value)) {
-        errorDiv.style.display = 'block';
-        submitBtn.disabled = true;
-    } else {
-        errorDiv.style.display = 'none';
-        submitBtn.disabled = false;
-    }
-}
+let currentLang = localStorage.getItem('uliLang') || 'ru';
 
 function setLang(lang) {
+    currentLang = lang;
+    localStorage.setItem('uliLang', lang);
     const t = translations[lang];
+
+    document.title = t.page_title;
     document.getElementById('order_title').innerText = t.order_title;
     document.getElementById('lbl_name').innerText = t.lbl_name;
     document.getElementById('lbl_email').innerText = t.lbl_email;
@@ -139,23 +206,67 @@ function setLang(lang) {
     document.getElementById('btn_back').innerText = t.btn_back;
     document.getElementById('date_error').innerText = t.date_error;
 
+    // Заполняем селект
     const typeSelect = document.getElementById('type');
     typeSelect.innerHTML = '';
-    t.types.forEach(val => {
+    const types = lang === 'ru' ? ["Свадебный торт", "Детский торт", "Капкейки", "Бенто", "Другое"] :
+                  lang === 'fi' ? ["Hääkakku", "Lasten kakku", "Cupcakes", "Bento", "Muu"] :
+                                  ["Wedding Cake", "Kids Cake", "Cupcakes", "Bento", "Other"];
+
+    types.forEach(val => {
         let opt = document.createElement('option');
         opt.value = val;
-        opt.innerText = val;
+        opt.textContent = val;
         typeSelect.appendChild(opt);
     });
 }
 
-// Запуск по умолчанию
-setLang('ru');
+function submitOrder() {
+    const email = document.getElementById('email').value.trim();
+    if (!email) {
+        alert(currentLang === 'ru' ? "Пожалуйста, введите email!" : 
+              currentLang === 'fi' ? "Syötä sähköposti!" : "Please enter email!");
+        return;
+    }
 
-// Ограничение: нельзя выбрать дату в прошлом
-const today = new Date().toISOString().split('T')[0];
-document.getElementById('date').setAttribute('min', today);
+    const formData = new FormData(document.getElementById('orderForm'));
+    formData.append("_subject", "Новый заказ торта!");
+
+    fetch("https://formspree.io/f/mjgapyny", {
+        method: "POST",
+        body: formData,
+        headers: { "Accept": "application/json" }
+    })
+    .then(() => {
+        window.location.href = "thankyou.html";
+    })
+    .catch(() => {
+        alert("Ошибка отправки. Попробуйте ещё раз.");
+    });
+}
+
+// Блокировка прошлых дат + занятых дат
+function initDatePicker() {
+    const dateInput = document.getElementById('date');
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.setAttribute('min', today);
+
+    dateInput.addEventListener('change', function() {
+        const errorDiv = document.getElementById('date_error');
+        if (occupiedDates.includes(this.value)) {
+            errorDiv.style.display = 'block';
+            document.getElementById('btn_send').disabled = true;
+        } else {
+            errorDiv.style.display = 'none';
+            document.getElementById('btn_send').disabled = false;
+        }
+    });
+}
+
+window.onload = () => {
+    setLang(currentLang);
+    initDatePicker();
+};
 </script>
-
 </body>
 </html>
