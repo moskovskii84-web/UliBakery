@@ -29,7 +29,6 @@ body {
     margin: 0;
     font-family: "Segoe UI", Arial, sans-serif;
     color: #5d4037;
-
     background:
         radial-gradient(circle at 15% 15%, rgba(255,190,211,.35), transparent 22%),
         radial-gradient(circle at 90% 45%, rgba(245,205,187,.28), transparent 25%),
@@ -44,11 +43,8 @@ a {
     width: min(1180px, calc(100% - 40px));
     margin: 0 auto;
     overflow: hidden;
-
     background: #fffaf9;
-
-    box-shadow:
-        0 0 60px rgba(128,75,93,.15);
+    box-shadow: 0 0 60px rgba(128,75,93,.15);
 }
 
 
@@ -59,11 +55,9 @@ a {
 .topbar {
     min-height: 62px;
     padding: 10px 30px;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     background: rgba(255,250,249,.96);
     border-bottom: 1px solid #f3d7df;
 }
@@ -92,16 +86,12 @@ a {
 .languages button {
     min-width: 44px;
     height: 38px;
-
     border: 1px solid #ef9bb1;
     background: rgba(255,255,255,.8);
     color: #68483f;
-
     border-radius: 10px;
-
     font-weight: 800;
     cursor: pointer;
-
     transition: .2s;
 }
 
@@ -113,8 +103,68 @@ a {
     color: white;
     background: linear-gradient(135deg,#ff7699,#ef557e);
     border-color: transparent;
-
     box-shadow: 0 5px 14px rgba(238,82,123,.22);
+}
+
+
+/* =========================
+   MAIN NAVIGATION
+========================= */
+
+.main-nav {
+    min-height: 58px;
+    padding: 0 25px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 42px;
+
+    background: #fffdfc;
+    border-bottom: 1px solid #f1d4dc;
+}
+
+.main-nav a {
+    position: relative;
+
+    padding: 19px 3px 17px;
+
+    color: #66473f;
+
+    text-decoration: none;
+    text-transform: uppercase;
+
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: .6px;
+
+    transition: .2s;
+}
+
+.main-nav a::after {
+    content: "";
+
+    position: absolute;
+    left: 50%;
+    bottom: 11px;
+
+    width: 0;
+    height: 2px;
+
+    transform: translateX(-50%);
+
+    background: #ed5a80;
+    border-radius: 10px;
+
+    transition: width .2s;
+}
+
+.main-nav a:hover {
+    color: #e95077;
+}
+
+.main-nav a:hover::after {
+    width: 100%;
 }
 
 
@@ -124,13 +174,10 @@ a {
 
 .hero {
     position: relative;
-
     display: grid;
     grid-template-columns: .85fr 1.15fr;
     align-items: center;
-
     gap: 52px;
-
     padding: 45px 62px 48px;
 
     background:
@@ -142,15 +189,11 @@ a {
 .hero::after {
     content: "";
     position: absolute;
-
     width: 220px;
     height: 220px;
-
     right: -80px;
     bottom: -120px;
-
     border-radius: 50%;
-
     background: rgba(255,190,211,.16);
 }
 
@@ -164,17 +207,12 @@ a {
 .hero-image::before {
     content: "";
     position: absolute;
-
     width: 88%;
     height: 90%;
-
     left: -13px;
     bottom: -13px;
-
     border-radius: 25px;
-
     background: #f7ccd8;
-
     z-index: -1;
 }
 
@@ -182,37 +220,26 @@ a {
     width: 100%;
     max-width: 385px;
     height: 315px;
-
     display: block;
-
     object-fit: cover;
-
     border-radius: 24px;
-
-    box-shadow:
-        0 18px 38px rgba(107,65,77,.18);
+    box-shadow: 0 18px 38px rgba(107,65,77,.18);
 }
 
 .hero-content {
     position: relative;
     z-index: 2;
-
     max-width: 555px;
     margin: auto;
-
     text-align: center;
 }
 
 .logo {
     width: 105px;
     height: 105px;
-
     object-fit: cover;
-
     border-radius: 50%;
-
     border: 4px solid rgba(255,255,255,.9);
-
     box-shadow:
         0 0 0 3px #f2c1d0,
         0 8px 20px rgba(118,65,82,.13);
@@ -220,9 +247,7 @@ a {
 
 .brand {
     margin-top: 9px;
-
     color: #f05c83;
-
     font-family: Georgia, serif;
     font-size: 41px;
     font-weight: 700;
@@ -230,9 +255,7 @@ a {
 
 .hero h1 {
     margin: 13px 0 11px;
-
     color: #50352e;
-
     font-family: Georgia, serif;
     font-size: 30px;
     line-height: 1.2;
@@ -240,12 +263,9 @@ a {
 
 .hero p {
     max-width: 510px;
-
     margin: 0 auto 23px;
-
     font-size: 17px;
     line-height: 1.6;
-
     color: #694d45;
 }
 
@@ -256,30 +276,19 @@ a {
 
 .primary {
     display: inline-block;
-
     padding: 15px 35px;
-
     color: white;
-
-    background:
-        linear-gradient(135deg,#ff779a,#ed4f79);
-
+    background: linear-gradient(135deg,#ff779a,#ed4f79);
     border-radius: 50px;
-
     text-decoration: none;
     font-weight: 800;
-
-    box-shadow:
-        0 9px 22px rgba(239,77,120,.27);
-
+    box-shadow: 0 9px 22px rgba(239,77,120,.27);
     transition: .25s;
 }
 
 .primary:hover {
     transform: translateY(-3px);
-
-    box-shadow:
-        0 14px 30px rgba(239,77,120,.34);
+    box-shadow: 0 14px 30px rgba(239,77,120,.34);
 }
 
 
@@ -289,75 +298,52 @@ a {
 
 .benefits {
     position: relative;
-
     display: grid;
     grid-template-columns: repeat(4,1fr);
-
     padding: 7px 22px;
-
-    background:
-        linear-gradient(90deg,#f9dce4,#fce8e5,#f9dce4);
-
+    background: linear-gradient(90deg,#f9dce4,#fce8e5,#f9dce4);
     border-top: 1px solid #f1cdd8;
     border-bottom: 1px solid #efcbd6;
 }
 
 .benefit {
     min-height: 88px;
-
     padding: 15px 14px;
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     gap: 12px;
-
     position: relative;
 }
 
 .benefit:not(:last-child)::after {
     content: "";
-
     position: absolute;
-
     right: 0;
-
     width: 1px;
     height: 42px;
-
     background: rgba(155,93,108,.19);
 }
 
 .benefit-icon {
     width: 43px;
     height: 43px;
-
     flex: 0 0 43px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     border-radius: 50%;
-
     background: rgba(255,255,255,.65);
-
     color: #d94f74;
-
     font-size: 24px;
-
-    box-shadow:
-        0 4px 10px rgba(111,69,79,.08);
+    box-shadow: 0 4px 10px rgba(111,69,79,.08);
 }
 
 .benefit span {
     max-width: 135px;
-
     font-size: 14px;
     font-weight: 700;
     line-height: 1.35;
-
     color: #63463e;
 }
 
@@ -368,44 +354,31 @@ a {
 
 .section {
     position: relative;
-
     padding: 52px 42px;
-
     text-align: center;
 }
 
 .section-title {
     margin: 0;
-
     color: #ed5a80;
-
     font-family: Georgia, serif;
     font-size: 34px;
 }
 
 .section-title::after {
     content: "";
-
     display: block;
-
     width: 48px;
     height: 3px;
-
     margin: 13px auto 0;
-
     border-radius: 10px;
-
-    background:
-        linear-gradient(90deg,#f5b6c8,#ec6588);
+    background: linear-gradient(90deg,#f5b6c8,#ec6588);
 }
 
 .section-intro {
     max-width: 720px;
-
     margin: 13px auto 29px;
-
     color: #6c5048;
-
     font-size: 17px;
     line-height: 1.6;
 }
@@ -425,44 +398,29 @@ a {
 .categories {
     display: grid;
     grid-template-columns: repeat(3,1fr);
-
     gap: 22px;
 }
 
 .category {
     overflow: hidden;
-
     position: relative;
-
-    background:
-        linear-gradient(180deg,#ffffff 0%,#fff9f7 100%);
-
+    background: linear-gradient(180deg,#ffffff 0%,#fff9f7 100%);
     border: 1px solid #f1d2dc;
     border-radius: 24px;
-
     text-decoration: none;
-
-    box-shadow:
-        0 10px 25px rgba(126,75,91,.10);
-
-    transition:
-        transform .25s,
-        box-shadow .25s;
+    box-shadow: 0 10px 25px rgba(126,75,91,.10);
+    transition: transform .25s, box-shadow .25s;
 }
 
 .category:hover {
     transform: translateY(-7px);
-
-    box-shadow:
-        0 18px 35px rgba(126,75,91,.17);
+    box-shadow: 0 18px 35px rgba(126,75,91,.17);
 }
 
 .category img {
     display: block;
-
     width: 100%;
     height: 245px;
-
     object-fit: cover;
 }
 
@@ -472,9 +430,7 @@ a {
 
 .category h3 {
     margin: 0 0 9px;
-
     color: #ed5a80;
-
     font-family: Georgia, serif;
     font-size: 25px;
 }
@@ -482,17 +438,13 @@ a {
 .category p {
     max-width: 290px;
     min-height: 70px;
-
     margin: 0 auto 15px;
-
     color: #674b43;
-
     line-height: 1.5;
 }
 
 .category-link {
     color: #e64f77;
-
     font-weight: 800;
     font-size: 14px;
 }
@@ -505,12 +457,10 @@ a {
 .section.soft {
     padding-top: 48px;
     padding-bottom: 52px;
-
     background:
         radial-gradient(circle at 10% 50%, rgba(255,255,255,.8), transparent 25%),
         radial-gradient(circle at 90% 15%, rgba(255,255,255,.65), transparent 22%),
         linear-gradient(135deg,#f9dfe6 0%,#fceae4 52%,#f7dbe5 100%);
-
     border-top: 1px solid #efd0d9;
     border-bottom: 1px solid #efd0d9;
 }
@@ -518,66 +468,44 @@ a {
 .flavours {
     display: grid;
     grid-template-columns: repeat(3,1fr);
-
     max-width: 930px;
-
     margin: auto;
-
     gap: 18px;
 }
 
 .flavour {
     position: relative;
-
     padding: 24px 18px;
-
     background: rgba(255,255,255,.75);
-
     border: 1px solid rgba(255,255,255,.9);
     border-radius: 20px;
-
-    box-shadow:
-        0 8px 20px rgba(120,74,87,.09);
-
-    backdrop-filter: blur(5px);
+    box-shadow: 0 8px 20px rgba(120,74,87,.09);
 }
 
 .flavour-icon {
     width: 54px;
     height: 54px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     margin: 0 auto 11px;
-
     border-radius: 50%;
-
     background: #fff8f7;
-
     font-size: 29px;
-
-    box-shadow:
-        0 5px 13px rgba(121,73,88,.09);
+    box-shadow: 0 5px 13px rgba(121,73,88,.09);
 }
 
 .flavour strong {
     display: block;
-
     margin-bottom: 7px;
-
     color: #e95179;
-
     font-family: Georgia, serif;
     font-size: 20px;
 }
 
 .flavour p {
     margin: 0;
-
     color: #674b43;
-
     font-size: 15px;
     line-height: 1.5;
 }
@@ -589,7 +517,6 @@ a {
 
 .about-section {
     padding: 48px 42px;
-
     background:
         radial-gradient(circle at 88% 10%, rgba(248,203,217,.42), transparent 24%),
         linear-gradient(135deg,#fff9f6,#fff1f5);
@@ -598,109 +525,47 @@ a {
 .about {
     display: grid;
     grid-template-columns: .72fr 1.28fr;
-
     max-width: 940px;
-
     margin: auto;
-
     overflow: hidden;
-
-    background:
-        linear-gradient(135deg,#ffffff,#fff8f5);
-
+    background: linear-gradient(135deg,#ffffff,#fff8f5);
     border: 1px solid #efd1d9;
     border-radius: 26px;
-
-    box-shadow:
-        0 13px 32px rgba(113,70,82,.12);
+    box-shadow: 0 13px 32px rgba(113,70,82,.12);
 }
 
 .about-image {
     position: relative;
 }
 
-.about-image::after {
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    box-shadow:
-        inset -20px 0 35px rgba(255,248,245,.14);
-}
-
 .about-image img {
     display: block;
-
     width: 100%;
     height: 100%;
     min-height: 280px;
-
     object-fit: cover;
 }
 
 .about-content {
     padding: 36px 38px;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
-
     text-align: left;
 }
 
 .about-content h2 {
     margin: 0 0 13px;
-
     color: #e9567c;
-
     font-family: Georgia, serif;
     font-size: 31px;
 }
 
 .about-content p {
     margin: 0;
-
     color: #684d45;
-
     font-size: 16px;
     line-height: 1.7;
-}
-
-.small-buttons {
-    display: flex;
-    flex-wrap: wrap;
-
-    gap: 9px;
-
-    margin-top: 22px;
-}
-
-.small-button {
-    padding: 9px 15px;
-
-    color: #6a4941;
-
-    background: rgba(255,255,255,.78);
-
-    border: 1px solid #ed8ca5;
-    border-radius: 30px;
-
-    text-decoration: none;
-
-    font-size: 12px;
-    font-weight: 800;
-
-    transition: .2s;
-}
-
-.small-button:hover {
-    color: white;
-
-    background: #ec6488;
-
-    border-color: #ec6488;
 }
 
 
@@ -711,9 +576,7 @@ a {
 .cta {
     position: relative;
     overflow: hidden;
-
     padding: 52px 25px;
-
     text-align: center;
 
     background:
@@ -725,18 +588,14 @@ a {
 .cta::before,
 .cta::after {
     content: "";
-
     position: absolute;
-
     border-radius: 50%;
-
     background: rgba(255,255,255,.2);
 }
 
 .cta::before {
     width: 180px;
     height: 180px;
-
     left: -80px;
     bottom: -100px;
 }
@@ -744,7 +603,6 @@ a {
 .cta::after {
     width: 220px;
     height: 220px;
-
     right: -110px;
     top: -120px;
 }
@@ -758,20 +616,15 @@ a {
 
 .cta h2 {
     margin: 0;
-
     color: #d94d73;
-
     font-family: Georgia, serif;
     font-size: 34px;
 }
 
 .cta p {
     max-width: 680px;
-
     margin: 12px auto 23px;
-
     color: #64473f;
-
     line-height: 1.6;
 }
 
@@ -782,14 +635,9 @@ a {
 
 footer {
     padding: 25px 20px;
-
-    background:
-        linear-gradient(135deg,#5d4037,#6d4b42);
-
+    background: linear-gradient(135deg,#5d4037,#6d4b42);
     color: #fff8f5;
-
     text-align: center;
-
     font-size: 14px;
 }
 
@@ -804,11 +652,18 @@ footer {
         width: 100%;
     }
 
+    .main-nav {
+        gap: 25px;
+        padding: 0 15px;
+    }
+
+    .main-nav a {
+        font-size: 12px;
+    }
+
     .hero {
         grid-template-columns: 1fr;
-
         gap: 28px;
-
         padding: 34px 22px 43px;
     }
 
@@ -823,11 +678,6 @@ footer {
     .hero-image img {
         max-width: 480px;
         height: 310px;
-    }
-
-    .hero-image::before {
-        width: 90%;
-        left: 2%;
     }
 
     .benefits {
@@ -845,7 +695,6 @@ footer {
     .category {
         width: 100%;
         max-width: 500px;
-
         margin: auto;
     }
 
@@ -864,7 +713,6 @@ footer {
     .flavour {
         max-width: 500px;
         width: 100%;
-
         margin: auto;
     }
 
@@ -876,7 +724,6 @@ footer {
     .about-image img {
         height: 300px;
     }
-
 }
 
 
@@ -905,8 +752,25 @@ footer {
     .languages button {
         min-width: 38px;
         height: 35px;
-
         padding: 0 7px;
+    }
+
+    .main-nav {
+        padding: 7px 10px;
+        gap: 0;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+
+    .main-nav a {
+        width: 50%;
+        padding: 9px 5px;
+        text-align: center;
+        font-size: 11px;
+    }
+
+    .main-nav a::after {
+        display: none;
     }
 
     .hero {
@@ -932,23 +796,18 @@ footer {
 
     .hero-image img {
         height: 260px;
-
         border-radius: 20px;
     }
 
     .benefits {
         padding: 4px;
-
         grid-template-columns: 1fr 1fr;
     }
 
     .benefit {
         min-height: 105px;
-
         flex-direction: column;
-
         gap: 7px;
-
         text-align: center;
     }
 
@@ -959,9 +818,7 @@ footer {
     .benefit-icon {
         width: 38px;
         height: 38px;
-
         flex-basis: 38px;
-
         font-size: 21px;
     }
 
@@ -998,7 +855,6 @@ footer {
 
     .about-content {
         padding: 27px 21px;
-
         text-align: center;
     }
 
@@ -1006,14 +862,9 @@ footer {
         font-size: 28px;
     }
 
-    .small-buttons {
-        justify-content: center;
-    }
-
     .cta {
         padding: 45px 18px;
     }
-
 }
 
 </style>
@@ -1070,14 +921,35 @@ footer {
     <div class="languages">
 
         <button id="lang-fi" onclick="setLang('fi')">FI</button>
-
         <button id="lang-ru" onclick="setLang('ru')">RU</button>
-
         <button id="lang-en" onclick="setLang('en')">EN</button>
 
     </div>
 
 </div>
+
+
+<!-- MAIN NAVIGATION -->
+
+<nav class="main-nav">
+
+    <a href="gallery.html" id="gallery-button">
+        GALLERIA
+    </a>
+
+    <a href="reviews.html" id="reviews-button">
+        ARVOSTELUT
+    </a>
+
+    <a href="about.html" id="about-button">
+        LUE LISÄÄ
+    </a>
+
+    <a href="contacts.html" id="contact-button">
+        YHTEYSTIEDOT
+    </a>
+
+</nav>
 
 
 
@@ -1128,54 +1000,23 @@ footer {
 <section class="benefits">
 
     <div class="benefit">
-
-        <div class="benefit-icon">
-            ♡
-        </div>
-
-        <span id="benefit1">
-            Yksilöllinen suunnittelu
-        </span>
-
+        <div class="benefit-icon">♡</div>
+        <span id="benefit1">Yksilöllinen suunnittelu</span>
     </div>
 
-
     <div class="benefit">
-
-        <div class="benefit-icon">
-            ✦
-        </div>
-
-        <span id="benefit2">
-            Käsintehty Vantaalla
-        </span>
-
+        <div class="benefit-icon">✦</div>
+        <span id="benefit2">Käsintehty Vantaalla</span>
     </div>
 
-
     <div class="benefit">
-
-        <div class="benefit-icon">
-            ♧
-        </div>
-
-        <span id="benefit3">
-            Huolella valitut raaka-aineet
-        </span>
-
+        <div class="benefit-icon">♧</div>
+        <span id="benefit3">Huolella valitut raaka-aineet</span>
     </div>
 
-
     <div class="benefit">
-
-        <div class="benefit-icon">
-            ☺
-        </div>
-
-        <span id="benefit4">
-            Juhliin, jotka muistetaan
-        </span>
-
+        <div class="benefit-icon">☺</div>
+        <span id="benefit4">Juhliin, jotka muistetaan</span>
     </div>
 
 </section>
@@ -1186,24 +1027,18 @@ footer {
 
 <section class="section">
 
-    <h2 class="section-title"
-        id="categories-title">
+    <h2 class="section-title" id="categories-title">
         Millaisen kakun etsit?
     </h2>
 
-    <p class="section-intro"
-       id="categories-intro">
+    <p class="section-intro" id="categories-intro">
         Tutustu eri kakkuihin ja löydä inspiraatiota omaan juhlaasi.
     </p>
 
 
     <div class="categories">
 
-
-        <!-- WEDDING -->
-
-        <a href="gallery.html"
-           class="category">
+        <a href="gallery.html" class="category">
 
             <img src="work1.jpg"
                  alt="Hääkakku UliBakery"
@@ -1219,8 +1054,7 @@ footer {
                     Yksilöllinen hääkakku suunnitellaan juhlan tyylin, toiveiden ja vierasmäärän mukaan.
                 </p>
 
-                <span class="category-link"
-                      id="wedding-link">
+                <span class="category-link" id="wedding-link">
                     Katso hääkakkuja →
                 </span>
 
@@ -1229,11 +1063,7 @@ footer {
         </a>
 
 
-
-        <!-- KIDS -->
-
-        <a href="gallery.html"
-           class="category">
+        <a href="gallery.html" class="category">
 
             <img src="kids1.jpg"
                  alt="Lasten kakku UliBakery"
@@ -1249,8 +1079,7 @@ footer {
                     Teemakakut syntymäpäiville lapsen lempiväreillä, hahmoilla ja omilla ideoilla.
                 </p>
 
-                <span class="category-link"
-                      id="kids-link">
+                <span class="category-link" id="kids-link">
                     Katso lasten kakkuja →
                 </span>
 
@@ -1259,11 +1088,7 @@ footer {
         </a>
 
 
-
-        <!-- CELEBRATION -->
-
-        <a href="gallery.html"
-           class="category">
+        <a href="gallery.html" class="category">
 
             <img src="work8.jpg"
                  alt="Juhlakakku UliBakery"
@@ -1279,15 +1104,13 @@ footer {
                     Kauniit kakut syntymäpäiville, vuosipäiville ja muihin tärkeisiin hetkiin.
                 </p>
 
-                <span class="category-link"
-                      id="celebration-link">
+                <span class="category-link" id="celebration-link">
                     Katso juhlakakkuja →
                 </span>
 
             </div>
 
         </a>
-
 
     </div>
 
@@ -1299,25 +1122,20 @@ footer {
 
 <section class="section soft">
 
-    <h2 class="section-title"
-        id="flavours-title">
+    <h2 class="section-title" id="flavours-title">
         Makuja jokaiseen juhlaan
     </h2>
 
-    <p class="section-intro"
-       id="flavours-intro">
+    <p class="section-intro" id="flavours-intro">
         Kakun maku ja täytteet suunnitellaan toiveidesi mukaan.
     </p>
 
 
     <div class="flavours">
 
-
         <div class="flavour">
 
-            <span class="flavour-icon">
-                🍫
-            </span>
+            <span class="flavour-icon">🍫</span>
 
             <strong id="flavour1-title">
                 Suklaa
@@ -1332,9 +1150,7 @@ footer {
 
         <div class="flavour">
 
-            <span class="flavour-icon">
-                🍓
-            </span>
+            <span class="flavour-icon">🍓</span>
 
             <strong id="flavour2-title">
                 Marjat
@@ -1349,9 +1165,7 @@ footer {
 
         <div class="flavour">
 
-            <span class="flavour-icon">
-                ♡
-            </span>
+            <span class="flavour-icon">♡</span>
 
             <strong id="flavour3-title">
                 Yksilöllinen maku
@@ -1362,7 +1176,6 @@ footer {
             </p>
 
         </div>
-
 
     </div>
 
@@ -1375,7 +1188,6 @@ footer {
 <section class="about-section">
 
     <div class="about">
-
 
         <div class="about-image">
 
@@ -1397,37 +1209,7 @@ footer {
                 Jokainen tilaus suunnitellaan yksilöllisesti ja valmistetaan huolella juuri sinun juhlaasi varten.
             </p>
 
-
-            <div class="small-buttons">
-
-                <a href="gallery.html"
-                   class="small-button"
-                   id="gallery-button">
-                    GALLERIA
-                </a>
-
-                <a href="reviews.html"
-                   class="small-button"
-                   id="reviews-button">
-                    ARVOSTELUT
-                </a>
-
-                <a href="about.html"
-                   class="small-button"
-                   id="about-button">
-                    LUE LISÄÄ
-                </a>
-
-                <a href="contacts.html"
-                   class="small-button"
-                   id="contact-button">
-                    YHTEYSTIEDOT
-                </a>
-
-            </div>
-
         </div>
-
 
     </div>
 
@@ -1470,7 +1252,6 @@ footer {
 <script>
 
 const translations = {
-
 
 fi: {
 
@@ -1581,9 +1362,7 @@ fi: {
 
     footer:
     "© 2026 UliBakery · Tilauskakut Vantaalla"
-
 },
-
 
 
 ru: {
@@ -1695,9 +1474,7 @@ ru: {
 
     footer:
     "© 2026 UliBakery · Торты на заказ в Вантаа"
-
 },
-
 
 
 en: {
@@ -1809,24 +1586,18 @@ en: {
 
     footer:
     "© 2026 UliBakery · Custom cakes in Vantaa"
-
 }
 
 };
 
 
-
 function text(id,value) {
-
-    const el =
-        document.getElementById(id);
+    const el = document.getElementById(id);
 
     if (el) {
         el.textContent = value;
     }
-
 }
-
 
 
 function setLang(lang) {
@@ -1835,17 +1606,11 @@ function setLang(lang) {
         lang = "fi";
     }
 
-    localStorage.setItem(
-        "uliLang",
-        lang
-    );
+    localStorage.setItem("uliLang",lang);
 
-    const t =
-        translations[lang];
+    const t = translations[lang];
 
-    document.documentElement.lang =
-        lang;
-
+    document.documentElement.lang = lang;
 
     text("hero-title",t.heroTitle);
     text("hero-text",t.heroText);
@@ -1897,50 +1662,34 @@ function setLang(lang) {
 
     text("footer-text",t.footer);
 
-
     document
         .querySelectorAll(".languages button")
-        .forEach(btn =>
-            btn.classList.remove("active")
-        );
-
+        .forEach(btn => btn.classList.remove("active"));
 
     const active =
-        document.getElementById(
-            "lang-" + lang
-        );
+        document.getElementById("lang-" + lang);
 
     if (active) {
         active.classList.add("active");
     }
-
 }
 
 
+document.addEventListener("DOMContentLoaded", function() {
 
-document.addEventListener(
-    "DOMContentLoaded",
-    function() {
+    const saved =
+        localStorage.getItem("uliLang");
 
-        const saved =
-            localStorage.getItem(
-                "uliLang"
-            );
-
-        if (
-            saved === "ru" ||
-            saved === "en"
-        ) {
-            setLang(saved);
-        }
-        else {
-            setLang("fi");
-        }
-
+    if (saved === "ru" || saved === "en") {
+        setLang(saved);
+    } else {
+        setLang("fi");
     }
-);
+
+});
 
 </script>
 
 </body>
 </html>
+
