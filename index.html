@@ -14,16 +14,13 @@
 <link rel="canonical" href="https://ulibakery.fi/">
 
 <meta property="og:title" content="UliBakery | Tilauskakut Vantaalla">
-
 <meta
     property="og:description"
     content="Yksilölliset kakut ja makeat herkut tilauksesta Vantaalla."
 >
-
 <meta property="og:url" content="https://ulibakery.fi/">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://ulibakery.fi/work8.jpg">
-
+<meta property="og:image" content="https://ulibakery.fi/hero-cake.jpeg">
 
 <style>
 
@@ -39,18 +36,9 @@ body {
     margin: 0;
     font-family: "Segoe UI", Arial, sans-serif;
     color: #5d4037;
-
     background:
-        radial-gradient(
-            circle at 15% 15%,
-            rgba(255,190,211,.35),
-            transparent 22%
-        ),
-        radial-gradient(
-            circle at 90% 45%,
-            rgba(245,205,187,.28),
-            transparent 25%
-        ),
+        radial-gradient(circle at 15% 15%, rgba(255,190,211,.35), transparent 22%),
+        radial-gradient(circle at 90% 45%, rgba(245,205,187,.28), transparent 25%),
         #fdf1f5;
 }
 
@@ -61,35 +49,19 @@ a {
 .page {
     width: min(1180px, calc(100% - 40px));
     margin: 0 auto;
-
     overflow: hidden;
-
     background: #fffaf9;
-
-    box-shadow:
-        0 0 60px
-        rgba(128,75,93,.15);
+    box-shadow: 0 0 60px rgba(128,75,93,.15);
 }
-
-
-/* =========================
-   TOP BAR
-========================= */
 
 .topbar {
     min-height: 62px;
-
     padding: 10px 30px;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    background:
-        rgba(255,250,249,.96);
-
-    border-bottom:
-        1px solid #f3d7df;
+    background: rgba(255,250,249,.96);
+    border-bottom: 1px solid #f3d7df;
 }
 
 .social {
@@ -99,9 +71,7 @@ a {
 
 .social a {
     color: #e9577d;
-
     text-decoration: none;
-
     font-size: 15px;
     font-weight: 700;
 }
@@ -114,100 +84,55 @@ a {
 .languages button {
     min-width: 44px;
     height: 38px;
-
-    border:
-        1px solid #ef9bb1;
-
-    background:
-        rgba(255,255,255,.8);
-
+    border: 1px solid #ef9bb1;
+    background: rgba(255,255,255,.8);
     color: #68483f;
-
     border-radius: 10px;
-
     font-weight: 800;
-
     cursor: pointer;
-
     transition: .2s;
 }
 
 .languages button.active {
     color: white;
-
-    background:
-        linear-gradient(
-            135deg,
-            #ff7699,
-            #ef557e
-        );
-
+    background: linear-gradient(135deg,#ff7699,#ef557e);
     border-color: transparent;
-
-    box-shadow:
-        0 5px 14px
-        rgba(238,82,123,.22);
+    box-shadow: 0 5px 14px rgba(238,82,123,.22);
 }
-
-
-/* =========================
-   NAVIGATION
-========================= */
 
 .main-nav {
     min-height: 58px;
-
     padding: 0 25px;
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     gap: 42px;
-
     background: #fffdfc;
-
-    border-bottom:
-        1px solid #f1d4dc;
+    border-bottom: 1px solid #f1d4dc;
 }
 
 .main-nav a {
     position: relative;
-
-    padding:
-        19px 3px 17px;
-
+    padding: 19px 3px 17px;
     color: #66473f;
-
     text-decoration: none;
     text-transform: uppercase;
-
     font-size: 13px;
     font-weight: 800;
-
     letter-spacing: .6px;
-
     transition: .2s;
 }
 
 .main-nav a::after {
     content: "";
-
     position: absolute;
-
     left: 50%;
     bottom: 11px;
-
     width: 0;
     height: 2px;
-
-    transform:
-        translateX(-50%);
-
+    transform: translateX(-50%);
     background: #ed5a80;
-
     border-radius: 10px;
-
     transition: width .2s;
 }
 
@@ -219,42 +144,17 @@ a {
     width: 100%;
 }
 
-
-/* =========================
-   HERO
-========================= */
-
 .hero {
     position: relative;
-
     display: grid;
-
-    grid-template-columns:
-        .85fr 1.15fr;
-
+    grid-template-columns: .85fr 1.15fr;
     align-items: center;
-
     gap: 52px;
-
-    padding:
-        45px 62px 48px;
-
+    padding: 45px 62px 48px;
     background:
-        radial-gradient(
-            circle at 78% 20%,
-            rgba(255,194,213,.42),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 15% 90%,
-            rgba(247,222,204,.48),
-            transparent 28%
-        ),
-        linear-gradient(
-            135deg,
-            #fffaf8 0%,
-            #fff4f7 100%
-        );
+        radial-gradient(circle at 78% 20%, rgba(255,194,213,.42), transparent 30%),
+        radial-gradient(circle at 15% 90%, rgba(247,222,204,.48), transparent 28%),
+        linear-gradient(135deg,#fffaf8 0%,#fff4f7 100%);
 }
 
 .hero-image {
@@ -265,18 +165,12 @@ a {
 .hero-image img {
     width: 100%;
     max-width: 385px;
-
     height: 315px;
-
     display: block;
-
     object-fit: cover;
-
+    object-position: center;
     border-radius: 24px;
-
-    box-shadow:
-        0 18px 38px
-        rgba(107,65,77,.18);
+    box-shadow: 0 18px 38px rgba(107,65,77,.18);
 }
 
 .hero-content {
@@ -286,15 +180,9 @@ a {
 .logo {
     width: 105px;
     height: 105px;
-
     object-fit: cover;
-
     border-radius: 50%;
-
-    border:
-        4px solid
-        rgba(255,255,255,.9);
-
+    border: 4px solid rgba(255,255,255,.9);
     box-shadow:
         0 0 0 3px #f2c1d0,
         0 8px 20px rgba(118,65,82,.13);
@@ -302,138 +190,72 @@ a {
 
 .brand {
     margin-top: 9px;
-
     color: #f05c83;
-
     font-family: Georgia, serif;
-
     font-size: 41px;
     font-weight: 700;
 }
 
 .hero h1 {
-    margin:
-        13px 0 11px;
-
+    margin: 13px 0 11px;
     color: #50352e;
-
     font-family: Georgia, serif;
-
     font-size: 30px;
-
     line-height: 1.2;
 }
 
 .hero p {
     max-width: 510px;
-
-    margin:
-        0 auto 23px;
-
+    margin: 0 auto 23px;
     font-size: 17px;
-
     line-height: 1.6;
-
     color: #694d45;
 }
 
 .primary {
     display: inline-block;
-
-    padding:
-        15px 35px;
-
+    padding: 15px 35px;
     color: white;
-
-    background:
-        linear-gradient(
-            135deg,
-            #ff779a,
-            #ed4f79
-        );
-
+    background: linear-gradient(135deg,#ff779a,#ed4f79);
     border-radius: 50px;
-
     text-decoration: none;
-
     font-weight: 800;
-
-    box-shadow:
-        0 9px 22px
-        rgba(239,77,120,.27);
-
+    box-shadow: 0 9px 22px rgba(239,77,120,.27);
     transition: .25s;
 }
 
 .primary:hover {
-    transform:
-        translateY(-2px);
+    transform: translateY(-2px);
 }
-
-
-/* =========================
-   BENEFITS
-========================= */
 
 .benefits {
     display: grid;
-
-    grid-template-columns:
-        repeat(4,1fr);
-
-    padding:
-        7px 22px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #f9dce4,
-            #fce8e5,
-            #f9dce4
-        );
-
-    border-top:
-        1px solid #f1cdd8;
-
-    border-bottom:
-        1px solid #efcbd6;
+    grid-template-columns: repeat(4,1fr);
+    padding: 7px 22px;
+    background: linear-gradient(90deg,#f9dce4,#fce8e5,#f9dce4);
+    border-top: 1px solid #f1cdd8;
+    border-bottom: 1px solid #efcbd6;
 }
 
 .benefit {
     min-height: 88px;
-
-    padding:
-        15px 14px;
-
+    padding: 15px 14px;
     display: flex;
-
     justify-content: center;
     align-items: center;
-
     gap: 12px;
-
-    position: relative;
 }
 
 .benefit-icon {
     width: 43px;
     height: 43px;
-
-    flex:
-        0 0 43px;
-
+    flex: 0 0 43px;
     display: flex;
-
     align-items: center;
     justify-content: center;
-
     border-radius: 50%;
-
-    background:
-        rgba(255,255,255,.65);
-
+    background: rgba(255,255,255,.65);
     color: #d94f74;
-
     font-size: 24px;
 }
 
@@ -442,80 +264,41 @@ a {
     font-size: 14px;
 }
 
-
-/* =========================
-   GENERAL SECTIONS
-========================= */
-
 .section {
     position: relative;
-
-    padding:
-        52px 42px;
-
+    padding: 52px 42px;
     text-align: center;
 }
 
 .section-title {
     margin: 0;
-
     color: #ed5a80;
-
     font-family: Georgia, serif;
-
     font-size: 34px;
 }
 
 .section-intro {
     max-width: 720px;
-
-    margin:
-        13px auto 29px;
-
+    margin: 13px auto 29px;
     color: #6c5048;
-
     font-size: 17px;
-
     line-height: 1.6;
 }
 
-
-/* =========================
-   CATEGORIES
-========================= */
-
 .categories {
     display: grid;
-
-    grid-template-columns:
-        repeat(6, 1fr);
-
+    grid-template-columns: repeat(6,1fr);
     gap: 22px;
 }
 
 .category {
     grid-column: span 2;
-
     overflow: hidden;
-
-    background:
-        linear-gradient(
-            180deg,
-            #fff 0%,
-            #fff9f7 100%
-        );
-
-    border:
-        1px solid #f1d2dc;
-
+    background: linear-gradient(180deg,#fff 0%,#fff9f7 100%);
+    border: 1px solid #f1d2dc;
     border-radius: 24px;
-
     text-decoration: none;
-
-    box-shadow:
-        0 10px 25px
-        rgba(126,75,91,.10);
-
+    box-shadow: 0 10px 25px rgba(126,75,91,.10);
     transition: .25s;
 }
 
@@ -528,311 +311,155 @@ a {
 }
 
 .category:hover {
-    transform:
-        translateY(-5px);
-
-    box-shadow:
-        0 16px 34px
-        rgba(126,75,91,.16);
+    transform: translateY(-5px);
+    box-shadow: 0 16px 34px rgba(126,75,91,.16);
 }
 
 .category img {
     width: 100%;
-
     height: 245px;
-
     display: block;
-
     object-fit: cover;
-
     background: #f7e9ed;
 }
 
 .category-content {
-    padding:
-        23px 20px 26px;
+    padding: 23px 20px 26px;
 }
 
 .category h3 {
-    margin:
-        0 0 10px;
-
+    margin: 0 0 10px;
     color: #e9577d;
-
     font-family: Georgia, serif;
-
     font-size: 24px;
 }
 
 .category p {
     min-height: 72px;
-
-    margin:
-        0 auto 17px;
-
+    margin: 0 auto 17px;
     max-width: 300px;
-
     line-height: 1.55;
-
     color: #6d5149;
-
     font-size: 15px;
 }
 
 .category-link {
     color: #e9577d;
-
     font-size: 14px;
-
     font-weight: 800;
 }
 
 .category-placeholder {
     width: 100%;
     height: 245px;
-
     display: flex;
-
     align-items: center;
     justify-content: center;
-
-    background:
-        linear-gradient(
-            135deg,
-            #f8dce5,
-            #fff3f5
-        );
-
+    background: linear-gradient(135deg,#f8dce5,#fff3f5);
     color: #d46784;
-
     font-family: Georgia, serif;
-
     font-size: 22px;
 }
-
-
-/* =========================
-   FLAVOURS
-========================= */
 
 .section.soft {
     padding-top: 48px;
     padding-bottom: 52px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #f9dfe6 0%,
-            #fceae4 52%,
-            #f7dbe5 100%
-        );
+    background: linear-gradient(135deg,#f9dfe6 0%,#fceae4 52%,#f7dbe5 100%);
 }
 
 .flavours {
     display: grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
+    grid-template-columns: repeat(3,1fr);
     max-width: 930px;
-
     margin: auto;
-
     gap: 18px;
 }
 
 .flavour {
-    padding:
-        24px 18px;
-
-    background:
-        rgba(255,255,255,.75);
-
+    padding: 24px 18px;
+    background: rgba(255,255,255,.75);
     border-radius: 20px;
 }
 
 .flavour-icon {
     display: block;
-
     margin-bottom: 9px;
-
     font-size: 32px;
 }
 
 .flavour strong {
     display: block;
-
     margin-bottom: 7px;
-
     color: #e9577d;
-
     font-size: 18px;
 }
 
 .flavour p {
     margin: 0;
-
     line-height: 1.5;
-
     font-size: 15px;
 }
 
-
-/* =========================
-   ABOUT
-========================= */
-
 .about-section {
-    padding:
-        48px 42px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #fff9f6,
-            #fff1f5
-        );
+    padding: 48px 42px;
+    background: linear-gradient(135deg,#fff9f6,#fff1f5);
 }
 
 .about {
-    display: grid;
-
-    grid-template-columns:
-        .72fr 1.28fr;
-
-    max-width: 940px;
-
+    max-width: 820px;
     margin: auto;
-
-    overflow: hidden;
-
-    background:
-        linear-gradient(
-            135deg,
-            #fff,
-            #fff8f5
-        );
-
-    border:
-        1px solid #efd1d9;
-
+    background: linear-gradient(135deg,#fff,#fff8f5);
+    border: 1px solid #efd1d9;
     border-radius: 26px;
-
-    box-shadow:
-        0 13px 32px
-        rgba(113,70,82,.12);
-}
-
-.about-image img {
-    width: 100%;
-    height: 100%;
-
-    min-height: 280px;
-
-    object-fit: cover;
-
-    display: block;
+    box-shadow: 0 13px 32px rgba(113,70,82,.12);
 }
 
 .about-content {
-    padding:
-        36px 38px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-
-    text-align: left;
+    padding: 45px 48px;
+    text-align: center;
 }
 
 .about-content h2 {
-    margin:
-        0 0 14px;
-
+    margin: 0 0 16px;
     color: #ed5a80;
-
     font-family: Georgia, serif;
-
     font-size: 31px;
 }
 
 .about-content p {
-    margin: 0;
-
-    line-height: 1.7;
-
+    max-width: 690px;
+    margin: auto;
+    line-height: 1.75;
     color: #664d45;
+    font-size: 17px;
 }
 
-
-/* =========================
-   CTA
-========================= */
-
 .cta {
-    padding:
-        52px 25px;
-
+    padding: 52px 25px;
     text-align: center;
-
-    background:
-        linear-gradient(
-            135deg,
-            #f4c8d5,
-            #fbe1dc
-        );
+    background: linear-gradient(135deg,#f4c8d5,#fbe1dc);
 }
 
 .cta h2 {
-    margin:
-        0 0 12px;
-
-    font-family:
-        Georgia, serif;
-
+    margin: 0 0 12px;
+    font-family: Georgia, serif;
     font-size: 32px;
-
     color: #5d4037;
 }
 
 .cta p {
     max-width: 680px;
-
-    margin:
-        0 auto 24px;
-
+    margin: 0 auto 24px;
     line-height: 1.6;
 }
 
-
-/* =========================
-   FOOTER
-========================= */
-
 footer {
-    padding:
-        25px 20px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #5d4037,
-            #6d4b42
-        );
-
+    padding: 25px 20px;
+    background: linear-gradient(135deg,#5d4037,#6d4b42);
     color: #fff8f5;
-
     text-align: center;
-
     font-size: 14px;
 }
-
-
-/* =========================
-   MOBILE
-========================= */
 
 @media(max-width:850px) {
 
@@ -842,9 +469,7 @@ footer {
 
     .main-nav {
         gap: 25px;
-
-        padding:
-            0 15px;
+        padding: 0 15px;
     }
 
     .main-nav a {
@@ -853,11 +478,8 @@ footer {
 
     .hero {
         grid-template-columns: 1fr;
-
         gap: 28px;
-
-        padding:
-            34px 22px 43px;
+        padding: 34px 22px 43px;
     }
 
     .hero-content {
@@ -870,18 +492,15 @@ footer {
 
     .hero-image img {
         max-width: 480px;
-
         height: 310px;
     }
 
     .benefits {
-        grid-template-columns:
-            repeat(2,1fr);
+        grid-template-columns: repeat(2,1fr);
     }
 
     .categories {
-        grid-template-columns:
-            repeat(2,1fr);
+        grid-template-columns: repeat(2,1fr);
     }
 
     .category,
@@ -891,11 +510,8 @@ footer {
     }
 
     .category:last-child {
-        grid-column:
-            1 / -1;
-
+        grid-column: 1 / -1;
         width: calc(50% - 11px);
-
         justify-self: center;
     }
 
@@ -911,25 +527,12 @@ footer {
     .flavours {
         grid-template-columns: 1fr;
     }
-
-    .about {
-        grid-template-columns: 1fr;
-
-        max-width: 600px;
-    }
-
-    .about-image img {
-        height: 300px;
-    }
-
 }
-
 
 @media(max-width:520px) {
 
     .topbar {
-        padding:
-            9px 14px;
+        padding: 9px 14px;
     }
 
     .social {
@@ -943,31 +546,20 @@ footer {
     .languages button {
         min-width: 38px;
         height: 35px;
-
-        padding:
-            0 7px;
+        padding: 0 7px;
     }
 
     .main-nav {
-        padding:
-            7px 10px;
-
+        padding: 7px 10px;
         gap: 0;
-
-        justify-content:
-            space-around;
-
+        justify-content: space-around;
         flex-wrap: wrap;
     }
 
     .main-nav a {
         width: 50%;
-
-        padding:
-            9px 5px;
-
+        padding: 9px 5px;
         text-align: center;
-
         font-size: 11px;
     }
 
@@ -997,29 +589,23 @@ footer {
     }
 
     .hero-image img {
-        height: 260px;
-
+        height: 290px;
         border-radius: 20px;
     }
 
     .benefits {
         padding: 4px;
-
-        grid-template-columns:
-            1fr 1fr;
+        grid-template-columns: 1fr 1fr;
     }
 
     .benefit {
         flex-direction: column;
-
         text-align: center;
-
         gap: 6px;
     }
 
     .section {
-        padding:
-            42px 17px;
+        padding: 42px 17px;
     }
 
     .section.soft {
@@ -1029,7 +615,6 @@ footer {
 
     .categories {
         grid-template-columns: 1fr;
-
         gap: 17px;
     }
 
@@ -1038,11 +623,8 @@ footer {
     .category:nth-child(5),
     .category:last-child {
         grid-column: auto;
-
         width: 100%;
-
         max-width: 500px;
-
         margin: auto;
     }
 
@@ -1052,32 +634,27 @@ footer {
     }
 
     .about-section {
-        padding:
-            40px 16px;
-    }
-
-    .about-image img {
-        height: 270px;
-
-        min-height: 0;
+        padding: 40px 16px;
     }
 
     .about-content {
-        padding:
-            27px 21px;
+        padding: 34px 23px;
+    }
 
-        text-align: center;
+    .about-content h2 {
+        font-size: 27px;
+    }
+
+    .about-content p {
+        font-size: 16px;
     }
 
     .cta {
-        padding:
-            45px 18px;
+        padding: 45px 18px;
     }
-
 }
 
 </style>
-
 
 <script type="application/ld+json">
 {
@@ -1085,7 +662,7 @@ footer {
     "@type":"Bakery",
     "name":"UliBakery",
     "url":"https://ulibakery.fi/",
-    "image":"https://ulibakery.fi/work8.jpg",
+    "image":"https://ulibakery.fi/hero-cake.jpeg",
     "description":"Yksilöllisiä tilauskakkuja ja makeita herkkuja Vantaalla.",
     "address":{
         "@type":"PostalAddress",
@@ -1101,13 +678,9 @@ footer {
 
 </head>
 
-
 <body>
 
 <div class="page">
-
-
-<!-- TOP BAR -->
 
 <div class="topbar">
 
@@ -1131,83 +704,42 @@ footer {
 
     </div>
 
-
     <div class="languages">
-
-        <button
-            id="lang-fi"
-            onclick="setLang('fi')"
-        >
-            FI
-        </button>
-
-        <button
-            id="lang-ru"
-            onclick="setLang('ru')"
-        >
-            RU
-        </button>
-
-        <button
-            id="lang-en"
-            onclick="setLang('en')"
-        >
-            EN
-        </button>
-
+        <button id="lang-fi" onclick="setLang('fi')">FI</button>
+        <button id="lang-ru" onclick="setLang('ru')">RU</button>
+        <button id="lang-en" onclick="setLang('en')">EN</button>
     </div>
 
 </div>
 
-
-<!-- MAIN NAVIGATION -->
-
 <nav class="main-nav">
 
-    <a
-        href="gallery.html"
-        id="gallery-button"
-    >
+    <a href="gallery.html" id="gallery-button">
         GALLERIA
     </a>
 
-    <a
-        href="reviews.html"
-        id="reviews-button"
-    >
+    <a href="reviews.html" id="reviews-button">
         ARVOSTELUT
     </a>
 
-    <a
-        href="about.html"
-        id="about-button"
-    >
+    <a href="about.html" id="about-button">
         LUE LISÄÄ
     </a>
 
-    <a
-        href="contacts.html"
-        id="contact-button"
-    >
+    <a href="contacts.html" id="contact-button">
         YHTEYSTIEDOT
     </a>
 
 </nav>
 
-
-<!-- HERO -->
-
 <header class="hero">
 
     <div class="hero-image">
-
         <img
-            src="work8.jpg"
+            src="hero-cake.jpeg"
             alt="UliBakery tilauskakku Vantaa"
         >
-
     </div>
-
 
     <div class="hero-content">
 
@@ -1241,191 +773,87 @@ footer {
 
 </header>
 
-
-<!-- BENEFITS -->
-
 <section class="benefits">
 
     <div class="benefit">
-
-        <div class="benefit-icon">
-            ♡
-        </div>
-
-        <span id="benefit1">
-            Yksilöllinen suunnittelu
-        </span>
-
+        <div class="benefit-icon">♡</div>
+        <span id="benefit1">Yksilöllinen suunnittelu</span>
     </div>
 
-
     <div class="benefit">
-
-        <div class="benefit-icon">
-            ✦
-        </div>
-
-        <span id="benefit2">
-            Käsintehty Vantaalla
-        </span>
-
+        <div class="benefit-icon">✦</div>
+        <span id="benefit2">Käsintehty Vantaalla</span>
     </div>
 
-
     <div class="benefit">
-
-        <div class="benefit-icon">
-            ♧
-        </div>
-
-        <span id="benefit3">
-            Huolella valitut raaka-aineet
-        </span>
-
+        <div class="benefit-icon">♧</div>
+        <span id="benefit3">Huolella valitut raaka-aineet</span>
     </div>
 
-
     <div class="benefit">
-
-        <div class="benefit-icon">
-            ☺
-        </div>
-
-        <span id="benefit4">
-            Juhliin, jotka muistetaan
-        </span>
-
+        <div class="benefit-icon">☺</div>
+        <span id="benefit4">Juhliin, jotka muistetaan</span>
     </div>
 
 </section>
-
-
-<!-- CATEGORIES -->
 
 <section class="section">
 
-    <h2
-        class="section-title"
-        id="categories-title"
-    >
+    <h2 class="section-title" id="categories-title">
         Millaisen herkun etsit?
     </h2>
 
-    <p
-        class="section-intro"
-        id="categories-intro"
-    >
+    <p class="section-intro" id="categories-intro">
         Tutustu eri kategorioihin ja löydä inspiraatiota omaan juhlaasi.
     </p>
 
-
-    <div
-        id="categories-grid"
-        class="categories"
-    >
-
-        <!--
-            Категории и главные фотографии
-            загружаются автоматически из Supabase.
-        -->
-
-    </div>
+    <div id="categories-grid" class="categories"></div>
 
 </section>
 
-
-<!-- FLAVOURS -->
-
 <section class="section soft">
 
-    <h2
-        class="section-title"
-        id="flavours-title"
-    >
+    <h2 class="section-title" id="flavours-title">
         Makuja jokaiseen juhlaan
     </h2>
 
-    <p
-        class="section-intro"
-        id="flavours-intro"
-    >
+    <p class="section-intro" id="flavours-intro">
         Kakun maku ja täytteet suunnitellaan toiveidesi mukaan.
     </p>
-
 
     <div class="flavours">
 
         <div class="flavour">
-
-            <span class="flavour-icon">
-                🍫
-            </span>
-
-            <strong id="flavour1-title">
-                Suklaa
-            </strong>
-
+            <span class="flavour-icon">🍫</span>
+            <strong id="flavour1-title">Suklaa</strong>
             <p id="flavour1-text">
                 Täyteläinen vaihtoehto suklaan ystäville.
             </p>
-
         </div>
 
-
         <div class="flavour">
-
-            <span class="flavour-icon">
-                🍓
-            </span>
-
-            <strong id="flavour2-title">
-                Marjat
-            </strong>
-
+            <span class="flavour-icon">🍓</span>
+            <strong id="flavour2-title">Marjat</strong>
             <p id="flavour2-text">
                 Raikkaita makuja esimerkiksi mansikasta ja vadelmasta.
             </p>
-
         </div>
 
-
         <div class="flavour">
-
-            <span class="flavour-icon">
-                ♡
-            </span>
-
-            <strong id="flavour3-title">
-                Yksilöllinen maku
-            </strong>
-
+            <span class="flavour-icon">♡</span>
+            <strong id="flavour3-title">Yksilöllinen maku</strong>
             <p id="flavour3-text">
                 Kerro toiveesi, niin suunnitellaan sopiva kokonaisuus yhdessä.
             </p>
-
         </div>
 
     </div>
 
 </section>
 
-
-<!-- ABOUT -->
-
 <section class="about-section">
 
     <div class="about">
-
-        <div class="about-image">
-
-            <img
-                src="IMG_7897.jpg"
-                alt="UliBakery Vantaa"
-                loading="lazy"
-            >
-
-        </div>
-
 
         <div class="about-content">
 
@@ -1434,7 +862,7 @@ footer {
             </h2>
 
             <p id="about-text">
-                Hei! Olen Uli. Valmistan kakut pienessä konditoriassani Mikkolassa, Vantaalla. Jokainen tilaus suunnitellaan yksilöllisesti ja valmistetaan huolella juuri sinun juhlaasi varten.
+                Hei! Olen Uliana. Valmistan kakut pienessä konditoriassani Mikkolassa, Vantaalla. Jokainen tilaus suunnitellaan yksilöllisesti ja valmistetaan huolella juuri sinun juhlaasi varten.
             </p>
 
         </div>
@@ -1442,9 +870,6 @@ footer {
     </div>
 
 </section>
-
-
-<!-- CTA -->
 
 <section class="cta">
 
@@ -1456,24 +881,17 @@ footer {
         Kerro juhlapäivä, toiveesi ja millaista kakkua etsit. Otamme yhteyttä tilauksen yksityiskohdista.
     </p>
 
-    <a
-        href="order.html"
-        class="primary"
-        id="cta-button"
-    >
+    <a href="order.html" class="primary" id="cta-button">
         TEE TILAUS →
     </a>
 
 </section>
 
-
 <footer id="footer-text">
     © 2026 UliBakery · Tilauskakut Vantaalla
 </footer>
 
-
 </div>
-
 
 <script type="module">
 
@@ -1481,17 +899,11 @@ import {
     createClient
 } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
-
-/* =========================
-   SUPABASE
-========================= */
-
 const SUPABASE_URL =
     "https://sxvoigmsosvujeswizib.supabase.co";
 
 const SUPABASE_KEY =
     "sb_publishable_IS21B3RawJySN_pAvjX1SA_pWn143P1";
-
 
 const supabase =
     createClient(
@@ -1499,409 +911,166 @@ const supabase =
         SUPABASE_KEY
     );
 
-
-/* =========================
-   LANGUAGE
-========================= */
-
 let currentLang = "fi";
-
 let categories = [];
 let covers = [];
-
 
 const translations = {
 
     fi: {
-
-        heroTitle:
-            "Yksilölliset tilauskakut Vantaalla",
-
-        heroText:
-            "Kakut suunnitellaan juuri sinun juhlaasi varten ja valmistetaan käsin toiveidesi mukaan.",
-
-        heroButton:
-            "TEE TILAUS →",
-
-        benefit1:
-            "Yksilöllinen suunnittelu",
-
-        benefit2:
-            "Käsintehty Vantaalla",
-
-        benefit3:
-            "Huolella valitut raaka-aineet",
-
-        benefit4:
-            "Juhliin, jotka muistetaan",
-
-        categoriesTitle:
-            "Millaisen herkun etsit?",
-
-        categoriesIntro:
-            "Tutustu eri kategorioihin ja löydä inspiraatiota omaan juhlaasi.",
-
-        galleryButton:
-            "GALLERIA",
-
-        reviewsButton:
-            "ARVOSTELUT",
-
-        aboutButton:
-            "LUE LISÄÄ",
-
-        contactButton:
-            "YHTEYSTIEDOT",
-
-        flavoursTitle:
-            "Makuja jokaiseen juhlaan",
-
-        flavoursIntro:
-            "Kakun maku ja täytteet suunnitellaan toiveidesi mukaan.",
-
-        flavour1Title:
-            "Suklaa",
-
-        flavour1Text:
-            "Täyteläinen vaihtoehto suklaan ystäville.",
-
-        flavour2Title:
-            "Marjat",
-
-        flavour2Text:
-            "Raikkaita makuja esimerkiksi mansikasta ja vadelmasta.",
-
-        flavour3Title:
-            "Yksilöllinen maku",
-
-        flavour3Text:
-            "Kerro toiveesi, niin suunnitellaan sopiva kokonaisuus yhdessä.",
-
-        aboutTitle:
-            "Käsintehty Vantaalla",
-
-        aboutText:
-            "Hei! Olen Uli. Valmistan kakut pienessä konditoriassani Mikkolassa, Vantaalla. Jokainen tilaus suunnitellaan yksilöllisesti ja valmistetaan huolella juuri sinun juhlaasi varten.",
-
-        ctaTitle:
-            "Suunnitellaanko sinun kakkusi?",
-
-        ctaText:
-            "Kerro juhlapäivä, toiveesi ja millaista kakkua etsit. Otamme yhteyttä tilauksen yksityiskohdista.",
-
-        ctaButton:
-            "TEE TILAUS →",
-
-        viewCategory:
-            "Katso kuvat →",
-
-        footer:
-            "© 2026 UliBakery · Tilauskakut Vantaalla"
-
+        heroTitle: "Yksilölliset tilauskakut Vantaalla",
+        heroText: "Kakut suunnitellaan juuri sinun juhlaasi varten ja valmistetaan käsin toiveidesi mukaan.",
+        heroButton: "TEE TILAUS →",
+        benefit1: "Yksilöllinen suunnittelu",
+        benefit2: "Käsintehty Vantaalla",
+        benefit3: "Huolella valitut raaka-aineet",
+        benefit4: "Juhliin, jotka muistetaan",
+        categoriesTitle: "Millaisen herkun etsit?",
+        categoriesIntro: "Tutustu eri kategorioihin ja löydä inspiraatiota omaan juhlaasi.",
+        galleryButton: "GALLERIA",
+        reviewsButton: "ARVOSTELUT",
+        aboutButton: "LUE LISÄÄ",
+        contactButton: "YHTEYSTIEDOT",
+        flavoursTitle: "Makuja jokaiseen juhlaan",
+        flavoursIntro: "Kakun maku ja täytteet suunnitellaan toiveidesi mukaan.",
+        flavour1Title: "Suklaa",
+        flavour1Text: "Täyteläinen vaihtoehto suklaan ystäville.",
+        flavour2Title: "Marjat",
+        flavour2Text: "Raikkaita makuja esimerkiksi mansikasta ja vadelmasta.",
+        flavour3Title: "Yksilöllinen maku",
+        flavour3Text: "Kerro toiveesi, niin suunnitellaan sopiva kokonaisuus yhdessä.",
+        aboutTitle: "Käsintehty Vantaalla",
+        aboutText: "Hei! Olen Uliana. Valmistan kakut pienessä konditoriassani Mikkolassa, Vantaalla. Jokainen tilaus suunnitellaan yksilöllisesti ja valmistetaan huolella juuri sinun juhlaasi varten.",
+        ctaTitle: "Suunnitellaanko sinun kakkusi?",
+        ctaText: "Kerro juhlapäivä, toiveesi ja millaista kakkua etsit. Otamme yhteyttä tilauksen yksityiskohdista.",
+        ctaButton: "TEE TILAUS →",
+        viewCategory: "Katso kuvat →",
+        footer: "© 2026 UliBakery · Tilauskakut Vantaalla"
     },
-
 
     ru: {
-
-        heroTitle:
-            "Торты на заказ в Вантаа",
-
-        heroText:
-            "Каждый торт создаётся специально для вашего праздника и оформляется с учётом ваших пожеланий.",
-
-        heroButton:
-            "СДЕЛАТЬ ЗАКАЗ →",
-
-        benefit1:
-            "Индивидуальный дизайн",
-
-        benefit2:
-            "Ручная работа в Вантаа",
-
-        benefit3:
-            "Тщательно подобранные ингредиенты",
-
-        benefit4:
-            "Для особенных праздников",
-
-        categoriesTitle:
-            "Что вы ищете?",
-
-        categoriesIntro:
-            "Посмотрите все категории и найдите идею для своего праздника.",
-
-        galleryButton:
-            "ГАЛЕРЕЯ",
-
-        reviewsButton:
-            "ОТЗЫВЫ",
-
-        aboutButton:
-            "ОБО МНЕ",
-
-        contactButton:
-            "КОНТАКТЫ",
-
-        flavoursTitle:
-            "Вкусы для вашего праздника",
-
-        flavoursIntro:
-            "Вкус и начинку торта подберём с учётом ваших пожеланий.",
-
-        flavour1Title:
-            "Шоколад",
-
-        flavour1Text:
-            "Насыщенный вариант для любителей шоколада.",
-
-        flavour2Title:
-            "Ягоды",
-
-        flavour2Text:
-            "Свежие сочетания, например клубника и малина.",
-
-        flavour3Title:
-            "Ваш вкус",
-
-        flavour3Text:
-            "Расскажите о пожеланиях — подберём подходящее сочетание вместе.",
-
-        aboutTitle:
-            "Ручная работа в Вантаа",
-
-        aboutText:
-            "Привет! Меня зовут Ули. Я создаю торты в своей небольшой кондитерской в Миккола, Вантаа. Каждый заказ разрабатывается индивидуально и с вниманием готовится специально для вашего праздника.",
-
-        ctaTitle:
-            "Создадим ваш торт?",
-
-        ctaText:
-            "Расскажите дату праздника, ваши пожелания и какой торт вы хотите. Мы свяжемся с вами для уточнения деталей.",
-
-        ctaButton:
-            "СДЕЛАТЬ ЗАКАЗ →",
-
-        viewCategory:
-            "Смотреть работы →",
-
-        footer:
-            "© 2026 UliBakery · Торты на заказ в Вантаа"
-
+        heroTitle: "Торты на заказ в Вантаа",
+        heroText: "Каждый торт создаётся специально для вашего праздника и оформляется с учётом ваших пожеланий.",
+        heroButton: "СДЕЛАТЬ ЗАКАЗ →",
+        benefit1: "Индивидуальный дизайн",
+        benefit2: "Ручная работа в Вантаа",
+        benefit3: "Тщательно подобранные ингредиенты",
+        benefit4: "Для особенных праздников",
+        categoriesTitle: "Что вы ищете?",
+        categoriesIntro: "Посмотрите все категории и найдите идею для своего праздника.",
+        galleryButton: "ГАЛЕРЕЯ",
+        reviewsButton: "ОТЗЫВЫ",
+        aboutButton: "ОБО МНЕ",
+        contactButton: "КОНТАКТЫ",
+        flavoursTitle: "Вкусы для вашего праздника",
+        flavoursIntro: "Вкус и начинку торта подберём с учётом ваших пожеланий.",
+        flavour1Title: "Шоколад",
+        flavour1Text: "Насыщенный вариант для любителей шоколада.",
+        flavour2Title: "Ягоды",
+        flavour2Text: "Свежие сочетания, например клубника и малина.",
+        flavour3Title: "Ваш вкус",
+        flavour3Text: "Расскажите о пожеланиях — подберём подходящее сочетание вместе.",
+        aboutTitle: "Ручная работа в Вантаа",
+        aboutText: "Привет! Меня зовут Uliana. Я создаю торты в своей небольшой кондитерской в Миккола, Вантаа. Каждый заказ разрабатывается индивидуально и с вниманием готовится специально для вашего праздника.",
+        ctaTitle: "Создадим ваш торт?",
+        ctaText: "Расскажите дату праздника, ваши пожелания и какой торт вы хотите. Мы свяжемся с вами для уточнения деталей.",
+        ctaButton: "СДЕЛАТЬ ЗАКАЗ →",
+        viewCategory: "Смотреть работы →",
+        footer: "© 2026 UliBakery · Торты на заказ в Вантаа"
     },
 
-
     en: {
-
-        heroTitle:
-            "Custom cakes in Vantaa",
-
-        heroText:
-            "Every cake is designed especially for your celebration and handmade according to your wishes.",
-
-        heroButton:
-            "PLACE AN ORDER →",
-
-        benefit1:
-            "Individual design",
-
-        benefit2:
-            "Handmade in Vantaa",
-
-        benefit3:
-            "Carefully selected ingredients",
-
-        benefit4:
-            "Made for special moments",
-
-        categoriesTitle:
-            "What are you looking for?",
-
-        categoriesIntro:
-            "Explore all our categories and find inspiration for your celebration.",
-
-        galleryButton:
-            "GALLERY",
-
-        reviewsButton:
-            "REVIEWS",
-
-        aboutButton:
-            "ABOUT",
-
-        contactButton:
-            "CONTACT",
-
-        flavoursTitle:
-            "Flavours for every celebration",
-
-        flavoursIntro:
-            "Cake flavours and fillings are planned according to your wishes.",
-
-        flavour1Title:
-            "Chocolate",
-
-        flavour1Text:
-            "A rich option for chocolate lovers.",
-
-        flavour2Title:
-            "Berries",
-
-        flavour2Text:
-            "Fresh combinations such as strawberry and raspberry.",
-
-        flavour3Title:
-            "Your own combination",
-
-        flavour3Text:
-            "Tell us what you like and we can create a suitable combination together.",
-
-        aboutTitle:
-            "Handmade in Vantaa",
-
-        aboutText:
-            "Hi! I'm Uli. I make cakes in my small pastry studio in Mikkola, Vantaa. Every order is individually designed and carefully prepared especially for your celebration.",
-
-        ctaTitle:
-            "Shall we create your cake?",
-
-        ctaText:
-            "Tell us your celebration date, your wishes and the kind of cake you are looking for. We will contact you to discuss the details.",
-
-        ctaButton:
-            "PLACE AN ORDER →",
-
-        viewCategory:
-            "View gallery →",
-
-        footer:
-            "© 2026 UliBakery · Custom cakes in Vantaa"
-
+        heroTitle: "Custom cakes in Vantaa",
+        heroText: "Every cake is designed especially for your celebration and handmade according to your wishes.",
+        heroButton: "PLACE AN ORDER →",
+        benefit1: "Individual design",
+        benefit2: "Handmade in Vantaa",
+        benefit3: "Carefully selected ingredients",
+        benefit4: "Made for special moments",
+        categoriesTitle: "What are you looking for?",
+        categoriesIntro: "Explore all our categories and find inspiration for your celebration.",
+        galleryButton: "GALLERY",
+        reviewsButton: "REVIEWS",
+        aboutButton: "ABOUT",
+        contactButton: "CONTACT",
+        flavoursTitle: "Flavours for every celebration",
+        flavoursIntro: "Cake flavours and fillings are planned according to your wishes.",
+        flavour1Title: "Chocolate",
+        flavour1Text: "A rich option for chocolate lovers.",
+        flavour2Title: "Berries",
+        flavour2Text: "Fresh combinations such as strawberry and raspberry.",
+        flavour3Title: "Your own combination",
+        flavour3Text: "Tell us what you like and we can create a suitable combination together.",
+        aboutTitle: "Handmade in Vantaa",
+        aboutText: "Hi! I'm Uliana. I make cakes in my small pastry studio in Mikkola, Vantaa. Every order is individually designed and carefully prepared especially for your celebration.",
+        ctaTitle: "Shall we create your cake?",
+        ctaText: "Tell us your celebration date, your wishes and the kind of cake you are looking for. We will contact you to discuss the details.",
+        ctaButton: "PLACE AN ORDER →",
+        viewCategory: "View gallery →",
+        footer: "© 2026 UliBakery · Custom cakes in Vantaa"
     }
 
 };
-
-
-/* =========================
-   CATEGORY DESCRIPTIONS
-========================= */
 
 const categoryDescriptions = {
 
     "haakakut": {
-
-        fi:
-            "Yksilölliset hääkakut suunnitellaan juhlan tyylin, toiveiden ja vierasmäärän mukaan.",
-
-        ru:
-            "Индивидуальные свадебные торты с учётом стиля праздника, пожеланий и количества гостей.",
-
-        en:
-            "Unique wedding cakes designed around your celebration, wishes and number of guests."
-
+        fi: "Yksilölliset hääkakut suunnitellaan juhlan tyylin, toiveiden ja vierasmäärän mukaan.",
+        ru: "Индивидуальные свадебные торты с учётом стиля праздника, пожеланий и количества гостей.",
+        en: "Unique wedding cakes designed around your celebration, wishes and number of guests."
     },
-
 
     "lastenkakut": {
-
-        fi:
-            "Teemakakut syntymäpäiville lapsen lempiväreillä, hahmoilla ja omilla ideoilla.",
-
-        ru:
-            "Тематические детские торты с любимыми цветами, героями и идеями ребёнка.",
-
-        en:
-            "Kids' birthday cakes inspired by favourite colours, characters and ideas."
-
+        fi: "Teemakakut syntymäpäiville lapsen lempiväreillä, hahmoilla ja omilla ideoilla.",
+        ru: "Тематические детские торты с любимыми цветами, героями и идеями ребёнка.",
+        en: "Kids' birthday cakes inspired by favourite colours, characters and ideas."
     },
-
 
     "muut-juhlakakut": {
-
-        fi:
-            "Kauniit kakut syntymäpäiville, vuosipäiville ja muihin tärkeisiin hetkiin.",
-
-        ru:
-            "Торты на дни рождения, юбилеи и другие важные события.",
-
-        en:
-            "Beautiful cakes for birthdays, anniversaries and other important moments."
-
+        fi: "Kauniit kakut syntymäpäiville, vuosipäiville ja muihin tärkeisiin hetkiin.",
+        ru: "Торты на дни рождения, юбилеи и другие важные события.",
+        en: "Beautiful cakes for birthdays, anniversaries and other important moments."
     },
-
 
     "cakesicles-nimikeksit": {
-
-        fi:
-            "Cakesicles ja yksilölliset nimikeksit juhliin, lahjaksi ja makeaksi yksityiskohdaksi.",
-
-        ru:
-            "Кейксиклы и именное печенье для праздников, подарков и красивых сладких наборов.",
-
-        en:
-            "Cakesicles and personalised cookies for celebrations, gifts and sweet sets."
-
+        fi: "Cakesicles ja yksilölliset nimikeksit juhliin, lahjaksi ja makeaksi yksityiskohdaksi.",
+        ru: "Кейксиклы и именное печенье для праздников, подарков и красивых сладких наборов.",
+        en: "Cakesicles and personalised cookies for celebrations, gifts and sweet sets."
     },
 
-
     "bentokakut-bento-box": {
-
-        fi:
-            "Bentokakut ja bento-boxit pieniin juhliin, yllätyksiin ja herkullisiin lahjoihin.",
-
-        ru:
-            "Бенто-торты и бенто-боксы для небольших праздников, сюрпризов и подарков.",
-
-        en:
-            "Bento cakes and bento boxes for small celebrations, surprises and gifts."
-
+        fi: "Bentokakut ja bento-boxit pieniin juhliin, yllätyksiin ja herkullisiin lahjoihin.",
+        ru: "Бенто-торты и бенто-боксы для небольших праздников, сюрпризов и подарков.",
+        en: "Bento cakes and bento boxes for small celebrations, surprises and gifts."
     }
 
 };
 
-
-/* =========================
-   HELPERS
-========================= */
-
 function text(id, value) {
-
-    const element =
-        document.getElementById(id);
+    const element = document.getElementById(id);
 
     if (element) {
         element.textContent = value;
     }
 }
 
-
 function categoryName(category) {
 
     if (currentLang === "ru") {
-
-        return (
-            category.name_ru ||
-            category.name_fi
-        );
+        return category.name_ru || category.name_fi;
     }
 
     if (currentLang === "en") {
-
-        return (
-            category.name_en ||
-            category.name_fi
-        );
+        return category.name_en || category.name_fi;
     }
 
     return category.name_fi;
 }
 
-
 function categoryDescription(category) {
 
     const description =
-        categoryDescriptions[
-            category.slug
-        ];
+        categoryDescriptions[category.slug];
 
     if (!description) {
         return "";
@@ -1914,7 +1083,6 @@ function categoryDescription(category) {
     );
 }
 
-
 function publicImageUrl(path) {
 
     const { data } =
@@ -1924,11 +1092,6 @@ function publicImageUrl(path) {
 
     return data.publicUrl;
 }
-
-
-/* =========================
-   LOAD CATEGORIES
-========================= */
 
 async function loadCategories() {
 
@@ -1944,20 +1107,13 @@ async function loadCategories() {
                 }
             );
 
-
     if (categoryResponse.error) {
-
-        console.error(
-            categoryResponse.error
-        );
-
+        console.error(categoryResponse.error);
         return;
     }
 
-
     categories =
         categoryResponse.data || [];
-
 
     const coverResponse =
         await supabase
@@ -1966,43 +1122,26 @@ async function loadCategories() {
             .eq("is_visible", true)
             .eq("is_cover", true);
 
-
     if (coverResponse.error) {
-
-        console.error(
-            coverResponse.error
-        );
-
+        console.error(coverResponse.error);
         return;
     }
-
 
     covers =
         coverResponse.data || [];
 
-
     renderCategories();
 }
-
-
-/* =========================
-   RENDER CATEGORIES
-========================= */
 
 function renderCategories() {
 
     const container =
-        document.getElementById(
-            "categories-grid"
-        );
-
+        document.getElementById("categories-grid");
 
     container.innerHTML = "";
 
-
     const t =
         translations[currentLang];
-
 
     for (const category of categories) {
 
@@ -2013,367 +1152,180 @@ function renderCategories() {
                     category.id
             );
 
-
         const card =
             document.createElement("a");
-
 
         card.className =
             "category";
 
-
         card.href =
             "gallery.html#category-" +
             category.id;
-
 
         if (cover) {
 
             const image =
                 document.createElement("img");
 
-
             image.src =
                 publicImageUrl(
                     cover.image_path
                 );
 
-
             image.loading =
                 "lazy";
-
 
             image.alt =
                 categoryName(category) +
                 " UliBakery";
-
 
             card.appendChild(image);
 
         } else {
 
             const placeholder =
-                document.createElement(
-                    "div"
-                );
-
+                document.createElement("div");
 
             placeholder.className =
                 "category-placeholder";
 
-
             placeholder.textContent =
                 "UliBakery";
-
 
             card.appendChild(
                 placeholder
             );
         }
 
-
         const content =
-            document.createElement(
-                "div"
-            );
-
+            document.createElement("div");
 
         content.className =
             "category-content";
 
-
         const title =
-            document.createElement(
-                "h3"
-            );
-
+            document.createElement("h3");
 
         title.textContent =
             categoryName(category);
 
-
         const description =
-            document.createElement(
-                "p"
-            );
-
+            document.createElement("p");
 
         description.textContent =
             categoryDescription(
                 category
             );
 
-
         const link =
-            document.createElement(
-                "span"
-            );
-
+            document.createElement("span");
 
         link.className =
             "category-link";
 
-
         link.textContent =
             t.viewCategory;
 
+        content.appendChild(title);
+        content.appendChild(description);
+        content.appendChild(link);
 
-        content.appendChild(
-            title
-        );
-
-        content.appendChild(
-            description
-        );
-
-        content.appendChild(
-            link
-        );
-
-
-        card.appendChild(
-            content
-        );
-
-
-        container.appendChild(
-            card
-        );
+        card.appendChild(content);
+        container.appendChild(card);
     }
 }
-
-
-/* =========================
-   SET LANGUAGE
-========================= */
 
 function setLang(lang) {
 
     currentLang = lang;
-
 
     localStorage.setItem(
         "uliLang",
         lang
     );
 
-
     document.documentElement.lang =
         lang;
-
 
     const t =
         translations[lang];
 
+    text("hero-title", t.heroTitle);
+    text("hero-text", t.heroText);
+    text("hero-button", t.heroButton);
 
-    text(
-        "hero-title",
-        t.heroTitle
-    );
+    text("benefit1", t.benefit1);
+    text("benefit2", t.benefit2);
+    text("benefit3", t.benefit3);
+    text("benefit4", t.benefit4);
 
-    text(
-        "hero-text",
-        t.heroText
-    );
+    text("categories-title", t.categoriesTitle);
+    text("categories-intro", t.categoriesIntro);
 
-    text(
-        "hero-button",
-        t.heroButton
-    );
+    text("gallery-button", t.galleryButton);
+    text("reviews-button", t.reviewsButton);
+    text("about-button", t.aboutButton);
+    text("contact-button", t.contactButton);
 
+    text("flavours-title", t.flavoursTitle);
+    text("flavours-intro", t.flavoursIntro);
 
-    text(
-        "benefit1",
-        t.benefit1
-    );
+    text("flavour1-title", t.flavour1Title);
+    text("flavour1-text", t.flavour1Text);
 
-    text(
-        "benefit2",
-        t.benefit2
-    );
+    text("flavour2-title", t.flavour2Title);
+    text("flavour2-text", t.flavour2Text);
 
-    text(
-        "benefit3",
-        t.benefit3
-    );
+    text("flavour3-title", t.flavour3Title);
+    text("flavour3-text", t.flavour3Text);
 
-    text(
-        "benefit4",
-        t.benefit4
-    );
+    text("about-title", t.aboutTitle);
+    text("about-text", t.aboutText);
 
+    text("cta-title", t.ctaTitle);
+    text("cta-text", t.ctaText);
+    text("cta-button", t.ctaButton);
 
-    text(
-        "categories-title",
-        t.categoriesTitle
-    );
-
-    text(
-        "categories-intro",
-        t.categoriesIntro
-    );
-
-
-    text(
-        "gallery-button",
-        t.galleryButton
-    );
-
-    text(
-        "reviews-button",
-        t.reviewsButton
-    );
-
-    text(
-        "about-button",
-        t.aboutButton
-    );
-
-    text(
-        "contact-button",
-        t.contactButton
-    );
-
-
-    text(
-        "flavours-title",
-        t.flavoursTitle
-    );
-
-    text(
-        "flavours-intro",
-        t.flavoursIntro
-    );
-
-
-    text(
-        "flavour1-title",
-        t.flavour1Title
-    );
-
-    text(
-        "flavour1-text",
-        t.flavour1Text
-    );
-
-
-    text(
-        "flavour2-title",
-        t.flavour2Title
-    );
-
-    text(
-        "flavour2-text",
-        t.flavour2Text
-    );
-
-
-    text(
-        "flavour3-title",
-        t.flavour3Title
-    );
-
-    text(
-        "flavour3-text",
-        t.flavour3Text
-    );
-
-
-    text(
-        "about-title",
-        t.aboutTitle
-    );
-
-    text(
-        "about-text",
-        t.aboutText
-    );
-
-
-    text(
-        "cta-title",
-        t.ctaTitle
-    );
-
-    text(
-        "cta-text",
-        t.ctaText
-    );
-
-    text(
-        "cta-button",
-        t.ctaButton
-    );
-
-
-    text(
-        "footer-text",
-        t.footer
-    );
-
+    text("footer-text", t.footer);
 
     document
-        .querySelectorAll(
-            ".languages button"
-        )
+        .querySelectorAll(".languages button")
         .forEach(
             button =>
-                button.classList.remove(
-                    "active"
-                )
+                button.classList.remove("active")
         );
-
 
     const active =
         document.getElementById(
             "lang-" + lang
         );
 
-
     if (active) {
-
-        active.classList.add(
-            "active"
-        );
+        active.classList.add("active");
     }
 
-
     if (categories.length) {
-
         renderCategories();
     }
 }
 
-
 window.setLang = setLang;
-
-
-/* =========================
-   START
-========================= */
 
 document.addEventListener(
     "DOMContentLoaded",
     async function() {
 
         const saved =
-            localStorage.getItem(
-                "uliLang"
-            );
-
+            localStorage.getItem("uliLang");
 
         if (
             saved === "ru" ||
             saved === "en"
         ) {
-
             setLang(saved);
-
         } else {
-
             setLang("fi");
         }
-
 
         await loadCategories();
     }
