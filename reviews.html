@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Arvostelut | UliBakery</title>
+
   <meta
     name="description"
     content="Lue asiakkaidemme aitoja arvosteluja UliBakeryn tilauskakuista ja leivonnaisista Vantaalla."
   />
+
   <link rel="canonical" href="https://ulibakery.fi/reviews.html" />
 
   <style>
@@ -22,45 +25,41 @@
     body {
       margin: 0;
       font-family: "Segoe UI", Arial, sans-serif;
-      background: linear-gradient(90deg, #f8e9ee 0%, #fff9fb 50%, #f8e9ee 100%);
-      color: #5a3b36;
+      color: #5d4037;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(255,190,211,.30), transparent 22%),
+        radial-gradient(circle at 90% 45%, rgba(245,205,187,.22), transparent 25%),
+        #fdf1f5;
     }
 
     a {
-      text-decoration: none;
       color: inherit;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
+      text-decoration: none;
     }
 
     .page {
-      max-width: 1360px;
+      width: min(1180px, calc(100% - 40px));
       margin: 0 auto;
-      background: #fffafa;
       min-height: 100vh;
-      box-shadow: 0 0 0 1px rgba(239, 166, 186, 0.18);
+      background: #fffaf9;
+      box-shadow: 0 0 60px rgba(128,75,93,.15);
     }
 
     /* HEADER */
+
     .topbar {
       background: #fffafa;
       border-bottom: 1px solid #f1cfd9;
-      position: sticky;
-      top: 0;
-      z-index: 50;
     }
 
     .topbar-inner {
-      max-width: 1280px;
+      max-width: 1080px;
       margin: 0 auto;
-      padding: 18px 24px;
+      padding: 18px 26px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
+      gap: 22px;
     }
 
     .logo-wrap {
@@ -71,15 +70,14 @@
 
     .logo {
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 52px;
+      font-size: 43px;
       font-weight: 700;
-      color: #f06292;
-      letter-spacing: 0.5px;
+      color: #f05c83;
     }
 
     .logo-sub {
-      margin-top: 6px;
-      font-size: 18px;
+      margin-top: 5px;
+      font-size: 15px;
       color: #8a6158;
     }
 
@@ -87,119 +85,127 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 14px;
+      gap: 10px;
     }
 
     .nav a {
-      font-weight: 700;
-      font-size: 17px;
-      color: #5b3a33;
-      padding: 14px 24px;
-      border: 1.5px solid #efb6c7;
+      padding: 11px 18px;
+      border: 1px solid #efb6c7;
       border-radius: 999px;
+      font-size: 14px;
+      font-weight: 800;
+      color: #5b3a33;
       background: #fffafa;
-      transition: 0.2s ease;
+      transition: .2s;
     }
 
     .nav a:hover,
     .nav a.active {
       background: #fce7ef;
-      color: #f06292;
-      border-color: #f39db8;
+      color: #f05c83;
+      border-color: #ef9bb1;
     }
 
     /* HERO */
+
     .hero {
-      padding: 56px 24px 28px;
+      padding: 42px 24px 22px;
       text-align: center;
-      background: linear-gradient(180deg, rgba(252, 235, 241, 0.9) 0%, rgba(255, 250, 252, 1) 100%);
+      background:
+        linear-gradient(
+          180deg,
+          rgba(252,235,241,.9) 0%,
+          rgba(255,250,252,1) 100%
+        );
     }
 
     .hero h1 {
-      margin: 0 0 14px;
+      margin: 0 0 10px;
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 64px;
-      color: #f06292;
-      line-height: 1.05;
+      font-size: 42px;
+      color: #f05c83;
+      line-height: 1.1;
     }
 
     .hero p {
-      max-width: 850px;
+      max-width: 760px;
       margin: 0 auto;
-      font-size: 24px;
-      line-height: 1.65;
+      font-size: 17px;
+      line-height: 1.6;
       color: #6e4b44;
     }
 
-    /* CONTENT */
+    /* REVIEWS */
+
     .section {
-      padding: 28px 24px 72px;
+      padding: 26px 28px 58px;
     }
 
     .section-inner {
-      max-width: 1240px;
+      max-width: 1040px;
       margin: 0 auto;
     }
 
     .section-title {
-      margin: 0 0 12px;
+      margin: 0 0 10px;
       text-align: center;
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 54px;
+      font-size: 34px;
       color: #5a3b36;
     }
 
     .section-subtitle {
+      max-width: 760px;
+      margin: 0 auto 30px;
       text-align: center;
-      font-size: 22px;
+      font-size: 16px;
+      line-height: 1.6;
       color: #86615a;
-      margin: 0 auto 42px;
-      max-width: 860px;
-      line-height: 1.7;
     }
 
     .reviews-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 28px;
+      gap: 20px;
     }
 
     .review-card {
-      background: #ffffff;
+      background: #fff;
       border: 1px solid #f2d3dd;
-      border-radius: 28px;
-      padding: 30px 28px;
-      box-shadow: 0 10px 24px rgba(237, 177, 195, 0.16);
+      border-radius: 22px;
+      padding: 22px 22px 20px;
+      box-shadow: 0 8px 20px rgba(126,75,91,.08);
       display: flex;
       flex-direction: column;
-      min-height: 290px;
+      min-height: 240px;
     }
 
     .stars {
-      font-size: 28px;
-      color: #f6b400;
-      letter-spacing: 3px;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
+      color: #f5ad00;
+      font-size: 20px;
+      letter-spacing: 2px;
+      line-height: 1;
     }
 
     .review-text {
-      font-size: 31px;
-      line-height: 1.55;
-      color: #5d3f39;
-      margin: 0 0 22px;
+      margin: 0 0 18px;
       flex-grow: 1;
+      color: #5d4037;
+      font-size: 18px;
+      line-height: 1.55;
     }
 
     .review-author {
-      font-size: 27px;
+      margin-bottom: 5px;
+      color: #f05c83;
+      font-size: 17px;
       font-weight: 800;
-      color: #f06292;
-      margin-bottom: 8px;
     }
 
     .review-source {
-      font-size: 20px;
       color: #8c6861;
+      font-size: 14px;
       font-weight: 600;
     }
 
@@ -209,255 +215,352 @@
     }
 
     /* CTA */
+
     .cta-wrap {
-      margin-top: 44px;
+      margin-top: 34px;
       text-align: center;
     }
 
     .cta-btn {
       display: inline-block;
-      background: linear-gradient(135deg, #f36b97 0%, #ef4f86 100%);
-      color: white;
-      font-weight: 800;
-      font-size: 22px;
-      padding: 18px 34px;
+      padding: 14px 28px;
       border-radius: 999px;
-      box-shadow: 0 10px 24px rgba(239, 79, 134, 0.28);
-      transition: 0.2s ease;
+      color: white;
+      background: linear-gradient(135deg,#ff779a,#ed4f79);
+      font-size: 16px;
+      font-weight: 800;
+      box-shadow: 0 8px 20px rgba(239,77,120,.22);
+      transition: .2s;
     }
 
     .cta-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 14px 28px rgba(239, 79, 134, 0.32);
     }
 
     /* FOOTER */
-    .footer {
-      border-top: 1px solid #f1cfd9;
-      background: #fffafa;
-      padding: 28px 24px 42px;
-    }
 
-    .footer-inner {
-      max-width: 1240px;
-      margin: 0 auto;
+    .footer {
+      padding: 24px 20px 32px;
       text-align: center;
-      color: #8a6158;
-      font-size: 18px;
-      line-height: 1.7;
+      background: linear-gradient(135deg,#5d4037,#6d4b42);
+      color: #fff8f5;
     }
 
     .footer-title {
+      margin-bottom: 6px;
       font-family: Georgia, "Times New Roman", serif;
-      color: #f06292;
-      font-size: 34px;
+      font-size: 27px;
       font-weight: 700;
-      margin-bottom: 10px;
     }
 
-    /* RESPONSIVE */
-    @media (max-width: 1180px) {
+    .footer p {
+      margin: 4px 0;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* TABLET */
+
+    @media (max-width: 900px) {
+      .topbar-inner {
+        flex-direction: column;
+      }
+
       .reviews-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
-
-      .hero h1 {
-        font-size: 54px;
-      }
-
-      .section-title {
-        font-size: 46px;
-      }
-
-      .review-text {
-        font-size: 28px;
-      }
     }
 
-    @media (max-width: 760px) {
+    /* MOBILE */
+
+    @media (max-width: 620px) {
+      .page {
+        width: 100%;
+      }
+
       .topbar-inner {
-        flex-direction: column;
-        align-items: center;
+        padding: 15px 14px;
       }
 
       .logo {
-        font-size: 42px;
+        font-size: 36px;
       }
 
       .logo-sub {
         text-align: center;
+        font-size: 13px;
       }
 
       .nav {
-        gap: 10px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
       }
 
       .nav a {
-        padding: 12px 18px;
-        font-size: 15px;
+        padding: 10px 8px;
+        text-align: center;
+        font-size: 12px;
       }
 
       .hero {
-        padding: 40px 18px 20px;
+        padding: 34px 18px 18px;
       }
 
       .hero h1 {
-        font-size: 42px;
+        font-size: 34px;
       }
 
       .hero p {
-        font-size: 20px;
+        font-size: 15px;
       }
 
       .section {
-        padding: 18px 16px 50px;
+        padding: 22px 16px 44px;
       }
 
       .section-title {
-        font-size: 38px;
+        font-size: 29px;
       }
 
       .section-subtitle {
-        font-size: 18px;
+        font-size: 15px;
+        margin-bottom: 24px;
       }
 
       .reviews-grid {
         grid-template-columns: 1fr;
+        gap: 16px;
       }
 
       .review-card {
         min-height: auto;
-        padding: 24px 22px;
+        padding: 20px 19px 18px;
+        border-radius: 19px;
       }
 
       .review-text {
-        font-size: 24px;
-      }
-
-      .review-author {
-        font-size: 23px;
-      }
-
-      .review-source {
         font-size: 17px;
       }
 
-      .cta-btn {
-        font-size: 18px;
-        padding: 16px 28px;
+      .review-author {
+        font-size: 16px;
+      }
+
+      .review-source {
+        font-size: 13px;
       }
     }
   </style>
 </head>
+
 <body>
-  <div class="page">
-    <header class="topbar">
-      <div class="topbar-inner">
-        <div class="logo-wrap">
-          <a href="index.html" class="logo">UliBakery</a>
-          <div class="logo-sub">Käsintehdyt tilauskakut Vantaalla</div>
-        </div>
 
-        <nav class="nav">
-          <a href="index.html">Etusivu</a>
-          <a href="gallery-new.html">Galleria</a>
-          <a href="reviews.html" class="active">Arvostelut</a>
-          <a href="about.html">Lue lisää</a>
-          <a href="contacts.html">Yhteystiedot</a>
-        </nav>
+<div class="page">
+
+  <header class="topbar">
+    <div class="topbar-inner">
+
+      <div class="logo-wrap">
+        <a href="index.html" class="logo">UliBakery</a>
+        <div class="logo-sub">Käsintehdyt tilauskakut Vantaalla</div>
       </div>
-    </header>
 
-    <section class="hero">
-      <h1>Asiakkaidemme arvostelut</h1>
-      <p>
-        Tässä on aitoja Google-arvosteluja asiakkailta, jotka ovat tilanneet
-        UliBakeryltä kakkuja ja leivonnaisia. Valitsimme mukaan vain palautteet,
-        jotka liittyvät nimenomaan kakkuihin ja tilaustuotteisiin.
+      <nav class="nav">
+        <a href="index.html">Etusivu</a>
+        <a href="gallery.html">Galleria</a>
+        <a href="reviews.html" class="active">Arvostelut</a>
+        <a href="about.html">Lue lisää</a>
+        <a href="contacts.html">Yhteystiedot</a>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <section class="hero">
+
+    <h1>Asiakkaidemme arvostelut</h1>
+
+    <p>
+      Aitoja Google-arvosteluja asiakkailta, jotka ovat tilanneet
+      UliBakeryltä kakkuja ja leivonnaisia.
+    </p>
+
+  </section>
+
+
+  <section class="section">
+
+    <div class="section-inner">
+
+      <h2 class="section-title">
+        Aitoja kokemuksia kakuista
+      </h2>
+
+      <p class="section-subtitle">
+        Kaunis ulkonäkö, herkullinen maku ja helppo tilaaminen näkyvät
+        asiakkaidemme palautteissa.
       </p>
-    </section>
 
-    <section class="section">
-      <div class="section-inner">
-        <h2 class="section-title">Aitoja kokemuksia kakuista</h2>
-        <p class="section-subtitle">
-          Kaunis ulkonäkö, herkullinen maku ja helppo tilaaminen – nämä asiat
-          toistuvat asiakkaiden palautteissa yhä uudelleen.
-        </p>
 
-        <div class="reviews-grid">
-          <article class="review-card">
-            <div class="stars">★★★★★</div>
-            <p class="review-text">
-              "Kaunis ja hyvänmakuinen kakku. Tilaus ja nouto helppoa ja
-              yhteydenpitäminen sujui hyvin. Suosittelen 👌🌸"
-            </p>
-            <div class="review-author">Aino Soikkeli</div>
-            <div class="review-source">Google-arvostelu · <span>Google</span></div>
-          </article>
+      <div class="reviews-grid">
 
-          <article class="review-card">
-            <div class="stars">★★★★★</div>
-            <p class="review-text">
-              "Täältä ollaan tilattu kaikki synttärikakut jo monen vuoden ajan.
-              Ja tilataan jatkossakin. Todella hyvä!"
-            </p>
-            <div class="review-author">Heikki Kupiainen</div>
-            <div class="review-source">Google-arvostelu · <span>Google</span></div>
-          </article>
 
-          <article class="review-card">
-            <div class="stars">★★★★★</div>
-            <p class="review-text">
-              "Hyvä palvelu, super ihanat kakut! Suosittelen lämpimästi!"
-            </p>
-            <div class="review-author">Marja Ousukainen</div>
-            <div class="review-source">Google-arvostelu · <span>Google</span></div>
-          </article>
+        <article class="review-card">
 
-          <article class="review-card">
-            <div class="stars">★★★★★</div>
-            <p class="review-text">
-              "Todella onnistuneet ja maukkaat täyte- ja porkkanakakut.
-              Ystävällinen palvelu. Monipuolinen kakkuvalikoima. Suosittelen!"
-            </p>
-            <div class="review-author">Tuula Hartikainen</div>
-            <div class="review-source">Google-arvostelu · <span>Google</span></div>
-          </article>
+          <div class="stars">★★★★★</div>
 
-          <article class="review-card">
-            <div class="stars">★★★★★</div>
-            <p class="review-text">
-              "Aivan ihania leivonnaisia. Budapest kakku on ehdottomasti paras
-              kaikista mitä ikinä maistoin &lt;3"
-            </p>
-            <div class="review-author">Tatsu</div>
-            <div class="review-source">Google-arvostelu · <span>Google</span></div>
-          </article>
+          <p class="review-text">
+            “Kaunis ja hyvänmakuinen kakku. Tilaus ja nouto helppoa ja
+            yhteydenpitäminen sujui hyvin. Suosittelen 👌🌸”
+          </p>
 
-          <article class="review-card">
-            <div class="stars">★★★★★</div>
-            <p class="review-text">
-              "Niin maukas, kaunis ja laadukkaasti tehty 💗 kiitos paljon!"
-            </p>
-            <div class="review-author">Vasillisa Lindman</div>
-            <div class="review-source">Google-arvostelu · <span>Google</span></div>
-          </article>
-        </div>
+          <div class="review-author">
+            Aino Soikkeli
+          </div>
 
-        <div class="cta-wrap">
-          <a class="cta-btn" href="contacts.html">Tilaa oma kakkusi →</a>
-        </div>
+          <div class="review-source">
+            Google-arvostelu · <span>Google</span>
+          </div>
+
+        </article>
+
+
+        <article class="review-card">
+
+          <div class="stars">★★★★★</div>
+
+          <p class="review-text">
+            “Täältä ollaan tilattu kaikki synttärikakut jo monen vuoden ajan.
+            Ja tilataan jatkossakin. Todella hyvä!”
+          </p>
+
+          <div class="review-author">
+            Heikki Kupiainen
+          </div>
+
+          <div class="review-source">
+            Google-arvostelu · <span>Google</span>
+          </div>
+
+        </article>
+
+
+        <article class="review-card">
+
+          <div class="stars">★★★★★</div>
+
+          <p class="review-text">
+            “Hyvä palvelu, super ihanat kakut! Suosittelen lämpimästi!”
+          </p>
+
+          <div class="review-author">
+            Marja Ousukainen
+          </div>
+
+          <div class="review-source">
+            Google-arvostelu · <span>Google</span>
+          </div>
+
+        </article>
+
+
+        <article class="review-card">
+
+          <div class="stars">★★★★★</div>
+
+          <p class="review-text">
+            “Todella onnistuneet ja maukkaat täyte- ja porkkanakakut.
+            Ystävällinen palvelu. Monipuolinen kakkuvalikoima. Suosittelen!”
+          </p>
+
+          <div class="review-author">
+            Tuula Hartikainen
+          </div>
+
+          <div class="review-source">
+            Google-arvostelu · <span>Google</span>
+          </div>
+
+        </article>
+
+
+        <article class="review-card">
+
+          <div class="stars">★★★★★</div>
+
+          <p class="review-text">
+            “Aivan ihania leivonnaisia. Budapest kakku on ehdottomasti paras
+            kaikista mitä ikinä maistoin &lt;3”
+          </p>
+
+          <div class="review-author">
+            Tatsu
+          </div>
+
+          <div class="review-source">
+            Google-arvostelu · <span>Google</span>
+          </div>
+
+        </article>
+
+
+        <article class="review-card">
+
+          <div class="stars">★★★★★</div>
+
+          <p class="review-text">
+            “Niin maukas, kaunis ja laadukkaasti tehty 💗 kiitos paljon!”
+          </p>
+
+          <div class="review-author">
+            Vasillisa Lindman
+          </div>
+
+          <div class="review-source">
+            Google-arvostelu · <span>Google</span>
+          </div>
+
+        </article>
+
+
       </div>
-    </section>
 
-    <footer class="footer">
-      <div class="footer-inner">
-        <div class="footer-title">UliBakery</div>
-        <div>Käsintehdyt tilauskakut Vantaalla</div>
-        <div>Yksilöllisiä kakkuja juhliin, syntymäpäiville ja erityisiin hetkiin.</div>
+
+      <div class="cta-wrap">
+
+        <a
+          href="order.html"
+          class="cta-btn"
+        >
+          Tee tilaus →
+        </a>
+
       </div>
-    </footer>
-  </div>
+
+    </div>
+
+  </section>
+
+
+  <footer class="footer">
+
+    <div class="footer-title">
+      UliBakery
+    </div>
+
+    <p>
+      Käsintehdyt tilauskakut Vantaalla
+    </p>
+
+    <p>
+      © 2026 UliBakery
+    </p>
+
+  </footer>
+
+</div>
+
 </body>
 </html>
