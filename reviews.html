@@ -1,106 +1,463 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="fi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Отзывы | UliBakery</title>
-    <style>
-        body { margin: 0; font-family: 'Segoe UI', sans-serif; background-color: #fff6f8; color: #5d4037; line-height: 1.6; }
-        .container { max-width: 1000px; margin: 40px auto; padding: 20px; text-align: center; }
-        
-        .lang-switch { text-align: right; margin-bottom: 20px; }
-        .lang-switch button { background:#fff; border:1px solid #ffb2c1; padding: 5px 10px; border-radius: 8px; cursor:pointer; font-weight:bold; margin-left: 5px; color: #333; }
-        .lang-switch button:hover { background: #fbc2eb; color: white; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arvostelut | UliBakery</title>
+  <meta
+    name="description"
+    content="Lue asiakkaidemme aitoja arvosteluja UliBakeryn tilauskakuista ja leivonnaisista Vantaalla."
+  />
+  <link rel="canonical" href="https://ulibakery.fi/reviews.html" />
 
-        .back-btn { display: inline-block; background: #5d4037; color: white; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; margin-bottom: 40px; transition: 0.3s; }
-        .back-btn:hover { background: #ff6f91; transform: scale(1.05); }
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-        h1 { font-family: 'Georgia', serif; color: #ff6f91; font-size: 32px; margin-bottom: 40px; }
+    html {
+      scroll-behavior: smooth;
+    }
 
-        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-bottom: 50px; }
-        .review-card { background: white; padding: 30px; border-radius: 25px; border: 1px solid #fce4ec; text-align: left; box-shadow: 0 8px 20px rgba(251, 194, 235, 0.2); }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(90deg, #f8e9ee 0%, #fff9fb 50%, #f8e9ee 100%);
+      color: #5a3b36;
+    }
 
-        .stars { color: #ffb400; font-size: 22px; margin-bottom: 15px; }
-        .author { font-weight: bold; color: #ff6f91; margin-top: 15px; display: block; font-size: 14px; }
-        
-        .google-btn { display: inline-block; background: #4285F4; color: white; padding: 18px 40px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 18px; box-shadow: 0 4px 15px rgba(66, 133, 244, 0.4); }
-        .google-btn:hover { background: #357ae8; transform: scale(1.05); }
-        
-        /* Скрываем другие языки по умолчанию */
-        .lang-content { display: none; }
-        .active-lang { display: grid; }
-    </style>
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      max-width: 1360px;
+      margin: 0 auto;
+      background: #fffafa;
+      min-height: 100vh;
+      box-shadow: 0 0 0 1px rgba(239, 166, 186, 0.18);
+    }
+
+    /* HEADER */
+    .topbar {
+      background: #fffafa;
+      border-bottom: 1px solid #f1cfd9;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .topbar-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo-wrap {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .logo {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 52px;
+      font-weight: 700;
+      color: #f06292;
+      letter-spacing: 0.5px;
+    }
+
+    .logo-sub {
+      margin-top: 6px;
+      font-size: 18px;
+      color: #8a6158;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    .nav a {
+      font-weight: 700;
+      font-size: 17px;
+      color: #5b3a33;
+      padding: 14px 24px;
+      border: 1.5px solid #efb6c7;
+      border-radius: 999px;
+      background: #fffafa;
+      transition: 0.2s ease;
+    }
+
+    .nav a:hover,
+    .nav a.active {
+      background: #fce7ef;
+      color: #f06292;
+      border-color: #f39db8;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 56px 24px 28px;
+      text-align: center;
+      background: linear-gradient(180deg, rgba(252, 235, 241, 0.9) 0%, rgba(255, 250, 252, 1) 100%);
+    }
+
+    .hero h1 {
+      margin: 0 0 14px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 64px;
+      color: #f06292;
+      line-height: 1.05;
+    }
+
+    .hero p {
+      max-width: 850px;
+      margin: 0 auto;
+      font-size: 24px;
+      line-height: 1.65;
+      color: #6e4b44;
+    }
+
+    /* CONTENT */
+    .section {
+      padding: 28px 24px 72px;
+    }
+
+    .section-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      margin: 0 0 12px;
+      text-align: center;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 54px;
+      color: #5a3b36;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      font-size: 22px;
+      color: #86615a;
+      margin: 0 auto 42px;
+      max-width: 860px;
+      line-height: 1.7;
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 28px;
+    }
+
+    .review-card {
+      background: #ffffff;
+      border: 1px solid #f2d3dd;
+      border-radius: 28px;
+      padding: 30px 28px;
+      box-shadow: 0 10px 24px rgba(237, 177, 195, 0.16);
+      display: flex;
+      flex-direction: column;
+      min-height: 290px;
+    }
+
+    .stars {
+      font-size: 28px;
+      color: #f6b400;
+      letter-spacing: 3px;
+      margin-bottom: 16px;
+    }
+
+    .review-text {
+      font-size: 31px;
+      line-height: 1.55;
+      color: #5d3f39;
+      margin: 0 0 22px;
+      flex-grow: 1;
+    }
+
+    .review-author {
+      font-size: 27px;
+      font-weight: 800;
+      color: #f06292;
+      margin-bottom: 8px;
+    }
+
+    .review-source {
+      font-size: 20px;
+      color: #8c6861;
+      font-weight: 600;
+    }
+
+    .review-source span {
+      color: #4285f4;
+      font-weight: 700;
+    }
+
+    /* CTA */
+    .cta-wrap {
+      margin-top: 44px;
+      text-align: center;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #f36b97 0%, #ef4f86 100%);
+      color: white;
+      font-weight: 800;
+      font-size: 22px;
+      padding: 18px 34px;
+      border-radius: 999px;
+      box-shadow: 0 10px 24px rgba(239, 79, 134, 0.28);
+      transition: 0.2s ease;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(239, 79, 134, 0.32);
+    }
+
+    /* FOOTER */
+    .footer {
+      border-top: 1px solid #f1cfd9;
+      background: #fffafa;
+      padding: 28px 24px 42px;
+    }
+
+    .footer-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      text-align: center;
+      color: #8a6158;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    .footer-title {
+      font-family: Georgia, "Times New Roman", serif;
+      color: #f06292;
+      font-size: 34px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1180px) {
+      .reviews-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero h1 {
+        font-size: 54px;
+      }
+
+      .section-title {
+        font-size: 46px;
+      }
+
+      .review-text {
+        font-size: 28px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .topbar-inner {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 42px;
+      }
+
+      .logo-sub {
+        text-align: center;
+      }
+
+      .nav {
+        gap: 10px;
+      }
+
+      .nav a {
+        padding: 12px 18px;
+        font-size: 15px;
+      }
+
+      .hero {
+        padding: 40px 18px 20px;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+
+      .hero p {
+        font-size: 20px;
+      }
+
+      .section {
+        padding: 18px 16px 50px;
+      }
+
+      .section-title {
+        font-size: 38px;
+      }
+
+      .section-subtitle {
+        font-size: 18px;
+      }
+
+      .reviews-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .review-card {
+        min-height: auto;
+        padding: 24px 22px;
+      }
+
+      .review-text {
+        font-size: 24px;
+      }
+
+      .review-author {
+        font-size: 23px;
+      }
+
+      .review-source {
+        font-size: 17px;
+      }
+
+      .cta-btn {
+        font-size: 18px;
+        padding: 16px 28px;
+      }
+    }
+  </style>
 </head>
 <body>
-
-    <div class="container">
-        <div class="lang-switch">
-            <button onclick="setLang('fi')">FI</button>
-            <button onclick="setLang('ru')">RU</button>
-            <button onclick="setLang('en')">EN</button>
+  <div class="page">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="logo-wrap">
+          <a href="index.html" class="logo">UliBakery</a>
+          <div class="logo-sub">Käsintehdyt tilauskakut Vantaalla</div>
         </div>
 
-        <a href="index.html" class="back-btn" id="btn_back">← НА ГЛАВНУЮ</a>
-        <h1 id="rev_title">Отзывы наших клиентов</h1>
-        
-        <!-- СЕТКА ОТЗЫВОВ (РУССКИЙ) -->
-        <div id="grid_ru" class="reviews-grid lang-content active-lang">
-            <div class="review-card"><div class="stars">★★★★★</div><p>"Торт был невероятный! Очень нежный вкус и потрясающий декор."</p><span class="author">— Светлана М.</span></div>
-            <div class="review-card"><div class="stars">★★★★★</div><p>"Заказывали на свадьбу. Все гости в восторге от качества!"</p><span class="author">— Анна С.</span></div>
-            <div class="review-card"><div class="stars">★★★★★</div><p>"Очень вкусные капкейки. Рекомендую всем!"</p><span class="author">— Иван Г.</span></div>
-            <div class="review-card"><div class="stars">★★★★★</div><p>"Uli on taitava leipuri! Kakku oli kaunis и todella herkullinen."</p><span class="author">— Sari T.</span></div>
-            <div class="review-card"><div class="stars">★★★★★</div><p>"Профессиональный подход и очень вежливое общение. Спасибо!"</p><span class="author">— Ольга В.</span></div>
-            <div class="review-card"><div class="stars">★★★★★</div><p>"Лучшая кондитерская в Вантаа! Качество на высоте."</p><span class="author">— Дмитрий</span></div>
+        <nav class="nav">
+          <a href="index.html">Etusivu</a>
+          <a href="gallery-new.html">Galleria</a>
+          <a href="reviews.html" class="active">Arvostelut</a>
+          <a href="about.html">Lue lisää</a>
+          <a href="contacts.html">Yhteystiedot</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero">
+      <h1>Asiakkaidemme arvostelut</h1>
+      <p>
+        Tässä on aitoja Google-arvosteluja asiakkailta, jotka ovat tilanneet
+        UliBakeryltä kakkuja ja leivonnaisia. Valitsimme mukaan vain palautteet,
+        jotka liittyvät nimenomaan kakkuihin ja tilaustuotteisiin.
+      </p>
+    </section>
+
+    <section class="section">
+      <div class="section-inner">
+        <h2 class="section-title">Aitoja kokemuksia kakuista</h2>
+        <p class="section-subtitle">
+          Kaunis ulkonäkö, herkullinen maku ja helppo tilaaminen – nämä asiat
+          toistuvat asiakkaiden palautteissa yhä uudelleen.
+        </p>
+
+        <div class="reviews-grid">
+          <article class="review-card">
+            <div class="stars">★★★★★</div>
+            <p class="review-text">
+              "Kaunis ja hyvänmakuinen kakku. Tilaus ja nouto helppoa ja
+              yhteydenpitäminen sujui hyvin. Suosittelen 👌🌸"
+            </p>
+            <div class="review-author">Aino Soikkeli</div>
+            <div class="review-source">Google-arvostelu · <span>Google</span></div>
+          </article>
+
+          <article class="review-card">
+            <div class="stars">★★★★★</div>
+            <p class="review-text">
+              "Täältä ollaan tilattu kaikki synttärikakut jo monen vuoden ajan.
+              Ja tilataan jatkossakin. Todella hyvä!"
+            </p>
+            <div class="review-author">Heikki Kupiainen</div>
+            <div class="review-source">Google-arvostelu · <span>Google</span></div>
+          </article>
+
+          <article class="review-card">
+            <div class="stars">★★★★★</div>
+            <p class="review-text">
+              "Hyvä palvelu, super ihanat kakut! Suosittelen lämpimästi!"
+            </p>
+            <div class="review-author">Marja Ousukainen</div>
+            <div class="review-source">Google-arvostelu · <span>Google</span></div>
+          </article>
+
+          <article class="review-card">
+            <div class="stars">★★★★★</div>
+            <p class="review-text">
+              "Todella onnistuneet ja maukkaat täyte- ja porkkanakakut.
+              Ystävällinen palvelu. Monipuolinen kakkuvalikoima. Suosittelen!"
+            </p>
+            <div class="review-author">Tuula Hartikainen</div>
+            <div class="review-source">Google-arvostelu · <span>Google</span></div>
+          </article>
+
+          <article class="review-card">
+            <div class="stars">★★★★★</div>
+            <p class="review-text">
+              "Aivan ihania leivonnaisia. Budapest kakku on ehdottomasti paras
+              kaikista mitä ikinä maistoin &lt;3"
+            </p>
+            <div class="review-author">Tatsu</div>
+            <div class="review-source">Google-arvostelu · <span>Google</span></div>
+          </article>
+
+          <article class="review-card">
+            <div class="stars">★★★★★</div>
+            <p class="review-text">
+              "Niin maukas, kaunis ja laadukkaasti tehty 💗 kiitos paljon!"
+            </p>
+            <div class="review-author">Vasillisa Lindman</div>
+            <div class="review-source">Google-arvostelu · <span>Google</span></div>
+          </article>
         </div>
 
-        <!-- СЕТКА ОТЗЫВОВ (ФИНСКИЙ) -->
-        <div id="grid_fi" class="reviews-grid lang-content">
-            <div class="review-card"><div class="stars">★★★★★</div><p>"Uli on taitava leipuri! Kakku oli kaunis ja todella herkullinen."</p><span class="author">— Hanna K.</span></div>
-            <div class="review-card"><div class="stars">★★★★★</div><p>"Upea palvelu ja laatu. Tilasimme syntymäpäiväkakun ja se ylitti kaikki odotukset."</p><span class="author">— Mikael L.</span></div>
-            <div class="review-card"><div class="stars">★★★★★</div><p>"Paras kakku mitä olen ikinä syönyt! Erittäin ammattitaitoista työtä."</p><span class="author">— Elena P.</span></div>
-            <div class="review-card"><div class="stars">★★★★★</div><p>"Todella kauniita ja maukkaita leivonnaisia. Yhteistyö sujui loistavasti."</p><span class="author">— Sari T.</span></div>
-            <div class="review-card"><div class="stars">★★★★★</div><p>"Parhaat kakut ikinä! Tilasimme syntymäpäiville, kaikki vieraat rakastivat niitä."</p><span class="author">— Anna S.</span></div>
-            <div class="review-card"><div class="stars">★★★★★</div><p>"Erittäin herkullisia jälkiruokia ja kaunis viimeistely. Suosittelen!"</p><span class="author">— Dmitri</span></div>
+        <div class="cta-wrap">
+          <a class="cta-btn" href="contacts.html">Tilaa oma kakkusi →</a>
         </div>
+      </div>
+    </section>
 
-        <!-- СЕТКА ОТЗЫВОВ (АНГЛИЙСКИЙ) -->
-        <div id="grid_en" class="reviews-grid lang-content">
-            <div class="review-card"><div class="stars">★★★★★</div><p>"The cake was incredible! Very delicate taste and stunning decoration."</p><span class="author">— Sarah W.</span></div>
-            <div class="review-card"><div class="stars">★★★★★</div><p>"Best cupcakes in Vantaa! Highly professional service."</p><span class="author">— John D.</span></div>
-            <div class="review-card"><div class="stars">★★★★★</div><p>"Beautiful work and amazing taste. Everything was perfect."</p><span class="author">— Linda K.</span></div>
-            <div class="review-card"><div class="stars">★★★★★</div><p>"Uli is a talented baker! The cake was incredibly delicious."</p><span class="author">— Hanna K.</span></div>
-            <div class="review-card"><div class="stars">★★★★★</div><p>"Great service and quality. The birthday cake exceeded all expectations."</p><span class="author">— Michael L.</span></div>
-            <div class="review-card"><div class="stars">★★★★★</div><p>"Best cake I've ever had! Stunning decoration."</p><span class="author">— Elena P.</span></div>
-        </div>
-
-        <a href=https://share.google/84QQQAh7MxAyRLDTL target="_blank" class="google-btn" id="btn_google">ЧИТАТЬ ВСЕ ОТЗЫВЫ В GOOGLE</a>
-    </div>
-
-<script>
-const trans = {
-    ru: { back: "← НА ГЛАВНУЮ", title: "Отзывы наших клиентов", google: "ЧИТАТЬ ВСЕ ОТЗЫВЫ В GOOGLE" },
-    fi: { back: "← ETUSIVULLE", title: "Asiakkaidemme arvostelut", google: "LUE KAIKKI ARVOSTELUT GOOGLESTA" },
-    en: { back: "← BACK HOME", title: "Customer Reviews", google: "READ ALL REVIEWS ON GOOGLE" }
-};
-
-function setLang(lang) {
-    localStorage.setItem('uliLang', lang);
-    
-    // Обновляем тексты
-    document.getElementById('btn_back').innerText = trans[lang].back;
-    document.getElementById('rev_title').innerText = trans[lang].title;
-    document.getElementById('btn_google').innerText = trans[lang].google;
-
-    // Переключаем видимость сеток
-    document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active-lang'));
-    document.getElementById('grid_' + lang).classList.add('active-lang');
-}
-
-// Запуск
-document.addEventListener('DOMContentLoaded', () => {
-    const saved = localStorage.getItem('uliLang') || 'ru';
-    setLang(saved);
-});
-</script>
+    <footer class="footer">
+      <div class="footer-inner">
+        <div class="footer-title">UliBakery</div>
+        <div>Käsintehdyt tilauskakut Vantaalla</div>
+        <div>Yksilöllisiä kakkuja juhliin, syntymäpäiville ja erityisiin hetkiin.</div>
+      </div>
+    </footer>
+  </div>
 </body>
 </html>
