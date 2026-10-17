@@ -1,209 +1,1010 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="fi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="page_title">Галерея тортов | UliBakery</title>
-    <style>
-        body { margin:0; font-family: 'Segoe UI', Arial, sans-serif; background:#fff6f8; color:#333; text-align: center; scroll-behavior: smooth; }
-       
-        /* Навигация */
-        header { 
-            background: rgba(255, 250, 250, 0.95); 
-            padding: 20px 0; 
-            border-bottom: 2px solid #fbc2eb; 
-            position: sticky; 
-            top: 0; 
-            z-index: 1000; 
-            backdrop-filter: blur(5px); 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            padding: 15px 30px; 
-        }
-       
-        /* Кнопка Назад */
-        .back-btn {
-            display: inline-block;
-            background: #5d4037;
-            color: white;
-            padding: 12px 25px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 16px;
-            transition: 0.3s;
-            box-shadow: 0 4px 10px rgba(93, 64, 55, 0.2);
-        }
-        .back-btn:hover { background: #ff6f91; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(255, 111, 145, 0.3); }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        /* Языки */
-        .lang button { 
-            background:#fff; 
-            border:1px solid #ffb2c1; 
-            padding: 6px 12px; 
-            border-radius: 8px; 
-            cursor:pointer; 
-            font-weight:bold; 
-            margin: 0 3px; 
-            color: #333; 
-            transition: 0.2s; 
-        }
-        .lang button:hover { background: #fbc2eb; color: white; }
+<title>Galleria | UliBakery</title>
+<meta name="description" content="Tutustu UliBakeryn yksilöllisiin hääkakkuihin, lasten kakkuihin, juhlakakkuihin ja muihin käsintehtyihin herkkuihin Vantaalla.">
+<link rel="canonical" href="https://ulibakery.fi/gallery.html">
 
-        .section-title { 
-            color: #ff6f91; 
-            font-family: 'Georgia', serif; 
-            font-size: 28px; 
-            margin-top: 50px; 
-            letter-spacing: 1px; 
-        }
-       
-        /* Сетка */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 15px;
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 0 20px;
-        }
-        .work-card {
-            background: #fff;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            border: 1px solid #fce4ec;
-            transition: 0.3s;
-            animation: fadeIn 0.8s ease forwards;
-            opacity: 0;
-        }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .work-card:hover { transform: scale(1.03); box-shadow: 0 10px 20px rgba(251, 194, 235, 0.4); }
-       
-        .img-container { width: 100%; height: 240px; overflow: hidden; cursor: zoom-in; background: #fff0f3; }
-        .img-container img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-       
-        /* Просмотр фото */
-        #fullView {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 10000;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-            animation: zoomIn 0.3s ease;
-        }
-        @keyframes zoomIn { from { opacity: 0; } to { opacity: 1; } }
-        #fullImg { max-width: 90%; max-height: 85%; border-radius: 8px; border: 3px solid white; }
-       
-        footer { background:#fbc2eb; padding: 40px; margin-top: 80px; color: #5d4037; font-weight: bold; }
-    </style>
+<meta property="og:title" content="Galleria | UliBakery">
+<meta property="og:description" content="Tutustu UliBakeryn käsintehtyihin tilauskakkuihin Vantaalla.">
+<meta property="og:url" content="https://ulibakery.fi/gallery.html">
+<meta property="og:type" content="website">
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #5d4037;
+    background:
+        radial-gradient(circle at 15% 15%, rgba(255,190,211,.30), transparent 22%),
+        radial-gradient(circle at 90% 45%, rgba(245,205,187,.24), transparent 25%),
+        #fdf1f5;
+}
+
+a {
+    color: inherit;
+}
+
+.page {
+    width: min(1180px, calc(100% - 40px));
+    margin: 0 auto;
+    min-height: 100vh;
+    background: #fffaf9;
+    box-shadow: 0 0 60px rgba(128,75,93,.15);
+}
+
+
+/* HEADER */
+
+.topbar {
+    min-height: 62px;
+    padding: 10px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    background: rgba(255,250,249,.97);
+    border-bottom: 1px solid #f3d7df;
+}
+
+.home-link {
+    color: #e9577d;
+    text-decoration: none;
+    font-weight: 800;
+}
+
+.languages {
+    display: flex;
+    gap: 7px;
+}
+
+.languages button {
+    min-width: 44px;
+    height: 38px;
+    border: 1px solid #ef9bb1;
+    background: white;
+    color: #68483f;
+    border-radius: 10px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.languages button.active {
+    color: white;
+    background: linear-gradient(135deg,#ff7699,#ef557e);
+    border-color: transparent;
+}
+
+
+/* HERO */
+
+.hero {
+    padding: 48px 25px 40px;
+    text-align: center;
+    background:
+        radial-gradient(circle at 75% 25%, rgba(255,194,213,.42), transparent 30%),
+        linear-gradient(135deg,#fffaf8,#fff3f6);
+}
+
+.brand {
+    margin: 0 0 12px;
+    color: #ed5a80;
+    font-family: Georgia, serif;
+    font-size: 43px;
+    font-weight: 700;
+}
+
+.hero h1 {
+    margin: 0;
+    color: #50352e;
+    font-family: Georgia, serif;
+    font-size: 34px;
+}
+
+.hero p {
+    max-width: 670px;
+    margin: 14px auto 0;
+    color: #6c5048;
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+
+/* CATEGORY NAVIGATION */
+
+.category-nav-wrap {
+    padding: 23px 20px;
+    background: linear-gradient(90deg,#f9dce4,#fce8e5,#f9dce4);
+    border-top: 1px solid #f1cdd8;
+    border-bottom: 1px solid #efcbd6;
+}
+
+.category-nav {
+    max-width: 1000px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.category-nav button {
+    border: 1px solid #e9b5c4;
+    background: rgba(255,255,255,.75);
+    color: #65483f;
+    border-radius: 50px;
+    padding: 10px 17px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.category-nav button:hover {
+    color: white;
+    border-color: transparent;
+    background: linear-gradient(135deg,#ff7699,#ed517a);
+}
+
+
+/* GALLERY */
+
+.gallery-container {
+    padding: 48px 36px 65px;
+}
+
+.category-section {
+    margin-bottom: 58px;
+    scroll-margin-top: 20px;
+}
+
+.category-section:last-child {
+    margin-bottom: 0;
+}
+
+.category-heading {
+    margin-bottom: 22px;
+    text-align: center;
+}
+
+.category-heading h2 {
+    margin: 0;
+    color: #ed5a80;
+    font-family: Georgia, serif;
+    font-size: 31px;
+}
+
+.category-heading p {
+    margin: 8px 0 0;
+    color: #856a62;
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.photo {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 20px;
+    background: #f3e7ea;
+    border: 1px solid #efd2da;
+    cursor: zoom-in;
+    box-shadow: 0 8px 22px rgba(116,70,83,.10);
+}
+
+.photo img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform .3s;
+}
+
+.photo:hover img {
+    transform: scale(1.035);
+}
+
+.loading {
+    padding: 80px 20px;
+    text-align: center;
+    color: #866860;
+    font-size: 17px;
+}
+
+
+/* CTA */
+
+.cta {
+    padding: 52px 25px;
+    text-align: center;
+    background: linear-gradient(135deg,#f4c8d5,#fbe1dc);
+}
+
+.cta h2 {
+    margin: 0 0 12px;
+    color: #5d4037;
+    font-family: Georgia, serif;
+    font-size: 30px;
+}
+
+.cta p {
+    max-width: 650px;
+    margin: 0 auto 22px;
+    line-height: 1.6;
+}
+
+.primary {
+    display: inline-block;
+    padding: 15px 34px;
+    color: white;
+    background: linear-gradient(135deg,#ff779a,#ed4f79);
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 800;
+    box-shadow: 0 9px 22px rgba(239,77,120,.27);
+}
+
+
+/* FOOTER */
+
+footer {
+    padding: 25px 20px;
+    background: linear-gradient(135deg,#5d4037,#6d4b42);
+    color: #fff8f5;
+    text-align: center;
+    font-size: 14px;
+}
+
+
+/* MODAL */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 9999;
+    background: rgba(30,20,18,.88);
+}
+
+.modal.open {
+    display: flex;
+}
+
+.modal img {
+    max-width: min(1100px, 94vw);
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.35);
+}
+
+.modal-close {
+    position: fixed;
+    top: 17px;
+    right: 21px;
+    width: 46px;
+    height: 46px;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,.95);
+    color: #5d4037;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+
+/* MOBILE */
+
+@media(max-width: 900px) {
+    .photo-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media(max-width: 650px) {
+    .page {
+        width: 100%;
+    }
+
+    .topbar {
+        padding: 9px 14px;
+    }
+
+    .home-link {
+        font-size: 14px;
+    }
+
+    .languages button {
+        min-width: 38px;
+        height: 35px;
+    }
+
+    .hero {
+        padding: 36px 18px 32px;
+    }
+
+    .brand {
+        font-size: 37px;
+    }
+
+    .hero h1 {
+        font-size: 29px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .category-nav-wrap {
+        padding: 15px 10px;
+    }
+
+    .category-nav {
+        gap: 7px;
+    }
+
+    .category-nav button {
+        padding: 9px 12px;
+        font-size: 12px;
+    }
+
+    .gallery-container {
+        padding: 38px 12px 50px;
+    }
+
+    .category-section {
+        margin-bottom: 45px;
+    }
+
+    .category-heading h2 {
+        font-size: 27px;
+    }
+
+    .photo-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 9px;
+    }
+
+    .photo {
+        border-radius: 15px;
+    }
+
+    .cta {
+        padding: 44px 18px;
+    }
+}
+</style>
 </head>
+
+
 <body>
 
-<header>
-    <a href="index.html" class="back-btn" id="btn_back">← ВЕРНУТЬСЯ НА ГЛАВНУЮ</a>
-    <div class="lang">
-        <button onclick="setLang('fi')">FI</button>
-        <button onclick="setLang('ru')">RU</button>
-        <button onclick="setLang('en')">EN</button>
+<div class="page">
+
+<header class="topbar">
+
+    <a href="index.html"
+       class="home-link"
+       id="home-link">
+        ← ETUSIVULLE
+    </a>
+
+    <div class="languages">
+        <button id="lang-fi" onclick="setLang('fi')">FI</button>
+        <button id="lang-ru" onclick="setLang('ru')">RU</button>
+        <button id="lang-en" onclick="setLang('en')">EN</button>
     </div>
+
 </header>
 
-<h2 class="section-title" id="title_wedding">СВАДЕБНЫЕ ТОРТЫ</h2>
-<div class="gallery-grid" id="weddingGrid"></div>
 
-<h2 class="section-title" id="title_kids" style="margin-top: 60px;">ДЕТСКИЕ ТОРТЫ</h2>
-<div class="gallery-grid" id="kidsGrid"></div>
+<section class="hero">
 
-<div id="fullView" onclick="this.style.display='none'"><img id="fullImg" src=""></div>
+    <div class="brand">
+        UliBakery
+    </div>
 
-<footer><p id="footer_text">© 2026 UliBakery | Галерея работ</p></footer>
+    <h1 id="page-title">
+        Galleria
+    </h1>
 
-<script>
-// Массив переводов для этой страницы
+    <p id="page-intro">
+        Tutustu UliBakeryn käsintehtyihin kakkuihin ja löydä inspiraatiota omaan juhlaasi.
+    </p>
+
+</section>
+
+
+<div class="category-nav-wrap">
+    <div id="category-nav"
+         class="category-nav">
+    </div>
+</div>
+
+
+<main id="gallery-container"
+      class="gallery-container">
+
+    <div class="loading">
+        Ladataan galleriaa...
+    </div>
+
+</main>
+
+
+<section class="cta">
+
+    <h2 id="cta-title">
+        Löysitkö inspiraatiota?
+    </h2>
+
+    <p id="cta-text">
+        Kerro juhlapäivä ja toiveesi, niin suunnitellaan juuri sinun juhlaasi sopiva kakku.
+    </p>
+
+    <a href="order.html"
+       class="primary"
+       id="cta-button">
+        TEE TILAUS →
+    </a>
+
+</section>
+
+
+<footer id="footer-text">
+    © 2026 UliBakery · Tilauskakut Vantaalla
+</footer>
+
+</div>
+
+
+<div id="modal"
+     class="modal"
+     aria-hidden="true">
+
+    <button id="modal-close"
+            class="modal-close"
+            aria-label="Sulje">
+        ×
+    </button>
+
+    <img id="modal-image"
+         src=""
+         alt="">
+
+</div>
+
+
+<script type="module">
+
+import {
+    createClient
+} from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+
+const SUPABASE_URL =
+    "https://sxvoigmsosvujeswizib.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_IS21B3RawJySN_pAvjX1SA_pWn143P1";
+
+
+const supabase =
+    createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
 const translations = {
-    ru: {
-        page_title: "Галерея тортов | UliBakery",
-        btn_back: "← ВЕРНУТЬСЯ НА ГЛАВНУЮ",
-        title_wedding: "СВАДЕБНЫЕ ТОРТЫ",
-        title_kids: "ДЕТСКИЕ ТОРТЫ",
-        footer_text: "© 2026 UliBakery | Галерея работ"
-    },
+
     fi: {
-        page_title: "Kakkugalleria | UliBakery",
-        btn_back: "← PALAA ETUSIVULLE",
-        title_wedding: "HÄÄKAKUT",
-        title_kids: "LASTEN KAKUT",
-        footer_text: "© 2026 UliBakery | Galleria"
+        home: "← ETUSIVULLE",
+        title: "Galleria",
+        intro: "Tutustu UliBakeryn käsintehtyihin kakkuihin ja löydä inspiraatiota omaan juhlaasi.",
+        photos: "kuvaa",
+        loading: "Ladataan galleriaa...",
+        error: "Gallerian lataaminen epäonnistui.",
+        ctaTitle: "Löysitkö inspiraatiota?",
+        ctaText: "Kerro juhlapäivä ja toiveesi, niin suunnitellaan juuri sinun juhlaasi sopiva kakku.",
+        ctaButton: "TEE TILAUS →",
+        footer: "© 2026 UliBakery · Tilauskakut Vantaalla"
     },
+
+    ru: {
+        home: "← НА ГЛАВНУЮ",
+        title: "Галерея",
+        intro: "Посмотрите работы UliBakery и найдите вдохновение для своего праздника.",
+        photos: "фото",
+        loading: "Загружаем галерею...",
+        error: "Не удалось загрузить галерею.",
+        ctaTitle: "Нашли идею для своего праздника?",
+        ctaText: "Расскажите дату праздника и ваши пожелания — мы создадим торт специально для вас.",
+        ctaButton: "СДЕЛАТЬ ЗАКАЗ →",
+        footer: "© 2026 UliBakery · Торты на заказ в Вантаа"
+    },
+
     en: {
-        page_title: "Cake Gallery | UliBakery",
-        btn_back: "← BACK TO HOME",
-        title_wedding: "WEDDING CAKES",
-        title_kids: "KIDS CAKES",
-        footer_text: "© 2026 UliBakery | Gallery"
+        home: "← HOME",
+        title: "Gallery",
+        intro: "Explore UliBakery's handmade cakes and find inspiration for your celebration.",
+        photos: "photos",
+        loading: "Loading gallery...",
+        error: "Could not load the gallery.",
+        ctaTitle: "Found some inspiration?",
+        ctaText: "Tell us your celebration date and wishes, and we will create a cake especially for you.",
+        ctaButton: "PLACE AN ORDER →",
+        footer: "© 2026 UliBakery · Custom cakes in Vantaa"
     }
 };
+
+
+let currentLang = "fi";
+let categories = [];
+let galleryItems = [];
+
+
+const galleryContainer =
+    document.getElementById("gallery-container");
+
+const categoryNav =
+    document.getElementById("category-nav");
+
+const modal =
+    document.getElementById("modal");
+
+const modalImage =
+    document.getElementById("modal-image");
+
+const modalClose =
+    document.getElementById("modal-close");
+
+
+function publicImageUrl(path) {
+
+    const { data } =
+        supabase.storage
+            .from("gallery")
+            .getPublicUrl(path);
+
+    return data.publicUrl;
+}
+
+
+function categoryName(category) {
+
+    if (currentLang === "ru") {
+        return category.name_ru || category.name_fi;
+    }
+
+    if (currentLang === "en") {
+        return category.name_en || category.name_fi;
+    }
+
+    return category.name_fi;
+}
+
+
+function photoAlt(item, category) {
+
+    if (currentLang === "ru") {
+        return item.alt_ru || category.name_ru || category.name_fi;
+    }
+
+    if (currentLang === "en") {
+        return item.alt_en || category.name_en || category.name_fi;
+    }
+
+    return item.alt_fi || category.name_fi;
+}
+
+
+async function loadGallery() {
+
+    const t = translations[currentLang];
+
+    galleryContainer.innerHTML =
+        `<div class="loading">${t.loading}</div>`;
+
+
+    const categoriesResponse =
+        await supabase
+            .from("categories")
+            .select("*")
+            .eq("is_visible", true)
+            .order("sort_order", {
+                ascending: true
+            });
+
+
+    if (categoriesResponse.error) {
+
+        console.error(categoriesResponse.error);
+
+        galleryContainer.innerHTML =
+            `<div class="loading">${t.error}</div>`;
+
+        return;
+    }
+
+
+    categories =
+        categoriesResponse.data || [];
+
+
+    const galleryResponse =
+        await supabase
+            .from("gallery_items")
+            .select("*")
+            .eq("is_visible", true)
+            .order("sort_order", {
+                ascending: true
+            })
+            .order("created_at", {
+                ascending: false
+            });
+
+
+    if (galleryResponse.error) {
+
+        console.error(galleryResponse.error);
+
+        galleryContainer.innerHTML =
+            `<div class="loading">${t.error}</div>`;
+
+        return;
+    }
+
+
+    galleryItems =
+        galleryResponse.data || [];
+
+
+    renderGallery();
+}
+
+
+function renderGallery() {
+
+    const t =
+        translations[currentLang];
+
+
+    galleryContainer.innerHTML = "";
+    categoryNav.innerHTML = "";
+
+
+    for (const category of categories) {
+
+        const items =
+            galleryItems
+                .filter(
+                    item =>
+                        item.category_id === category.id
+                )
+                .sort((a, b) => {
+
+                    if (a.is_cover && !b.is_cover) {
+                        return -1;
+                    }
+
+                    if (!a.is_cover && b.is_cover) {
+                        return 1;
+                    }
+
+                    return (
+                        (a.sort_order || 0) -
+                        (b.sort_order || 0)
+                    );
+                });
+
+
+        const navButton =
+            document.createElement("button");
+
+        navButton.type = "button";
+
+        navButton.textContent =
+            categoryName(category);
+
+        navButton.addEventListener(
+            "click",
+            () => {
+
+                document
+                    .getElementById(
+                        "category-" +
+                        category.id
+                    )
+                    ?.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+            }
+        );
+
+        categoryNav.appendChild(
+            navButton
+        );
+
+
+        const section =
+            document.createElement("section");
+
+        section.className =
+            "category-section";
+
+        section.id =
+            "category-" + category.id;
+
+
+        const heading =
+            document.createElement("div");
+
+        heading.className =
+            "category-heading";
+
+
+        const h2 =
+            document.createElement("h2");
+
+        h2.textContent =
+            categoryName(category);
+
+
+        const count =
+            document.createElement("p");
+
+        count.textContent =
+            `${items.length} ${t.photos}`;
+
+
+        heading.appendChild(h2);
+        heading.appendChild(count);
+
+        section.appendChild(heading);
+
+
+        if (!items.length) {
+            continue;
+        }
+
+
+        const grid =
+            document.createElement("div");
+
+        grid.className =
+            "photo-grid";
+
+
+        for (const item of items) {
+
+            const photo =
+                document.createElement("div");
+
+            photo.className =
+                "photo";
+
+
+            const img =
+                document.createElement("img");
+
+            img.src =
+                publicImageUrl(
+                    item.image_path
+                );
+
+            img.alt =
+                photoAlt(
+                    item,
+                    category
+                );
+
+            img.loading =
+                "lazy";
+
+
+            photo.appendChild(img);
+
+
+            photo.addEventListener(
+                "click",
+                () => {
+
+                    modalImage.src =
+                        img.src;
+
+                    modalImage.alt =
+                        img.alt;
+
+                    modal.classList.add(
+                        "open"
+                    );
+
+                    modal.setAttribute(
+                        "aria-hidden",
+                        "false"
+                    );
+
+                    document.body.style.overflow =
+                        "hidden";
+                }
+            );
+
+
+            grid.appendChild(photo);
+        }
+
+
+        section.appendChild(grid);
+
+        galleryContainer.appendChild(
+            section
+        );
+    }
+}
+
 
 function setLang(lang) {
-    localStorage.setItem('uliLang', lang);
-    const t = translations[lang];
 
-    // Меняем все элементы
-    document.getElementById('page_title').innerText = t.page_title;
-    document.getElementById('btn_back').innerText = t.btn_back;
-    document.getElementById('title_wedding').innerText = t.title_wedding;
-    document.getElementById('title_kids').innerText = t.title_kids;
-    document.getElementById('footer_text').innerText = t.footer_text;
+    currentLang = lang;
 
-    // Меняем lang атрибут html
-    document.documentElement.lang = lang;
-}
+    localStorage.setItem(
+        "uliLang",
+        lang
+    );
 
-// Создание карточек (остаётся без изменений)
-function createCards(containerId, prefix, count) {
-    const grid = document.getElementById(containerId);
-    let html = '';
-    for (let i = 1; i <= count; i++) {
-        const delay = (i % 10) * 0.1;
-        html += `
-            <div class="work-card" style="animation-delay: ${delay}s">
-                <div class="img-container">
-                    <img src="${prefix}${i}.jpg"
-                         onerror="this.onerror=null;
-                                  if(this.src.includes('.jpg')) this.src='${prefix}${i}.JPG';
-                                  else if(this.src.includes('.JPG')) this.src='${prefix}${i}.jpeg';
-                                  else this.src='logo.jpg';"
-                         onclick="openFull(this.src)"
-                         loading="lazy"
-                         alt="Cake">
-                </div>
-            </div>`;
+    document.documentElement.lang =
+        lang;
+
+
+    const t =
+        translations[lang];
+
+
+    document
+        .getElementById("home-link")
+        .textContent = t.home;
+
+    document
+        .getElementById("page-title")
+        .textContent = t.title;
+
+    document
+        .getElementById("page-intro")
+        .textContent = t.intro;
+
+    document
+        .getElementById("cta-title")
+        .textContent = t.ctaTitle;
+
+    document
+        .getElementById("cta-text")
+        .textContent = t.ctaText;
+
+    document
+        .getElementById("cta-button")
+        .textContent = t.ctaButton;
+
+    document
+        .getElementById("footer-text")
+        .textContent = t.footer;
+
+
+    document
+        .querySelectorAll(".languages button")
+        .forEach(
+            button =>
+                button.classList.remove(
+                    "active"
+                )
+        );
+
+
+    document
+        .getElementById(
+            "lang-" + lang
+        )
+        ?.classList.add(
+            "active"
+        );
+
+
+    if (categories.length) {
+        renderGallery();
     }
-    grid.innerHTML = html;
 }
 
-function openFull(src) {
-    const fullImg = document.getElementById('fullImg');
-    fullImg.src = src;
-    document.getElementById('fullView').style.display = 'flex';
+
+window.setLang = setLang;
+
+
+function closeModal() {
+
+    modal.classList.remove("open");
+
+    modal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+    modalImage.src = "";
+
+    document.body.style.overflow =
+        "";
 }
 
-// При загрузке страницы
-window.onload = function() {
-    const savedLang = localStorage.getItem('uliLang') || 'ru';
-    setLang(savedLang);
 
-    // Генерируем карточки после загрузки языка (не зависит от языка)
-    createCards('weddingGrid', 'work', 12);
-    createCards('kidsGrid', 'kids', 45);
-};
+modalClose.addEventListener(
+    "click",
+    closeModal
+);
+
+
+modal.addEventListener(
+    "click",
+    event => {
+
+        if (event.target === modal) {
+            closeModal();
+        }
+    }
+);
+
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key === "Escape" &&
+            modal.classList.contains("open")
+        ) {
+            closeModal();
+        }
+    }
+);
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    async () => {
+
+        const saved =
+            localStorage.getItem(
+                "uliLang"
+            );
+
+        if (
+            saved === "ru" ||
+            saved === "en"
+        ) {
+            setLang(saved);
+        } else {
+            setLang("fi");
+        }
+
+        await loadGallery();
+    }
+);
+
 </script>
 
 </body>
